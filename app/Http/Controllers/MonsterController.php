@@ -36,7 +36,7 @@ class MonsterController extends Controller
         $monster = Monster::where('id', $id)->first();
         if($monster->special_monster == 1) {
             $monster = DB::table('monsters')
-                        ->leftJoin('special_monsters', 'monsters.special_monster_id', '=', 'special_monsters.id')
+                        ->leftJoin('special_monsters', 'monsters.special_monster_id', '=', 'special_monsters.s_id')
                         ->first();
         }
         return view('monster/edit-monster', compact('monster'));
@@ -162,7 +162,7 @@ class MonsterController extends Controller
 
         $monster = Monster::create($monster_info);
         if($request->special_monster == 1) {
-            $monster->special_monster_id = $special_monster->id;
+            $monster->special_monster_id = $special_monster->s_id;
             $monster->save();
         }
 
@@ -332,7 +332,7 @@ class MonsterController extends Controller
         );
 
         if($request->special_monster == 1) {
-            if(!$monster->first()->special_monster) {
+            if(!$monster->first()->special_monster_id) {
                 $rules = [
                     's_main_image' => 'image|mimes:jpeg,png,jpg,gif'
                 ];
@@ -366,7 +366,7 @@ class MonsterController extends Controller
                     's_mana_cost' => $request->s_mana_cost,
                 ]);
 
-                $monster->first()->special_monster_id = $special_monster->id;
+                $monster->first()->special_monster_id = $special_monster->s_id;
                 $monster->first()->save();
             } else {
                 if($request->s_main_image) {
@@ -383,7 +383,7 @@ class MonsterController extends Controller
                     $s_main_image = 'm_'.time().'.'.$request->s_main_image->extension();  
                     $request->s_main_image->move(public_path('images/game/special_images'), $s_main_image);
 
-                    $special_monster = SpecialMonster::where('id', $monster->first()->special_monster_id)->update([
+                    $special_monster = SpecialMonster::where('s_id', $monster->first()->special_monster_id)->update([
                         's_name' => $request->s_name,
                         'fr_s_name' => $request->fr_s_name,
                         's_second_name' => $request->s_second_name,
@@ -403,7 +403,7 @@ class MonsterController extends Controller
                         's_mana_cost' => $request->s_mana_cost,
                     ]);
                 } else {
-                    $special_monster = SpecialMonster::where('id', $monster->first()->special_monster_id)->update([
+                    $special_monster = SpecialMonster::where('s_id', $monster->first()->special_monster_id)->update([
                         's_name' => $request->s_name,
                         'fr_s_name' => $request->fr_s_name,
                         's_second_name' => $request->s_second_name,

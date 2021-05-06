@@ -62,7 +62,7 @@
     {{-- include default scripts --}}
     <script>
         // var main_url = 'http://localhost:8000/';
-        var main_url = 'http://lostcenturia.gg/';
+        var main_url = 'https://lostcenturia.gg/';
     </script>
     @include('panels/scripts')
 

@@ -103,7 +103,7 @@
                     <div class="controls">
                       <label>Mana Cost</label>
                       <input type="number" name="mana_cost" class="form-control" value="{{ $spell->mana_cost }}" required placeholder="Mana Cost"
-                        value=""
+                        value="" step="0.01" min="0.00"
                         data-validation-required-message="This Mana Cost field is required">
                     </div>
                   </div>

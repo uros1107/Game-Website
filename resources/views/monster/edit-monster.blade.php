@@ -147,7 +147,7 @@
                     <div class="controls">
                       <label>Mana Cost</label>
                       <input type="number" class="form-control" required placeholder="Mana Cost"
-                        value="{{ $monster->mana_cost }}" name="mana_cost"
+                        value="{{ $monster->mana_cost }}" name="mana_cost" step="0.01" min="0.00"
                         data-validation-required-message="This Mana Cost field is required">
                     </div>
                   </div>
@@ -330,7 +330,7 @@
                         <div class="controls d-flex">
                           <label class="custom-label">CRIT Rate</label>
                           <input type="number" name="crit_rate" class="form-control w-50" required placeholder="0"
-                            value="{{ $monster->crit_rate }}"
+                            value="{{ $monster->crit_rate }}"  step="0.01" min="0.00"
                             data-validation-required-message="This field is required">
                         </div>
                       </div>
@@ -338,7 +338,7 @@
                         <div class="controls d-flex">
                           <label class="custom-label">CRIT DMG</label>
                           <input type="number" name="crit_dmg" class="form-control w-50" required placeholder="0"
-                            value="{{ $monster->crit_dmg }}"
+                            value="{{ $monster->crit_dmg }}" step="0.01" min="0.00"
                             data-validation-required-message="This field is required">
                         </div>
                       </div>
@@ -346,7 +346,7 @@
                         <div class="controls d-flex">
                           <label class="custom-label">HP</label>
                           <input type="number" name="hp" class="form-control w-50" required placeholder="0"
-                            value="{{ $monster->hp }}"
+                            value="{{ $monster->hp }}" step="0.01" min="0.00"
                             data-validation-required-message="This field is required">
                         </div>
                       </div>
@@ -356,7 +356,7 @@
                         <div class="controls d-flex">
                           <label class="custom-label">ATK</label>
                           <input type="number" name="atk" class="form-control w-50" required placeholder="0"
-                            value="{{ $monster->atk }}"
+                            value="{{ $monster->atk }}" step="0.01" min="0.00"
                             data-validation-required-message="This field is required">
                         </div>
                       </div>
@@ -364,7 +364,7 @@
                         <div class="controls d-flex">
                           <label class="custom-label">ACC</label>
                           <input type="number" name="acc" class="form-control w-50" required placeholder="0"
-                            value="{{ $monster->acc }}"
+                            value="{{ $monster->acc }}" step="0.01" min="0.00"
                             data-validation-required-message="This field is required">
                         </div>
                       </div>
@@ -372,7 +372,7 @@
                         <div class="controls d-flex">
                           <label class="custom-label">DEF</label>
                           <input type="number" name="def" class="form-control w-50" required placeholder="0"
-                            value="{{ $monster->def }}"
+                            value="{{ $monster->def }}" step="0.01" min="0.00"
                             data-validation-required-message="This field is required">
                         </div>
                       </div>
@@ -380,7 +380,7 @@
                         <div class="controls d-flex">
                           <label class="custom-label">RES</label>
                           <input type="number" name="res" class="form-control w-50" required placeholder="0"
-                            value="{{ $monster->res }}"
+                            value="{{ $monster->res }}" step="0.01" min="0.00"
                             data-validation-required-message="This field is required">
                         </div>
                       </div>
@@ -620,7 +620,7 @@
                         <div class="controls d-flex">
                           <label class="custom-label">CRIT Rate</label>
                           <input type="number" class="form-control w-50" name="s_crit_rate" required placeholder="0"
-                            value="{{ $monster->special_monster == 1? $monster->s_crit_rate : 0 }}"
+                            value="{{ $monster->special_monster == 1? $monster->s_crit_rate : 0 }}"  step="0.01" min="0.00"
                             data-validation-required-message="This field is required">
                         </div>
                       </div>
@@ -628,7 +628,7 @@
                         <div class="controls d-flex">
                           <label class="custom-label">CRIT DMG</label>
                           <input type="number" class="form-control w-50" name="s_crit_dmg" required placeholder="0"
-                            value="{{ $monster->special_monster == 1? $monster->s_crit_dmg : 0 }}"
+                            value="{{ $monster->special_monster == 1? $monster->s_crit_dmg : 0 }}"  step="0.01" min="0.00"
                             data-validation-required-message="This field is required">
                         </div>
                       </div>
@@ -636,7 +636,7 @@
                         <div class="controls d-flex">
                           <label class="custom-label">HP</label>
                           <input type="number" class="form-control w-50" name="s_hp" required placeholder="0"
-                            value="{{ $monster->special_monster == 1? $monster->s_hp : 0 }}"
+                            value="{{ $monster->special_monster == 1? $monster->s_hp : 0 }}"  step="0.01" min="0.00"
                             data-validation-required-message="This field is required">
                         </div>
                       </div>
@@ -646,7 +646,7 @@
                         <div class="controls d-flex">
                           <label class="custom-label">ATK</label>
                           <input type="number" class="form-control w-50" name="s_atk" required placeholder="0"
-                            value="{{ $monster->special_monster == 1? $monster->s_atk : 0 }}"
+                            value="{{ $monster->special_monster == 1? $monster->s_atk : 0 }}" step="0.01" min="0.00"
                             data-validation-required-message="This field is required">
                         </div>
                       </div>
@@ -654,7 +654,7 @@
                         <div class="controls d-flex">
                           <label class="custom-label">ACC</label>
                           <input type="number" class="form-control w-50" name="s_acc" required placeholder="0"
-                            value="{{ $monster->special_monster == 1? $monster->s_acc : 0 }}"
+                            value="{{ $monster->special_monster == 1? $monster->s_acc : 0 }}" step="0.01" min="0.00"
                             data-validation-required-message="This field is required">
                         </div>
                       </div>
@@ -662,7 +662,7 @@
                         <div class="controls d-flex">
                           <label class="custom-label">DEF</label>
                           <input type="number" class="form-control w-50" name="s_def" required placeholder="0"
-                            value="{{ $monster->special_monster == 1? $monster->s_def : 0 }}"
+                            value="{{ $monster->special_monster == 1? $monster->s_def : 0 }}" step="0.01" min="0.00"
                             data-validation-required-message="This field is required">
                         </div>
                       </div>
@@ -670,7 +670,7 @@
                         <div class="controls d-flex">
                           <label class="custom-label">RES</label>
                           <input type="number" class="form-control w-50" name="s_res" required placeholder="0"
-                            value="{{ $monster->special_monster == 1? $monster->s_res : 0 }}"
+                            value="{{ $monster->special_monster == 1? $monster->s_res : 0 }}" step="0.01" min="0.00"
                             data-validation-required-message="This field is required">
                         </div>
                       </div>
@@ -680,7 +680,7 @@
                     <div class="controls">
                       <label>Mana Cost</label>
                       <input type="number" class="form-control" name="s_mana_cost" required placeholder="Mana Cost"
-                        value="{{ $monster->special_monster == 1? $monster->s_mana_cost : 0 }}"
+                        value="{{ $monster->special_monster == 1? $monster->s_mana_cost : 0 }}" step="0.01" min="0.00"
                         data-validation-required-message="This field is required">
                     </div>
                   </div>

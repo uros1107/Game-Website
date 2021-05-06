@@ -29,7 +29,8 @@
             <th></th>
             <th>MAIN IMAGE</th>
             <th>ICON IMAGE</th>
-            <th>NAME</th>
+            <th>NAME (EN)</th>
+            <th>NAME (FR)</th>
             <th>DESCRIPTION</th>
             <th>MANA COST</th>
             <th>ACTION</th>
@@ -42,6 +43,7 @@
               <td class="product-name"><img src="{{ asset('images/game/main_images/'.$spell->main_image) }}" style="height:130px"></td>
               <td class="product-name"><img src="{{ asset('images/game/icon_images/'.$spell->icon_image) }}" style="height:70px"></td>
               <td class="product-category">{{ $spell->name }}</td>
+              <td class="product-category">{{ $spell->fr_name }}</td>
               <td>
                 {{ $spell->description }}
               </td>
