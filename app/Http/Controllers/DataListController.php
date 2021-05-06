@@ -19,10 +19,10 @@ class DataListController extends Controller
         $objs = json_decode($json,true);
 
         $breadcrumbs = [
-            ['link'=>"dashboard-analytics",'name'=>"Home"],['link'=>"dashboard-analytics",'name'=>"Data List"], ['name'=>"List View"]
+            ['link'=>"dashboard-analytics",'name'=>"Home"], ['name'=>"Monster Manage"]
         ];
 
-        return view('/pages/data-list-view', [
+        return view('/monster/monster-list', [
             'breadcrumbs' => $breadcrumbs,
             'products' => $objs['products']
         ]);
@@ -66,9 +66,14 @@ class DataListController extends Controller
      * @param  \App\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function edit(Products $products)
+    public function edit_monster(Products $products)
     {
-        // Edit single item code goes here
+        return view('monster/edit-monster');
+    }
+
+    public function add_monster(Products $products)
+    {
+        return view('monster/add-monster');
     }
 
     /**

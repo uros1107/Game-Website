@@ -78,12 +78,12 @@
                                   @endif
 
                               </div>
-                              <!-- <a href="register" class="btn btn-outline-primary float-left btn-inline">Register</a> -->
+                              <a href="register" class="btn btn-outline-primary float-left btn-inline">Register</a>
                               <button type="submit" class="btn btn-primary float-right btn-inline">Login</button>
                             </form>
                           </div>
                       </div>
-                      <!-- <div class="login-footer">
+                      <div class="login-footer">
                         <div class="divider">
                           <div class="divider-text">OR</div>
                         </div>
@@ -93,7 +93,7 @@
                             <a href="#" class="btn btn-google"><span class="fa fa-google"></span></a>
                             <a href="#" class="btn btn-github"><span class="fa fa-github-alt"></span></a>
                         </div>
-                      </div> -->
+                      </div>
                   </div>
               </div>
           </div>

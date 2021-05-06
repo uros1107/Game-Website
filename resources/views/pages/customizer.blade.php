@@ -31,7 +31,7 @@
             <div class="mx-50">
                 <fieldset>
                 <div class="vs-radio-con vs-radio-primary">
-                    <input type="radio" name="layoutOptions" value="false" class="layout-name" data-layout="" checked>
+                    <input type="radio" name="layoutOptions" value="false" class="layout-name" data-layout="light">
                     <span class="vs-radio">
                     <span class="vs-radio--border"></span>
                     <span class="vs-radio--circle"></span>
@@ -43,7 +43,7 @@
             <div class="mx-50">
                 <fieldset>
                 <div class="vs-radio-con vs-radio-primary">
-                    <input type="radio" name="layoutOptions" value="false" class="layout-name" data-layout="dark-layout">
+                    <input type="radio" name="layoutOptions" value="false" class="layout-name" data-layout="dark-layout" checked>
                     <span class="vs-radio">
                     <span class="vs-radio--border"></span>
                     <span class="vs-radio--circle"></span>

@@ -11,7 +11,7 @@ class Helper
         // default data array
         $DefaultData = [
             'mainLayoutType' => 'vertical',
-            'theme' => 'light',
+            'theme' => 'dark',
             'sidebarCollapsed' => false,
             'navbarColor' => '',
             'horizontalMenuType' => 'floating',
@@ -30,7 +30,8 @@ class Helper
         // All options available in the template
         $allOptions = [
             'mainLayoutType' => array('vertical', 'horizontal'),
-            'theme' => array('light' => 'light', 'dark' => 'dark-layout', 'semi-dark' => 'semi-dark-layout'),
+            // 'theme' => array('dark' => 'dark-layout', 'light' => 'light', 'semi-dark' => 'semi-dark-layout'),
+            'theme' => array('dark' => 'dark-layout', 'semi-dark' => 'semi-dark-layout'),
             'sidebarCollapsed' => array(true, false),
             'navbarColor' => array('bg-primary', 'bg-info', 'bg-warning', 'bg-success', 'bg-danger', 'bg-dark'),
             'horizontalMenuType' => array('floating' => 'navbar-floating', 'static' => 'navbar-static', 'sticky' => 'navbar-sticky'),

@@ -25,28 +25,28 @@ $configData = Helper::applClasses();
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
                 {{-- Foreach menu item starts --}}
                 @if(isset($menuData[1]))
-                @foreach($menuData[1]->menu as $menu)
-                @php
-                $custom_classes = "";
-                if(isset($menu->classlist)) {
-                $custom_classes = $menu->classlist;
-                }
-                $translation = "";
-                if(isset($menu->i18n)){
-                $translation = $menu->i18n;
-                }
-                @endphp
-                <li class="dropdown nav-item {{ (request()->is($menu->url)) ? 'active' : '' }} {{ $custom_classes }}"
-                    data-menu="dropdown">
-                    <a href="{{ $menu->url }}" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                        <i class="{{ $menu->icon }}"></i>
-                        <span data-i18n="{{ $translation }}">{{ $menu->name }}</span>
-                    </a>
-                    @if(isset($menu->submenu))
-                    @include('panels/horizontalSubmenu', ['menu' => $menu->submenu])
-                    @endif
-                </li>
-                @endforeach
+                    @foreach($menuData[1]->menu as $menu)
+                        @php
+                            $custom_classes = "";
+                            if(isset($menu->classlist)) {
+                                $custom_classes = $menu->classlist;
+                            }
+                            $translation = "";
+                            if(isset($menu->i18n)){
+                                $translation = $menu->i18n;
+                            }
+                        @endphp
+                        <li class="dropdown nav-item {{ (request()->is($menu->url)) ? 'active' : '' }} {{ $custom_classes }}"
+                            data-menu="dropdown">
+                            <a href="{{ $menu->url }}" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                <i class="{{ $menu->icon }}"></i>
+                                <span data-i18n="{{ $translation }}">{{ $menu->name }}</span>
+                            </a>
+                            @if(isset($menu->submenu))
+                                @include('panels/horizontalSubmenu', ['menu' => $menu->submenu])
+                            @endif
+                        </li>
+                    @endforeach
                 @endif
                 {{-- Foreach menu item ends --}}
             </ul>

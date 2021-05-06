@@ -60,6 +60,9 @@
     @include('panels/footer')
 
     {{-- include default scripts --}}
+    <script>
+        var main_url = 'http://localhost:8000/';
+    </script>
     @include('panels/scripts')
 
 </body>

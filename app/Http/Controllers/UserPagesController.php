@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\UserInfo;
 
 class UserPagesController extends Controller
 {
     // User List Page
     public function user_list(){
       $breadcrumbs = [
-          ['link'=>"dashboard-analytics",'name'=>"Home"], ['link'=>"dashboard-analytics",'name'=>"Pages"], ['name'=>"User List"]
+          ['link'=>"/",'name'=>"Home"], ['name'=>"User Manage"]
       ];
-      return view('/pages/app-user-list', [
-          'breadcrumbs' => $breadcrumbs
+      return view('/user/app-user-list', [
+          'breadcrumbs' => $breadcrumbs,
+          'user_management' => true
       ]);
     }
 
@@ -34,6 +37,75 @@ class UserPagesController extends Controller
       return view('/pages/app-user-edit', [
           'breadcrumbs' => $breadcrumbs
       ]);
+    }
+
+    public function get_users()
+    {
+        $user = User::where('role', 0)->get();
+
+        return $user;
+    }
+
+    public function edit_user(Request $request)
+    {
+        $user_id = $request->user_id;
+        $user = User::where('id', $user_id)->first();
+        $user_info = UserInfo::where('user_id', $user_id)->first();
+        $user_management = true;
+
+        return view('user.edit-user', compact('user', 'user_info', 'user_management'));
+    }
+
+    public function create_user(Request $request)
+    {
+        $input = $request->all();
+        $user = User::create($input);
+
+        return redirect()->back();
+    }
+
+    public function update_account(Request $request)
+    {
+        $user = User::where('id', $request->id);
+        $input = $request->all();
+        $user->update($input);
+
+        return response()->json(true);
+    }
+
+    public function update_information(Request $request)
+    {
+        $user = UserInfo::where('user_id', $request->user_id);
+        $input = $request->all();
+        if($user->first()) {
+            $user->update($input);
+        } else {
+            $user->create($input);
+        }
+
+        return response()->json(true);
+    }
+
+    public function update_social(Request $request)
+    {
+        $user = UserInfo::where('user_id', $request->user_id);
+        $input = $request->all();
+        if($user->first()) {
+            $user->update($input);
+        } else {
+            $user->create($input);
+        }
+
+        return response()->json(true);
+    }
+
+    public function delete_user(Request $request)
+    {
+        $user_id = $request->user_id;
+        UserInfo::where('user_id', $user_id)->delete();
+        User::where('id', $user_id)->delete();
+
+        return response()->json(true);
     }
 
 }

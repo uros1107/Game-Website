@@ -45,7 +45,8 @@ $(document).ready(function () {
   // Renering Icons in Actions column
   var customIconsHTML = function (params) {
     var usersIcons = document.createElement("span");
-    var editIconHTML = "<a href='app-user-edit'><i class='users-edit-icon feather icon-edit-1 mr-50'></i></a>"
+    var api_url = main_url + 'edit-user?user_id=' + params.data.id; 
+    var editIconHTML = "<a href='" + api_url + "'><i class='users-edit-icon feather icon-edit-1 mr-50'></i></a>"
     var deleteIconHTML = document.createElement('i');
     var attr = document.createAttribute("class")
     attr.value = "users-delete-icon feather icon-trash-2"
@@ -56,9 +57,25 @@ $(document).ready(function () {
         params.data
       ];
       // var selectedData = gridOptions.api.getSelectedRows();
-      gridOptions.api.updateRowData({
-        remove: deleteArr
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
       });
+      $.ajax({
+        url: main_url + 'delete-user',
+        method: "POST",
+        data: { user_id: params.data.id },
+        success: function(data) {
+          toastr.success('Successfully removed!');
+          gridOptions.api.updateRowData({
+            remove: deleteArr
+          });
+        },
+        error: function() {
+          toastr.error('Server error!');
+        }
+      })
     });
     usersIcons.appendChild($.parseHTML(editIconHTML)[0]);
     usersIcons.appendChild(deleteIconHTML);
@@ -76,56 +93,45 @@ $(document).ready(function () {
   var columnDefs = [{
       headerName: 'ID',
       field: 'id',
-      width: 125,
+      // width: 125,
       filter: true,
       checkboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       headerCheckboxSelection: true,
     },
     {
-      headerName: 'Username',
-      field: 'username',
+      headerName: 'Name',
+      field: 'name',
       filter: true,
-      width: 175,
-      cellRenderer: customAvatarHTML,
+      // width: 200,
+    },
+    {
+      headerName: 'Game Name',
+      field: 'game_name',
+      filter: true,
+      // width: 200,
+    },
+    {
+      headerName: 'Guild Name',
+      field: 'guild_name',
+      filter: true,
+      // width: 200,
     },
     {
       headerName: 'Email',
       field: 'email',
       filter: true,
-      width: 225,
-    },
-    {
-      headerName: 'Name',
-      field: 'name',
-      filter: true,
-      width: 200,
-    },
-    {
-      headerName: 'Country',
-      field: 'country',
-      filter: true,
-      width: 150,
+      // width: 225,
     },
     {
       headerName: 'Role',
       field: 'role',
       filter: true,
-      width: 150,
-    },
-    {
-      headerName: 'Status',
-      field: 'status',
-      filter: true,
-      width: 150,
-      cellRenderer: customBadgeHTML,
-      cellStyle: {
-        "text-align": "center"
-      }
+      // width: 150,
     },
     {
       headerName: 'Verified',
-      field: 'is_verified',
+      field: 'verified',
       filter: true,
       width: 125,
       cellRenderer: customBulletHTML,
@@ -134,17 +140,40 @@ $(document).ready(function () {
       }
     },
     {
-      headerName: 'Department',
-      field: 'department',
-      filter: true,
-      width: 150,
-    },
-    {
       headerName: 'Actions',
       field: 'transactions',
-      width: 150,
+      // width: 150,
       cellRenderer: customIconsHTML,
-    }
+    },
+    // {
+    //   headerName: 'Username',
+    //   field: 'username',
+    //   filter: true,
+    //   width: 175,
+    //   cellRenderer: customAvatarHTML,
+    // },
+    // {
+    //   headerName: 'Country',
+    //   field: 'country',
+    //   filter: true,
+    //   width: 150,
+    // },
+    // {
+    //   headerName: 'Status',
+    //   field: 'status',
+    //   filter: true,
+    //   width: 150,
+    //   cellRenderer: customBadgeHTML,
+    //   cellStyle: {
+    //     "text-align": "center"
+    //   }
+    // },
+    // {
+    //   headerName: 'Department',
+    //   field: 'department',
+    //   filter: true,
+    //   width: 150,
+    // },
   ];
 
   /*** GRID OPTIONS ***/
@@ -171,9 +200,11 @@ $(document).ready(function () {
     /*** GET TABLE DATA FROM URL ***/
     agGrid
       .simpleHttpRequest({
-        url: "data/users-list.json"
+        url: main_url + "/get-users"
+        // url: "{{ route('get-users') }}"
       })
       .then(function (data) {
+        console.log(data)
         gridOptions.api.setRowData(data);
       });
 
@@ -281,4 +312,63 @@ $(document).ready(function () {
   if ($(".users-edit").length > 0) {
     $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
   }
+
+  // ------------------------------ user information save operation ---------------------------------- //
+
+  $(document).on('submit', '#account', function(e){
+    e.preventDefault();
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+      url: main_url + 'update-account',
+      method: "POST",
+      data: $(this).serialize(),
+      success: function(data) {
+        toastr.success('Successfully updated!');
+      }
+    })
+  })
+
+  $(document).on('submit', '#information', function(e){
+    e.preventDefault();
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+      url: main_url + 'update-information',
+      method: "POST",
+      data: $(this).serialize(),
+      success: function(data) {
+        toastr.success('Successfully updated!');
+      }
+    })
+  })
+
+  $(document).on('submit', '#social', function(e){
+    e.preventDefault();
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+      url: main_url + 'update-social',
+      method: "POST",
+      data: $(this).serialize(),
+      success: function(data) {
+        toastr.success('Successfully updated!');
+      }
+    })
+  })
+    
 });
+
+

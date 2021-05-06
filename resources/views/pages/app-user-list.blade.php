@@ -1,24 +1,26 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'User List Page')
+@section('title', 'User Management')
 
 @section('vendor-style')
         {{-- Page Css files --}}
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/ag-grid/ag-grid.css')) }}">
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/ag-grid/ag-theme-material.css')) }}">
+        <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.css')) }}">
 @endsection
 
 @section('page-style')
         {{-- Page Css files --}}
         <link rel="stylesheet" href="{{ asset(mix('css/pages/app-user.css')) }}">
         <link rel="stylesheet" href="{{ asset(mix('css/pages/aggrid.css')) }}">
+        <link rel="stylesheet" href="{{ asset(mix('css/plugins/extensions/toastr.css')) }}">
 @endsection
 
 @section('content')
 <!-- users list start -->
 <section class="users-list-wrapper">
   <!-- users filter start -->
-  <div class="card">
+  <!-- <div class="card">
     <div class="card-header">
       <h4 class="card-title">Filters</h4>
       <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
@@ -82,7 +84,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- users filter end -->
   <!-- Ag Grid users list section start -->
   <div id="basic-examples">
@@ -103,24 +105,8 @@
                   </div>
                 </div>
                 <div class="ag-btns d-flex flex-wrap">
-                  <input type="text" class="ag-grid-filter form-control w-50 mr-1 mb-1 mb-sm-0" id="filter-text-box"
+                  <input type="text" class="ag-grid-filter form-control w-100 mr-1 mb-1 mb-sm-0" id="filter-text-box"
                     placeholder="Search...." />
-                  <div class="action-btns">
-                    <div class="btn-dropdown ">
-                      <div class="btn-group dropdown actions-dropodown">
-                        <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Actions
-                        </button>
-                        <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#"><i class="feather icon-trash-2"></i> Delete</a>
-                          <a class="dropdown-item" href="#"><i class="feather icon-clipboard"></i> Archive</a>
-                          <a class="dropdown-item" href="#"><i class="feather icon-printer"></i> Print</a>
-                          <a class="dropdown-item" href="#"><i class="feather icon-download"></i> CSV</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -138,9 +124,11 @@
 @section('vendor-script')
   {{-- Vendor js files --}}
   <script src="{{ asset(mix('vendors/js/tables/ag-grid/ag-grid-community.min.noStyle.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
 @endsection
 
 @section('page-script')
   {{-- Page js files --}}
   <script src="{{ asset(mix('js/scripts/pages/app-user.js')) }}"></script>
+  <script src="{{ asset(mix('js/scripts/extensions/toastr.js')) }}"></script>
 @endsection

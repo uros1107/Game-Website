@@ -148,6 +148,7 @@
     "/js/scripts/popover/popover.js": "/js/scripts/popover/popover.js",
     "/js/scripts/tooltip/tooltip.js": "/js/scripts/tooltip/tooltip.js",
     "/js/scripts/ui/data-list-view.js": "/js/scripts/ui/data-list-view.js",
+    "/js/scripts/ui/data-list-view1.js": "/js/scripts/ui/data-list-view1.js",
     "/vendors/js/calendar/extensions/daygrid.min.js": "/vendors/js/calendar/extensions/daygrid.min.js",
     "/vendors/js/calendar/extensions/interactions.min.js": "/vendors/js/calendar/extensions/interactions.min.js",
     "/vendors/js/calendar/extensions/timegrid.min.js": "/vendors/js/calendar/extensions/timegrid.min.js",

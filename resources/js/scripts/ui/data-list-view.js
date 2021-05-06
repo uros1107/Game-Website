@@ -35,14 +35,14 @@ $(document).ready(function() {
     buttons: [
       {
         text: "<i class='feather icon-plus'></i> Add New",
-        action: function() {
-          $(this).removeClass("btn-secondary")
-          $(".add-new-data").addClass("show")
-          $(".overlay-bg").addClass("show")
-          $("#data-name, #data-price").val("")
-          $("#data-category, #data-status").prop("selectedIndex", 0)
-        },
-        className: "btn-outline-primary"
+        // action: function() {
+        //   $(this).removeClass("btn-secondary")
+        //   $(".add-new-data").addClass("show")
+        //   $(".overlay-bg").addClass("show")
+        //   $("#data-name, #data-price").val("")
+        //   $("#data-category, #data-status").prop("selectedIndex", 0)
+        // },
+        className: "btn-outline-primary add-spell"
       }
     ],
     initComplete: function(settings, json) {
@@ -83,13 +83,13 @@ $(document).ready(function() {
     pageLength: 4,
     buttons: [
       {
-        text: "<i class='feather icon-plus'></i> Add New",
-        action: function() {
-          $(this).removeClass("btn-secondary")
-          $(".add-new-data").addClass("show")
-          $(".overlay-bg").addClass("show")
-        },
-        className: "btn-outline-primary"
+        text: "<i class='feather icon-plus'></i>Add New</button>",
+        // action: function() {
+        //   $(this).removeClass("btn-secondary")
+        //   $(".add-new-data").addClass("show")
+        //   $(".overlay-bg").addClass("show")
+        // },
+        className: "btn-outline-primary add-monster"
       }
     ],
     initComplete: function(settings, json) {
@@ -115,26 +115,67 @@ $(document).ready(function() {
     new PerfectScrollbar(".data-items", { wheelPropagation: false })
   }
 
-  // Close sidebar
-  $(".hide-data-sidebar, .cancel-data-btn, .overlay-bg").on("click", function() {
-    $(".add-new-data").removeClass("show")
-    $(".overlay-bg").removeClass("show")
-    $("#data-name, #data-price").val("")
-    $("#data-category, #data-status").prop("selectedIndex", 0)
+  // ------------------------ Monster Js ----------------------------
+  // Add new monster
+  $(".add-monster").on("click", function() {
+    location.href = main_url + 'monster-add';
+  })
+
+  // On Delete
+  $('.monster-delete').on("click", function(e){
+    e.stopPropagation();
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+      url: main_url + 'monster-delete',
+      method: "POST",
+      data: { id: $(this).data('value') },
+      success: function(data) {
+        toastr.success('Successfully deleted!');
+      }
+    })
+
+    $(this).closest('td').parent('tr').fadeOut();
+  });
+
+  // On Edit
+  $('.monster-edit').on("click",function(e){
+    location.href = main_url + 'monster-edit?id=' + $(this).data('value');
+  });
+
+  // -------------------------- Spell Js ----------------------------
+  // Add new spell
+  $(".add-spell").on("click", function() {
+    location.href = main_url + 'spell-add';
   })
 
   // On Edit
   $('.action-edit').on("click",function(e){
-    e.stopPropagation();
-    $('#data-name').val('Altec Lansing - Bluetooth Speaker');
-    $('#data-price').val('$99');
-    $(".add-new-data").addClass("show");
-    $(".overlay-bg").addClass("show");
+    location.href = main_url + 'spell-edit?id=' + $(this).data('value');
   });
 
   // On Delete
   $('.action-delete').on("click", function(e){
     e.stopPropagation();
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+      url: main_url + 'spell-delete',
+      method: "POST",
+      data: { id: $(this).data('value') },
+      success: function(data) {
+        toastr.success('Successfully deleted!');
+      }
+    })
+
     $(this).closest('td').parent('tr').fadeOut();
   });
 
