@@ -16,12 +16,8 @@ class SpellController extends Controller
      */
     public function index(Products $products)
     {
-        // View all the items
-        $json = file_get_contents(storage_path('products-export.json'));
-        $objs = json_decode($json,true);
-
         $breadcrumbs = [
-            ['link'=>"dashboard-analytics",'name'=>"Home"], ['name'=>"Spell Manage"]
+            ['link'=>"/",'name'=>"Home"], ['name'=>"Spell Manage"]
         ];
 
         $spells = Spell::all();

@@ -20,7 +20,7 @@ Route::group([
         Route::get('logout', 'Auth\LoginController@logout');
 
         // Route url
-        Route::get('/', 'DashboardController@dashboardAnalytics');
+        Route::get('/', 'DashboardController@dashboardAnalytics')->name('index');
 
         // Users Pages
         Route::get('/user-list', 'UserPagesController@user_list');
@@ -48,12 +48,31 @@ Route::group([
         Route::POST('/spell-store','SpellController@store_spell')->name('store-spell');
         Route::POST('/spell-update','SpellController@update_spell')->name('update-spell');
         Route::POST('/spell-delete','SpellController@delete_spell')->name('delete-spell');
+
+        // Rune Set
+        Route::get('/rune-set-list','RuneSetController@index');
+        Route::get('/rune-set-edit','RuneSetController@edit_rune_set')->name('edit-rune-set');
+        Route::get('/rune-set-add','RuneSetController@add_rune_set')->name('add-rune-set');
+        Route::POST('/rune-set-store','RuneSetController@store_rune_set')->name('store-rune-set');
+        Route::POST('/rune-set-update','RuneSetController@update_rune_set')->name('update-rune-set');
+        Route::POST('/rune-set-delete','RuneSetController@delete_rune_set')->name('delete-rune-set');
+
+        // Team comp
+        Route::get('/team-comp-list','TeamCompController@index');
+        Route::get('/team-comp-edit','TeamCompController@edit_team_comp')->name('edit-team-comp');
+        Route::get('/team-comp-add','TeamCompController@add_team_comp')->name('add-team-comp');
+        Route::POST('/team-comp-store','TeamCompController@store_team_comp')->name('store-team-comp');
+        Route::POST('/team-comp-update','TeamCompController@update_team_comp')->name('update-team-comp');
+        Route::POST('/team-comp-delete','TeamCompController@delete_team_comp')->name('delete-team-comp');
   });
 
-// Users Pages
-// Route::get('/app-user-list', 'UserPagesController@user_list');
-// Route::get('/app-user-view', 'UserPagesController@user_view');
-// Route::get('/app-user-edit', 'UserPagesController@user_edit');
+Route::get('/error-404', 'MiscellaneousController@error_404');
+Route::get('/error-500', 'MiscellaneousController@error_500');
+
+// // Users Pages
+Route::get('/app-user-list', 'UserPagesController@user_list');
+Route::get('/app-user-view', 'UserPagesController@user_view');
+Route::get('/app-user-edit', 'UserPagesController@user_edit');
 
 // // Route Data List
 // Route::resource('/data-list-view','DataListController');

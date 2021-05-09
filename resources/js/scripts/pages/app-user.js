@@ -200,8 +200,7 @@ $(document).ready(function () {
     /*** GET TABLE DATA FROM URL ***/
     agGrid
       .simpleHttpRequest({
-        url: main_url + "/get-users"
-        // url: "{{ route('get-users') }}"
+        url: main_url + "get-users"
       })
       .then(function (data) {
         console.log(data)

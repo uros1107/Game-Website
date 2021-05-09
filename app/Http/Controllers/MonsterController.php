@@ -13,19 +13,14 @@ class MonsterController extends Controller
 {
     public function index(Products $products)
     {
-        // View all the items
-        $json = file_get_contents(storage_path('products-export.json'));
-        $objs = json_decode($json,true);
-
         $breadcrumbs = [
-            ['link'=>"dashboard-analytics",'name'=>"Home"], ['name'=>"Monster Manage"]
+            ['link'=>"/",'name'=>"Home"], ['name'=>"Monster Manage"]
         ];
 
         $monsters = Monster::all();
 
         return view('/monster/monster-list', [
             'breadcrumbs' => $breadcrumbs,
-            'products' => $objs['products'],
             'monsters' => $monsters
         ]);
     }
@@ -424,7 +419,7 @@ class MonsterController extends Controller
                 }
             }
         } elseif($request->special_monster == 0 && $monster->first()->special_monster == 1) {
-            SpecialMonster::where('id', $monster->first()->special_monster_id)->delete();
+            SpecialMonster::where('s_id', $monster->first()->special_monster_id)->delete();
         }
 
         $monster->update($monster_info);
@@ -436,7 +431,7 @@ class MonsterController extends Controller
     {
         $monster = Monster::where('id', $request->id);
         if($monster->first()->special_monster == 1) {
-            SpecialMonster::where('id', $monster->first()->special_monster_id)->delete();
+            SpecialMonster::where('s_id', $monster->first()->special_monster_id)->delete();
         }
         $monster->delete();
 

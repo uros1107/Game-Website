@@ -179,6 +179,17 @@ $(document).ready(function() {
     $(this).closest('td').parent('tr').fadeOut();
   });
 
+  // -------------------------- Rune Set Js ----------------------------
+  // Add new spell
+  $(".add-rune-set").on("click", function() {
+    location.href = main_url + 'rune-set-add';
+  })
+
+  // On Edit
+  $('.edit-rune-set').on("click",function(e){
+    location.href = main_url + 'rune-set-edit?id=' + $(this).data('value');
+  });
+
   // dropzone init
   Dropzone.options.dataListUpload = {
     complete: function(files) {
