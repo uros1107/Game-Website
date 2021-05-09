@@ -18,7 +18,7 @@ class TeamCompController extends Controller
             ['link'=>"/",'name'=>"Home"], ['name'=>"Team Comp Manage"]
         ];
 
-        $team_comps = TeamComp::all();
+        $team_comps = TeamComp::orderBy('created_at', 'desc')->get();
 
         return view('/team_comp/team-comp-list', [
             'breadcrumbs' => $breadcrumbs,

@@ -17,7 +17,7 @@ class RuneSetController extends Controller
             ['link'=>"/",'name'=>"Home"], ['name'=>"Rune Set Manage"]
         ];
 
-        $rune_sets = RuneSet::all();
+        $rune_sets = RuneSet::orderBy('created_at', 'desc')->get();
 
         return view('/rune_sets/rune-set-list', [
             'breadcrumbs' => $breadcrumbs,
