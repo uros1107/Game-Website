@@ -157,7 +157,7 @@
                     @endphp
                     @for($i=1; $i<=8; $i++)
                     <div class="col-12 col-sm-6">
-                      <div class="form-group">
+                      <div class="form-group position">
                         <label>Position {{$i}}</label>
                         <select class="select2 form-control" name="c_position[]" required>
                           @foreach($monsters as $monster)
