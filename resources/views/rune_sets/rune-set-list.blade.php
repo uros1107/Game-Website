@@ -33,7 +33,7 @@
             <th>RUNE SET NAME (FR)</th>
             <th>RUNE</th>
             <th>SKILL STONE</th>
-            <th>VERIFIED</th>
+            <th>STATUS</th>
             <th>ACTION</th>
           </tr>
         </thead>

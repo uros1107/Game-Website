@@ -2,7 +2,7 @@
 
 @section('title', 'Validate a Comp')
 
-@section('page-style')
+@section('vendor-style')
 <style>
   .mb-6 {
     margin-bottom: 6px;
@@ -159,7 +159,7 @@
                     <div class="col-12 col-sm-6">
                       <div class="form-group">
                         <label>Position {{$i}}</label>
-                        <select class="select2 form-control" name="c_position[]" required>
+                        <select class="form-control" name="c_position[]" required>
                           @foreach($monsters as $monster)
                           <option value="{{$monster->id}}" {{ $positions[$i-1] == $monster->id  ? 'selected' : '' }}>{{ $monster->name }}</option>
                           @endforeach
@@ -167,6 +167,22 @@
                       </div>
                     </div>
                     @endfor
+                    <div class="col-sm-6 col-12">
+                        <div class="text-bold-600 font-medium-2">
+                            Basic Select2
+                        </div>
+                        <div class="form-group">
+                            <select class="select2 form-control">
+                                <option value="square">Square</option>
+                                <option value="rectangle">Rectangle</option>
+                                <option value="rombo">Rombo</option>
+                                <option value="romboid">Romboid</option>
+                                <option value="trapeze">Trapeze</option>
+                                <option value="traible">Triangle</option>
+                                <option value="polygon">Polygon</option>
+                            </select>
+                        </div>
+                    </div>
                   </div>
 
                   <div class="row mt-3">

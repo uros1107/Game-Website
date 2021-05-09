@@ -111,14 +111,23 @@ CREATE TABLE `monsters` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 /*Data for the table `monsters` */
 
 insert  into `monsters`(`id`,`name`,`fr_name`,`second_name`,`fr_second_name`,`spell_name`,`fr_spell_name`,`spell_description`,`fr_spell_description`,`mana_cost`,`role`,`rarity`,`element`,`crit_rate`,`crit_dmg`,`hp`,`atk`,`acc`,`def`,`res`,`meta_title`,`fr_meta_title`,`meta_description`,`fr_meta_description`,`og_image`,`main_image`,`bg_image`,`bg_comp_image`,`icon_image`,`special_monster`,`special_monster_id`,`skill_stone1_name`,`fr_skill_stone1_name`,`skill_stone1_description`,`fr_skill_stone1_description`,`skill_stone1_image`,`skill_stone2_name`,`fr_skill_stone2_name`,`skill_stone2_description`,`fr_skill_stone2_description`,`skill_stone2_image`,`skill_stone3_name`,`fr_skill_stone3_name`,`skill_stone3_description`,`fr_skill_stone3_description`,`skill_stone3_image`,`created_at`,`updated_at`) values 
-(4,'Monster-1','Monster-1','Monster-seconde-1','Monster-seconde-1','Spell-1','Spell-1','This is spell description','This is spell description',0,1,1,1,0,0,0,0,0,0,0,'Meta title','Meta title','Meta description','fdsafdsaf','o_1620251135.jpeg','m_1620251135.jpeg','b_1620251135.jpeg','bc_1620251135.jpeg','i_1620251135.jpeg',1,5,'skill1','skill1','This is skill description','This is skill description','m_1620251135.jpeg','skill2','skill2','This is skill 2 description','This is skill 2 description','m_1620251135.jpeg','skill 3','skill 3','This is skill 2 description','This is skill 2 description','m_1620251135.jpeg','2021-05-06 06:48:43','2021-05-05 21:45:35'),
-(5,'Monster-1','Monster-1','Monster-seconde-1','Monster-seconde-1','Spell-1','Spell-1','This is spell description','This is spell description',0,1,1,1,0,0,0,0,0,0,0,'Meta title','Meta title','Meta description','fdsafdsaf','o_1620254692.jpeg','i_1620291741.jpeg','b_1620254692.jpeg','bc_1620254692.jpeg','i_1620291741.jpeg',0,NULL,'skill1','skill1','This is skill description','This is skill description','m_1620254692.jpeg','skill2','skill2','This is skill 2 description','This is skill 2 description','m_1620254692.jpeg','skill 3','skill 3','This is skill 2 description','This is skill 2 description','m_1620254692.jpeg','2021-05-06 18:48:01','2021-05-06 09:48:01'),
-(6,'Monster-2','Monster-2','Monster-seconde-2','Monster-seconde-2','Spell-2','Spell-2','This is spell description','This is spell description',0,1,1,1,0,0,0,0,0,0,0,'Meta title','Meta title','Meta description',NULL,'o_1620281953.jpeg','m_1620281953.jpeg','b_1620281953.jpeg','bc_1620281953.jpeg','i_1620281953.jpeg',0,NULL,'skill1','skill1','This is skill description','This is skill description','m_1620281953.jpeg','skill2','skill2','This is skill 2 description','This is skill 2 description','m_1620281953.jpeg','skill 3','skill 3','This is skill 2 description','This is skill 2 description','m_1620281953.jpeg','2021-05-06 06:19:13','2021-05-06 06:19:13');
+(4,'Monster-1','Monster-1','Monster-seconde-1','Monster-seconde-1','Spell-1','Spell-1','This is spell description','This is spell description',12.5,1,1,1,0,0,0,0,0,0,0,'Meta title','Meta title','Meta description','fdsafdsaf','o_1620251135.jpeg','m_1620251135.jpeg','b_1620251135.jpeg','bc_1620251135.jpeg','i_1620251135.jpeg',1,5,'skill1','skill1','This is skill description','This is skill description','m_1620251135.jpeg','skill2','skill2','This is skill 2 description','This is skill 2 description','m_1620251135.jpeg','skill 3','skill 3','This is skill 2 description','This is skill 2 description','m_1620251135.jpeg','2021-05-07 01:23:08','2021-05-06 16:23:08'),
+(5,'Monster-2','Monster-1','Monster-seconde-2','Monster-seconde-1','Spell-2','Spell-1','This is spell description','This is spell description',0,1,1,1,0,0,0,0,0,0,0,'Meta title','Meta title','Meta description','fdsafdsaf','o_1620254692.jpeg','i_1620291741.jpeg','b_1620254692.jpeg','bc_1620254692.jpeg','i_1620291741.jpeg',0,5,'skill1','skill1','This is skill description','This is skill description','m_1620254692.jpeg','skill2','skill2','This is skill 2 description','This is skill 2 description','m_1620254692.jpeg','skill 3','skill 3','This is skill 2 description','This is skill 2 description','m_1620254692.jpeg','2021-05-09 19:13:53','2021-05-06 09:48:01'),
+(6,'Monster-3','Monster-2','Monster-seconde-3','Monster-seconde-2','Spell-3','Spell-2','This is spell description','This is spell description',0,1,1,1,0,0,0,0,0,0,0,'Meta title','Meta title','Meta description',NULL,'o_1620281953.jpeg','m_1620281953.jpeg','b_1620281953.jpeg','bc_1620281953.jpeg','i_1620281953.jpeg',0,5,'skill1','skill1','This is skill description','This is skill description','m_1620281953.jpeg','skill2','skill2','This is skill 2 description','This is skill 2 description','m_1620281953.jpeg','skill 3','skill 3','This is skill 2 description','This is skill 2 description','m_1620281953.jpeg','2021-05-09 19:13:53','2021-05-06 06:19:13'),
+(8,'Monster-4','Monster-4','Monster-seconde-4','Monster-seconde-4','Spell-4','Spell-4','This is spell description','This is desription for monster',12.5,2,2,2,0,0,NULL,NULL,NULL,NULL,NULL,'Meta title','Meta title',NULL,NULL,'o_1620281953.jpeg','m_1620281953.jpeg','b_1620281953.jpeg','bc_1620281953.jpeg','i_1620281953.jpeg',0,5,'skill1','skill1',NULL,NULL,'m_1620281953.jpeg','skill2','skill2',NULL,NULL,'m_1620281953.jpeg','skill 3','skill 3',NULL,NULL,'m_1620281953.jpeg','2021-05-09 19:15:12',NULL),
+(9,'Monster-5','Monster-5','Monster-seconde-5','Monster-seconde-5','Spell-5','Spell-5','This is desription for monster','This is desription for monster',12.5,1,3,3,0,0,NULL,NULL,NULL,NULL,NULL,'Meta title','Meta title',NULL,NULL,'o_1620281953.jpeg','m_1620281953.jpeg','b_1620281953.jpeg','bc_1620281953.jpeg','i_1620281953.jpeg',0,5,'skill1','skill1',NULL,NULL,'m_1620281953.jpeg','skill2','skill2',NULL,NULL,'m_1620281953.jpeg','skill 3','skill 3',NULL,NULL,'m_1620281953.jpeg','2021-05-09 19:15:12',NULL),
+(10,'Monster-6','Monster-6','Monster-seconde-6','Monster-seconde-6','Spell-6','Spell-6','This is desription for monster','This is desription for monster',12.5,2,2,3,0,0,NULL,NULL,NULL,NULL,NULL,'Meta title','Meta title',NULL,NULL,'o_1620281953.jpeg','m_1620281953.jpeg','b_1620281953.jpeg','bc_1620281953.jpeg','i_1620281953.jpeg',0,5,'skill1','skill1',NULL,NULL,'m_1620281953.jpeg','skill2','skill2',NULL,NULL,'m_1620281953.jpeg','skill 3','skill 3',NULL,NULL,'m_1620281953.jpeg','2021-05-09 19:15:13',NULL),
+(11,'Monster-7','Monster-7','Monster-seconde-7','Monster-seconde-7','Spell-7','Spell-7','This is desription for monster','This is desription for monster',12.5,1,3,2,0,0,NULL,NULL,NULL,NULL,NULL,'Meta title','Meta title',NULL,NULL,'o_1620281953.jpeg','m_1620281953.jpeg','b_1620281953.jpeg','bc_1620281953.jpeg','i_1620281953.jpeg',0,5,'skill1','skill1',NULL,NULL,'m_1620281953.jpeg','skill2','skill2',NULL,NULL,'m_1620281953.jpeg','skill 3','skill 3',NULL,NULL,'m_1620281953.jpeg','2021-05-09 19:15:13',NULL),
+(12,'Monster-8','Monster-8','Monster-seconde-8','Monster-seconde-8','Spell-8','Spell-8','This is desription for monster','This is desription for monster',12.5,2,2,3,0,0,NULL,NULL,NULL,NULL,NULL,'Meta title','Meta title',NULL,NULL,'o_1620281953.jpeg','m_1620281953.jpeg','b_1620281953.jpeg','bc_1620281953.jpeg','i_1620281953.jpeg',0,5,'skill1','skill1',NULL,NULL,'m_1620281953.jpeg','skill2','skill2',NULL,NULL,'m_1620281953.jpeg','skill 3','skill 3',NULL,NULL,'m_1620281953.jpeg','2021-05-09 19:15:14',NULL),
+(13,'Monster-9','Monster-9','Monster-seconde-9','Monster-seconde-9','Spell-9','Spell-9','This is desription for monster','This is desription for monster',12.5,1,2,2,0,0,NULL,NULL,NULL,NULL,NULL,'Meta title','Meta title',NULL,NULL,'o_1620281953.jpeg','m_1620281953.jpeg','b_1620281953.jpeg','bc_1620281953.jpeg','i_1620281953.jpeg',0,5,'skill1','skill1',NULL,NULL,'m_1620281953.jpeg','skill2','skill2',NULL,NULL,'m_1620281953.jpeg','skill 3','skill 3',NULL,NULL,'m_1620281953.jpeg','2021-05-09 19:15:14',NULL),
+(14,'Monster-10','Monster-10','Monster-seconde-10','Monster-seconde-10','Spell-10','Spell-10','This is desription for monster','This is desription for monster',12.5,2,3,3,0,0,NULL,NULL,NULL,NULL,NULL,'Meta title','Meta title',NULL,NULL,'o_1620281953.jpeg','m_1620281953.jpeg','b_1620281953.jpeg','bc_1620281953.jpeg','i_1620281953.jpeg',0,5,'skill1','skill1',NULL,NULL,'m_1620281953.jpeg','skill2','skill2',NULL,NULL,'m_1620281953.jpeg','skill 3','skill 3',NULL,NULL,'m_1620281953.jpeg','2021-05-09 19:15:16',NULL),
+(15,'Monster-11','Monster-11','Monster-seconde-11','Monster-seconde-11','Spell-11','Spell-11','This is desription for monster','This is desription for monster',12.5,3,3,2,0,0,NULL,NULL,NULL,NULL,NULL,'Meta title','Meta title',NULL,NULL,'o_1620281953.jpeg','m_1620281953.jpeg','b_1620281953.jpeg','bc_1620281953.jpeg','i_1620281953.jpeg',0,5,'skill1','skill1',NULL,NULL,'m_1620281953.jpeg','skill2','skill2',NULL,NULL,'m_1620281953.jpeg','skill 3','skill 3',NULL,NULL,'m_1620281953.jpeg','2021-05-09 19:15:15',NULL),
+(16,'Monster-12','Monster-12','Monster-seconde-12','Monster-seconde-12','Spell-12','Spell-12','This is desription for monster','This is desription for monster',12.5,3,3,3,0,0,NULL,NULL,NULL,NULL,NULL,'Meta title','Meta title',NULL,NULL,'o_1620281953.jpeg','m_1620281953.jpeg','b_1620281953.jpeg','bc_1620281953.jpeg','i_1620281953.jpeg',0,5,'skill1','skill1',NULL,NULL,'m_1620281953.jpeg','skill2','skill2',NULL,NULL,'m_1620281953.jpeg','skill 3','skill 3',NULL,NULL,'m_1620281953.jpeg','2021-05-09 19:15:20',NULL);
 
 /*Table structure for table `oauth_access_tokens` */
 
@@ -256,12 +265,87 @@ insert  into `role`(`id`,`name`) values
 (3,'Support'),
 (4,'Defense');
 
+/*Table structure for table `rune_sets` */
+
+DROP TABLE IF EXISTS `rune_sets`;
+
+CREATE TABLE `rune_sets` (
+  `rs_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `rs_user_id` bigint(20) DEFAULT NULL,
+  `rs_monster_id` bigint(20) DEFAULT NULL,
+  `rs_name` varchar(255) DEFAULT NULL,
+  `fr_rs_name` varchar(255) DEFAULT NULL,
+  `rs_comment` text DEFAULT NULL,
+  `fr_rs_comment` text DEFAULT NULL,
+  `rs_rune` int(10) DEFAULT NULL,
+  `rs_substats` varchar(255) DEFAULT NULL,
+  `rs_skill_stones` int(10) DEFAULT NULL,
+  `rs_comp_position` int(10) DEFAULT NULL,
+  `verify` tinyint(5) DEFAULT 0 COMMENT '0=>unverify, 1=>verify',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`rs_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+/*Data for the table `rune_sets` */
+
+insert  into `rune_sets`(`rs_id`,`rs_user_id`,`rs_monster_id`,`rs_name`,`fr_rs_name`,`rs_comment`,`fr_rs_comment`,`rs_rune`,`rs_substats`,`rs_skill_stones`,`rs_comp_position`,`verify`,`created_at`,`updated_at`) values 
+(1,9,4,'rune','rs_rune','This is description','This is description',1,'[\"2\",\"5\"]',3,4,1,NULL,'2021-05-09 05:40:18'),
+(2,10,5,'rune1','rs_rune1','This is description','This is description',2,'[\"1\",\"2\",\"3\",\"5\"]',2,5,0,NULL,'2021-05-09 05:40:33');
+
+/*Table structure for table `runes` */
+
+DROP TABLE IF EXISTS `runes`;
+
+CREATE TABLE `runes` (
+  `r_id` int(10) NOT NULL AUTO_INCREMENT,
+  `r_name` varchar(255) DEFAULT NULL,
+  `fr_r_name` varchar(255) DEFAULT NULL,
+  `r_icon` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`r_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+/*Data for the table `runes` */
+
+insert  into `runes`(`r_id`,`r_name`,`fr_r_name`,`r_icon`) values 
+(1,'Fatal','Fatal','icon-fatal.png'),
+(2,'Focus','Focus','icon-focus.png'),
+(3,'Gardien','Guard','icon-guard.png'),
+(4,'Rage','Rage','icon-rage.png'),
+(5,'Swift','Rapide','icon-swift.png'),
+(6,'Will','Volonté','icon-will.png'),
+(7,'Energy','Énergie','rune-energy.png'),
+(8,'Vampire','Vampire','rune-vampire.png'),
+(9,'Destroy','Destruction','icon-destroy.png'),
+(10,'Endure','Endurance','icon-endure.png'),
+(11,'Blade','Lame','icon-blade.png'),
+(12,'Violent','Violente','rune-violent.png');
+
+/*Table structure for table `skill_stones` */
+
+DROP TABLE IF EXISTS `skill_stones`;
+
+CREATE TABLE `skill_stones` (
+  `skill_id` int(10) NOT NULL AUTO_INCREMENT,
+  `skill_name` varchar(50) DEFAULT NULL,
+  `fr_skill_name` varchar(50) DEFAULT NULL,
+  `skill_icon` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`skill_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+/*Data for the table `skill_stones` */
+
+insert  into `skill_stones`(`skill_id`,`skill_name`,`fr_skill_name`,`skill_icon`) values 
+(1,'Damage','Damage','damage.png'),
+(2,'Mana Cost','Mana Cost','mana_cost.png'),
+(3,'Tooth for a tooth','Tooth for a tooth','tooth.png');
+
 /*Table structure for table `special_monsters` */
 
 DROP TABLE IF EXISTS `special_monsters`;
 
 CREATE TABLE `special_monsters` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `s_id` int(10) NOT NULL AUTO_INCREMENT,
   `s_name` varchar(255) DEFAULT NULL,
   `fr_s_name` varchar(255) DEFAULT NULL,
   `s_second_name` varchar(255) DEFAULT NULL,
@@ -281,13 +365,13 @@ CREATE TABLE `special_monsters` (
   `s_mana_cost` double DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`s_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `special_monsters` */
 
-insert  into `special_monsters`(`id`,`s_name`,`fr_s_name`,`s_second_name`,`fr_s_second_name`,`s_spell_name`,`fr_s_spell_name`,`s_spell_description`,`fr_s_spell_description`,`s_main_image`,`s_crit_rate`,`s_crit_dmg`,`s_hp`,`s_atk`,`s_acc`,`s_def`,`s_res`,`s_mana_cost`,`created_at`,`updated_at`) values 
-(5,'Special monster-1','Special monster-1','Special monster seconde-1','fdsaSpecial monster seconde-1','Spell - 1','Spell - 1','This is description','This is description','m_1620251134.jpeg',0,0,0,0,0,0,0,0,'2021-05-05 21:45:34','2021-05-05 21:45:34'),
+insert  into `special_monsters`(`s_id`,`s_name`,`fr_s_name`,`s_second_name`,`fr_s_second_name`,`s_spell_name`,`fr_s_spell_name`,`s_spell_description`,`fr_s_spell_description`,`s_main_image`,`s_crit_rate`,`s_crit_dmg`,`s_hp`,`s_atk`,`s_acc`,`s_def`,`s_res`,`s_mana_cost`,`created_at`,`updated_at`) values 
+(5,'Special monster-1','Special monster-1','Special monster seconde-1','fdsaSpecial monster seconde-1','Spell - 1','Spell - 1','This is description','This is description','m_1620251134.jpeg',0,0,0,0,0,0,0,0,'2021-05-07 01:23:08','2021-05-06 16:23:08'),
 (7,'Special monster-1','Special monster-1','Special monster seconde-1','fdsaSpecial monster seconde-1','spell','Spell - 1','This is description','This is description','m_1620292138.jpeg',0,0,0,0,0,0,0,0,'2021-05-06 09:08:58','2021-05-06 09:08:58');
 
 /*Table structure for table `spells` */
@@ -315,6 +399,56 @@ insert  into `spells`(`id`,`name`,`fr_name`,`description`,`fr_description`,`mana
 (14,'Spell-1','Spell-1','This is spell-1 description','This is spell-1 description',12,'m_1620150650.jpeg','i_1620150650.jpeg','2021-05-04 17:50:50','2021-05-04 17:50:50'),
 (15,'Spell-2','Spell-2','This is spell-1 description','This is spell-1 description',12,'m_1620150692.jpeg','i_1620150692.jpeg','2021-05-04 17:51:32','2021-05-04 17:51:32'),
 (18,'Spell-4','Spell-4','This is spell-1 description','This is spell-1 description',12,'m_1620150746.jpeg','i_1620150746.jpeg','0000-00-00 00:00:00',NULL);
+
+/*Table structure for table `sub_stats` */
+
+DROP TABLE IF EXISTS `sub_stats`;
+
+CREATE TABLE `sub_stats` (
+  `sub_id` int(20) NOT NULL AUTO_INCREMENT,
+  `sub_name` varchar(20) DEFAULT NULL,
+  `fr_sub_name` varchar(20) DEFAULT NULL,
+  `sub_icon` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`sub_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+/*Data for the table `sub_stats` */
+
+insert  into `sub_stats`(`sub_id`,`sub_name`,`fr_sub_name`,`sub_icon`) values 
+(1,'CRIT DMG','Dgts critiq','sub-crit-dmg.png'),
+(2,'CRIT RATE','Tx critiq','sub-crit-rate.png'),
+(3,'HP','PV ','sub-hp.png'),
+(4,'ATK','ATQ','sub-atk.png'),
+(5,'ACC','Précision','sub-acc.png'),
+(6,'DEF','DEF','seb-def.png'),
+(7,'RES','Résistance','sub-res.png');
+
+/*Table structure for table `team_comps` */
+
+DROP TABLE IF EXISTS `team_comps`;
+
+CREATE TABLE `team_comps` (
+  `c_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `c_name` varchar(255) DEFAULT NULL,
+  `c_fr_name` varchar(255) DEFAULT NULL,
+  `c_general_info` text DEFAULT NULL,
+  `c_fr_general_info` text DEFAULT NULL,
+  `c_sent_by_user` bigint(20) DEFAULT NULL,
+  `c_likes` int(20) DEFAULT NULL,
+  `c_dislikes` int(20) DEFAULT NULL,
+  `c_position` varchar(255) DEFAULT NULL,
+  `c_spell` varchar(255) DEFAULT NULL,
+  `c_verify` tinyint(4) DEFAULT NULL COMMENT '0=>unverify, 1=>verify',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`c_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+/*Data for the table `team_comps` */
+
+insert  into `team_comps`(`c_id`,`c_name`,`c_fr_name`,`c_general_info`,`c_fr_general_info`,`c_sent_by_user`,`c_likes`,`c_dislikes`,`c_position`,`c_spell`,`c_verify`,`created_at`,`updated_at`) values 
+(1,'title1','title1','This is general information for team comp','This is general information for team comp',9,10,20,'[\"6\",\"14\",\"10\",\"5\",\"13\",\"12\",\"8\",\"9\"]','[\"14\",\"15\",\"18\"]',1,'2021-05-09 23:45:03','2021-05-09 14:45:03'),
+(3,'title2','title2','This is general information for team comp','This is general information for team comp',10,500,120,'[\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"15\",\"16\"]','[\"14\",\"18\",\"15\"]',0,'2021-05-09 23:46:14','2021-05-09 10:31:59');
 
 /*Table structure for table `user_info` */
 

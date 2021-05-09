@@ -33,6 +33,7 @@
             <th>PUBLICATION DATE</th>
             <th>LIKES</th>
             <th>DISLIKES</th>
+            <th>STATUS</th>
             <th>ACTION</th>
           </tr>
         </thead>
@@ -46,6 +47,7 @@
                 $user_name = DB::table('users')->where('id', $team_comp->c_sent_by_user)->first();
               @endphp
               <td>{{ $user_name->name }}</td>
+              <td>{{ $team_comp->created_at }}</td>
               <td class="product-name">{{ $team_comp->c_likes }}</td>
               <td class="product-category">{{ $team_comp->c_dislikes }}</td>
               <td>
