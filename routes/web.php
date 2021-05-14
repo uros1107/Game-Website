@@ -14,60 +14,87 @@ header('Access-Control-Allow-Headers: *');
 |
 */
 
-Route::group([
-    'middleware' => 'auth'
-  ], function() {
-        Route::get('logout', 'Auth\LoginController@logout');
 
-        // Route url
-        Route::get('/', 'DashboardController@dashboardAnalytics')->name('index');
+// Auth::routes();
+Route::post('/login', 'Auth\LoginController@user_login')->name('login');
+Route::post('/register', 'Auth\RegisterController@register')->name('register');
 
-        // Users Pages
-        Route::get('/user-list', 'UserPagesController@user_list');
+// Route url
+Route::get('/', 'Frontend\FrontendController@index')->name('index');
 
-        Route::get('/get-users', 'UserPagesController@get_users')->name('get-users');
-        Route::get('/edit-user', 'UserPagesController@edit_user')->name('edit-user');
-        Route::post('/create-user', 'UserPagesController@create_user')->name('create-user');
-        Route::post('/update-account', 'UserPagesController@update_account')->name('update-account');
-        Route::post('/update-information', 'UserPagesController@update_information')->name('update-information');
-        Route::post('/update-social', 'UserPagesController@update_social')->name('update-social');
-        Route::post('/delete-user', 'UserPagesController@delete_user')->name('delete-user');
+Route::get('/monster-list', 'Frontend\MonsterController@monster_list')->name('monster-list');
+Route::get('/monster-detail', 'Frontend\MonsterController@monster_detail')->name('monster-detail');
 
-        // Monster
-        Route::get('/monster-list','MonsterController@index');
-        Route::get('/monster-edit','MonsterController@edit_monster')->name('edit-monster');
-        Route::get('/monster-add','MonsterController@add_monster')->name('add-monster');
-        Route::POST('/monster-store','MonsterController@store_monster')->name('store-monster');
-        Route::POST('/monster-update','MonsterController@update_monster')->name('update-monster');
-        Route::POST('/monster-delete','MonsterController@delete_monster')->name('delete-monster');
+Route::get('/add-rune-set', 'Frontend\MonsterController@add_rune_set')->name('user-add-rune-set');
+Route::POST('/store-rune-set', 'Frontend\MonsterController@store_rune_set')->name('rune-set-store');
 
-        // Spell
-        Route::get('/spell-list','SpellController@index');
-        Route::get('/spell-edit','SpellController@edit_spell')->name('edit-spell');
-        Route::get('/spell-add','SpellController@add_spell')->name('add-spell');
-        Route::POST('/spell-store','SpellController@store_spell')->name('store-spell');
-        Route::POST('/spell-update','SpellController@update_spell')->name('update-spell');
-        Route::POST('/spell-delete','SpellController@delete_spell')->name('delete-spell');
+Route::get('/comps-list', 'Frontend\MonsterController@comps_list')->name('comps-list');
+Route::get('/comps-detail', 'Frontend\MonsterController@comps_detail')->name('comps-detail');
+Route::POST('/comps-comment', 'Frontend\MonsterController@comps_comment')->name('comps-comment');
 
-        // Rune Set
-        Route::get('/rune-set-list','RuneSetController@index');
-        Route::get('/rune-set-edit','RuneSetController@edit_rune_set')->name('edit-rune-set');
-        Route::get('/rune-set-add','RuneSetController@add_rune_set')->name('add-rune-set');
-        Route::POST('/rune-set-store','RuneSetController@store_rune_set')->name('store-rune-set');
-        Route::POST('/rune-set-update','RuneSetController@update_rune_set')->name('update-rune-set');
-        Route::POST('/rune-set-delete','RuneSetController@delete_rune_set')->name('delete-rune-set');
+Route::get('/comps-builder', 'Frontend\MonsterController@comps_builder')->name('comps-builder');
 
-        // Team comp
-        Route::get('/team-comp-list','TeamCompController@index');
-        Route::get('/team-comp-edit','TeamCompController@edit_team_comp')->name('edit-team-comp');
-        Route::get('/team-comp-add','TeamCompController@add_team_comp')->name('add-team-comp');
-        Route::POST('/team-comp-store','TeamCompController@store_team_comp')->name('store-team-comp');
-        Route::POST('/team-comp-update','TeamCompController@update_team_comp')->name('update-team-comp');
-        Route::POST('/team-comp-delete','TeamCompController@delete_team_comp')->name('delete-team-comp');
-  });
+Route::get('/terms-of-use', 'Frontend\MonsterController@terms_of_use')->name('terms-of-use');
 
-Route::get('/error-404', 'MiscellaneousController@error_404');
-Route::get('/error-500', 'MiscellaneousController@error_500');
+Route::prefix('admin')->group(function() {
+
+    // ------------- Admin login -------------
+    Route::get('/login', 'Auth\LoginController@showLoginForm')->name('admin.login');
+    Route::post('/login', 'Auth\LoginController@login')->name('admin.login.submit');
+    Route::get('/logout', 'Auth\LoginController@logout')->name('admin.logout');
+
+    Route::group([
+        'middleware' => 'admin'
+      ], function() {
+            // Route::get('logout', 'Auth\LoginController@logout');
+    
+            // Users Pages
+            Route::get('/user-list', 'Admin\UserPagesController@user_list')->name('user-list');
+            Route::get('/get-users', 'Admin\UserPagesController@get_users')->name('get-users');
+            Route::get('/edit-user', 'Admin\UserPagesController@edit_user')->name('edit-user');
+            Route::post('/create-user', 'Admin\UserPagesController@create_user')->name('create-user');
+            Route::post('/update-account', 'Admin\UserPagesController@update_account')->name('update-account');
+            Route::post('/update-information', 'Admin\UserPagesController@update_information')->name('update-information');
+            Route::post('/update-social', 'Admin\UserPagesController@update_social')->name('update-social');
+            Route::post('/delete-user', 'Admin\UserPagesController@delete_user')->name('delete-user');
+    
+            // Monster
+            Route::get('/monster-list','Admin\MonsterController@index');
+            Route::get('/monster-edit','Admin\MonsterController@edit_monster')->name('edit-monster');
+            Route::get('/monster-add','Admin\MonsterController@add_monster')->name('add-monster');
+            Route::POST('/monster-store','Admin\MonsterController@store_monster')->name('store-monster');
+            Route::POST('/monster-update','Admin\MonsterController@update_monster')->name('update-monster');
+            Route::POST('/monster-delete','Admin\MonsterController@delete_monster')->name('delete-monster');
+    
+            // Spell
+            Route::get('/spell-list','Admin\SpellController@index');
+            Route::get('/spell-edit','Admin\SpellController@edit_spell')->name('edit-spell');
+            Route::get('/spell-add','Admin\SpellController@add_spell')->name('add-spell');
+            Route::POST('/spell-store','Admin\SpellController@store_spell')->name('store-spell');
+            Route::POST('/spell-update','Admin\SpellController@update_spell')->name('update-spell');
+            Route::POST('/spell-delete','Admin\SpellController@delete_spell')->name('delete-spell');
+    
+            // Rune Set
+            Route::get('/rune-set-list','Admin\RuneSetController@index');
+            Route::get('/rune-set-edit','Admin\RuneSetController@edit_rune_set')->name('edit-rune-set');
+            // Route::get('/rune-set-add','Admin\RuneSetController@add_rune_set')->name('add-rune-set');
+            Route::POST('/rune-set-store','Admin\RuneSetController@store_rune_set')->name('store-rune-set');
+            Route::POST('/rune-set-update','Admin\RuneSetController@update_rune_set')->name('update-rune-set');
+            Route::POST('/rune-set-delete','Admin\RuneSetController@delete_rune_set')->name('delete-rune-set');
+    
+            // Team comp
+            Route::get('/team-comp-list','Admin\TeamCompController@index');
+            Route::get('/team-comp-edit','Admin\TeamCompController@edit_team_comp')->name('edit-team-comp');
+            Route::get('/team-comp-add','Admin\TeamCompController@add_team_comp')->name('add-team-comp');
+            Route::POST('/team-comp-store','Admin\TeamCompController@store_team_comp')->name('store-team-comp');
+            Route::POST('/team-comp-update','Admin\TeamCompController@update_team_comp')->name('update-team-comp');
+            Route::POST('/team-comp-delete','Admin\TeamCompController@delete_team_comp')->name('delete-team-comp');
+    });
+});
+
+
+Route::get('/error-404', 'Frontend\MiscellaneousController@error_404');
+Route::get('/error-500', 'Frontend\MiscellaneousController@error_500');
 
 // // Users Pages
 // Route::get('/app-user-list', 'UserPagesController@user_list');
@@ -205,6 +232,6 @@ Route::get('/error-500', 'MiscellaneousController@error_500');
 // Route::get('/ext-component-swiper', 'ExtensionController@swiper');
 // Route::get('/ext-component-i18n', 'ExtensionController@i18n');
 
-Auth::routes();
 
-Route::post('/login/validate', 'Auth\LoginController@validate_api');
+
+// Route::post('/login/validate', 'Auth\LoginController@validate_api');

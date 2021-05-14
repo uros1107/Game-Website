@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use Auth;
+use Carbon\Carbon;
 
 class LoginController extends Controller
 {
@@ -54,32 +55,49 @@ class LoginController extends Controller
       ]);
     }
 
-    // public function login(Request $request)
-    // {
-    //     $request->validate([
-    //         'email' => 'required|string|email',
-    //         'password' => 'required|string',
-    //         'remember_me' => 'boolean'
-    //     ]);
-    //     $credentials = request(['email', 'password']);
-    //     if(!Auth::attempt($credentials))
-    //         return response()->json([
-    //             'message' => 'Unauthorized'
-    //         ], 401);
-    //     $user = $request->user();
-    //     $tokenResult = $user->createToken('Personal Access Token');
-    //     $token = $tokenResult->token;
-    //     if ($request->remember_me)
-    //         $token->expires_at = Carbon::now()->addWeeks(1);
-    //     $token->save();
-    //     return response()->json([
-    //         'access_token' => $tokenResult->accessToken,
-    //         'token_type' => 'Bearer',
-    //         'expires_at' => Carbon::parse(
-    //             $tokenResult->token->expires_at
-    //         )->toDateTimeString()
-    //     ]);
-    // }
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+            'remember_me' => 'boolean'
+        ]);
+        $credentials = request(['email', 'password']);
+        if(!Auth::attempt($credentials))
+            return redirect()->back();
+        $user = $request->user();
+        
+        if($user->role != 1) 
+        {
+            $this->guard()->logout();
+
+            return redirect('/login');
+        } else {
+            return redirect()->route('user-list');
+        }
+    }
+
+    public function user_login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+            'remember_me' => 'boolean'
+        ]);
+        $credentials = request(['email', 'password']);
+        if(!Auth::attempt($credentials))
+            return redirect()->back();
+        $user = $request->user();
+        
+        if($user->role == 1) 
+        {
+            $this->guard()->logout();
+
+            return redirect('/');
+        } else {
+            return redirect('/');
+        }
+    }
 
     /**
      * Log the user out of the application.
@@ -89,10 +107,19 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        $this->guard()->logout();
+        if(Auth::user()->role == 1) {
+            $this->guard()->logout();
 
-        $request->session()->invalidate();
+            $request->session()->invalidate();
+    
+            return $this->loggedOut($request) ?: redirect('/admin/login');
+        } else {
+            $this->guard()->logout();
 
-        return $this->loggedOut($request) ?: redirect('/login');
+            $request->session()->invalidate();
+
+            return $this->loggedOut($request) ?: redirect('/');
+        }
+        
     }
 }

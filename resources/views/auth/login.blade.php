@@ -12,7 +12,6 @@
         </style>
 @endsection
 
-
 @section('content')
 <section class="row flexbox-container">
   <div class="col-xl-8 col-11 d-flex justify-content-center">
@@ -28,7 +27,7 @@
                       <p class="px-2 main-color">Welcome back, please login to your account.</p>
                       <div class="card-content">
                           <div class="card-body pt-1">
-                            <form method="POST" action="{{ route('login') }}">
+                            <form method="POST" action="{{ route('admin.login.submit') }}">
                               @csrf
                               <fieldset class="form-label-group form-group position-relative has-icon-left">
 

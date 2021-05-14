@@ -1,0 +1,1891 @@
+
+@media screen and (min-width: 1200px){    
+
+    .runes-form .dropdown .dropdown-list {
+        z-index: -1 !important;
+    }
+    .runes-form .dropdown {
+      z-index: 9;
+    }
+    .runes-form .dropdown .dropdown-label {
+        z-index: 2;
+    }
+
+    .comps_sec .force_sec:hover{
+        transition: 0.3s;
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width:1249px){
+    .runes-form .dropdown{
+        margin-right: 20px;
+    }
+    /* Comps Listing Css Start */
+    #comps-listing-page .range-slider-wrap {
+        padding: 10px 10px;
+    }
+    #comps-listing-page .filter-by-monster a {
+        padding: 10px 0px 10px 10px !important;
+    }
+    #comps-listing-page .runes-form .dropdown .dropdown-label, 
+    #comps-listing-page .filter-by-monster a, 
+    #comps-listing-page .range-slider-wrap {
+        padding: 10px 10px;
+    }
+    #comps-listing-page .three_btn_design a, 
+    #comps-listing-page .three_btn_design span {
+        padding: 10px 9px;
+    }
+    /* Comps Listing Css End */
+
+}
+@media (min-width: 1200px) and (max-width: 1299px){
+    .main-content {
+        padding-right: 15px;
+    }
+    .lost_info {
+        padding-left: 0;
+    }
+    .lost_img img {
+        margin-left: -17px;
+    }
+    .down_arrow i {
+        padding-right: 20px;
+    }
+    .monster_content {
+        padding-left: 55px;
+    }
+}
+@media (min-width: 1200px) and (max-width: 1500px){
+	footer,
+	.main-content{
+		margin-left: 235px
+	}
+}
+@media (min-width:1200px) and (max-width: 1599px){
+    html body{
+        font-size: 17px;
+    }
+    footer,
+    .main-content {
+        max-width: 1010px;
+    }
+    .monster_content {
+        padding-left: 64px;
+    }
+    .monster_heading h1 {
+        font-size: 29px;
+    }
+    .monster_wrap h2 {
+        font-size: 21px;
+    }
+    .monster_right_sec .monster-speciality{
+        font-size: 21px;
+    }
+    .lost_info h3 {
+        margin-bottom: 11px;
+    }
+    .lost_img img {
+        margin-left: -13px;
+    }
+    .runes-selector-inner img{
+        margin: 0;
+    }
+    .force_heading h2,.force_heading h3 {
+        font-size: 23px;
+    }
+    .force_heading {
+        padding-left: 34px;
+    }
+    .force_sec .col-md-9 {
+        flex: 0 0 72%;
+        max-width: 72%;
+    }
+    .force_sec .col-md-3 {
+        flex: 0 0 28%;
+        max-width: 28%;
+    }
+    .down_arrow i {
+        font-size: 35px;
+    }
+    .line_up_monster {
+        padding: 0 7px;
+    }
+    .lost_info {
+        padding-left: 15px;
+    }
+    /* Home Page Start */
+    .home-sec-1 {
+        padding-top: 0;
+        padding-bottom: 85px;
+    }
+    .home-sec-2{
+        padding-bottom: 85px;
+    }
+    .home-main-sec .more-soon_sec{
+        padding-top: 85px;
+        padding-bottom: 35px;
+    }
+    .page-space.home-main-sec {
+        padding-bottom: 60px;
+    }
+    .home-main-sec h1.page-title {
+        font-size: 42px;
+    }
+    /* Home Page End*/
+    /******************************************** Comp Builder page Start  ************************************************/
+    .comp_builder .compect_plus_inner{
+        background-size: 100px 141px;
+        width: 100px;
+        height: 141px;
+    }
+    .comp_builder .compect_plus_right_4,
+    .comp_builder .compect_monster_box4{
+        left: 138px;
+        bottom: 120px;
+    }
+    .comp_builder .runes-form .dropdown.dropdown3, 
+    .comp_builder .runes-form .dropdown.dropdown4, 
+    .comp_builder .runes-form .dropdown.dropdown5 {
+        max-width: 160px;
+    }
+    .comp_builder .inner-dropdown-sec {
+        padding: 0 10px;
+        /*padding-left: 0;*/
+    }
+    .cm_bulider_tab {
+        max-width: 138px;
+    }
+    .cm_bulider_tab .nav-tabs .nav-link{
+        padding: 8.5px 8px;
+    }
+    .comp_builder .compect_inner_monster .line_up_monster{
+        padding: 0 9px;
+    }
+    .comp_builder .runes-form .dropdown .dropdown-list .dropdown-option img {
+        max-height: 17px;
+    }
+    
+    /*.comp_builder .runes-form .dropdown span:before {
+        margin-right: 7px;
+        margin-left: -30px;
+    }
+    .compect_filter_elemts .runes-form .dropdown input:checked + span:after {
+        left: 6px;
+    }*/
+
+    /******************************************** Comp Builder page End  ************************************************/
+
+}
+@media (min-width: 1200px) and (max-width: 1699px){
+	
+	.sidebar-collapsed{
+		width: 60px;
+	}
+	#sidebar-container img.menus-icon {
+	    width: 28px;
+	    height: 28px;
+	    margin-right: 13px;
+	}
+	#sidebar-container .main-sidebar-footer .subtext{
+	    font-size: 12px;
+	}
+
+	/* Footer CSS Start  */
+	.footer-left-content {
+		font-size: 16px;
+		font-style: italic;
+	}
+	/* Footer CSS End  */
+}
+@media (min-width: 1200px) and (max-width: 1799px){
+    .sidebar-expanded{
+        width: 220px
+    }
+    #sidebar-container .list-group a{
+		font-size: 15px;
+		padding: 10px 15px;
+	}
+}
+@media (min-width: 1300px) and (max-width: 1590px){
+    /* Comps Listing Css Start */
+    #comps-listing-page .three_btn_design a{
+        padding: 10px 17.8px;
+    }
+    /* Comps Listing Css End */
+}
+@media (min-width: 1600px) and (max-width: 1650px){
+    #comps-listing-page .three_btn_design a, #comps-listing-page .three_btn_design span{
+        padding: 10px 18.6px !important;
+    }   
+}
+@media (min-width: 1599px) and  (max-width: 1500px){
+    /* Comps Listing Css Start */
+    #comps-listing-page .runes-form .checkbox-field {
+        margin-right: 0;
+    }
+    #comps-listing-page .three_btn_design a, #comps-listing-page .three_btn_design span {
+        padding: 10px 17.8px;
+    }
+    /* Comps Listing Css Start */
+}
+
+
+
+
+@media screen and (max-width: 1600px) {
+    #comps-listing-page .three_btn_design span{
+        padding: 10px;
+        font-size: 16px;
+    }
+    .comp_builder .compect_plus_right_2,
+    .comp_builder .compect_monster_box2 {
+        right: 15px;
+    }
+    .comps_sec .comp_builder .compect_monster_box2{
+        right: 15px;   
+    }
+    .comp_builder .compect_plus_right_3,
+    .comp_builder .compect_monster_box3 {
+        bottom: 50px;
+        left: 15px;
+    }
+    .comps_sec .comp_builder .compect_monster_box .monster_img {
+        max-width: 99px;
+        max-height: 135px;
+        padding: 3px;
+    }
+}
+
+@media Screen and (max-width: 1440px){
+    /******************************************** Comp Builder page Start  ************************************************/
+    .comp_builder .runes-form .dropdown .dropdown-label{
+        padding: 4px 10px;
+    }
+    .comp_builder .runes-form .dropdown.dropdown1{
+        max-width: 162px;
+    }
+    .comp_builder .runes-form .dropdown.dropdown2 {
+        max-width: 88px;
+    }
+    .comp_builder .runes-form .dropdown.dropdown3, 
+    .comp_builder .runes-form .dropdown.dropdown4, 
+    .comp_builder .runes-form .dropdown.dropdown5 {
+        max-width: 163px;
+    }
+    .cm_bulider_tab {
+        max-width: 136px;
+    }
+    .comp_builder .dropdown-option span{
+        font-size: 14px;
+    }
+    .comp_builder .comp_input_field input{
+        min-width: 450px;
+    }
+    .comp_builder .compect_monster_box1{
+        left: 85px;
+    }
+    .comp_builder .compect_monster_box .monster_img{
+        max-width: 102px;
+        max-height: 140px;
+    }
+    .comp_builder .compect_bulider_fliter_section.active .checkbox-field{
+        padding-right: 17px;
+    }
+    /******************************************** Comp Builder page End  ************************************************/
+}
+
+@media Screen and (max-width: 1280px){
+    /******************************************** Comp Builder page Start ************************************************/
+    .compect_bulider_fliter_section {
+        padding: 15px;
+    }
+    .comp_builder .runes-form .dropdown.dropdown3, 
+    .comp_builder .runes-form .dropdown.dropdown4, 
+    .comp_builder .runes-form .dropdown.dropdown5 {
+        max-width: 150px;
+    }
+    .comp_builder .runes-form .dropdown span:before {
+        margin-right: 8px;
+    }
+    .comp_builder .compect_inner_monster .line_up_monster {
+        padding: 0 7px;
+    }
+    .comp_builder .compect_plus_inner {
+        background-size: 90px 131px;
+        width: 90px;
+        height: 131px;
+    }
+    .comp_builder .compect_plus_right_4,
+    .comp_builder .compect_monster_box4 {
+        left: 148px;
+        bottom: 140px;
+    }
+    .comp_builder .compect_plus_right_3,
+    .comp_builder .compect_monster_box3 {
+        bottom: 60px;
+        left: 30px;
+    }
+    .comps_sec .comp_builder .compect_monster_box3 {
+        left: 15px;
+    }
+    .comps_sec .comp_builder .compect_monster_box4 {
+        left: 130px;
+    }
+
+    /******************************************** Comp Builder page End  ************************************************/
+
+}
+
+@media screen and (max-width: 1199px) {
+    .dropdown-search-wrap.on{
+        background-color: transparent;
+    }
+    .runes-form .dropdown .dropdown-list {
+        z-index: -1 !important;
+    }
+    .runes-form .dropdown {
+      z-index: 9;
+    }
+    .runes-form .dropdown.dropdown2 {
+        z-index: 8;
+    }
+    .runes-form .dropdown.dropdown3 {
+        z-index: 7;
+    }
+    .runes-form .dropdown.dropdown4 {
+        z-index: 6;
+    }
+    .runes-form .dropdown.dropdown5 {
+        z-index: 5;
+    }
+    .runes-form .dropdown .dropdown-label {
+        z-index: 2;
+    }
+
+
+    #sidebar-container{
+		display: none;
+		transition: none;
+	    -webkit-transition: none;
+	    -moz-transition: none;
+	    -ms-transition: none;
+	    -o-transition: none;
+	    min-height: auto;
+	    height: calc(100vh - 69px);
+	    width: 100%;
+    	top: 69px;
+		max-width: 1090px;
+		margin: 0 auto;    
+		right: 0;
+		border-right: 0;
+	}
+	.logo {
+		display: none;
+	}
+	.main-content {
+		padding-top: 70px;
+		padding-left: 15px;
+		padding-right: 15px;		
+	}
+    .main--content-search input{
+        background-color: #202039;
+    }
+
+    
+    .main-content {
+        min-height: calc(100vh - 60px);
+    }
+	#sidebar-container .list-group{
+		max-height: 560px;
+		height: 100%;
+		padding-bottom: 20px;;
+	}
+
+    /* Monster List page Start */
+
+    .monster-list-page .monster-lists{
+        padding-bottom: 50px;
+    }
+
+    /* Monster List page Start */
+
+    /******************************************** Comp Builder page Start ************************************************/
+    .comp_builder .runes-form .checkbox-field{
+        max-width: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .cm_bulider_tab {
+        max-width: 174px;
+    }
+    .cm_bulider_tab .nav-tabs .nav-link{
+        padding: 8.5px 10px;
+    }
+/*    .comp_builder .compect_plus_inner{
+        background-size: 100px 140px;
+        width: 100px;
+        height: 140px;
+    }*/
+    .comp_builder .compect_monster_box1{
+        left: 70px;
+    }
+    .comp_builder .compect_plus_right_1,
+    .comp_builder .compect_monster_box1{
+        left: 85px;
+    }
+    .comp_builder .compect_plus_right_3,
+    .comp_builder .compect_monster_box3{
+        left: 20px;
+    }
+    .comp_builder .compect_plus_right_4,
+    .comp_builder .compect_monster_box4{
+        left: 130px;
+    }
+    .comp_builder .cb_save_and_publish_btn a.all_btn{
+        font-size: 14px;
+    }
+    .comp_builder .compect_plus_inner i{
+        font-size: 30px;
+    }
+    .comp_builder .compect_inner_monster .line_up_monster {
+        padding: 0 9px;
+    }
+    .compect_bulider_fliter_section.active .runes-form .checkbox-field{
+        justify-content: flex-end;
+        padding-right: 0px;
+    }
+    .comp_builder .compect_inner_monster2{
+        margin-top: 10px;
+    }
+    .compect_spells_big img{
+        max-width: 70px;
+    }
+    .comps_sec .comp_builder .compect_monster_box .monster_img {
+        max-width: 90px;
+        max-height: 123px;
+        padding: 3px;
+    }
+    /******************************************** Comp Builder page End  ************************************************/
+
+}
+
+@media (min-width: 992px) and (max-width: 1299px){
+
+    /* Comps Listing Css Start */
+    #comps-listing-page .three_btn_design a, #comps-listing-page .three_btn_design span {
+        padding: 10px 12.8px;
+    }
+    /* Comps Listing Css End */
+
+}
+
+@media (min-width: 992px) and (max-width: 1199px){
+    .lost_info li {
+        font-size: 13px;
+        padding-top: 3px;
+    }
+    html body{
+        font-size: 16px;
+    }
+    
+    .lost_info {
+        padding-left: 0px;
+    }
+    .mb-50 {
+        margin-bottom: 40px;
+    }
+    .mt-50 {
+        margin-top: 40px;
+    }
+    .comps_sec {
+        padding-top: 40px;
+    }
+    .monster_right_sec .monster-speciality{
+        font-size: 21px;
+    }
+    .force_heading h2,
+    .force_heading h3 {
+        color: #FFFFFF;
+        font-size: 22px;
+    }
+    .force_heading {
+        padding-left: 30px;
+    }
+    .force_sec .col-md-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    .line_up_monster {
+        padding: 0 8px;
+    }
+    .force_sec .col-md-9 {
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+    .down_arrow i {
+        font-size: 32px;
+        padding-right: 15px;
+    }
+    .force_sec {
+        margin-top: 22px;
+    }
+    .pagination_number span {
+        font-size: 17px;
+    }
+    .pagination_number span:before, .pagination_number span:after {
+        font-size: 25px;
+    }
+    .monster_lost_sec a.all_btn {
+        padding: 7px 16px;
+        font-size: 12px;
+    }
+
+    .basic_skill_sec h2 {
+        margin-bottom: 22px;
+    }
+    .monster_wrap:before {
+        top: -20px;
+    }
+
+    /* Add Run set Page Start */
+    .runes-form .dropdown{
+        margin-right: 20px;
+    }
+    /* Add Run set Page End */
+
+    /* Home Page Start */
+    .home-sec-1 {
+        padding-top: 0;
+        padding-bottom: 75px;
+    }
+    .home-sec-2{
+        padding-bottom: 75px;
+    }
+    .home-main-sec .more-soon_sec{
+        padding-top: 75px;
+        padding-bottom: 75px;
+    }
+    .page-space.home-main-sec {
+        padding-bottom: 10px;
+    }
+    .home-main-sec h1.page-title {
+        font-size: 34px;
+    }
+    .hero-banner-sec{
+        padding-bottom: 70px;
+    }
+    p.page-title-subtext.hero-des{
+         padding-top: 5px;
+    }
+    .home-page-content:before {
+        height: 470px;
+        background-size: cover;
+    }
+    /* Home Page End */
+
+
+    /* Comps Listing Css Start */
+    #comps-listing-page .three_btn_design a, 
+    #comps-listing-page .three_btn_design span {
+        padding: 10px 14.5px;
+    }
+    /* Comps Listing Css end */
+
+
+}
+
+@media screen and (max-width: 991px){
+    .range-slider-wrap .range-line{
+        width: 100%;
+    }
+    .footer-left-content {
+        font-size: 15px;
+    }
+    
+
+	/* Monster Detail page Start */
+    .monster_lost_sec .col-md-6 ,.monster_lost_sec .col-md-5,.monster_lost_sec .col-md-1{
+        max-width: 100%;
+        flex: 100%;
+    }  
+    .force_heading:before{
+        content: unset;
+    }
+    .force_sec .col-md-9 ,.force_sec .col-md-3{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .force_heading h2,.force_heading h3 {
+        font-size: 18px;
+        color: #202039;
+            width: 100%;
+    }
+    .force_heading {
+        background-image: unset;
+        padding: 11px 20px;
+        background-color: #B9BDDC;
+    }
+    .force_sec .like_icon > span {
+        position: absolute;
+        bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+    .force_sec span.like {
+        color: #50D44C;
+        margin-bottom: 0;
+        flex-flow: row-reverse;
+    }
+    .force_sec .like_icon span.unlike {
+        right: 22%;
+        bottom: -4px;
+    }
+    .force_sec span.like{
+        left: 18%;
+    }
+    .line_up_ifo, .line_up_sec {
+        flex-wrap: wrap;
+    }
+    .down_arrow i {
+        font-size: 40px;
+        padding-right: 0;
+        line-height: 1;
+    }
+    .down_arrow {
+        width: 100%;
+        text-align: center;
+    }
+    .force_sec span.unlike span {
+        margin: -13px 0 0 5px;
+    }
+    .force_sec span.like span {
+        margin: 5px 6px 0 0px;
+    }
+    .like_icon .unlike, .like_icon .unlike span {
+        margin-bottom: 12px;
+    }
+    .line_up_ifo .like .like-unlike-wrap{
+        order: 1;
+    }
+
+    .monster_lost_sec .col-md-1 {
+        position: absolute;
+        right: 0;
+        width: auto;
+        justify-content: flex-end;
+        top: 60px;
+    }
+    .monster_lost_sec .row {
+        position: relative;
+    }
+    .lost_inner_sec {
+        padding: 10px 0px 0;
+        margin-top: 20px;
+    }
+     .lost_inner_sec:after{
+        content: unset;
+    }
+    .lost_inner_sec:before{
+        content: '';
+        position: absolute;
+        height: 1px;
+        background: #979AB3;
+        width: 60%;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, 0%);
+    }
+    .mb_heading {
+        display: block;
+    }
+    .comps_sec .force_heading .desk_heading {
+        text-align: center;
+    }
+    
+    .comps_sec .like_icon span.unlike a,
+    .comps_sec .like_icon span.like a{
+        display: flex;
+        align-items: center;
+    }
+    .comps_sec .like_icon span.like a{
+        margin-bottom: 0;
+    }
+    .comps_sec .like_icon span.like img{
+        order: 1;
+    }
+
+
+    /* Monster Detail page End */
+
+    /* Monster list page End */
+    .monster-lists .monster-single {
+        width: 23.8%;
+    }
+    .monster-lists .monster-single:nth-child(5n) {
+        margin-right: 2%;
+    }
+    .monster-lists .monster-single:last-child{
+        margin-right: 0 ;
+    }
+    .monster-lists .monster-single:nth-child(4n) {
+        margin-right: 0 ;
+    }
+    .monster-single-inner .icon_monster{
+        width: 60px;
+    }
+    .monster-lists .checkbox-field{
+        max-width: 100%;
+    }
+    .monster-lists .runes-form .checkbox-field{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .range-slider-wrap{
+        width: 48%;
+    }
+    
+    .monster-list-inner .monster_img{
+        height: 225px;
+    }
+    
+    /* Monster List Page End  */
+    
+    .user-page-public .comps_sec .force_heading{
+        background-image: unset;
+    }
+    .comps_sec .force_heading br{
+        display: none;
+    }
+
+    /* Comps Listing Page Css Start */
+    .ct_accordion_wrap .bg_img_block{
+        display: none;
+    }
+    .ct_accordion_wrap .force_heading h2 {
+        font-size: 18px;
+        color: #202039;
+        width: 100%;
+        font-style: inherit;
+    }
+   
+    #comps-listing-page .runes-form .checkbox-field {
+        margin-right: 0px;
+    }
+    #comps-listing-page .checkbox-field > .range-slider-wrap, 
+    #comps-listing-page .checkbox-field > .three_btn_design{
+        margin-right: 0 !important;
+    }
+    #comps-listing-page .down_arrow {
+        width: 50px;
+        margin: 0 auto;
+    }
+    #comps-listing-page .range-line{
+        width: 100%;
+    }
+    #comps-listing-page .range-slider--diamond{
+        width: 35px;
+    }
+    /* Comps Listing Page Css End */
+
+
+    /******************************************** Comp Builder page Start  ************************************************/
+    .comp_builder .compect_plus_inner{
+        background-size: 80px 115px;
+        width: 80px;
+        height: 115px;
+    }
+    .comp_builder .compect_monster_box .monster_img {
+        max-width: 80px;
+        max-height: 110px;
+    }
+    .comp_builder .compect_right_section .compect_plus_2{
+        left: 18px;
+    }
+    .comp_builder .compect_right_section .compect_plus_3 {
+        left: 134px;
+        bottom: 145px;
+    }
+    .comp_builder .cm_monster_name p{
+        font-size: 12px;
+        margin: 0 5px;
+    }
+    .comp_builder .compect_monster_box1 {
+        left: 50px;
+    }
+    .comp_builder .compect_plus_1 {
+        top: 68px;
+        right: 17px;
+    }
+    .comp_builder .compect_plus_right_1,
+    .comp_builder .compect_monster_box1 {
+        left: 45px;
+    }
+    .comp_builder .compect_plus_right_4,
+    .comp_builder .compect_monster_box4 {
+        left: 115px;
+        bottom: 137px;
+    }
+    .comp_builder .compect_bulider_fliter_section .runes-form .checkbox-field{
+        padding-top: 10px;
+    }
+    .comp_builder .runes-form .checkbox-field{
+        flex-wrap: wrap;
+    }
+    .comp_builder .runes-form .dropdown,
+    .cm_bulider_tab{
+        min-width: 25%;
+    }
+    .comp_builder .runes-form .dropdown{
+        margin-bottom: 10px;
+    }
+    .comp_builder .compect_inner_monster .line_up_sec{
+        margin-top: 0px;
+    }
+    .compect_bulider_fliter_section.active .runes-form .cm_bulider_tab{
+        min-width: unset;
+    }
+    .compect_bulider_fliter_section.active .runes-form .cm_bulider_tab .nav-tabs .nav-link{
+        padding: 8.5px 10px;
+    }
+    .comp_builder .runes-form .dropdown.dropdown4{
+        margin-left: 0px;
+    }
+    .cm_bulider_tab .nav-tabs .nav-link {
+        padding: 8.5px 18px;
+    }
+    .comp_builder .compect_element_title h2,
+    .comp_builder .compect_element_title h3{
+        font-size: 16px;
+    }
+    .comp_builder .compect_genral_info_section h2{
+        font-size: 15px;
+    }
+    .compect_spells_big img {
+        max-width: 68px;
+    }
+    .comps_sec .comp_builder .compect_monster_box .monster_img {
+        max-width: 83px;
+        max-height: 112px;
+    }
+    .comps_sec .comp_builder .compect_monster_box3 {
+        bottom: 50px;
+    }
+/******************************************** Comp Builder page End  ************************************************/
+
+} 
+
+@media (min-width: 768px) and (max-width: 1199px){
+    .main--content-search{
+        left: unset;
+        right: 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px){
+    
+    .lost_inner_sec_left {
+        justify-content: center;
+        padding-bottom: 26px;
+    } 
+    .line_up_ifo {
+        padding: 24px 0 6px;
+    }
+    
+    .comps_sec .force_heading .desk_heading{
+        display: block;
+    }
+    .comps_sec .force_heading .desk_heading br{
+        display: none;
+    }
+    .lost_info li {
+        font-size: 13px;
+    } 
+    .monster_sec .monster_right_sec {
+        padding-left: 25px;
+    }
+    .monster_lost_sec .cm_scroll {
+        height: 76px;
+    } 
+    .monster_sec {
+        padding: 30px 25px 30px 25px;
+    }
+    .force_heading {
+        padding-left: 20px;
+    }
+    .monster_img {
+       margin-left: -75px;
+        /* max-width: 145px; */
+    }
+    p.monster_sub_heading,.monster_content ul {
+        font-size: 16px;
+    }
+    .monster_sec .col-md-5, .monster_sec .col-md-7 {
+        max-width: 50%;
+        flex: 0 0 50%;
+    }
+    .monster_wrap {
+        padding: 100px 0 70px;
+    }
+    .mb-50 {
+        margin-bottom: 40px;
+    }
+    .mt-50 {
+        margin-top: 40px;
+    }
+    .down_arrow {
+        padding-top: 8px;
+    }
+    .comps_sec {
+        padding-top: 40px;
+    }
+    .monster_wrap h2 {
+        font-size: 20px;
+    }
+    .monster_right_sec .monster-speciality{
+        font-size: 21px;
+    }
+    .basic_skill_sec .basic_inner_sec h2 {
+        padding-bottom: 15px;
+        margin-top: -20px;
+    }
+    .force_heading h2,.force_heading h3 {
+        font-size: 18px;
+    }
+    
+    .line_up_monster {
+        padding: 0 4px;
+    }
+    .eleanor-section .monster_content {
+        padding-left: 15px;
+    }
+    .eleanor-section .monster_img {
+        margin-right: -75px;
+    }
+    .eleanor-section .monster_sec .monster_right_sec{
+        padding-right: 0;
+    }
+
+    /* Add Run Set Page Start  */
+    .runes-form .name-field, .runes-form .checkbox-field, .runes-form .textarea-field {
+        padding: 40px 0px 0px;
+    }
+    /* Add Run Set Page Start  */
+
+
+    
+    /* Home Page Start */
+    
+    .home-sec-1 {
+        padding-top: 0;
+        padding-bottom: 70px;
+    }
+    .home-sec-2 {
+        padding-bottom: 70px;
+    }
+    .page-space.home-main-sec {
+        padding-bottom: 70px;
+    }
+    .more-soon-list li{
+        padding-bottom: 10px;
+    }
+    .collaborative-des {
+        padding-top: 35px;
+    }
+    .home-main-sec .more-soon_sec{
+        padding-top: 70px;
+    }
+    .hero-banner-sec {
+        padding-top: 110px;
+        padding-bottom: 60px;
+    }
+    .home-main-sec h1.page-title {
+        font-size: 32px;
+    }
+    .home-page-content:before{
+        background-size: cover;
+        top: 0;
+    }
+    p.page-title-subtext.hero-des{
+        padding-top: 10px;
+    }
+    
+    /* Home Page End */
+
+
+}
+
+@media screen and (min-width: 768px){
+    .monster_right_sec p br,.mb_heading,.mb_btn,.mb_content{
+        display: none;
+    }
+}
+@media screen and (max-width: 767px) {
+    .comps_sec .comp_builder .compect_left_element_bar{
+        border-right: 0;
+    }
+
+    .comp_builder .compect_genral_info_section.mobile-genral_info{
+        display: block;
+    }
+    .comp_builder .compect_genral_info_section.mobile-genral_info{
+        padding-top: 0;
+        padding-left: 0;
+        margin-bottom: 15px;
+        padding-right: 0;
+    }
+    .comp_builder .compect_genral_info_section.mobile-genral_info .general-info-title{
+        text-transform: capitalize;
+        font-family: selawk-semi-light;
+        position: relative;
+        margin-bottom: 15px;
+    }
+    .comp_builder .compect_genral_info_section.mobile-genral_info h3:after{
+        content: ' ';
+        position: absolute;
+        left: 0px;
+        bottom: -5px;
+        width: 98px;
+        height: 2px;
+        background-color: #D9BC84;
+    }
+    
+    
+    .mobile-nav .main--content-search {
+        position: fixed;
+        top: 102px;
+        padding: 0;
+        left: 50%;
+        width: 100%;
+        height: 65px;
+        max-width: 100%;
+        background-color: rgb(32 32 57);
+    }
+    .mobile-search-inner {
+        position: relative;
+        max-width: 230px;
+        width: 100%;
+        margin: 10px auto 0;
+        width: 100%;
+    }
+
+	#sidebar-container .list-group a{
+		font-size: 18px;
+	}
+	#sidebar-container .mobile-partnership-text a{
+		font-size: 13px;;
+	}
+	#toggle{
+		height: 100%;
+	}
+	#toggle span+span {
+		margin-top: 8px;
+	}
+
+	footer{
+		flex-wrap: wrap;
+	}
+	footer .footer-left-content,
+	footer .footer-right-content{
+		width: 100%;
+		text-align: center;
+		font-size: 16px;
+	}
+	footer .footer-left-content{
+		order: 1;
+	}
+	.footer-right-content .sw-text{
+		display: none;
+	}
+	footer  p.site-text {
+		margin-bottom: 5px;
+        font-family: 'selawk-bold';
+	}
+    .main--content-search input{
+        background-color: #18182E;
+    }
+
+
+	/* Monster Detail page Start */
+
+	.lost_info li {
+        font-size: 12px;
+        padding-top: 3px;
+    }  
+    .monster_left_sec ,.lost_inner_sec_left{
+        flex-wrap: wrap;
+        justify-content: center;
+    }  
+    .monster_content {
+        padding-left: 0;
+    }
+    .monster_sec .monster_right_sec {
+        border-left: 0;
+        padding-left: 0;
+        border-top: 1px solid #D9BC84;   
+        padding-top: 22px;
+    }
+    .monster_sec .monster_right_sec,.monster_heading {
+        text-align: center;
+    }
+    .skill_list p{
+        text-align: center !important;
+    }
+    .monster_sec {
+        padding: 30px 26px 30px 26px;
+        margin-left: 0;
+    }
+    .monster_img {
+        margin-top: -190px;
+        margin-left: 0;
+        /* max-width: 155px; */
+        left: -15%;
+    }
+    p.monster_sub_heading {
+        display: inline-block;
+    }
+    .monster_heading {
+        padding-top: 15px;
+    }
+    .monster_content ul {
+        margin: 20px 0 26px;
+    }
+    .basic_skill_sec h2 {
+        margin-bottom: 14px;
+        background: #252544;
+        padding: 17px 20px;
+    }
+    .mb-50 {
+        margin-bottom: 35px;
+    }
+    .basic_skill_sec .col-md-6:last-child {
+        padding-left: 15px;
+        padding-top: 35px;
+    }
+    .basic_skill_sec .bg_br {
+        padding: 0;
+    }
+    .basic_inner_sec ul li {
+        margin: 3px 0px;
+    }
+    .basic_inner_sec .stats_info {
+        padding: 15px 15px 15px;
+    }
+    .basic_inner_sec .col-md-4:nth-child(2) {
+        border-left: 0;
+        border-right: 0;
+        border-top: 1px solid #D9BC84;
+        border-bottom: 1px solid #D9BC84;
+    }
+    .basic_inner_sec .row {
+        max-width: 230px;
+        margin: 0 auto;
+    }
+    .skill_list {
+        margin: 18px 0 20px;
+    }
+    .basic_inner_sec .col-md-4,.monster_lost_sec {
+        padding: 0;
+    }
+    .lost_info {
+        padding-left: 0;
+    }
+    .monster_lost_sec a.all_btn, 
+    .desk_content{
+        display: none;
+    }
+    
+    .mb_bg {
+        margin-bottom: 14px;
+        background: #252544;
+        padding: 17px 35px;
+    }
+    .mb_padd {
+        padding: 0 16px;
+    }
+    .lost_content {
+        margin-right: 3px;
+    }
+    .lost_info h3 {
+        text-align: center;
+    }
+
+    .monster_lost_sec .col-md-1 {
+        right: 15px;
+        top: 5px;
+    }
+    .monster_lost_sec .row.border-bottom {
+        padding-bottom: 40px;
+        margin-bottom: 22px;
+    }
+    .monster_lost_sec {
+        padding-bottom: 35px;
+    }
+    .line_up_ifo,.line_up_sec{
+        flex-wrap: wrap;
+    }
+    .line_up_ifo {
+        padding: 14px 0 5px;
+    }
+    .force_sec .like_icon {
+        margin-left: 0;
+    }
+    
+    .line_up_monster {
+        padding: 0 7px 9px;
+    }
+    .force_sec {
+        margin-top: 24px;
+    }
+    span.basic_stats_title {
+        font-size: 14px;
+    }
+    img.icon_monster {
+        bottom: 14px;
+        width: 52px;
+    }
+    .mb_btn {
+        text-align: center;
+        padding-top: 22px;
+    }
+    .monster_wrap {
+	    padding: 265px 0 70px;
+	}
+
+    
+    .basic_skill_sec .basic_inner_sec h2{
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-top: 0;
+    }
+    .monster_lost_sec .mb_bg{
+        margin-bottom: 25px;
+        padding: 0;
+    }
+    .monster_lost_sec h2{
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+	/* Monster Detail Page End */
+
+    /* Monster Special Page Start */
+    .eleanor-section{
+        margin-right: 0;
+    }
+    .eleanor-section  .monster_right_main{
+        order: 1;
+    }    
+    .eleanor-section {
+        margin-top: 260px;
+    }
+    .eleanor-section .monster_right_sec{
+        border-right: 0;
+    }
+    /* Monster Special Page End */
+
+    /* Add Run Set 1 page Start  */
+    .page-space{
+        padding: 65px 0px 50px;
+    }
+    .main-content:not(.home-page-content){
+        background-image: none !important;
+    }
+    .runes-form .checkbox-field{
+        display: block;
+    }
+    .runes-form .name-field, .runes-form .checkbox-field, .runes-form .textarea-field {
+        padding: 35px 0px 0px;
+    }
+    .runes-form .dropdown .dropdown-label{
+        margin-bottom: 20px;
+    }
+    .runes-form .dropdown.dropdown4 .dropdown-label{
+        margin-bottom: 0px;
+    }
+    .ragdoll-top-sec p{
+        font-size: 13px;
+    }
+    .ragdoll-top-sec h2{
+        font-size: 23px;
+    }
+    /* Add Run Set 1 page End  */
+
+
+    /* User Public page Start */
+
+    .user-page-public .comps_sec .force_heading br{
+        display: none;
+    }
+
+    .user-page-public .monster_wrap {
+        padding-top: 65px;
+    }
+
+    .user-page-public .monster_lost_sec {
+        padding: 25px 15px;
+    }
+    .user-page-public .monster_lost_sec-heading{
+        margin-top: 25px;
+        margin-bottom: 0px;
+    }
+    /* User Public page End */
+
+    /* Monster List Page Start  */
+    .monster-lists .monter-single-name a {
+        font-size: 18px;
+    }
+    .monster-lists .monster-single {
+        width: 32%;
+    }
+    .monster-lists .monster-single:nth-child(4n) {
+        margin-right: 2%;
+    }
+    .monster-lists .monster-single:nth-child(3n) {
+        margin-right: 0%;
+    }
+    .monster-lists .runes-form .checkbox-field{
+        display: block;
+    }
+    .monster-lists .runes-form .dropdown.dropdown3 .dropdown-label,
+    .monster-lists .range-slider-wrap{
+        margin-bottom: 20px;
+    }
+    .monster-lists .runes-form .dropdown,
+    .monster-lists .range-slider-wrap{
+        width: 100%;
+    }
+    .monster-lists .range-slider-wrap .range-line{
+        width: 100%;
+    }
+    /* Monster List Page End  */
+    .mCSB_inside>.mCSB_container {
+        margin-right: 15px;
+    }
+    .lost_info h3:before {
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+
+    /* Home Page Start */
+    .home-sec-1 {
+        padding-top: 0;
+        padding-bottom: 55px;
+    }
+    .collaborative-des {
+        padding-top: 30px;
+    }
+    .home-main-sec h3 {
+        font-size: 22px !important;
+        text-align: left;
+    }
+    .home-main-sec .more-soon_sec  h3{
+        text-align: center;
+    }
+    .home-main-sec .page-title-section .page-title-subtext{
+        font-size: 14px;
+        text-align: left;
+    }
+    .home-main-sec h3.page-title.page-title-btm:before{
+        width: 100px;
+        bottom: -15px;
+    }
+    .home-main-sec .collection_left_sec h3.page-title.page-title-btm:before{
+        left: 0;
+    }
+    .collaborative-des p.page-title-subtext{
+        padding-bottom: 15px;
+    }
+    .home-main-sec .collection_left_sec {
+        order: 1;
+        padding-top: 20px;
+    }
+    .home-sec-2 {
+        padding-bottom: 55px;
+    }
+    .more-soon-list li{
+        padding-left: 40px;
+        font-size: 14px;
+        padding-bottom: 15px;
+    }
+    .more-soon-list li:before{
+        left: 5px;
+    }
+    .page-space.home-main-sec {
+        padding-bottom: 55px;
+    }
+    .home-main-sec .home-btn{
+        text-align: center;
+    }
+    .home-sec-4 {
+        padding-top: 55px;
+    }
+    .collection_right_sec {
+        max-width: 100%;
+        padding-top: 30px;
+    }
+    .home-main-sec h1.page-title {
+        font-size: 30px;
+    }
+    .hero-banner-sec {
+        padding-top: 100px;
+        padding-bottom: 50px;
+    }
+    img.title-btm-img {
+        padding-top: 5px;
+    }
+    p.page-title-subtext.hero-des{
+        padding-top: 5px;
+        font-size: 18px !important;
+        max-width: 215px !important;
+    }
+    .home-page-content:before{
+        height: 450px;
+        background-size: cover;
+    }
+    /* Home age End */
+
+    /* Comps Listing Page Css Strat */
+    #comps-listing-page .checkbox-field{
+        padding: 0px 0px 0px;
+    }
+    #comps-listing-page .comps_sec {
+        padding-top: 40px;
+    }
+    .ct_accordion_wrap .force_sec .down_arrow {
+        margin-right: 0;
+        width: 50px;
+        margin: 0 auto;
+    }
+    /* Comps Listing Page Css Strat */
+        /******************************************** Comp Builder page Start ************************************************/
+    .comp_builder .compect_right_section{
+        max-width: 100%;
+        width: 100%;
+        order: 1;
+    }
+    .comp_builder .compect_left_element_bar{
+        max-width: 100%;
+        width: 100%;
+        order: 2;
+    }
+    .comp_builder .mobile_block{
+        display: block;
+    }
+    .comp_builder .compect_average {
+        display: flex;
+        position: absolute;
+        right: 20px;
+        bottom: 25px;
+    }
+    .desktop_block,
+    .comp_builder .compect_genral_info_section,
+    .compect_bulider_fliter_section{
+        display: none;
+    }
+    .mobile_monster_section{
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    .compect_coleen_title{
+        width: 100%;
+        height: 42px;
+        background-color: #B9BDDC;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px 10px 0 0;
+        margin-bottom: 15px;
+    }
+    .compect_coleen_title p{
+        font-size: 20px;
+        color: #202039;
+        font-family: selawk-semi-bold;
+    }
+    .comp_builder .compect_right_section .row{
+        height: unset;
+    }
+    .comp_builder .compact_bulider_element_section{
+        border-color: #D9BC84; 
+        border-radius: 10px;
+    }
+    .mobile_monster_section{
+        margin-bottom: 10px;
+    }
+    .comp_builder .compect_right_bg_banner{
+        background-image: unset;
+    }
+    .comp_builder .compect_right_bg_banner:after{
+        content: unset;
+    }
+    .comp_builder .compect_left_element_bar{
+        background-color: #272741;
+        border-radius: 0 0 10px 10px;
+    }
+    .comp_builder .compect_left_element_bar{
+        padding: 15px;
+    }
+    .compect_mobile_boder{
+        border-bottom: 1px solid #D9BC84;
+    }
+    .comp_builder .compect_element_section ul li{
+        width: 20%;
+    }
+    .comp_builder .compect_role_items ul{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .comp_builder .compect_role_items ul li,
+    .comp_builder .compect_raity_items ul li{
+        width: 25%;
+    }
+    .comp_builder .compect_element_section,
+    .comp_builder .compect_role_section,
+    .comp_builder .compect_raity_section,
+    .comp_builder .compect_spells_section .compect_element_title{
+        padding: 0px;
+    }
+    .comp_builder .colleen_section{
+        display: block;
+    }
+    .colleen_section ul{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .colleen_section ul li{
+        min-width: 33.33%;
+        display: flex;
+        align-items: center;
+    }
+    .colleen_section ul li p,
+    .comp_builder .compect_element_section ul li p,
+    .comp_builder .compect_role_items ul li p,
+    .comp_builder .compect_raity_items ul li p{
+        font-size: 14px;
+    }
+    .colleen_section ul li p span{
+        color: #D9BC84;
+    }
+    .colleen_section ul li .collen_icon_img{
+        margin-left: 15px;
+    }
+    .colleen_section ul li .collen_icon_img img{
+        width: 20px;
+    }
+    .colleen_section ul li{
+        margin-bottom: 10px;
+    }
+    .comp_builder .compect_left_element_bar .compect_average{
+        position: unset;
+        right: unset;
+        bottom: unset;
+        margin-top: 15px;
+    }
+    .comp_builder .compect_left_element_bar{
+        border: unset;
+    }
+     .comp_builder .compect_mobil_bg{
+        background-color: #202039;
+        border-radius: 10px 10px 0 0;
+    }
+    .comp_builder .compect_element_section ul{
+        padding: 0px;
+    }
+    .comp_builder .compect_raity_items ul li,
+    .comp_builder .compect_element_section ul li,
+    .comp_builder .compect_role_items ul li + li{
+        margin: 0px;
+    }
+    .comp_builder .spells_item ul{
+        margin-top: 20px;
+    }
+    .mobile_save_and_pub_btn{
+        text-align: center;
+        margin-top: 25px;
+    }
+    .comp_builder .comp_input_field{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .comp_builder .comp_input_field p{
+        margin-left: unset;
+        margin-top: 10px;
+    }
+    .comps_sec {
+        padding-top: 35px;
+    }
+
+    .comps_sec .accordian_open .force_sec  {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0; 
+    }
+    .comps_sec .accordion_close .force_sec  {
+        transition-delay: .4s;
+    }
+    .comps_sec .comp_builder {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .comps_sec .comp_builder .compect_element_title{
+        margin-bottom: 15px;
+    }
+  
+    /******************************************** Comp Builder page End  ************************************************/
+
+}
+@media screen and (max-width: 575px) {
+	#toggle span+span {
+		margin-top: 7px;
+	}
+    .monster_lost_sec h2,
+    .basic_skill_sec .basic_inner_sec h2{
+        background-color:#252544;
+    }
+	.monster_img {
+	    margin-top: -190px;
+	    margin-left: 0;
+	    /* max-width: 155px; */
+	    left: 0;
+	}
+    .monster_wrap:before{
+        background-image: unset;
+    }
+    .eleanor-section .monster_img{
+        margin-right: 0;
+    }
+    /* Monster List Page Start  */
+    .monster-lists .monter-single-name a {
+        font-size: 18px;
+    }
+    .monster-lists .monster-single {
+        width: 48%;
+        margin-right: 4%;
+    }    
+    
+    .monster-lists .monster-single:nth-child(3n) {
+        margin-right: 4%;
+    }
+    .monster-lists .monster-single:nth-child(2n) {
+        margin-right: 0%;
+    }
+    
+    /* Monster List Page End  */
+
+    /* User Private page End */
+    .user_page_private .form_field.form_field_group input {
+        max-width: 95px;
+    }
+    .user_page_private .form_field.form_field_group p {
+        font-size: 11px;
+        margin-right: 0;
+    }
+    .user_page_private .page-space{
+        padding-left: 0;
+        padding-right: 0;
+    }
+    /* User Private page End  */
+
+    /* Register Popup Start  */
+    #login_popup .register_content {
+        padding: 15px 0px 5px;
+    }
+    #login_popup .modal-dialog {
+        margin: 20px 15px;
+        min-height: calc(100% - 40px);
+    }
+    /* Register Popup End  */
+
+    /* Home Page Start */
+
+    .home-main-sec h3,
+    .home-main-sec .page-title-section .page-title-subtext {
+        text-align: center;
+    }
+    .home-main-sec .collection_left_sec h3.page-title.page-title-btm:before,
+    h3.page-title.page-title-btm:before {
+        left: 50%;
+       transform: translateX(-50%);
+    }
+    /* Home Page End */
+
+    /* Comps Listing Page Css Strat */
+
+    #comps-listing-page .checkbox-field > div {
+        width: 100%;
+    }
+    /* Comps Listing Page Css End */
+
+
+    /******************************************** Comp Builder page Start  ************************************************/
+    .colleen_section ul li .collen_icon_img img {
+        width: 15px;
+    }
+    .comp_builder .compect_role_items ul li{
+        width: 50%;
+    }
+    .comp_builder .compect_role_items ul li:nth-child(1),
+    .comp_builder .compect_role_items ul li:nth-child(2){
+        margin-bottom: 8px;
+    }
+    .comp_builder .compect_spells_section ,
+    .comp_builder .compect_role_section,
+    .comp_builder .compect_raity_section{
+        margin-top: 25px;
+    }
+    .comps_sec {
+        padding-top: 25px;
+    }
+    .compect_coleen_title p{
+        font-size: 18px;
+    }
+    /******************************************** Comp Builder page End  ************************************************/
+
+}
+
+@media (min-width: 520px) and (max-width: 620px){
+    /* Comps Listing Page Css Strat */
+    #comps-listing-page .three_btn_design a {
+        padding: 10px 11.2px;
+    }
+    /* Comps Listing Page Css End */
+}
+
+@media screen and (max-width: 520px){
+    /* Comps Listing Page Css Strat */
+
+
+    #comps-listing-page .three_btn_design span {
+        width: 35%;
+    }
+    #comps-listing-page .two_btn {
+        width: 65%;
+    }
+    #comps-listing-page .three_btn_design a{
+        width: 50%;
+    }
+
+    /* Comps Listing Page Css End */
+}
+
+@media screen and (min-width: 480px) and (max-width:991px){
+    /* Add Run Set  page Start  */
+    .runes-form .checkbox-field{
+        display: block;
+    }
+    .runes-form .dropdown{
+        width: 48%;
+        margin-right: 10px;
+        display: inline-block;
+    }
+    .runes-form .dropdown.dropdown2{
+        margin-right: 0px;
+    }
+    .runes-form .dropdown.dropdown3 .dropdown-label{
+        margin-bottom: 0px;
+    }
+    /* Add Run Set  page End */
+
+    /* Comps Listing Page Css Strat */
+    #comps-listing-page .checkbox-field > div{
+        width: 48%;
+        margin-right: 10px !important;
+        display: flex;
+        margin-bottom: 10px;
+    }
+    #comps-listing-page .checkbox-field{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    #comps-listing-page .three_btn_design span{
+        width: 33.3333%;
+    }
+    #comps-listing-page .three_btn_design a{
+        width: 50%;
+    }
+    #comps-listing-page .two_btn{
+        width: 67%;
+    }
+    /* Comps Listing Page Css End */
+}
+@media screen and (max-width: 480px) {
+    .eleanor-section{
+        padding-top: 100px;
+    }
+    .eleanor-section .monster_img {
+        margin-top: -530px;
+        margin-right: auto;
+    }
+    /*==================== Comps Listing Page Css Strat =====================*/
+    #comps-listing-page .checkbox-field > div{
+        margin-bottom: 20px;
+    }
+    /*==================== Comps Listing Page Css End =====================*/
+
+     /******************************************** Comp Builder page Start  ************************************************/
+    .colleen_section ul li .collen_icon_img {
+        margin-left: 8px;
+    }
+    .colleen_section ul li p, 
+    .comp_builder .compect_element_section ul li p, 
+    .comp_builder .compect_role_items ul li p, 
+    .comp_builder .compect_raity_items ul li p {
+        font-size: 12px;
+    }
+    .comp_builder .compect_spells_section, 
+    .comp_builder .compect_role_section, 
+    .comp_builder .compect_raity_section {
+        margin-top: 18px;
+    }
+    .colleen_section ul{
+        margin-bottom: 8px;
+    }
+    .comp_builder .compect_element_section ul li img{
+        max-width: 24px;
+    }
+    .comp_builder .compect_element_section ul li p{
+        margin-left: 4px;
+    }
+    .comp_builder .compect_raity_items ul li p{
+        margin-left: 5px;
+    }
+    .comp_builder .comp_input_field input {
+        min-width: 100%;
+    }
+    /******************************************** Comp Builder page End  ************************************************/
+   
+}
+
+@media screen and (max-width: 375px) {
+	.mobile-partnership-text,
+	.mobile-menu-login-lang {
+		margin-top: 30px;
+	}
+
+   
+
+}
+
+@media screen and (max-width: 360px){
+    
+    .line_up_monster {
+        padding: 0 7px 9px;
+    }
+
+    /* Monster List Page Start  */
+
+    .monster-list-inner .monster_img{
+        height: 190px;
+    }
+    
+    /* Monster List Page End  */
+
+}
+
+

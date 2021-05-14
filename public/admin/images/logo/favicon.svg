@@ -1,0 +1,10 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 27" width="27" height="27">
+	<title>logo-lost-centuria-2</title>
+	<defs>
+		<image  width="24" height="27" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAbCAMAAABRPb9kAAAAAXNSR0IB2cksfwAAAOFQTFRF2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byE2byEjCNXagAAAEt0Uk5TAAEEGend3+Di5iQO2P9DxzpIUlcIEgkbBgUDBwLU2XdQU1VZxP2yZvygDDLzniIUQMggmff29fTy8fDv7u3s6+pJFxYVExEQDw0LH81YUwAAALlJREFUeJyl0dUOwkAQBdCp4CxOqeEUd3eKU/7/g2gLJCybeSDct8nJyGYBnHA8MBFEj9fnD3iC3xAKEzcRtifqQoyFOAYJDJL/QgqBtIRABhslI6Bgy2UM1N/fwWGgYvAhFHAa6DQIzyKbA/295vlR+UKxlCxXiFEF/TWtRqjUGwBNh1ptGojRAej2oE/YDIZ2w4iMJ9NZez5fLFfrzXZnmqJI9jbwh+Opd05frjfLat6llCYrvHPWAxu6F3eS7x3uAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<use id="Background" href="#img1" x="1" y="0" />
+</svg>
