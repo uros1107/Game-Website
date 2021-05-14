@@ -182,6 +182,7 @@
                     <a href="#" id="add-rune-set-btn" data-value="{{ $monster->id }}" class="all_btn">+ Add Rune Set</a>
                 </div>
             </div>
+            @if(count($rune_sets))
             @foreach($rune_sets as $rune_set)
             <div class="row mb_padd border-bottom">
                 <div class="col-md-6">
@@ -255,32 +256,18 @@
                 </div>
             </div>
             @endforeach
+            @else
+            <div class="row mb_padd border-bottom" style="justify-content: center">
+                Emtpy
+            </div>
+            @endif
         </div>
 
         <!-- Pagination Section -->
         <div class="pagination_sec text-center pt-3">
-            <div class="row">
-                <div class="col-12">
-                    <div class="pagination_number">
-                        <span>
-                            <a href="#">
-                                <i class="fal fa-angle-left"></i>
-                            </a>
-                            <a href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a> ... <a href="#">8</a>
-                            <a href="#">
-                                <i class="fal fa-angle-right"></i>
-                            </a>
-                        </span>
-                    </div>
-                </div>
-            </div>
+            {!! $rune_sets->appends(['id' => $monster->id])->links('frontend.custom-pagination') !!}
         </div>
 
-        @php
-            $team_comps = DB::table('team_comps')->get();
-        @endphp
 
         <div class="mb_btn">
             <a href="#" class="all_btn">+ Ajouter un set</a>
@@ -293,9 +280,8 @@
                     <h2>Comps with Eleanor in Lost Centuria</h2>
                 </div>
             </div>
-            
+            @if(count($team_comps))
             @foreach($team_comps as $team_comp)
-            @if(in_array($monster->id, json_decode($team_comp->c_position)))
             <div class="ct_accordion_wrap accordion_close">
                 <div class="force_sec bg_br">
                     <div class="row">
@@ -607,29 +593,17 @@
                     </div>
                 </div>
             </div>
-            @endif
             @endforeach
+            @else
+            <div class="ct_accordion_wrap accordion_close text-center p-4">
+                Empty
+            </div>
+            @endif
         </div>
 
         <!-- Pagination Section -->
         <div class="pagination_sec text-center pt-3">
-            <div class="row">
-                <div class="col-12">
-                    <div class="pagination_number">
-                        <span>
-                            <a href="#">
-                                <i class="fal fa-angle-left"></i>
-                            </a>
-                            <a href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a> ... <a href="#">8</a>
-                            <a href="#">
-                                <i class="fal fa-angle-right"></i>
-                            </a>
-                        </span>
-                    </div>
-                </div>
-            </div>
+            {!! $team_comps->links('frontend.custom-pagination') !!}
         </div>
     </div>
     <!-- Body Content Close -->

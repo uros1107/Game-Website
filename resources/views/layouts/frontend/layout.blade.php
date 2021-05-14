@@ -26,6 +26,8 @@
 
     <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/12.0.0/nouislider.min.css">
+
     <!-- FontAwesome -->
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}" type="text/css" />
 

@@ -1,7 +1,7 @@
 @extends('layouts.frontend.layout')
 
 @section('styles')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/12.0.0/nouislider.min.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/12.0.0/nouislider.min.css"> -->
 <link rel="stylesheet" href="assets/css/all.min.css" type="text/css" />
 <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.css')) }}">
 <link rel="stylesheet" href="{{ asset(mix('css/plugins/extensions/toastr.css')) }}">

@@ -36,6 +36,12 @@ Route::get('/comps-builder', 'Frontend\MonsterController@comps_builder')->name('
 
 Route::get('/terms-of-use', 'Frontend\MonsterController@terms_of_use')->name('terms-of-use');
 
+// -------------------------- Filter route start -----------------------------
+Route::get('/get-filter-monster', 'Frontend\FilterController@get_monster')->name('get-filter-monster');
+Route::get('/search-monster', 'Frontend\FilterController@search_monster')->name('search-monster');
+Route::get('/get-filter-team-comps', 'Frontend\FilterController@get_team_comps')->name('get-filter-team-comps');
+// -------------------------- Filter route end -----------------------------
+
 Route::prefix('admin')->group(function() {
 
     // ------------- Admin login -------------

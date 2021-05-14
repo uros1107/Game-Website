@@ -8,8 +8,7 @@ $(document).ready(function(){
 
     // Accordion Js  -----------------------------
 
-    $('.ct_accordion_lable').click(function(){
-
+    $(document).on('click', '.ct_accordion_lable', function() {
         $(this).parents('.ct_accordion_wrap').siblings().find('.ct_accordion_lable').removeClass('ct_visiable');
         $(this).toggleClass('ct_visiable');
 
@@ -21,10 +20,7 @@ $(document).ready(function(){
         $(this).siblings().find('.ct_accordion_info').slideUp();
         $(this).parents('.ct_accordion_wrap').siblings().find('.ct_accordion_info').slideUp();  
         $(this).parents('.ct_accordion_wrap').find('.ct_accordion_info').slideToggle();
-
-
-    });
-
+    })
 
     // Popup JQuery  -----------------------------
 

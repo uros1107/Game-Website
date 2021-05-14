@@ -2,7 +2,7 @@
 
 @section('styles')
     <!-- No UISlider -->
-    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/12.0.0/nouislider.min.css">
+    
     <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}" type="text/css" />
 @endsection
 
@@ -29,37 +29,19 @@
                             class="slider-value"></span>
                     </div>
                     <div class="range-line" id="range-line"></div>
+                    <input type="hidden" name="mana_cost" id="mana_cost">
                 </div>
                 <div class="dropdown dropdown2" data-control="checkbox-dropdown">
                     <label class="dropdown-label">All Elements</label>
                     <div class="dropdown-list">
                         <div class="inner-dropdown-sec">
+                            @foreach(DB::table('element')->get() as $element)
                             <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 1" />
-                                <span>Water</span>
-                                <img src="assets/image/Monter-list/icon-water.png" alt="">
+                                <input type="checkbox" class="element" name="element[]" value="{{ $element->id }}" />
+                                <span>{{ $element->name }}</span>
+                                <img src="{{ asset('images/game/icons/elements/'.$element->detail_icon) }}" alt="">
                             </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 2" />
-                                <span>Fire</span>
-                                <img src="assets/image/Monter-list/icon-fire.png" alt="">
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 3" />
-                                <span>Light</span>
-                                <img src="assets/image/Monter-list/icon-light.png" alt="">
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 4" />
-                                <span>Dark</span>
-                                <img src="assets/image/Monter-list/icon-dark.png" alt="">
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 5" />
-                                <span>Wind</span>
-                                <img src="assets/image/Monter-list/icon-wind.png" alt="">
-                            </label>
-
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -67,26 +49,13 @@
                     <label class="dropdown-label">All Rarity</label>
                     <div class="dropdown-list">
                         <div class="inner-dropdown-sec">
+                            @foreach(DB::table('rarity')->get() as $rarity)
                             <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 1" />
-                                <span>Normal </span>
-                                <span class="round-normal round-color"></span>
+                                <input type="checkbox" class="rarity" name="rarity[]" value="{{ $rarity->id }}" />
+                                <span>{{ $rarity->name }}</span>
+                                <span class="round-color" style="background: {{ $rarity->color }}"></span>
                             </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 2" />
-                                <span>Rare</span>
-                                <span class="round-rare round-color"></span>
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 3" />
-                                <span>Heroic</span>
-                                <span class="round-heroic round-color"></span>
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 3" />
-                                <span>Legendary</span>
-                                <span class="round-legendary round-color"></span>
-                            </label>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -94,80 +63,52 @@
                     <label class="dropdown-label">All Roles</label>
                     <div class="dropdown-list">
                         <div class="inner-dropdown-sec">
+                            @foreach(DB::table('role')->get() as $role)
                             <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 1" />
-                                <span>Attack</span>
-                                <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="">
+                                <input type="checkbox" class="role" name="role[]" value="{{ $role->id }}" />
+                                <span>{{ $role->name }}</span>
+                                <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}" alt="">
                             </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 2" />
-                                <span>HP</span>
-                                <img src="assets/image/Monter-list/all_role_monter_icon_2.png" alt="">
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 3" />
-                                <span>Support</span>
-                                <img src="assets/image/Monter-list/all_role_support-ic_3.png" alt="">
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 3" />
-                                <span>Defense</span>
-                                <img src="assets/image/Monter-list/all_role_monter_icon_4.png" alt="">
-                            </label>
-
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </form>
 
-        <!--  -->
-        <div class="monster-list-inner">
-            <!-- Monster - 1 -->
-            @foreach($monsters as $monster)
-            <div class="monster-single monster-1">
-                <div class="monster-item" data-value="{{$monster->id}}">
-                    <div class="monster-single-inner monster_img">
-                        <div class="icon_img">
-                            <span class="polygon-corner">{{ $monster->mana_cost }}</span>
-                            <img src="{{ asset('assets/image/Monter-list/mana-icone-carte.svg') }}" alt="" class="icon_top_monster">
+        <div>
+            <!--  -->
+            <div class="monster-list-inner">
+                <!-- Monster - 1 -->
+                @foreach($monsters as $key => $monster)
+                <div class="monster-single monster-{{ $key%5 + 1 }}">
+                    <div class="monster-item" data-value="{{$monster->id}}">
+                        <div class="monster-single-inner monster_img">
+                            <div class="icon_img">
+                                <span class="polygon-corner">{{ $monster->mana_cost }}</span>
+                                <img src="{{ asset('assets/image/Monter-list/mana-icone-carte.svg') }}" alt="" class="icon_top_monster">
+                            </div>
+                            @php
+                                $element = DB::table('element')->where('id', $monster->element)->first();
+                                $role = DB::table('role')->where('id', $monster->role)->first();
+                                $rarity = DB::table('rarity')->where('id', $monster->rarity)->first();
+                            @endphp
+                            <img src="{{ asset('images/game/main_images/'.$monster->main_image) }}" alt="" class="monster-individual">
+                            <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="" class="icon_monster">
                         </div>
-                        @php
-                            $element = DB::table('element')->where('id', $monster->element)->first();
-                            $role = DB::table('role')->where('id', $monster->role)->first();
-                            $rarity = DB::table('rarity')->where('id', $monster->rarity)->first();
-                        @endphp
-                        <img src="{{ asset('images/game/main_images/'.$monster->main_image) }}" alt="" class="monster-individual">
-                        <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="" class="icon_monster">
-                    </div>
-                    <div class="monter-single-name">
-                        <a href="{{ route('monster-detail') }}"><span style="background-color:{{ $rarity->color }}!important"></span> {{ $monster->name }} <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}" alt=""
-                                srcset=""> </a>
+                        <div class="monter-single-name">
+                            <a href="{{ route('monster-detail') }}"><span style="background-color:{{ $rarity->color }}!important"></span> {{ $monster->name }} <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}" alt=""
+                                    srcset=""> </a>
+                        </div>
                     </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
-        </div>
 
 
-        <!-- Pagination Section -->
-        <div class="pagination_sec text-center pt-3">
-            <div class="row">
-                <div class="col-12">
-                    <div class="pagination_number">
-                        <span>
-                            <a href="#">
-                                <i class="fal fa-angle-left"></i>
-                            </a>
-                            <a href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a> ... <a href="#">8</a>
-                            <a href="#">
-                                <i class="fal fa-angle-right"></i>
-                            </a>
-                        </span>
-                    </div>
-                </div>
+            <!-- Pagination Section -->
+            <div class="pagination_sec text-center pt-3" id="pagination" style="width: 100%;justify-content: center">
+                {!! $monsters->links('frontend.custom-pagination') !!}
             </div>
         </div>
 
@@ -187,7 +128,7 @@
     var handlesSlider = document.getElementById('range-line');
 
     noUiSlider.create(handlesSlider, {
-      start: [2, 4],
+      start: [1, 6],
       step : 1,
       connect: true,
       range: {
@@ -207,7 +148,14 @@
     ];
 
     handlesSlider.noUiSlider.on('update', function (values, handle) {
-      snapValues[handle].innerHTML = values[handle];
+        snapValues[handle].innerHTML = values[handle];
+        $('#mana_cost').val(values);
+    });
+
+    handlesSlider.noUiSlider.on('change', function (values, handle) {
+        snapValues[handle].innerHTML = values[handle];
+        $('#mana_cost').val(values);
+        filter();
     });
 
     $(document).ready(function() {
@@ -215,8 +163,63 @@
             var id = $(this).data('value');
             location.href = "{{ route('monster-detail') }}?id=" + id;
         })
+
+        $(".element, .rarity, .role").on('change', function() {
+            filter();
+        })
+
+        $(document).on('click', '.number-page, .prev-page, .next-page', function() {
+            var page_url = $(this).data('href');
+
+            let filterlink = '';
+            $(".element, .rarity, .role").each(function() {
+                if ($(this).is(':checked')) {
+                    filterlink += '&'+ $(this).attr('name') + '=' + $(this).val();
+                }
+            });
+            filterlink += '&' + $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
+
+            var url = page_url + encodeURI(filterlink);
+
+            $.ajax({
+                url: url,
+                method: "get",
+                success: function(data) {
+                    $('.monster-list-inner').html(data);
+                }
+            })
+        })
     })
 
+    function filter() {
+        let filterlink = '';
+
+        $(".element, .rarity, .role").each(function() {
+            if ($(this).is(':checked')) {
+                if (filterlink == '') {
+                    filterlink += "{{route('get-filter-monster')}}" + '?'+ $(this).attr('name') + '=' + $(this).val();
+                } else {
+                    filterlink += '&' + $(this).attr('name') + '=' + $(this).val();
+                }
+            }
+        });
+
+
+        if (filterlink == '') {
+            filterlink += "{{route('get-filter-monster')}}" + '?'+ $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
+        } else {
+            filterlink += '&' + $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
+        }
+        console.log(encodeURI(filterlink))
+
+        $.ajax({
+            url: encodeURI(filterlink),
+            method: "get",
+            success: function(data) {
+                $('.monster-list-inner').html(data);
+            }
+        })
+    }
 
 </script>
 @endsection

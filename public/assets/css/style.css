@@ -3958,3 +3958,11 @@ input[type="search"]{
 }
 
 /******************************************** Comp Builder Monster Detail End  ************************************************/
+
+/* pagination css */
+.pagination_number .disabled {
+    cursor: not-allowed;
+}
+.pagination_number .my-active {
+    font-size: 24px;
+}

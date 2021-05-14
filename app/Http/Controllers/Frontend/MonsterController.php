@@ -15,7 +15,7 @@ class MonsterController extends Controller
 {
     public function monster_list()
     {
-        $monsters = Monster::get([
+        $monsters = Monster::paginate(15, [
             'id', 
             'name', 
             'fr_name',
@@ -25,12 +25,27 @@ class MonsterController extends Controller
             'element',
             'main_image',
         ]);
+        
         return view('frontend.monster-list', compact('monsters'));
+    }
+
+    public function monster_detail(Request $request)
+    {
+        $id = $request->id;
+        $monster = Monster::where('id', $id)->first();
+        $rune_sets = Runeset::where('rs_monster_id', $monster->id)->paginate(3);
+        $team_comps = TeamComp::whereRaw("JSON_CONTAINS(c_position,".$monster->id.",'$')=1")->paginate(2);
+
+        if($monster->special_monster) {
+            return view('frontend.monster-special', compact('monster', 'rune_sets', 'team_comps'));
+        } else {
+            return view('frontend.monster-detail', compact('monster', 'rune_sets', 'team_comps'));    
+        }
     }
 
     public function comps_list()
     {
-        $team_comps = TeamComp::all();
+        $team_comps = TeamComp::paginate(10);
         return view('frontend.comps-listing', compact('team_comps'));
     }
 
@@ -64,19 +79,6 @@ class MonsterController extends Controller
     public function comps_builder()
     {
         return view('frontend.comps-builder');
-    }
-
-    public function monster_detail(Request $request)
-    {
-        $id = $request->id;
-        $monster = Monster::where('id', $id)->first();
-        $rune_sets = Runeset::where('rs_monster_id', $monster->id)->get();
-
-        if($monster->special_monster) {
-            return view('frontend.monster-special', compact('monster', 'rune_sets'));
-        } else {
-            return view('frontend.monster-detail', compact('monster', 'rune_sets'));    
-        }
     }
 
     public function add_rune_set(Request $request)
