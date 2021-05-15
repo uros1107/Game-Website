@@ -40,6 +40,7 @@ Route::get('/terms-of-use', 'Frontend\MonsterController@terms_of_use')->name('te
 Route::get('/get-filter-monster', 'Frontend\FilterController@get_monster')->name('get-filter-monster');
 Route::get('/search-monster', 'Frontend\FilterController@search_monster')->name('search-monster');
 Route::get('/get-filter-team-comps', 'Frontend\FilterController@get_team_comps')->name('get-filter-team-comps');
+Route::get('/get-filter-builder-monster', 'Frontend\FilterController@get_builder_monster')->name('get-filter-builder-monster');
 // -------------------------- Filter route end -----------------------------
 
 Route::prefix('admin')->group(function() {

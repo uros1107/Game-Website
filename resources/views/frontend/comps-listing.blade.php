@@ -523,8 +523,7 @@ $(document).ready(function() {
             filterlink += '&sort=' + $('.btn_active').data('sort');
 
             var url = page_url + encodeURI(filterlink);
-
-            console.log(123);
+;
             $.ajax({
                 url: url,
                 method: "get",

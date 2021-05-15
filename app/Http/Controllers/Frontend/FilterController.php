@@ -67,6 +67,67 @@ class FilterController extends Controller
         return view('frontend.filter.filter-monster', compact('monsters'));
     }
 
+    public function get_builder_monster(Request $request)
+    {
+        $mana_cost1 = $request->mana_cost1;
+        $mana_cost2 = $request->mana_cost2;
+        $monster = $request->monster;
+        $element = $request->element;
+        $role = $request->role;
+        $rarity = $request->rarity;
+
+        $mana_cost = [$mana_cost1, $mana_cost2];
+        $monsters = Monster::when($mana_cost, function($query, $mana_cost){
+                                $query->where('mana_cost', '>=', $mana_cost[0])->where('mana_cost', '<=', $mana_cost[1]);
+                            })
+                            ->when($monster, function($query, $monster){
+                                $query->where(function($q) use ($monster) {
+                                    foreach ($monster as $key => $item) {
+                                        if($key == 0) {
+                                            $q->where('id', $item);
+                                        } else {
+                                            $q->orWhere('id', $item);
+                                        }
+                                    }
+                                });
+                            })
+                            ->when($element, function($query, $element){
+                                $query->where(function($q) use ($element) {
+                                    foreach ($element as $key => $item) {
+                                        if($key == 0) {
+                                            $q->where('element', $item);
+                                        } else {
+                                            $q->orWhere('element', $item);
+                                        }
+                                    }
+                                });
+                            })
+                            ->when($role, function($query, $role){
+                                $query->where(function($q) use ($role) {
+                                    foreach ($role as $key => $item) {
+                                        if($key == 0) {
+                                            $q->where('role', $item);
+                                        } else {
+                                            $q->orWhere('role', $item);
+                                        }
+                                    }
+                                });
+                            })
+                            ->when($rarity, function($query, $rarity){
+                                $query->where(function($q) use ($rarity) {
+                                    foreach ($rarity as $key => $item) {
+                                        if($key == 0) {
+                                            $q->where('rarity', $item);
+                                        } else {
+                                            $q->orWhere('rarity', $item);
+                                        }
+                                    }
+                                });
+                            })->get(['id', 'name', 'fr_name', 'icon_image']);
+
+        return view('frontend.filter.filter-builder-monster', compact('monsters'));
+    }
+
     public function get_team_comps(Request $request)
     {
         $mana_cost = $request->mana_cost;
@@ -114,8 +175,7 @@ class FilterController extends Controller
         } else {
             $query->orderBy('c_likes', 'desc');
         }
-        $team_comps = $query->paginate(1);
-
+        $team_comps = $query->paginate(10);
 
         return view('frontend.filter.filter-team-comps', compact('team_comps'));
     }

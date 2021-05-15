@@ -417,47 +417,25 @@
                     <label class="dropdown-label">Filter by monster</label>
                     <div class="dropdown-list">
                         <div class="search-filed">
-                            <input type="search" placeholder="Search by name" class="dropdown-search">
+                            <input type="search" placeholder="Search by name" class="dropdown-search" id="monster-search" onkeyup="filterFunction()" >
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </div>
-                        <div class="inner-dropdown-sec ">
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 1">
-                                <span>Ariamiel</span>
+                        <div class="inner-dropdown-sec " id="search-box">
+                            @foreach(DB::table('monsters')->get(['id', 'name', 'fr_name']) as $monster)
+                            <label class="dropdown-option search-dropdown">
+                                <input type="checkbox" name="monster[]" class="monster" value="{{ $monster->id }}">
+                                <span>{{ $monster->name }}</span>
                             </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 2">
-                                <span>Colleen</span>
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 3">
-                                <span>Ganymede</span>
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 4">
-                                <span>Roid</span>
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 5">
-                                <span>Ganymede</span>
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 5">
-                                <span>Ganymede</span>
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 5">
-                                <span>Ganymede</span>
-                            </label>
+                            @endforeach
                         </div>
                     </div>
                 </div>
 
                 <div class="dropdown dropdown2" data-control="checkbox-dropdown">
                     <label class="dropdown-label">
-                        <input type="number" name="" value="3" min="1" max="6" maxlength="1" class="start-monster">
+                        <input type="number" name="mana_cost1" id="mana_cost1" value="3" min="1" max="6" maxlength="1" class="start-monster">
                         -
-                        <input type="text" name="" value="4" min="1" max="6" maxlength="1" class="end-monster">
+                        <input type="number" name="mana_cost2" id="mana_cost2" value="4" min="1" max="6" maxlength="1" class="end-monster">
                     </label>
                 </div>
 
@@ -465,31 +443,13 @@
                     <label class="dropdown-label">All elements</label>
                     <div class="dropdown-list">
                         <div class="inner-dropdown-sec ">
+                            @foreach(DB::table('element')->get() as $element)
                             <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 1">
-                                <span>Water</span>
-                                <img src="assets/image/compect_bulider/all-ele_1.png" alt="all con">
+                                <input type="checkbox" class="element dropdown-group" name="element[]" value="{{ $element->id }}" />
+                                <span>{{ $element->name }}</span>
+                                <img src="{{ asset('images/game/icons/elements/'.$element->detail_icon) }}" alt="all con">
                             </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 2">
-                                <span>Fire</span>
-                                <img src="assets/image/compect_bulider/all-ele_2.png" alt="all con">
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 3">
-                                <span>Light</span>
-                                <img src="assets/image/compect_bulider/all-ele_3.png" alt="all con">
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 4">
-                                <span>Dark</span>
-                                <img src="assets/image/compect_bulider/all-ele_4.png" alt="all con">
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 5">
-                                <span>Wind</span>
-                                <img src="assets/image/compect_bulider/all-ele_5.png" alt="all con">
-                            </label>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -498,26 +458,13 @@
                     <label class="dropdown-label">All rarity</label>
                     <div class="dropdown-list">
                         <div class="inner-dropdown-sec">
+                            @foreach(DB::table('rarity')->get() as $rarity)
                             <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 1">
-                                <span>Normal</span>
-                                <p class="rarity_circle rarity_circle1"></p>
+                                <input type="checkbox" class="rarity" name="rarity[]" value="{{ $rarity->id }}" />
+                                <span>{{ $rarity->name }}</span>
+                                <p class="rarity_circle" style="background: {{ $rarity->color }}"></p>
                             </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 1">
-                                <span>Rare</span>
-                                <p class="rarity_circle rarity_circle2"></p>
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 1">
-                                <span>Heroic</span>
-                                <p class="rarity_circle rarity_circle3"></p>
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 1">
-                                <span>Legend</span>
-                                <p class="rarity_circle rarity_circle4"></p>
-                            </label>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -526,26 +473,13 @@
                     <label class="dropdown-label">All roles</label>
                     <div class="dropdown-list">
                         <div class="inner-dropdown-sec ">
+                            @foreach(DB::table('role')->get() as $role)
                             <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 1">
-                                <span>Attack</span>
-                                <img src="assets/image/compect_bulider/all_roll_1.png" alt="roll icon">
+                                <input type="checkbox" class="role" name="role[]" value="{{ $role->id }}" />
+                                <span>{{ $role->name }}</span>
+                                <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}" alt="roll icon">
                             </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 2">
-                                <span>HP</span>
-                                <img src="assets/image/compect_bulider/all_roll_2.png" alt="roll icon">
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 3">
-                                <span>Support</span>
-                                <img src="assets/image/compect_bulider/all_roll_3.png" alt="roll icon">
-                            </label>
-                            <label class="dropdown-option">
-                                <input type="checkbox" name="dropdown-group" value="Selection 4">
-                                <span>Defense</span>
-                                <img src="assets/image/compect_bulider/all_roll_4.png" alt="roll icon">
-                            </label>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -567,478 +501,18 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tabs-1" role="tabpanel">
                         <div class="compect_inner_monster mCustomScrollbar">
-                            <div class="line_up_sec text-center">
+                            <div class="line_up_sec text-center" id="monster-list">
+                                @foreach(DB::table('monsters')->get(['id', 'name', 'fr_name', 'icon_image']) as $monster)
                                 <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
+                                    <a href="{{ route('monster-detail').'?id='.$monster->id  }}" target="_blank">
                                         <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/colleen-thumb.jpg"
+                                            <div class="shape"><img src="{{ asset('images/game/icon_images/'.$monster->icon_image) }}"
                                                     alt="monster img"></div>
                                         </div>
-                                        <span>Colleen</span>
+                                        <span>{{ $monster->name }}</span>
                                     </a>
                                 </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/hwadam-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Hwadam</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/train-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Thrain</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/belladeon-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Belladeon</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/ramagos-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Ramagos</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/orochi-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Orochi</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/mikene-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Mikene</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/megan-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Megan</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/colleen-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Colleen</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/hwadam-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Hwadam</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/train-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Thrain</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/belladeon-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Belladeon</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/ramagos-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Ramagos</span>
-                                    </a>
-                                </div>
-
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/colleen-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Colleen</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/hwadam-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Hwadam</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/train-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Thrain</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/belladeon-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Belladeon</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/ramagos-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Ramagos</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/orochi-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Orochi</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/mikene-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Mikene</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/megan-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Megan</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/colleen-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Colleen</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/hwadam-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Hwadam</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/train-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Thrain</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/belladeon-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Belladeon</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/ramagos-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Ramagos</span>
-                                    </a>
-                                </div>
-
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/colleen-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Colleen</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/hwadam-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Hwadam</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/train-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Thrain</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/belladeon-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Belladeon</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/ramagos-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Ramagos</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/orochi-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Orochi</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/mikene-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Mikene</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/megan-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Megan</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/colleen-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Colleen</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/hwadam-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Hwadam</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/train-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Thrain</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/belladeon-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Belladeon</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/ramagos-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Ramagos</span>
-                                    </a>
-                                </div>
-
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/colleen-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Colleen</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/hwadam-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Hwadam</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/train-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Thrain</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/belladeon-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Belladeon</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/ramagos-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Ramagos</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/orochi-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Orochi</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/mikene-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Mikene</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/megan-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Megan</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/colleen-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Colleen</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/hwadam-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Hwadam</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/train-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Thrain</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/belladeon-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Belladeon</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/ramagos-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Ramagos</span>
-                                    </a>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -1046,275 +520,16 @@
                     <div class="tab-pane" id="tabs-2" role="tabpanel">
                         <div class="compect_inner_monster2 mCustomScrollbar">
                             <div class="line_up_sec text-center">
+                                @foreach(DB::table('spells')->get() as $spell)
                                 <div class="line_up_monster">
                                     <a href="#1">
                                         <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
+                                            <img src="{{ asset('images/game/icon_images/'.$spell->icon_image) }}"
                                                 alt="spells">
                                         </div>
                                     </a>
                                 </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                                alt="compect spells">
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                                alt="compect spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                                alt="compect spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                                alt="compect spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                                alt="compect spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                                alt="compect spells">
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                                alt="compect spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                                alt="compect spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                                alt="compect spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                                alt="compect spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                                alt="compect spells">
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                                alt="compect spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                                alt="compect spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                                alt="compect spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                                alt="compect spells">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1">
-                                        <div class="compect_spells_big">
-                                            <img src="assets/image/compect_bulider/compect_big_spells_1.png"
-                                                alt="spells">
-                                        </div>
-                                    </a>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -1923,6 +1138,84 @@
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/12.0.0/nouislider.min.js"></script>
 <script>
+
+
+function filterFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("monster-search");
+  filter = input.value.toUpperCase();
+  div = document.getElementById("search-box");
+  search_dropdown = document.getElementsByClassName("search-dropdown");
+  span = div.getElementsByTagName("span");
+  for (i = 0; i < span.length; i++) {
+    txtValue = span[i].textContent || span[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        search_dropdown[i].style.display = "";
+    } else {
+        search_dropdown[i].style.display = "none";
+    }
+  }
+}
+
+// ========================== filter part start =========================
+    $(document).ready(function() {
+        $(".element, .rarity, .role, .monster, #mana_cost1, #mana_cost2").on('change', function() {
+            filter();
+        })
+
+        $(document).on('click', '.number-page, .prev-page, .next-page', function() {
+            var page_url = $(this).data('href');
+
+            let filterlink = '';
+            $(".element, .rarity, .role").each(function() {
+                if ($(this).is(':checked')) {
+                    filterlink += '&'+ $(this).attr('name') + '=' + $(this).val();
+                }
+            });
+            filterlink += '&' + $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
+
+            var url = page_url + encodeURI(filterlink);
+
+            $.ajax({
+                url: url,
+                method: "get",
+                success: function(data) {
+                    $('#monster-list').html(data);
+                }
+            })
+        })
+    })
+
+    function filter() {
+        let filterlink = '';
+
+        $(".element, .rarity, .role, .monster").each(function() {
+            if ($(this).is(':checked')) {
+                if (filterlink == '') {
+                    filterlink += "{{route('get-filter-builder-monster')}}" + '?'+ $(this).attr('name') + '=' + $(this).val();
+                } else {
+                    filterlink += '&' + $(this).attr('name') + '=' + $(this).val();
+                }
+            }
+        });
+
+        if (filterlink == '') {
+            filterlink += "{{route('get-filter-builder-monster')}}" + '?mana_cost1=' + $('#mana_cost1').val() + '&mana_cost2=' + $('#mana_cost2').val();
+        } else {
+            filterlink += '&mana_cost1=' + $('#mana_cost1').val() + '&mana_cost2=' + $('#mana_cost2').val();
+        }
+        console.log(encodeURI(filterlink))
+
+        $.ajax({
+            url: encodeURI(filterlink),
+            method: "get",
+            success: function(data) {
+                $('#monster-list').html(data);
+            }
+        })
+    }
+// ========================== fileter part end
+
 //moster and sells tab js ----------------------
 
 $(".spells_tab").click(function($e) {
