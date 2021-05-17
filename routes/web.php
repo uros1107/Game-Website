@@ -24,11 +24,14 @@ Route::get('/', 'Frontend\FrontendController@index')->name('index');
 
 Route::get('/monster-list', 'Frontend\MonsterController@monster_list')->name('monster-list');
 Route::get('/monster-detail', 'Frontend\MonsterController@monster_detail')->name('monster-detail');
+Route::get('/get-monster', 'Frontend\MonsterController@get_monster')->name('get-monster');
+Route::get('/get-spell', 'Frontend\MonsterController@get_spell')->name('get-spell');
 
 Route::get('/add-rune-set', 'Frontend\MonsterController@add_rune_set')->name('user-add-rune-set');
 Route::POST('/store-rune-set', 'Frontend\MonsterController@store_rune_set')->name('rune-set-store');
 
 Route::get('/comps-list', 'Frontend\MonsterController@comps_list')->name('comps-list');
+Route::POST('/comps-submit', 'Frontend\MonsterController@comps_submit')->name('comps-submit');
 Route::get('/comps-detail', 'Frontend\MonsterController@comps_detail')->name('comps-detail');
 Route::POST('/comps-comment', 'Frontend\MonsterController@comps_comment')->name('comps-comment');
 
@@ -38,7 +41,6 @@ Route::get('/terms-of-use', 'Frontend\MonsterController@terms_of_use')->name('te
 
 // -------------------------- Filter route start -----------------------------
 Route::get('/get-filter-monster', 'Frontend\FilterController@get_monster')->name('get-filter-monster');
-Route::get('/search-monster', 'Frontend\FilterController@search_monster')->name('search-monster');
 Route::get('/get-filter-team-comps', 'Frontend\FilterController@get_team_comps')->name('get-filter-team-comps');
 Route::get('/get-filter-builder-monster', 'Frontend\FilterController@get_builder_monster')->name('get-filter-builder-monster');
 // -------------------------- Filter route end -----------------------------

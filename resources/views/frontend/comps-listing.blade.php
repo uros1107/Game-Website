@@ -350,7 +350,7 @@
                                                             </div>
                                                             <img src="{{ asset('images/game/main_images/'.$c_monster->main_image) }}"
                                                                 alt="monster" class="monster-individual">
-                                                            <img src="{{ asset('images/game/icons/elements/'.$element->image) }}"
+                                                            <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" style="width: 37px;"
                                                                 alt="right bar" class="icon_monster">
                                                         </div>
                                                         <div class="cm_monster_name">
@@ -391,7 +391,7 @@
                                                             </div>
                                                             <img src="{{ asset('images/game/main_images/'.$c_monster->main_image) }}"
                                                                 alt="monster" class="monster-individual">
-                                                            <img src="{{ asset('images/game/icons/elements/'.$element->image) }}"
+                                                            <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" style="width: 37px;"
                                                                 alt="right bar" class="icon_monster">
                                                         </div>
                                                         <div class="cm_monster_name">

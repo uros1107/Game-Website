@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Monster;
 use App\Runeset;
 use App\TeamComp;
+use App\Spell;
 use App\TeamCompsComment;
 use Auth;
 
@@ -34,13 +35,29 @@ class MonsterController extends Controller
         $id = $request->id;
         $monster = Monster::where('id', $id)->first();
         $rune_sets = Runeset::where('rs_monster_id', $monster->id)->paginate(3);
-        $team_comps = TeamComp::whereRaw("JSON_CONTAINS(c_position,".$monster->id.",'$')=1")->paginate(2);
+        $team_comps = TeamComp::whereRaw("JSON_CONTAINS(c_position,".$monster->id.",'$')=1")->paginate(5);
 
         if($monster->special_monster) {
             return view('frontend.monster-special', compact('monster', 'rune_sets', 'team_comps'));
         } else {
             return view('frontend.monster-detail', compact('monster', 'rune_sets', 'team_comps'));    
         }
+    }
+
+    public function get_monster(Request $request)
+    {
+        $monster_id = $request->monster_id;
+        $monster = Monster::where('id', $monster_id)->first(['id', 'name', 'fr_name', 'main_image', 'element', 'role', 'rarity', 'mana_cost']);
+
+        return view('frontend.ajax-monster-item', ['monster' => $monster, 'drop_id' => $request->drop_id]);
+    }
+
+    public function get_spell(Request $request)
+    {
+        $spell_id = $request->spell_id;
+        $spell = Spell::where('id', $spell_id)->first(['id', 'name', 'fr_name', 'main_image', 'mana_cost', 'icon_image']);
+
+        return view('frontend.ajax-spell-item', ['spell' => $spell, 'drop_id' => $request->drop_id]);
     }
 
     public function comps_list()
@@ -56,6 +73,28 @@ class MonsterController extends Controller
         $comments = TeamCompsComment::where('comment_comps_id', $id)->get();
 
         return view('frontend.comps-detail', compact('team_comp', 'comments'));
+    }
+
+    public function comps_submit(Request $request)
+    {
+        $comps_info = $request->all();
+        $c_position = $comps_info['c_position'];
+        for ($i=0; $i < count($c_position); $i++) { 
+            $c_position[$i] = intval($c_position[$i]);
+        }
+        $comps_info['c_position'] = json_encode($c_position);
+
+        $c_spell = $comps_info['c_spell'];
+        for ($i=0; $i < count($c_spell); $i++) { 
+            $c_spell[$i] = intval($c_spell[$i]);
+        }
+        $comps_info['c_spell'] = json_encode($c_spell);
+
+        $comps_info['c_sent_by_user'] = Auth::user()->id;
+        
+        $comps_info = TeamComp::create($comps_info);
+
+        return response()->json(true);
     }
 
     public function comps_comment(Request $request)
@@ -98,12 +137,7 @@ class MonsterController extends Controller
         $rune_set['rs_substats'] = json_encode($rune_set['rs_substats']);
         $rune_set_info = Runeset::create($rune_set);
 
-        $monster = Monster::where('id', $rune_set['rs_monster_id'])->first();
-        if($monster->special_monster) {
-            return view('frontend.monster-special', compact('monster'));
-        } else {
-            return view('frontend.monster-detail', compact('monster'));    
-        }
+        return response()->json(true);
     }
 
     public function terms_of_use() 

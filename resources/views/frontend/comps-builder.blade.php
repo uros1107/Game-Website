@@ -2,6 +2,35 @@
 
 @section('styles')
 <link rel="stylesheet" href="assets/css/all.min.css" type="text/css" />
+<link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.css')) }}">
+<link rel="stylesheet" href="{{ asset(mix('css/plugins/extensions/toastr.css')) }}">
+<style>
+.comp_builder .compect_monster_box4 {
+    bottom: 100px;
+}
+.all_btn {
+    border: 1px solid #D9BC84;
+    border-radius: 35px;
+    padding: 8px 20px;
+    color: #D9BC84;
+    min-width: 144px;
+    display: inline-block;
+    text-align: center;
+    font-family: 'selawk-semi-bold';
+    background: #272741;
+    font-size: 15px;
+}
+.all_btn:hover {
+    background-color: #D9BC84;
+    color: #000;
+}
+
+@media screen and (max-width:475px) {
+    .all_btn {
+        width: 100%;
+    }
+}
+</style>
 @endsection
 
 @section('content')
@@ -19,13 +48,14 @@
             </p>
         </div>
 
+        <form id="publish">
         <!-- comps with ragdoll sec -->
         <div class="comps_sec">
             <div class="row text-center">
                 <div class="col-12">
                     <div class="comp_input_section">
                         <div class="comp_input_field">
-                            <input type="text" name="name" placeholder="Enter composition name">
+                            <input type="text" name="c_name" placeholder="Enter composition name" required>
                             <p class="text-left">Kindly note that you will not be able to publish
                                 the team composition if you have not logged in beforehand.</p>
                         </div>
@@ -205,33 +235,29 @@
                             <h2>Spells</h2>
                         </div>
 
-                        <div class="spells_item">
+                        <div class="spells_item" ondragover="allowDrop1(event)" ondrop="drop1(event)">
                             <ul>
-                                <li>
+                                <li id="spell_1">
                                     <a href="#1" data-toggle="modal" class="switch-modal-a" data-target="">
                                         <div class="spells_iiner_iteam">
-                                            <img src="assets/image/compect_bulider/compect_spells_1.png"
-                                                alt="compect_icon">
+                                            <img src="assets/image/compect_bulider/spell_shape.png" alt="compect_icon" data-position="1">
                                         </div>
                                     </a>
                                 </li>
-                                <li>
+                                <li id="spell_2">
                                     <a href="#1" data-toggle="modal" class="switch-modal-a" data-target="">
                                         <div class="spells_iiner_iteam">
-                                            <div class="spells_center_pluse">
-                                                <img src="assets/image/compect_bulider/spell_shape.png" alt="shape"
-                                                    class="spell_center_shape">
+                                            <img src="assets/image/compect_bulider/spell_shape.png" alt="compect_icon"  data-position="2">
+                                        </div>
                                     </a>
-                        </div>
-                    </div>
-                    </li>
-                    <li>
-                        <a href="#1" data-toggle="modal" class="switch-modal-a" data-target="">
-                            <div class="spells_iiner_iteam">
-                                <img src="assets/image/compect_bulider/compect_spells_1.png" alt="compect_icon">
-                            </div>
-                        </a>
-                    </li>
+                                </li>
+                                <li id="spell_3">
+                                    <a href="#1" data-toggle="modal" class="switch-modal-a" data-target="">
+                                        <div class="spells_iiner_iteam">
+                                            <img src="assets/image/compect_bulider/spell_shape.png" alt="compect_icon"  data-position="3">
+                                        </div>
+                                    </a>
+                                </li>
                     </ul>
                 </div>
             </div>
@@ -246,45 +272,40 @@
             <div class="compect_right_bg_banner">
                 <div class="compect_genral_info_section">
                     <h2 class="general-info-title">GENERAL INFO</h2>
-                    <textarea placeholder="Enter the comp info for the other players and yourself ..."></textarea>
+                    <textarea name="c_general_info" placeholder="Enter the comp info for the other players and yourself ..." required></textarea>
                 </div>
 
                 <div class="row desktop_block">
                     <div class="col-md-6">
-                        <div class="compect_plus_box">
-                            <a href="#1" class="compect_monster_box compect_monster_box1" target="_blank">
-                                <div class="monster_img">
-                                    <div class="icon_img">
-                                        <img src="assets/image/mana-icone-carte.svg" alt="icon"
-                                            class="icon_top_monster">
-                                        <span>4</span>
+                        <div class="compect_plus_box" ondragover="allowDrop(event)" ondrop="drop(event)">
+                            <div id="add_1">
+                                <a class="compect_plus_right_1">
+                                    <div class="compect_plus_inner" data-position="1">
+                                        <i class="fas fa-plus"  data-position="1"></i>
                                     </div>
-                                    <img src="assets/image/compect_bulider/cb_monster.png" alt="monster"
-                                        class="monster-individual">
-                                    <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar"
-                                        class="icon_monster">
-                                </div>
-                                <div class="cm_monster_name">
-                                    <span class="round-legendary round-color"> </span>
-                                    <p>Poséidon</p>
-                                    <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                </div>
-                            </a>
-                            <a href="#1" class="compect_plus_right_2" target="_blank">
-                                <div class="compect_plus_inner">
-                                    <i class="fas fa-plus"></i>
-                                </div>
-                            </a>
-                            <a href="#1" class="compect_plus_right_3" target="_blank">
-                                <div class="compect_plus_inner">
-                                    <i class="fas fa-plus"></i>
-                                </div>
-                            </a>
-                            <a href="#1" class="compect_plus_right_4" target="_blank">
-                                <div class="compect_plus_inner">
-                                    <i class="fas fa-plus"></i>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
+                            <div id="add_2">
+                                <a class="compect_plus_right_2">
+                                    <div class="compect_plus_inner" data-position="2">
+                                        <i class="fas fa-plus"  data-position="2"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="add_3">
+                                <a class="compect_plus_right_3">
+                                    <div class="compect_plus_inner" data-position="3">
+                                        <i class="fas fa-plus"  data-position="3"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="add_4">
+                                <a class="compect_plus_right_4">
+                                    <div class="compect_plus_inner" data-position="4">
+                                        <i class="fas fa-plus"  data-position="4"></i>
+                                    </div>
+                                </a>
+                            </div>
 
                             <div class="compect_average">
                                 <p>Average mana cost:3.2</p>
@@ -294,30 +315,38 @@
                     </div>
 
                     <div class="col-md-6">
-                        <div class="compect_plus_right_box">
-                            <a href="#1" class="compect_plus_right_1" target="_blank">
-                                <div class="compect_plus_inner">
-                                    <i class="fas fa-plus"></i>
-                                </div>
-                            </a>
-                            <a href="#1" class="compect_plus_right_2" target="_blank">
-                                <div class="compect_plus_inner">
-                                    <i class="fas fa-plus"></i>
-                                </div>
-                            </a>
-                            <a href="#1" class="compect_plus_right_3" target="_blank">
-                                <div class="compect_plus_inner">
-                                    <i class="fas fa-plus"></i>
-                                </div>
-                            </a>
-                            <a href="#1" class="compect_plus_right_4" target="_blank">
-                                <div class="compect_plus_inner">
-                                    <i class="fas fa-plus"></i>
-                                </div>
-                            </a>
+                        <div class="compect_plus_right_box" ondragover="allowDrop(event)" ondrop="drop(event)">
+                            <div id="add_5">
+                                <a href="#1" class="compect_plus_right_1" target="_blank">
+                                    <div class="compect_plus_inner" data-position="5">
+                                        <i class="fas fa-plus"  data-position="5"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="add_6">
+                                <a href="#1" class="compect_plus_right_2" target="_blank">
+                                    <div class="compect_plus_inner" data-position="6">
+                                        <i class="fas fa-plus"  data-position="6"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="add_7">
+                                <a href="#1" class="compect_plus_right_3" target="_blank">
+                                    <div class="compect_plus_inner" data-position="7">
+                                        <i class="fas fa-plus"  data-position="7"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="add_8">
+                                <a href="#1" class="compect_plus_right_4" target="_blank">
+                                    <div class="compect_plus_inner" data-position="8">
+                                        <i class="fas fa-plus" data-position="8"></i>
+                                    </div>
+                                </a>
+                            </div>
 
                             <div class="cb_save_and_publish_btn">
-                                <a href="#" class="all_btn">Save and publish</a>
+                                <button type="submit" class="all_btn">Save and publish</button>
                             </div>
                         </div>
                     </div>
@@ -405,6 +434,7 @@
                 </div>
             </div>
         </div>
+        </form>
     </div>
 </div>
 
@@ -417,7 +447,8 @@
                     <label class="dropdown-label">Filter by monster</label>
                     <div class="dropdown-list">
                         <div class="search-filed">
-                            <input type="search" placeholder="Search by name" class="dropdown-search" id="monster-search" onkeyup="filterFunction()" >
+                            <input type="search" placeholder="Search by name" class="dropdown-search"
+                                id="monster-search" onkeyup="filterFunction()">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </div>
                         <div class="inner-dropdown-sec " id="search-box">
@@ -433,9 +464,11 @@
 
                 <div class="dropdown dropdown2" data-control="checkbox-dropdown">
                     <label class="dropdown-label">
-                        <input type="number" name="mana_cost1" id="mana_cost1" value="3" min="1" max="6" maxlength="1" class="start-monster">
+                        <input type="number" name="mana_cost1" id="mana_cost1" value="3" min="1" max="6" maxlength="1"
+                            class="start-monster">
                         -
-                        <input type="number" name="mana_cost2" id="mana_cost2" value="4" min="1" max="6" maxlength="1" class="end-monster">
+                        <input type="number" name="mana_cost2" id="mana_cost2" value="4" min="1" max="6" maxlength="1"
+                            class="end-monster">
                     </label>
                 </div>
 
@@ -445,9 +478,11 @@
                         <div class="inner-dropdown-sec ">
                             @foreach(DB::table('element')->get() as $element)
                             <label class="dropdown-option">
-                                <input type="checkbox" class="element dropdown-group" name="element[]" value="{{ $element->id }}" />
+                                <input type="checkbox" class="element dropdown-group" name="element[]"
+                                    value="{{ $element->id }}" />
                                 <span>{{ $element->name }}</span>
-                                <img src="{{ asset('images/game/icons/elements/'.$element->detail_icon) }}" alt="all con">
+                                <img src="{{ asset('images/game/icons/elements/'.$element->detail_icon) }}"
+                                    alt="all con">
                             </label>
                             @endforeach
                         </div>
@@ -501,12 +536,14 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tabs-1" role="tabpanel">
                         <div class="compect_inner_monster mCustomScrollbar">
-                            <div class="line_up_sec text-center" id="monster-list">
-                                @foreach(DB::table('monsters')->get(['id', 'name', 'fr_name', 'icon_image']) as $monster)
-                                <div class="line_up_monster">
+                            <div class="line_up_sec text-center" id="monster-list" ondrop="drop(event)">
+                                @foreach(DB::table('monsters')->get(['id', 'name', 'fr_name', 'icon_image']) as
+                                $monster)
+                                <div class="line_up_monster" ondragstart="DragStart(event)">
                                     <a href="{{ route('monster-detail').'?id='.$monster->id  }}" target="_blank">
                                         <div class="contain_shape">
-                                            <div class="shape"><img src="{{ asset('images/game/icon_images/'.$monster->icon_image) }}"
+                                            <div class="shape m-auto"><img id="{{$monster->id}}"
+                                                    src="{{ asset('images/game/icon_images/'.$monster->icon_image) }}"
                                                     alt="monster img"></div>
                                         </div>
                                         <span>{{ $monster->name }}</span>
@@ -519,12 +556,12 @@
 
                     <div class="tab-pane" id="tabs-2" role="tabpanel">
                         <div class="compect_inner_monster2 mCustomScrollbar">
-                            <div class="line_up_sec text-center">
+                            <div class="line_up_sec text-center" ondrop="drop1(event)">
                                 @foreach(DB::table('spells')->get() as $spell)
-                                <div class="line_up_monster">
+                                <div class="line_up_monster" ondragstart="DragStart1(event)">
                                     <a href="#1">
                                         <div class="compect_spells_big">
-                                            <img src="{{ asset('images/game/icon_images/'.$spell->icon_image) }}"
+                                            <img src="{{ asset('images/game/icon_images/'.$spell->icon_image) }}" id="{{ $spell->id }}"
                                                 alt="spells">
                                         </div>
                                     </a>
@@ -563,38 +600,18 @@
                             <label class="dropdown-label text-center">Filter by monster</label>
                             <div class="dropdown-list">
                                 <div class="search-filed">
-                                    <input type="search" placeholder="Search by name" class="dropdown-search">
+                                    <input type="search" placeholder="Search by name" class="dropdown-search"
+                                        id="monster-search" onkeyup="filterFunction()">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </div>
                                 <div class="inner-dropdown-sec ">
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 1">
-                                        <span>Ariamiel</span>
+                                    @foreach(DB::table('monsters')->get(['id', 'name', 'fr_name']) as $monster)
+                                    <label class="dropdown-option search-dropdown">
+                                        <input type="checkbox" name="monster[]" class="monster"
+                                            value="{{ $monster->id }}">
+                                        <span>{{ $monster->name }}</span>
                                     </label>
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 2">
-                                        <span>Colleen</span>
-                                    </label>
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 3">
-                                        <span>Ganymede</span>
-                                    </label>
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 4">
-                                        <span>Roid</span>
-                                    </label>
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 5">
-                                        <span>Ganymede</span>
-                                    </label>
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 5">
-                                        <span>Ganymede</span>
-                                    </label>
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 5">
-                                        <span>Ganymede</span>
-                                    </label>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -611,31 +628,15 @@
                             <label class="dropdown-label">All elements</label>
                             <div class="dropdown-list">
                                 <div class="inner-dropdown-sec ">
+                                    @foreach(DB::table('element')->get() as $element)
                                     <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 1">
-                                        <span>Water</span>
-                                        <img src="assets/image/compect_bulider/all-ele_1.png" alt="all con">
+                                        <input type="checkbox" class="element dropdown-group" name="element[]"
+                                            value="{{ $element->id }}" />
+                                        <span>{{ $element->name }}</span>
+                                        <img src="{{ asset('images/game/icons/elements/'.$element->detail_icon) }}"
+                                            alt="all con">
                                     </label>
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 2">
-                                        <span>Fire</span>
-                                        <img src="assets/image/compect_bulider/all-ele_2.png" alt="all con">
-                                    </label>
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 3">
-                                        <span>Light</span>
-                                        <img src="assets/image/compect_bulider/all-ele_3.png" alt="all con">
-                                    </label>
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 4">
-                                        <span>Dark</span>
-                                        <img src="assets/image/compect_bulider/all-ele_4.png" alt="all con">
-                                    </label>
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 5">
-                                        <span>Wind</span>
-                                        <img src="assets/image/compect_bulider/all-ele_5.png" alt="all con">
-                                    </label>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -644,26 +645,14 @@
                             <label class="dropdown-label">All rarity</label>
                             <div class="dropdown-list">
                                 <div class="inner-dropdown-sec">
+                                    @foreach(DB::table('rarity')->get() as $rarity)
                                     <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 1">
-                                        <span>Normal</span>
-                                        <p class="rarity_circle rarity_circle1"></p>
+                                        <input type="checkbox" class="rarity" name="rarity[]"
+                                            value="{{ $rarity->id }}" />
+                                        <span>{{ $rarity->name }}</span>
+                                        <p class="rarity_circle" style="background: {{ $rarity->color }}"></p>
                                     </label>
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 1">
-                                        <span>Rare</span>
-                                        <p class="rarity_circle rarity_circle2"></p>
-                                    </label>
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 1">
-                                        <span>Heroic</span>
-                                        <p class="rarity_circle rarity_circle3"></p>
-                                    </label>
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 1">
-                                        <span>Legend</span>
-                                        <p class="rarity_circle rarity_circle4"></p>
-                                    </label>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -672,176 +661,32 @@
                             <label class="dropdown-label">All roles</label>
                             <div class="dropdown-list">
                                 <div class="inner-dropdown-sec ">
+                                    @foreach(DB::table('role')->get() as $role)
                                     <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 1">
-                                        <span>Attack</span>
-                                        <img src="assets/image/compect_bulider/all_roll_1.png" alt="roll icon">
+                                        <input type="checkbox" class="role" name="role[]" value="{{ $role->id }}" />
+                                        <span>{{ $role->name }}</span>
+                                        <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}" alt="roll icon">
                                     </label>
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 2">
-                                        <span>HP</span>
-                                        <img src="assets/image/compect_bulider/all_roll_2.png" alt="roll icon">
-                                    </label>
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 3">
-                                        <span>Support</span>
-                                        <img src="assets/image/compect_bulider/all_roll_3.png" alt="roll icon">
-                                    </label>
-                                    <label class="dropdown-option">
-                                        <input type="checkbox" name="dropdown-group" value="Selection 4">
-                                        <span>Defense</span>
-                                        <img src="assets/image/compect_bulider/all_roll_4.png" alt="roll icon">
-                                    </label>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
 
                         <div class="compect_inner_monster mCustomScrollbar">
                             <div class="line_up_sec text-center">
+                                @foreach(DB::table('monsters')->get(['id', 'name', 'fr_name', 'icon_image']) as
+                                $monster)
                                 <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
+                                    <a href="{{ route('monster-detail').'?id='.$monster->id  }}" target="_blank">
                                         <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/colleen-thumb.jpg"
+                                            <div class="shape"><img
+                                                    src="{{ asset('images/game/icon_images/'.$monster->icon_image) }}"
                                                     alt="monster img"></div>
                                         </div>
-                                        <span>Colleen</span>
+                                        <span>{{ $monster->name }}</span>
                                     </a>
                                 </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/hwadam-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Hwadam</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/train-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Thrain</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/belladeon-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Belladeon</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/ramagos-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Ramagos</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/orochi-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Orochi</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/mikene-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Mikene</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/megan-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Megan</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/colleen-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Colleen</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/hwadam-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Hwadam</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/train-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Thrain</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/belladeon-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Belladeon</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/ramagos-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Ramagos</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/train-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Thrain</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/belladeon-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Belladeon</span>
-                                    </a>
-                                </div>
-                                <div class="line_up_monster">
-                                    <a href="#1" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img src="assets/image/ramagos-thumb.jpg"
-                                                    alt="monster img"></div>
-                                        </div>
-                                        <span>Ramagos</span>
-                                    </a>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="popup-bottom-design">
@@ -871,257 +716,15 @@
                 <!--  -->
                 <div class="compect_inner_monster2 mCustomScrollbar">
                     <div class="line_up_sec text-center">
+                        @foreach(DB::table('spells')->get() as $spell)
                         <div class="line_up_monster">
                             <a href="#1">
                                 <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
+                                    <img src="{{ asset('images/game/icon_images/'.$spell->icon_image) }}" alt="spells">
                                 </div>
                             </a>
                         </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                        alt="compect spells">
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                        alt="compect spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                        alt="compect spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                        alt="compect spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                        alt="compect spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                        alt="compect spells">
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                        alt="compect spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                        alt="compect spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                        alt="compect spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                        alt="compect spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                        alt="compect spells">
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                        alt="compect spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                        alt="compect spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                        alt="compect spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_2.png"
-                                        alt="compect spells">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="line_up_monster">
-                            <a href="#1">
-                                <div class="compect_spells_big">
-                                    <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="spells">
-                                </div>
-                            </a>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <!--  -->
@@ -1137,84 +740,244 @@
 
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/12.0.0/nouislider.min.js"></script>
+<script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
+<script src="{{ asset(mix('js/scripts/extensions/toastr.js')) }}"></script>
 <script>
+// =============== drag and drop start ===================
+// ------------- monster ------------
+var monster_id;
 
+function allowDrop(eve) {
+    eve.preventDefault();
+}
+
+function DragStart(eve) {
+    monster_id = eve.target.id;
+}
+
+function drop(eve) {
+    if(eve.target.parentNode.getAttribute("data-position")) {
+        var drop_id = eve.target.parentNode.getAttribute("data-position");
+    } else {
+        var drop_id = eve.target.getAttribute("data-position");
+    }
+    
+    var is_same = false;
+
+    // $('.main-image').each(function() {
+    //     if ($(this).attr('id') == monster_id) {
+    //         toastr.error("You can't choose same monster! Please chooose other monster.")
+    //         is_same = true;
+    //         return;
+    //     }
+    // });
+    $.ajax({
+        url: "{{ route('get-monster') }}",
+        method: "get",
+        data: {
+            monster_id: monster_id,
+            drop_id: drop_id
+        },
+        success: function(data) {
+            var html = data;
+            $('#add_' + drop_id).html(html);
+        }
+    })
+}
+
+// -------------- spell -------------
+var spell_id;
+
+function allowDrop1(eve) {
+    eve.preventDefault();
+}
+
+function DragStart1(eve) {
+    spell_id = eve.target.id;
+}
+
+function drop1(eve) {
+    var drop_id = eve.target.getAttribute("data-position");
+    var is_same = false;
+
+    // $('.spell-image').each(function() {
+    //     if ($(this).attr('id') == spell_id) {
+    //         toastr.error("You can't choose same spell! Please chooose other spell.")
+    //         is_same = true;
+    //         return;
+    //     }
+    // });
+
+    $.ajax({
+        url: "{{ route('get-spell') }}",
+        method: "get",
+        data: {
+            spell_id: spell_id,
+            drop_id: drop_id
+        },
+        success: function(data) {
+            var html = data;
+            $('#spell_' + drop_id).html(html);
+        }
+    })
+}
+
+// =============== drag and drop end ===================
 
 function filterFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("monster-search");
-  filter = input.value.toUpperCase();
-  div = document.getElementById("search-box");
-  search_dropdown = document.getElementsByClassName("search-dropdown");
-  span = div.getElementsByTagName("span");
-  for (i = 0; i < span.length; i++) {
-    txtValue = span[i].textContent || span[i].innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        search_dropdown[i].style.display = "";
-    } else {
-        search_dropdown[i].style.display = "none";
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("monster-search");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("search-box");
+    search_dropdown = document.getElementsByClassName("search-dropdown");
+    span = div.getElementsByTagName("span");
+    for (i = 0; i < span.length; i++) {
+        txtValue = span[i].textContent || span[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            search_dropdown[i].style.display = "";
+        } else {
+            search_dropdown[i].style.display = "none";
+        }
     }
-  }
 }
 
 // ========================== filter part start =========================
-    $(document).ready(function() {
-        $(".element, .rarity, .role, .monster, #mana_cost1, #mana_cost2").on('change', function() {
-            filter();
-        })
+$(document).ready(function() {
 
-        $(document).on('click', '.number-page, .prev-page, .next-page', function() {
-            var page_url = $(this).data('href');
-
-            let filterlink = '';
-            $(".element, .rarity, .role").each(function() {
-                if ($(this).is(':checked')) {
-                    filterlink += '&'+ $(this).attr('name') + '=' + $(this).val();
-                }
-            });
-            filterlink += '&' + $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
-
-            var url = page_url + encodeURI(filterlink);
-
-            $.ajax({
-                url: url,
-                method: "get",
-                success: function(data) {
-                    $('#monster-list').html(data);
-                }
-            })
-        })
+    $(".element, .rarity, .role, .monster, #mana_cost1, #mana_cost2").on('change', function() {
+        filter();
     })
 
-    function filter() {
-        let filterlink = '';
+    $(document).on('click', '.number-page, .prev-page, .next-page', function() {
+        var page_url = $(this).data('href');
 
-        $(".element, .rarity, .role, .monster").each(function() {
+        let filterlink = '';
+        $(".element, .rarity, .role").each(function() {
             if ($(this).is(':checked')) {
-                if (filterlink == '') {
-                    filterlink += "{{route('get-filter-builder-monster')}}" + '?'+ $(this).attr('name') + '=' + $(this).val();
-                } else {
-                    filterlink += '&' + $(this).attr('name') + '=' + $(this).val();
-                }
+                filterlink += '&' + $(this).attr('name') + '=' + $(this).val();
             }
         });
+        filterlink += '&' + $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
 
-        if (filterlink == '') {
-            filterlink += "{{route('get-filter-builder-monster')}}" + '?mana_cost1=' + $('#mana_cost1').val() + '&mana_cost2=' + $('#mana_cost2').val();
-        } else {
-            filterlink += '&mana_cost1=' + $('#mana_cost1').val() + '&mana_cost2=' + $('#mana_cost2').val();
-        }
-        console.log(encodeURI(filterlink))
+        var url = page_url + encodeURI(filterlink);
 
         $.ajax({
-            url: encodeURI(filterlink),
+            url: url,
             method: "get",
             success: function(data) {
                 $('#monster-list').html(data);
             }
         })
+    })
+})
+
+function filter() {
+    let filterlink = '';
+
+    $(".element, .rarity, .role, .monster").each(function() {
+        if ($(this).is(':checked')) {
+            if (filterlink == '') {
+                filterlink += "{{route('get-filter-builder-monster')}}" + '?' + $(this).attr('name') + '=' + $(
+                    this).val();
+            } else {
+                filterlink += '&' + $(this).attr('name') + '=' + $(this).val();
+            }
+        }
+    });
+
+    if (filterlink == '') {
+        filterlink += "{{route('get-filter-builder-monster')}}" + '?mana_cost1=' + $('#mana_cost1').val() +
+            '&mana_cost2=' + $('#mana_cost2').val();
+    } else {
+        filterlink += '&mana_cost1=' + $('#mana_cost1').val() + '&mana_cost2=' + $('#mana_cost2').val();
     }
+    console.log(encodeURI(filterlink))
+
+    $.ajax({
+        url: encodeURI(filterlink),
+        method: "get",
+        success: function(data) {
+            $('#monster-list').html(data);
+        }
+    })
+}
 // ========================== fileter part end
+
+$(document).on('submit', '#publish', function(e) {
+    e.preventDefault();
+    
+    @if(!Auth::user())
+        $('#login_popup').modal('toggle');
+        $(".register-form").parents('.register_content').removeClass('hide_register');                 
+        $(".login-form").parents('.register_content').addClass('show_login');
+    @else
+    var monster_count = 0; 
+    var monsters = [];
+    var is_same_monster = false;
+    var comps_info = $(this).serialize();
+    $('.c_position').each(function() {
+        monster_count++;
+        monsters[monster_count-1] = $(this).val();   
+    });
+
+    if(monster_count != 8) {
+        toastr.error('You should choose 8 monsters!');
+    } else {
+        for (let i = 0; i < monsters.length - 1; i++) {             // check same monster
+            for(let j = i + 1; j < monsters.length; j++) {
+                if(monsters[i] == monsters[j]) {
+                    toastr.error('You should choose various monsters!');
+                    is_same_monster = true;
+                    return ;
+                }
+            }
+        }
+    }
+
+    var spell_count = 0;
+    var spells = [];
+    var is_same_spell = false;
+    $('.c_spell').each(function() {
+        spell_count++;
+        spells[spell_count-1] = $(this).val();   
+    });
+
+    if(spell_count != 3) {
+        toastr.error('You should choose 3 spells!');
+    } else {
+        for (let i = 0; i < spells.length - 1; i++) {             // check same monster
+            for(let j = i + 1; j < spells.length; j++) {
+                if(spells[i] == spells[j]) {
+                    toastr.error('You should choose various spells!');
+                    is_same_spell = true;
+                    return ;
+                }
+            }
+        }
+    }
+    if(is_same_monster == false && is_same_spell == false && spell_count == 3 && monster_count == 8) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "{{ route('comps-submit') }}",
+            method: "POST",
+            data: $(this).serialize(),
+            success: function(data) {
+                if(data) {
+                    toastr.success('You have successfully submitted!');
+                    // location.reload();
+                } else {
+                    toastr.success('Server has any problem!');
+                }
+                
+            }
+        })
+    }
+    @endif
+})
 
 //moster and sells tab js ----------------------
 

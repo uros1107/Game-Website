@@ -32,15 +32,15 @@
                     <label class="dropdown-label">Rune Set</label>
                     <div class="dropdown-list">
                         <div class="search-filed">
-                            <input type="search" placeholder="Search by name" class="dropdown-search" />
+                            <input type="search" placeholder="Search by name" class="dropdown-search" id="rune-set-search" onkeyup="filterFunction()"/>
                             <i class="fa fa-search"></i>
                         </div>
                         @php
                             $runes = DB::table('runes')->get();
                         @endphp
-                        <div class="inner-dropdown-sec  ">
+                        <div class="inner-dropdown-sec" id="search-box">
                             @foreach($runes as $rune)
-                            <label class="dropdown-option">
+                            <label class="dropdown-option search-dropdown">
                                 <input type="radio" name="rs_rune" value="{{ $rune->r_id }}" required/>
                                 <span>{{ $rune->r_name }}</span>
                                 <img src="{{ asset('images/game/icons/runes/'.$rune->r_icon) }}" alt="">
@@ -125,6 +125,24 @@
 <script src="{{ asset(mix('js/scripts/extensions/toastr.js')) }}"></script>
 
 <script>
+
+function filterFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("rune-set-search");
+  filter = input.value.toUpperCase();
+  div = document.getElementById("search-box");
+  search_dropdown = document.getElementsByClassName("search-dropdown");
+  span = div.getElementsByTagName("span");
+  for (i = 0; i < span.length; i++) {
+    txtValue = span[i].textContent || span[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        search_dropdown[i].style.display = "";
+    } else {
+        search_dropdown[i].style.display = "none";
+    }
+  }
+}
+
 $(document).ready(function () {
     $('#add-rune-set').on('submit', function(e) {
         e.preventDefault();
@@ -148,6 +166,9 @@ $(document).ready(function () {
                 success: function(data) {
                     toastr.success('You have successfully submitted!');
                     location.reload();
+                },
+                error: function(error) {
+                    toastr.error('Server error!');
                 }
             })
         }

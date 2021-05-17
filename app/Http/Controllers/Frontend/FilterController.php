@@ -179,12 +179,4 @@ class FilterController extends Controller
 
         return view('frontend.filter.filter-team-comps', compact('team_comps'));
     }
-
-    public function search_monster(Request $request)
-    {
-        $str = $request->search_monster;
-        $monsters = Monster::where('name', 'like', $str."%")->get(['id', 'name', 'fr_name']);
-
-        return view('frontend.filter.search-monster', compact('monsters'));
-    }
 }
