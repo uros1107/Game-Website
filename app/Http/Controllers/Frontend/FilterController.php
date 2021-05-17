@@ -53,7 +53,7 @@ class FilterController extends Controller
                                     }
                                 });
                             })
-                            ->paginate(5, [
+                            ->paginate(15, [
                                 'id', 
                                 'name', 
                                 'fr_name',

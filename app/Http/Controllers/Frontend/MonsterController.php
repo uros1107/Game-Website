@@ -35,7 +35,7 @@ class MonsterController extends Controller
         $id = $request->id;
         $monster = Monster::where('id', $id)->first();
         $rune_sets = Runeset::where('rs_monster_id', $monster->id)->paginate(3);
-        $team_comps = TeamComp::whereRaw("JSON_CONTAINS(c_position,".$monster->id.",'$')=1")->paginate(5);
+        $team_comps = TeamComp::whereRaw("JSON_CONTAINS(c_position,'".$monster->id."','$')=1")->paginate(5);
 
         if($monster->special_monster) {
             return view('frontend.monster-special', compact('monster', 'rune_sets', 'team_comps'));
