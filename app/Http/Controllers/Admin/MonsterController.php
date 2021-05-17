@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Products;
 use App\SpecialMonster;
 use App\Monster;
+use App\RuneSet;
 use Validator;
 use DB;
 use Illuminate\Http\Request;

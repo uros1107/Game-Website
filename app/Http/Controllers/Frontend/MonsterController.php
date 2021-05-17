@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Monster;
-use App\Runeset;
+use App\RuneSet;
 use App\TeamComp;
 use App\Spell;
 use App\TeamCompsComment;
