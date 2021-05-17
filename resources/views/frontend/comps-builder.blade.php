@@ -464,10 +464,10 @@
 
                 <div class="dropdown dropdown2" data-control="checkbox-dropdown">
                     <label class="dropdown-label">
-                        <input type="number" name="mana_cost1" id="mana_cost1" value="3" min="1" max="6" maxlength="1"
+                        <input type="number" name="mana_cost1" id="mana_cost1" value="1" min="1" max="6" maxlength="1"
                             class="start-monster">
                         -
-                        <input type="number" name="mana_cost2" id="mana_cost2" value="4" min="1" max="6" maxlength="1"
+                        <input type="number" name="mana_cost2" id="mana_cost2" value="6" min="1" max="6" maxlength="1"
                             class="end-monster">
                     </label>
                 </div>
@@ -561,7 +561,7 @@
                                 <div class="line_up_monster" ondragstart="DragStart1(event)">
                                     <a href="#1">
                                         <div class="compect_spells_big">
-                                            <img src="{{ asset('images/game/icon_images/'.$spell->icon_image) }}" id="{{ $spell->id }}"
+                                            <img src="{{ asset('images/game/icon_images/'.$spell->icon_image) }}" id="{{ $spell->id }}" style="width:71px"
                                                 alt="spells">
                                         </div>
                                     </a>
@@ -618,9 +618,9 @@
 
                         <div class="dropdown dropdown2" data-control="checkbox-dropdown">
                             <label class="dropdown-label">
-                                <input type="text" name="" value="3" min="1" max="6" maxlength="1">
+                                <input type="text" name="mana_cost1" id="mana_cost1"  value="1" min="1" max="6" maxlength="1">
                                 -
-                                <input type="text" name="" value="4" min="1" max="6" maxlength="1">
+                                <input type="text" name="mana_cost2" id="mana_cost2" value="6" min="1" max="6" maxlength="1">
                             </label>
                         </div>
 
