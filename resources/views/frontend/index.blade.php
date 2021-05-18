@@ -39,7 +39,7 @@
                                     them!
                                 </p>
                                 <div class="home-btn">
-                                    <a href="#" class="all_btn">Comp Builder</a>
+                                    <a id="comp_builder" class="all_btn">Comp Builder</a>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                                     guides on game mecanics as well as overall PvP strategies in SWLC.
                                 </p>
                                 <div class="home-btn">
-                                    <a href="#" class="all_btn">Monster List</a>
+                                    <a href="{{ route('monster-list') }}" class="all_btn">Monster List</a>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                                     find the content that you need on the last up-to-date patch.
                                 </p>
                                 <div class="home-btn">
-                                    <a href="#" class="all_btn">Find your ideal comp</a>
+                                    <a href="{{ route('comps-list') }}" class="all_btn">Find your ideal comp</a>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                         register now for free!</p>
                 </div>
                 <div class="home-btn wow fadeInUp">
-                    <a href="#1" class="all_btn" data-toggle="modal" data-target="#login_popup">Register</a>
+                    <a class="all_btn" id="register_btn">Register</a>
                 </div>
             </section>
 
@@ -124,4 +124,14 @@
 @endsection
 
 @section('scripts')
+<script>
+    $(document).on('click', '#register_btn', function() {
+        $('#login_popup').modal('toggle');
+        $(".register-form").parents('.register_content').removeClass('show_register');                 
+        $(".login-form").parents('.register_content').addClass('hide_login');
+    })
+    $(document).on('click', '#comp_builder', function() {
+        location.href = "{{ route('comps-builder') }}";
+    })
+</script>
 @endsection

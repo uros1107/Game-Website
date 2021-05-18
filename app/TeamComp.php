@@ -17,6 +17,20 @@ class TeamComp extends Model
         'c_dislikes',
         'c_position',
         'c_spell',
-        'c_verify'
+        'c_verify',
+        'element_fire',
+        'element_water',
+        'element_wind',
+        'element_light',
+        'element_dark',
+        'role_atk',
+        'role_hp',
+        'role_support',
+        'role_defense',
+        'rarity_normal',
+        'rarity_rare',
+        'rarity_hero',
+        'rarity_legend',
+        'average_mana_cost',
     ];
 }

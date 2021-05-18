@@ -875,20 +875,20 @@ footer {
     transition: 0.4s;
 }
 .monster-lists .monster-1 .monster-single-inner:before {
-    background-image: linear-gradient(transparent 60%, rgb(19 170 255 / 90%) 90%);
+    background-image: linear-gradient(transparent 60%, rgb(213 53 52 / 90%) 90%);
 }
 .monster-lists .monster-1:hover .monster-single-inner:before {
     cursor: pointer;
-    background-image: linear-gradient(transparent 60%, rgb(19 170 255 / 90%) 90%);
+    background-image: linear-gradient(transparent 60%, rgb(213 53 52 / 90%) 90%);
     opacity: 1;
     height: 100%
 }
 .monster-lists .monster-2 .monster-single-inner:before {
-    background-image: linear-gradient(transparent 60%, rgb(213 53 52 / 90%) 90%);
+    background-image: linear-gradient(transparent 60%, rgb(19 170 255 / 90%) 90%);
 }
 .monster-lists .monster-2:hover .monster-single-inner:before {
     cursor: pointer;
-    background-image: linear-gradient(transparent 60%, rgb(213 53 52 / 90%) 90%);
+    background-image: linear-gradient(transparent 60%, rgb(19 170 255 / 90%) 90%);
     opacity: 1;
     height: 100%
 }
@@ -903,20 +903,20 @@ footer {
 }
 
 .monster-lists .monster-4 .monster-single-inner:before {
-    background-image: linear-gradient(transparent 60%, rgb(76 72 204 / 90%) 90%);
+    background-image: linear-gradient(transparent 60%, rgb(229 185 112 / 90%) 90%);
 }
 .monster-lists .monster-4:hover .monster-single-inner:before {
     cursor: pointer;
-    background-image: linear-gradient(transparent 60%, rgb(76 72 204 / 90%) 90%);
+    background-image: linear-gradient(transparent 60%, rgb(229 185 112 / 90%) 90%);
     opacity: 1;
     height: 100%
 }
 .monster-lists .monster-5 .monster-single-inner:hover:before {
-    background-image: linear-gradient(transparent 60%, rgb(229 185 112 / 90%) 90%);
+    background-image: linear-gradient(transparent 60%, rgb(76 72 204 / 90%) 90%);
 }
 .monster-lists .monster-5 .monster-single-inner:hover:before {
     cursor: pointer;
-    background-image: linear-gradient(transparent 60%, rgb(229 185 112 / 90%) 90%);
+    background-image: linear-gradient(transparent 60%, rgb(76 72 204 / 90%) 90%);
     opacity: 1;
     height: 100%
 }
@@ -1172,8 +1172,24 @@ span.basic_stats_number,
     height: 100%;
     bottom: 3px;
     left: 0;
-    background-image: linear-gradient(transparent 60%, rgb(84 58 201 / 90%) 90%);
+    /* background-image: linear-gradient(transparent 60%, rgb(84 58 201 / 90%) 90%); */
 }
+.monster_img_1:before {
+    background-image: linear-gradient(transparent 60%, rgb(213 53 52 / 90%) 90%);
+}
+.monster_img_2:before {
+    background-image: linear-gradient(transparent 60%, rgb(19 170 255 / 90%) 90%);
+}
+.monster_img_3:before {
+    background-image: linear-gradient(transparent 60%, rgb(24 137 24 / 90%) 90%);
+}
+.monster_img_4:before {
+    background-image: linear-gradient(transparent 60%, rgb(229 185 112 / 90%) 90%);
+}
+.monster_img_5:before {
+    background-image: linear-gradient(transparent 60%, rgb(76 72 204 / 90%) 90%);
+}
+
 
 img.icon_top_monster {
     top: -22px;
@@ -1627,7 +1643,7 @@ span.unlike a{
     align-items: center;
         padding: 24px 0;
 }
-.contain_shape,
+/* .contain_shape,
 .line_up_monster:nth-child(5) .contain_shape {
     filter: drop-shadow(1px 4px 3px rgb(165 116 67 / 80%));
 }
@@ -1641,6 +1657,18 @@ span.unlike a{
 .line_up_monster:nth-child(7) .contain_shape,
 .line_up_monster:nth-child(8) .contain_shape  {
     filter: drop-shadow(1px 4px 3px rgb(60 170 82 / 80%));
+} */
+.line_up_monster .contain_shape_1 {
+    filter: drop-shadow(1px 4px 3px rgb(155 155 155 / 80%));
+}
+.line_up_monster .contain_shape_2 {
+    filter: drop-shadow(1px 4px 3px rgb(60 170 82 / 80%));
+}
+.line_up_monster .contain_shape_3 {
+    filter: drop-shadow(1px 4px 3px rgb(96 56 177 / 80%));
+}
+.line_up_monster .contain_shape_4 {
+    filter: drop-shadow(1px 4px 3px rgb(165 116 67 / 80%));
 }
 .shape {
     -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
@@ -3118,7 +3146,7 @@ a.btn_active .hover_none{
     margin-left: unset;
     margin-top: unset;
     max-width: 111px;
-    max-height: 152px;
+    max-height: 155px;
     padding: 2px;
 }
 .comp_builder .monster_img:before{

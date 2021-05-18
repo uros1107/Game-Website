@@ -44,7 +44,7 @@
 
         <div class="mobile-nav d-flex d-xl-none">
             <div>
-                <a href="#1">
+                <a href="{{ route('index') }}">
                     <img src="assets/image/logo-lost-centuria.svg" alt="logo" class="">
                 </a>
             </div>
@@ -66,7 +66,7 @@
         <div id="sidebar-container" class="bg-dark-blue sidebar-expanded d-xl-block">
             <div
                 class="logo list-group-item sidebar-separator-title text-muted d-none d-xl-flex align-items-center menu-collapsed">
-                <a href="#1">
+                <a href="{{ route('index') }}">
                     <img src="assets/image/logo-collapse-menu.svg" alt="logo" class="collapse-menu">
                     <img src="assets/image/logo-lost-centuria.svg" alt="logo" class="expand-menu">
                 </a>
@@ -113,7 +113,7 @@
 
                 <!-- Astuces Menu -->
                 <li>
-                    <a href="#submenu4" data-toggle="collapse" aria-expanded="false"
+                    <a href="https://www.jeumobi.com/en/summoners-war-lost-centuria/astuces/" data-toggle="collapse" aria-expanded="false"
                         class="bg-dark-blue list-group-item list-group-item-action flex-column align-items-start">
                         <div class="menu-lis-inner d-flex w-100 justify-content-start align-items-center">
                             <div class="fa-fa_icons">
@@ -126,7 +126,7 @@
 
                 <!-- News Menu -->
                 <li>
-                    <a href="#submenu5" data-toggle="collapse" aria-expanded="false"
+                    <a href="https://www.jeumobi.com/en/summoners-war-lost-centuria/news/" data-toggle="collapse" aria-expanded="false"
                         class="bg-dark-blue list-group-item list-group-item-action flex-column align-items-start">
                         <div class="menu-lis-inner d-flex w-100 justify-content-start align-items-center">
                             <div class="fa-fa_icons">
@@ -211,7 +211,7 @@
                 </div>
                 @else
                 <div class="main-content--single  main--content-deconnector-text">
-                    <a href="#1" class="common-btn" data-toggle="modal" data-target="#login_popup">Log In</a>
+                    <a href="#1" class="common-btn" id="login_btn">Log In</a>
                 </div>
                 @endif
                 <div class="main-content--single  main--content-language">
@@ -366,6 +366,13 @@
             }, 800);
         }
     });
+
+    $(document).on('click', '#login_btn', function() {
+        $('#login_popup').modal('toggle');
+        $(".register-form").parents('.register_content').removeClass('hide_register');                 
+        $(".login-form").parents('.register_content').addClass('show_login');
+    })
+    
     </script>
 
     @yield('scripts')

@@ -140,7 +140,7 @@
                                         @endphp
                                         <div class="line_up_monster">
                                             <a href="{{ route('monster-detail').'?id='.$c_monster->id }}" target="_blank">
-                                                <div class="contain_shape">
+                                                <div class="contain_shape contain_shape_{{ $c_monster->rarity }}">
                                                     <div class="shape"><img src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
                                                     </div>
                                                 </div>

@@ -52,6 +52,81 @@ class MonsterController extends Controller
         return view('frontend.ajax-monster-item', ['monster' => $monster, 'drop_id' => $request->drop_id]);
     }
 
+    public function calculate_character(Request $request) 
+    {
+        $monster_ids = $request->monster_ids;
+        
+        $comp_character = array(
+            'element_fire' => 0,
+            'element_water' => 0,
+            'element_wind' => 0,
+            'element_light' => 0,
+            'element_dark' => 0,
+            'role_atk' => 0,
+            'role_hp' => 0,
+            'role_support' => 0,
+            'role_defense' => 0,
+            'rarity_normal' => 0,
+            'rarity_rare' => 0,
+            'rarity_hero' => 0,
+            'rarity_legend' => 0,
+            'average_mana_cost' => 0
+        );
+        foreach($monster_ids as $monster_id) {
+            $monster = Monster::where('id', $monster_id)->first();
+            $comp_character['average_mana_cost'] += $monster->mana_cost;
+            switch ($monster->element) {
+                case 1:
+                    $comp_character['element_fire']++;
+                    break;
+                case 2:
+                    $comp_character['element_water']++;
+                    break;
+                case 3:
+                    $comp_character['element_wind']++;
+                    break;
+                case 4:
+                    $comp_character['element_light']++;
+                    break;
+                case 5:
+                    $comp_character['element_dark']++;
+                    break;
+            }
+            switch ($monster->role) {
+                case 1:
+                    $comp_character['role_atk']++;
+                    break;
+                case 2:
+                    $comp_character['role_hp']++;
+                    break;
+                case 3:
+                    $comp_character['role_support']++;
+                    break;
+                case 4:
+                    $comp_character['role_defense']++;
+                    break;
+            }
+            switch ($monster->rarity) {
+                case 1:
+                    $comp_character['rarity_normal']++;
+                    break;
+                case 2:
+                    $comp_character['rarity_rare']++;
+                    break;
+                case 3:
+                    $comp_character['rarity_hero']++;
+                    break;
+                case 4:
+                    $comp_character['rarity_legend']++;
+                    break;
+            }
+        }
+        $comp_character['average_mana_cost'] = round($comp_character['average_mana_cost'] / count($monster_ids), 1);
+
+        return view('frontend.ajax-character', ['comp_character' => $comp_character]);
+        // return $comp_character;
+    }
+
     public function get_spell(Request $request)
     {
         $spell_id = $request->spell_id;

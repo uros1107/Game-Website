@@ -13,7 +13,7 @@
         </div>
         <img src="{{ asset('images/game/main_images/'.$monster->main_image) }}" class="main-image" ondragstart="DragStart(event)" id="{{ $monster->id }}" data-position="{{$drop_id}}"
             alt="monster" class="monster-individual">
-        <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" style="width:37px"
+        <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" style="width:37px" data-position="{{$drop_id}}"
             alt="right bar" class="icon_monster">
     </div>
     <div class="cm_monster_name">

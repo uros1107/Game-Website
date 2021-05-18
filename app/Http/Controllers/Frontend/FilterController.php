@@ -166,7 +166,7 @@ class FilterController extends Controller
         if($monster) {
             $query->where(function($q) use ($monster) {
                 foreach ($monster as $key => $item) {
-                    $q->whereRaw("JSON_CONTAINS(c_position,".$item.",'$')=1");
+                    $q->whereRaw("JSON_CONTAINS(c_position,'".$item."','$')=1");
                 }
             });
         }

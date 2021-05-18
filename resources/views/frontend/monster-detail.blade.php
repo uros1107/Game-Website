@@ -21,16 +21,16 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="monster_left_sec">
-                        <div class="monster_img">
+                        @php
+                            $element = DB::table('element')->where('id', $monster->element)->first();
+                            $role = DB::table('role')->where('id', $monster->role)->first();
+                            $rarity = DB::table('rarity')->where('id', $monster->rarity)->first();
+                        @endphp
+                        <div class="monster_img monster_img_{{$element->id}}">
                             <div class="icon_img">
                                 <img src="{{ asset('assets/image/mana-icone-carte.svg') }}" alt="" class="icon_top_monster">
                                 <span>{{ $monster->mana_cost }}</span>
                             </div>
-                            @php
-                                $element = DB::table('element')->where('id', $monster->element)->first();
-                                $role = DB::table('role')->where('id', $monster->role)->first();
-                                $rarity = DB::table('rarity')->where('id', $monster->rarity)->first();
-                            @endphp
                             <img src="{{ asset('images/game/main_images/'.$monster->main_image) }}" alt=""
                                 class="monster-individual">
                             <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="" class="icon_monster">
@@ -179,7 +179,7 @@
             <div class="row mb_bg mb-40">
                 <div class="col-12 text-center ">
                     <h2>Ragdoll Runes in Lost Centuria</h2>
-                    <a href="#" id="add-rune-set-btn" data-value="{{ $monster->id }}" class="all_btn">+ Add Rune Set</a>
+                    <a id="add-rune-set-btn" data-value="{{ $monster->id }}" class="all_btn">+ Add Rune Set</a>
                 </div>
             </div>
             @if(count($rune_sets))
@@ -325,7 +325,7 @@
                                     @endphp
                                     <div class="line_up_monster">
                                         <a href="{{ route('monster-detail').'?id='.$c_monster->id }}" target="_blank">
-                                            <div class="contain_shape">
+                                            <div class="contain_shape contain_shape_{{ $c_monster->rarity }}">
                                                 <div class="shape"><img src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
                                                 </div>
                                             </div>

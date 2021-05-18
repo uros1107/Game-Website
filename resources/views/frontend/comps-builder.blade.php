@@ -135,101 +135,102 @@
                         </ul>
                     </div>
 
-                    <div class="compect_element_section">
-                        <div class="compect_element_title">
-                            <h2>Elements</h2>
-                        </div>
+                    <div id="character">
+                        <div class="compect_element_section">
+                            <div class="compect_element_title">
+                                <h2>Elements</h2>
+                            </div>
 
-                        <ul>
-                            <li>
-                                <img src="assets/image/compect_bulider/icon-eau.png" alt="compect element1">
-                                <p>x 1</p>
-                            </li>
-                            <li>
-                                <img src="assets/image/compect_bulider/icon-tenebre.png" alt="compect element2">
-                                <p>x 0</p>
-                            </li>
-                            <li>
-                                <img src="assets/image/compect_bulider/icon-feu.png" alt="compect element3">
-                                <p>x 0</p>
-                            </li>
-                            <li>
-                                <img src="assets/image/compect_bulider/icon-lumiere.png" alt="compect element4">
-                                <p>x 0</p>
-                            </li>
-                            <li>
-                                <img src="assets/image/compect_bulider/icon-vent.png" alt="compect element5">
-                                <p>x 0</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="compect_role_section">
-                        <div class="compect_element_title">
-                            <h2>Roles</h2>
-                        </div>
-
-                        <div class="compect_role_items">
                             <ul>
                                 <li>
-                                    <div class="cm_role_icone_img">
-                                        <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="role icon1">
-                                    </div>
-                                    <p>x 1 in Attack</p>
-                                </li>
-                                <li>
-                                    <div class="cm_role_icone_img">
-                                        <img src="assets/image/Monter-list/all_role_monter_icon_4.png" alt="role icon1">
-                                    </div>
-                                    <p>x 0 in Defense</p>
-                                </li>
-                                <li>
-                                    <div class="cm_role_icone_img">
-                                        <img src="assets/image/Monter-list/all_role_monter_icon_2.png" alt="role icon1">
-                                    </div>
-                                    <p>x 0 in HP</p>
-                                </li>
-                                <li>
-                                    <div class="cm_role_icone_img">
-                                        <img src="assets/image/Monter-list/all_role_support-ic_3.png" alt="role icon1">
-                                    </div>
-                                    <p>x 0 in Support</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-
-                    <div class="compect_raity_section">
-                        <div class="compect_element_title">
-                            <h2>Rarity</h2>
-                        </div>
-
-                        <div class="compect_raity_items">
-                            <ul>
-                                <li>
-                                    <span></span>
+                                    <img src="assets/image/compect_bulider/icon-eau.png" alt="compect element1">
                                     <p>x 0</p>
                                 </li>
-
                                 <li>
-                                    <span class="raity_color_2"></span>
+                                    <img src="assets/image/compect_bulider/icon-tenebre.png" alt="compect element2">
                                     <p>x 0</p>
                                 </li>
-
                                 <li>
-                                    <span class="raity_color_3"></span>
+                                    <img src="assets/image/compect_bulider/icon-feu.png" alt="compect element3">
                                     <p>x 0</p>
                                 </li>
-
                                 <li>
-                                    <span class="raity_color_4"></span>
+                                    <img src="assets/image/compect_bulider/icon-lumiere.png" alt="compect element4">
+                                    <p>x 0</p>
+                                </li>
+                                <li>
+                                    <img src="assets/image/compect_bulider/icon-vent.png" alt="compect element5">
                                     <p>x 0</p>
                                 </li>
                             </ul>
                         </div>
-                    </div>
 
+                        <div class="compect_role_section">
+                            <div class="compect_element_title">
+                                <h2>Roles</h2>
+                            </div>
+
+                            <div class="compect_role_items">
+                                <ul>
+                                    <li>
+                                        <div class="cm_role_icone_img">
+                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="role icon1">
+                                        </div>
+                                        <p>x 0 in Attack</p>
+                                    </li>
+                                    <li>
+                                        <div class="cm_role_icone_img">
+                                            <img src="assets/image/Monter-list/all_role_monter_icon_4.png" alt="role icon1">
+                                        </div>
+                                        <p>x 0 in Defense</p>
+                                    </li>
+                                    <li>
+                                        <div class="cm_role_icone_img">
+                                            <img src="assets/image/Monter-list/all_role_monter_icon_2.png" alt="role icon1">
+                                        </div>
+                                        <p>x 0 in HP</p>
+                                    </li>
+                                    <li>
+                                        <div class="cm_role_icone_img">
+                                            <img src="assets/image/Monter-list/all_role_support-ic_3.png" alt="role icon1">
+                                        </div>
+                                        <p>x 0 in Support</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div class="compect_raity_section">
+                            <div class="compect_element_title">
+                                <h2>Rarity</h2>
+                            </div>
+
+                            <div class="compect_raity_items">
+                                <ul>
+                                    <li>
+                                        <span></span>
+                                        <p>x 0</p>
+                                    </li>
+
+                                    <li>
+                                        <span class="raity_color_2"></span>
+                                        <p>x 0</p>
+                                    </li>
+
+                                    <li>
+                                        <span class="raity_color_3"></span>
+                                        <p>x 0</p>
+                                    </li>
+
+                                    <li>
+                                        <span class="raity_color_4"></span>
+                                        <p>x 0</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <div class="compect_spells_section">
                         <div class="compect_element_title">
                             <h2>Spells</h2>
@@ -263,7 +264,7 @@
             </div>
 
             <div class="compect_average mobile_block">
-                <p>Average mana cost:3.2</p>
+                <p id="avg_mana_cost">Average mana cost:<span> 0</span></p>
                 <img src="assets/image/compect_bulider/cb_average_img.png" alt="average">
             </div>
         </div>
@@ -308,7 +309,7 @@
                             </div>
 
                             <div class="compect_average">
-                                <p>Average mana cost:3.2</p>
+                                <p id="avg_mana_cost">Average mana cost:<span> 0</span></p>
                                 <img src="assets/image/compect_bulider/cb_average_img.png" alt="average">
                             </div>
                         </div>
@@ -537,11 +538,11 @@
                     <div class="tab-pane active" id="tabs-1" role="tabpanel">
                         <div class="compect_inner_monster mCustomScrollbar">
                             <div class="line_up_sec text-center" id="monster-list" ondrop="drop(event)">
-                                @foreach(DB::table('monsters')->get(['id', 'name', 'fr_name', 'icon_image']) as
+                                @foreach(DB::table('monsters')->get(['id', 'name', 'fr_name', 'icon_image', 'rarity']) as
                                 $monster)
                                 <div class="line_up_monster" ondragstart="DragStart(event)">
                                     <a href="{{ route('monster-detail').'?id='.$monster->id  }}" target="_blank">
-                                        <div class="contain_shape">
+                                        <div class="contain_shape contain_shape_{{ $monster->rarity }}">
                                             <div class="shape m-auto"><img id="{{$monster->id}}"
                                                     src="{{ asset('images/game/icon_images/'.$monster->icon_image) }}"
                                                     alt="monster img"></div>
@@ -763,26 +764,46 @@ function drop(eve) {
     }
     
     var is_same = false;
-
-    // $('.main-image').each(function() {
-    //     if ($(this).attr('id') == monster_id) {
-    //         toastr.error("You can't choose same monster! Please chooose other monster.")
-    //         is_same = true;
-    //         return;
-    //     }
-    // });
-    $.ajax({
-        url: "{{ route('get-monster') }}",
-        method: "get",
-        data: {
-            monster_id: monster_id,
-            drop_id: drop_id
-        },
-        success: function(data) {
-            var html = data;
-            $('#add_' + drop_id).html(html);
+    $('.main-image').each(function() {
+        if ($(this).attr('id') == monster_id) {
+            toastr.error("You can't choose same monster! Please chooose other monster.")
+            is_same = true;
+            return false;
         }
-    })
+    });
+    if(!is_same) {
+        $.ajax({
+            url: "{{ route('get-monster') }}",
+            method: "get",
+            data: {
+                monster_id: monster_id,
+                drop_id: drop_id
+            },
+            success: function(data) {
+                var html = data;
+                $('#add_' + drop_id).html(html);
+
+                var monster_ids = [];
+                var i = 0;
+                $('.main-image').each(function() {
+                    monster_ids[i] = $(this).attr('id');
+                    i++;
+                });
+                $.ajax({
+                    url: "{{ route('calculate-monster') }}",
+                    method: "get",
+                    data: {
+                        monster_ids: monster_ids
+                    },
+                    success: function(data) {
+                        $('#character').html(data);
+                        var avg_mana = $('#avg_mana').val();
+                        $('#avg_mana_cost > span').text(avg_mana);
+                    }
+                })
+            }
+        })
+    }
 }
 
 // -------------- spell -------------
@@ -800,29 +821,82 @@ function drop1(eve) {
     var drop_id = eve.target.getAttribute("data-position");
     var is_same = false;
 
-    // $('.spell-image').each(function() {
-    //     if ($(this).attr('id') == spell_id) {
-    //         toastr.error("You can't choose same spell! Please chooose other spell.")
-    //         is_same = true;
-    //         return;
-    //     }
-    // });
-
-    $.ajax({
-        url: "{{ route('get-spell') }}",
-        method: "get",
-        data: {
-            spell_id: spell_id,
-            drop_id: drop_id
-        },
-        success: function(data) {
-            var html = data;
-            $('#spell_' + drop_id).html(html);
+    $('.spell-image').each(function() {
+        if ($(this).attr('id') == spell_id) {
+            toastr.error("You can't choose same spell! Please chooose other spell.")
+            is_same = true;
+            return false;
         }
-    })
+    });
+
+    if(!is_same) {
+        $.ajax({
+            url: "{{ route('get-spell') }}",
+            method: "get",
+            data: {
+                spell_id: spell_id,
+                drop_id: drop_id
+            },
+            success: function(data) {
+                var html = data;
+                $('#spell_' + drop_id).html(html);
+            }
+        })
+    }
 }
 
 // =============== drag and drop end ===================
+
+
+$(document).on('submit', '#publish', function(e) {
+    e.preventDefault();
+    
+    @if(!Auth::user())
+        $('#login_popup').modal('toggle');
+        $(".register-form").parents('.register_content').removeClass('hide_register');                 
+        $(".login-form").parents('.register_content').addClass('show_login');
+    @else
+        var monster_count = 0; 
+        $('.c_position').each(function() {
+            monster_count++;  
+        });
+
+        if(monster_count != 8) {
+            toastr.error('You should choose 8 monsters!');
+        }
+
+        var spell_count = 0;
+        $('.c_spell').each(function() {
+            spell_count++;
+        });
+
+        if(spell_count != 3) {
+            toastr.error('You should choose 3 spells!');
+        }
+
+        if(spell_count == 3 && monster_count == 8) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{ route('comps-submit') }}",
+                method: "POST",
+                data: $(this).serialize(),
+                success: function(data) {
+                    if(data) {
+                        toastr.success('You have successfully submitted!');
+                        // location.reload();
+                    } else {
+                        toastr.success('Server has any problem!');
+                    }
+                    
+                }
+            })
+        }
+    @endif
+})
 
 function filterFunction() {
     var input, filter, ul, li, a, i;
@@ -902,82 +976,6 @@ function filter() {
     })
 }
 // ========================== fileter part end
-
-$(document).on('submit', '#publish', function(e) {
-    e.preventDefault();
-    
-    @if(!Auth::user())
-        $('#login_popup').modal('toggle');
-        $(".register-form").parents('.register_content').removeClass('hide_register');                 
-        $(".login-form").parents('.register_content').addClass('show_login');
-    @else
-    var monster_count = 0; 
-    var monsters = [];
-    var is_same_monster = false;
-    var comps_info = $(this).serialize();
-    $('.c_position').each(function() {
-        monster_count++;
-        monsters[monster_count-1] = $(this).val();   
-    });
-
-    if(monster_count != 8) {
-        toastr.error('You should choose 8 monsters!');
-    } else {
-        for (let i = 0; i < monsters.length - 1; i++) {             // check same monster
-            for(let j = i + 1; j < monsters.length; j++) {
-                if(monsters[i] == monsters[j]) {
-                    toastr.error('You should choose various monsters!');
-                    is_same_monster = true;
-                    return ;
-                }
-            }
-        }
-    }
-
-    var spell_count = 0;
-    var spells = [];
-    var is_same_spell = false;
-    $('.c_spell').each(function() {
-        spell_count++;
-        spells[spell_count-1] = $(this).val();   
-    });
-
-    if(spell_count != 3) {
-        toastr.error('You should choose 3 spells!');
-    } else {
-        for (let i = 0; i < spells.length - 1; i++) {             // check same monster
-            for(let j = i + 1; j < spells.length; j++) {
-                if(spells[i] == spells[j]) {
-                    toastr.error('You should choose various spells!');
-                    is_same_spell = true;
-                    return ;
-                }
-            }
-        }
-    }
-    if(is_same_monster == false && is_same_spell == false && spell_count == 3 && monster_count == 8) {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: "{{ route('comps-submit') }}",
-            method: "POST",
-            data: $(this).serialize(),
-            success: function(data) {
-                if(data) {
-                    toastr.success('You have successfully submitted!');
-                    // location.reload();
-                } else {
-                    toastr.success('Server has any problem!');
-                }
-                
-            }
-        })
-    }
-    @endif
-})
 
 //moster and sells tab js ----------------------
 
