@@ -222,6 +222,20 @@ class MonsterController extends Controller
         return response()->json(true);
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->search;
+
+        $monster = Monster::where('name', 'like', '%'.$search.'%')->first();
+        if($monster) {
+            $redirect_url = route('monster-detail', $monster->slug);
+            return response()->json(['success' => true, 'redirect_url' => $redirect_url]);
+        } else {
+            return response()->json(['success' => false]);
+        }
+        
+    }
+
     public function terms_of_use() 
     {
         return view('frontend.terms-of-use');

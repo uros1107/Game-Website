@@ -2,9 +2,6 @@
 
 @section('styles')
 
-<link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.css')) }}">
-<link rel="stylesheet" href="{{ asset(mix('css/plugins/extensions/toastr.css')) }}">
-
 @endsection
 
 @section('content')
@@ -122,8 +119,6 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
-<script src="{{ asset(mix('js/scripts/extensions/toastr.js')) }}"></script>
 
 <script>
 

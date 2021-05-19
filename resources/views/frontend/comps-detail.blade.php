@@ -3,8 +3,6 @@
 @section('styles')
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/12.0.0/nouislider.min.css"> -->
 <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}" type="text/css" />
-<link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.css')) }}">
-<link rel="stylesheet" href="{{ asset(mix('css/plugins/extensions/toastr.css')) }}">
 
 <style>
     .all_btn {
@@ -378,8 +376,6 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
-<script src="{{ asset(mix('js/scripts/extensions/toastr.js')) }}"></script>
 
 <script>
     $(document).ready(function() {

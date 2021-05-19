@@ -51,6 +51,7 @@ Route::POST('/comps-comment', 'Frontend\MonsterController@comps_comment')->name(
 
 Route::get('/comps-builder', 'Frontend\MonsterController@comps_builder')->name('comps-builder');
 
+Route::get('/search', 'Frontend\MonsterController@search')->name('search');
 Route::get('/terms-of-use', 'Frontend\MonsterController@terms_of_use')->name('terms-of-use');
 
 // -------------------------- Filter route start -----------------------------

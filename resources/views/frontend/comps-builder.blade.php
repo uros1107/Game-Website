@@ -2,8 +2,6 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}" type="text/css" />
-<link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.css')) }}">
-<link rel="stylesheet" href="{{ asset(mix('css/plugins/extensions/toastr.css')) }}">
 <style>
 .comp_builder .compect_monster_box4 {
     bottom: 100px;
@@ -741,8 +739,6 @@
 
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/12.0.0/nouislider.min.js"></script>
-<script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
-<script src="{{ asset(mix('js/scripts/extensions/toastr.js')) }}"></script>
 <script>
 // =============== drag and drop start ===================
 // ------------- monster ------------

@@ -26,6 +26,9 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/jquery.mCustomScrollbar.min.css') }}">
 
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('css/plugins/extensions/toastr.css')) }}">
+
     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/12.0.0/nouislider.min.css">
 
     <!-- FontAwesome -->
@@ -50,7 +53,7 @@
             </div>
             <div class="main--content-search text-center">
                 <div class="mobile-search-inner">
-                    <input type="text" class="seach-input" placeholder="Search for a monster...">
+                    <input type="text" class="seach-input" id="m-monster-search" placeholder="Search for a monster...">
                     <i class="fa fa-search"></i>
                 </div>
             </div>
@@ -191,7 +194,7 @@
         <!-- main--content-header -->
         <div class="main--content-header d-none d-xl-block">
             <div class="main--content-search text-center">
-                <input type="text" class="seach-input" placeholder="Search for a monster...">
+                <input type="text" class="seach-input" id="monster-search" placeholder="Search for a monster...">
                 <i class="fa fa-search"></i>
             </div>
             <div class="main--content-header-right">
@@ -354,6 +357,8 @@
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <script src="https://kit.fontawesome.com/51ac9b356a.js" crossorigin="anonymous"></script>
+    <script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/extensions/toastr.js')) }}"></script>
 
     <!-- WOW Js -->
     <script src="{{ asset('assets/js/wow.min.js') }}"></script>
@@ -395,6 +400,26 @@
                     location.reload();
                 } else {
                     $('#error_message').removeClass('d-none');
+                }
+            },
+            error: function(error) {
+                alert(error);
+            }
+        })
+    })
+
+    $(document).on('change', '#monster-search, #m-monster-search', function() {
+        var search = $(this).val();
+
+        $.ajax({
+            url: "{{ route('search') }}",
+            method: "get",
+            data: { search: search },
+            success: function(data) {
+                if(data['success']) {
+                    location.href = data['redirect_url'];
+                } else {
+                    toastr.error('No monster with such name!');
                 }
             },
             error: function(error) {
