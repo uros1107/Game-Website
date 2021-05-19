@@ -155,20 +155,25 @@ $(document).ready(function () {
 
         if(!rs_rune) {
             toastr.error('You should select rune!');
+            return false;
         }
 
         if(!rs_skill_stones) {
             toastr.error('You should select skill stone!');
+            return false;
         }
 
         if(!rs_comp_position) {
             toastr.error('You should select position!');
+            return false;
         }
 
         if(check == 0) {
             toastr.error('You should select one sub-stats at least!');
+            return false;
         } else if(check > 4) {
             toastr.error("You can select maximum 4 sut-stats!");
+            return false;
         } 
         
         if(rs_rune && rs_skill_stones && rs_comp_position && check <= 4) {
