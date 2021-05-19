@@ -256,7 +256,7 @@
 
                                 <div class="compect_right_section">
                                     <div class="compect_right_bg_banner"
-                                        style="background-image: url(./assets/image/comp_sec-monster_bg.png);">
+                                        style="background-image: url({{ asset('assets/image/comp_sec-monster_bg.png') }});">
                                         <div class="compect_genral_info_section">
                                             <h3 class="general-info-title">General Info</h3>
                                             <p class="general-info-desc">{{ $team_comp->c_general_info }}</p>

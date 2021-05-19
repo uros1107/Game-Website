@@ -225,8 +225,8 @@
                             $c_monster_ids = json_decode($team_comp->c_position);
                             $c_monster = DB::table('monsters')->where('id', $c_monster_ids[0])->first();
                         @endphp
-                        <!-- <div class="compect_right_bg_banner" style="background-image: url({{ asset('assets/image/comp_sec-monster_bg.png') }})"> -->
-                        <div class="compect_right_bg_banner" style="background-image: url({{ asset('images/game/bc_images/'.$c_monster->bg_comp_image) }})">
+                        <div class="compect_right_bg_banner" style="background-image: url({{ asset('assets/image/comp_sec-monster_bg.png') }})">
+                        <!-- <div class="compect_right_bg_banner" style="background-image: url({{ asset('images/game/bc_images/'.$c_monster->bg_comp_image) }})"> -->
                             <div class="compect_genral_info_section">
                                 <h3 class="general-info-title">General Info</h3>
                                 <p class="general-info-desc">{{ $team_comp->c_general_info }}</p>
