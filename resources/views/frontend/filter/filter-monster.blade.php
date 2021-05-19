@@ -16,7 +16,7 @@
             <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="" class="icon_monster">
         </div>
         <div class="monter-single-name">
-            <a href="{{ route('monster-detail') }}"><span style="background-color:{{ $rarity->color }}!important"></span> {{ $monster->name }} <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}" alt=""
+            <a href="{{ route('monster-detail', $monster->slug) }}"><span style="background-color:{{ $rarity->color }}!important"></span> {{ $monster->name }} <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}" alt=""
                     srcset=""> </a>
         </div>
     </div>

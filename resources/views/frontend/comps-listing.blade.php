@@ -139,7 +139,7 @@
                                             $c_monster = DB::table('monsters')->where('id', $comp)->first();
                                         @endphp
                                         <div class="line_up_monster">
-                                            <a href="{{ route('monster-detail').'?id='.$c_monster->id }}" target="_blank">
+                                            <a href="{{ route('monster-detail', $c_monster->slug) }}" target="_blank">
                                                 <div class="contain_shape contain_shape_{{ $c_monster->rarity }}">
                                                     <div class="shape"><img src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
                                                     </div>
@@ -312,15 +312,19 @@
                                     </div>
                                     <div class="mobile_block mobile-see-more">
                                         <div class="cb_save_and_publish_btn see-more-btn">
-                                            <a href="{{ route('comps-detail').'?id='.$team_comp->c_id }}" class="all_btn">See more</a>
+                                            <a href="{{ route('comps-detail', $team_comp->c_slug) }}" class="all_btn">See more</a>
                                         </div>
                                     </div>
 
                                 </div>
 
                                 <div class="compect_right_section">
-                                    <div class="compect_right_bg_banner"
-                                        style="background-image: url(./assets/image/comp_sec-monster_bg.png);">
+                                    @php
+                                        $c_monster_ids = json_decode($team_comp->c_position);
+                                        $c_monster = DB::table('monsters')->where('id', $c_monster_ids[0])->first();
+                                    @endphp
+                                    <!-- <div class="compect_right_bg_banner" style="background-image: url(./assets/image/comp_sec-monster_bg.png);"> -->
+                                    <div class="compect_right_bg_banner" style="background-image: url({{ asset('images/game/bc_images/'.$c_monster->bg_comp_image) }})">
                                         <div class="compect_genral_info_section">
                                             <h3 class="general-info-title">General Info</h3>
                                             <p class="general-info-desc">{{ $team_comp->c_general_info }}</p>
@@ -340,7 +344,7 @@
                                                         $rarity = DB::table('rarity')->where('id', $c_monster->rarity)->first();
                                                     @endphp
                                                     @if($key % 8 < 4)
-                                                    <a href="{{ route('monster-detail').'?id='.$c_monster->id }}" class="compect_monster_box compect_monster_box{{$key + 1}}"
+                                                    <a href="{{ route('monster-detail', $c_monster->slug) }}" class="compect_monster_box compect_monster_box{{$key + 1}}"
                                                         target="_blank">
                                                         <div class="monster_img">
                                                             <div class="icon_img">
@@ -381,7 +385,7 @@
                                                         $rarity = DB::table('rarity')->where('id', $c_monster->rarity)->first();
                                                     @endphp
                                                     @if($key % 8 >= 4)
-                                                    <a href="{{ route('monster-detail').'?id='.$c_monster->id }}" class="compect_monster_box compect_monster_box{{$key % 4 + 1}}"
+                                                    <a href="{{ route('monster-detail', $c_monster->slug) }}" class="compect_monster_box compect_monster_box{{$key % 4 + 1}}"
                                                         target="_blank">
                                                         <div class="monster_img">
                                                             <div class="icon_img">
@@ -402,7 +406,7 @@
                                                         </div>
                                                     </a>
                                                     <div class="cb_save_and_publish_btn see-more-btn">
-                                                        <a href="{{ route('comps-detail').'?id='.$team_comp->c_id }}" class="all_btn">See more</a>
+                                                        <a href="{{ route('comps-detail', $team_comp->c_slug) }}" class="all_btn">See more</a>
                                                     </div>
                                                     @endif
                                                     @endforeach

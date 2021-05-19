@@ -9,6 +9,7 @@ class Monster extends Model
     protected $fillable = [
         'name',
         'fr_name',
+        'slug',
         'second_name',
         'fr_second_name',
         'spell_name',

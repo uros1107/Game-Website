@@ -52,6 +52,7 @@ class TeamCompController extends Controller
     public function store_team_comp(Request $request)
     {
         $spell_info = $request->all();
+        $spell_info['c_slug'] = str_slug($spell_info['c_name'],'-').'-'.strtolower(str_random(8));
 
         $spell = Spell::create($spell_info);
 
@@ -98,6 +99,7 @@ class TeamCompController extends Controller
         $teamcomp_info['c_spell'] = json_encode($c_spell);
         
         unset($teamcomp_info['_token']);
+        $teamcomp_info['c_slug'] = str_slug($teamcomp_info['c_name'],'-').'-'.strtolower(str_random(8));
         
         $teamcomp->update($teamcomp_info);
 

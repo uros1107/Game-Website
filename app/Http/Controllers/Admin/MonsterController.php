@@ -33,6 +33,7 @@ class MonsterController extends Controller
         $monster = Monster::where('id', $id)->first();
         if($monster->special_monster == 1) {
             $monster = DB::table('monsters')
+                        ->where('id', $monster->id)
                         ->leftJoin('special_monsters', 'monsters.special_monster_id', '=', 'special_monsters.s_id')
                         ->first();
         }
@@ -157,6 +158,8 @@ class MonsterController extends Controller
         $monster_info['skill_stone1_image'] = $skill_stone1_image;
         $monster_info['skill_stone2_image'] = $skill_stone2_image;
         $monster_info['skill_stone3_image'] = $skill_stone3_image;
+
+        $monster_info['slug'] = str_slug($monster_info['name'],'-').'-'.strtolower(str_random(8));
 
         $monster = Monster::create($monster_info);
         if($request->special_monster == 1) {
@@ -425,6 +428,7 @@ class MonsterController extends Controller
             SpecialMonster::where('s_id', $monster->first()->special_monster_id)->delete();
         }
 
+        $monster_info['slug'] = str_slug($monster_info['name'],'-').'-'.strtolower(str_random(8));
         $monster->update($monster_info);
 
         return redirect()->back()->with('success',"You have successfully updated!");

@@ -4,7 +4,7 @@
 <head>
     <title>LostCenturia</title>
 
-    <link type="image/x-icon" rel="shortcut icon" href="assets/image/favicon.svg" />
+    <link type="image/x-icon" rel="shortcut icon" href="{{ asset('assets/image/favicon.svg') }}" />
     <!-- Required meta tags -->
     <meta charset="UTF-8" />
     <meta name="HandheldFriendly" content="true">
@@ -24,7 +24,7 @@
     <!-- Animate CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
 
-    <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery.mCustomScrollbar.min.css') }}">
 
     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/12.0.0/nouislider.min.css">
 
@@ -45,7 +45,7 @@
         <div class="mobile-nav d-flex d-xl-none">
             <div>
                 <a href="{{ route('index') }}">
-                    <img src="assets/image/logo-lost-centuria.svg" alt="logo" class="">
+                    <img src="{{ asset('assets/image/logo-lost-centuria.svg') }}" alt="logo" class="">
                 </a>
             </div>
             <div class="main--content-search text-center">
@@ -67,8 +67,8 @@
             <div
                 class="logo list-group-item sidebar-separator-title text-muted d-none d-xl-flex align-items-center menu-collapsed">
                 <a href="{{ route('index') }}">
-                    <img src="assets/image/logo-collapse-menu.svg" alt="logo" class="collapse-menu">
-                    <img src="assets/image/logo-lost-centuria.svg" alt="logo" class="expand-menu">
+                    <img src="{{ asset('assets/image/logo-collapse-menu.svg') }}" alt="logo" class="collapse-menu">
+                    <img src="{{ asset('assets/image/logo-lost-centuria.svg') }}" alt="logo" class="expand-menu">
                 </a>
             </div>
             <ul class="list-group">
@@ -156,14 +156,14 @@
                     </div>
                     <div class="mobile-menu-language">
                         <a href="javascript:void(0);" class="choose-lang">
-                            <img src="assets/image/globe-americas-duotone.svg" alt="">
+                            <img src="{{ asset('assets/image/globe-americas-duotone.svg') }}" alt="">
                         </a>
                         <div class="select-lang lang-close">
                             <a href="#1">
-                                <img src="assets/image/england-flag.png" alt="">
+                                <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
                             </a>
                             <a href="#2">
-                                <img src="assets/image/france-flag.png" alt="">
+                                <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
                             </a>
                         </div>
                     </div>
@@ -220,10 +220,10 @@
                     </a>
                     <div class="select-lang lang-close">
                         <a href="#1">
-                            <img src="assets/image/england-flag.png" alt="">
+                            <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
                         </a>
                         <a href="#2">
-                            <img src="assets/image/france-flag.png" alt="">
+                            <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
                         </a>
                     </div>
                 </div>
@@ -263,10 +263,10 @@
                     <!-- Modal Header -->
                     <div class="modal-header text-center border-0">
                         <div class="modal_logo">
-                            <img src="assets/image/logo-lost-centuria.svg" alt="logo" class="expand-menu">
+                            <img src="{{ asset('assets/image/logo-lost-centuria.svg') }}" alt="logo" class="expand-menu">
                         </div>
                         <div class="modal_logo">
-                            <img src="assets/image/add-run-set/separator-title.png" alt="">
+                            <img src="{{ asset('assets/image/add-run-set/separator-title.png') }}" alt="">
                         </div>
                         <div class="popup_title">
                             <span class="modal-title">Register</span>

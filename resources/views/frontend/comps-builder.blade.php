@@ -1,7 +1,7 @@
 @extends('layouts.frontend.layout')
 
 @section('styles')
-<link rel="stylesheet" href="assets/css/all.min.css" type="text/css" />
+<link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.css')) }}">
 <link rel="stylesheet" href="{{ asset(mix('css/plugins/extensions/toastr.css')) }}">
 <style>
@@ -538,10 +538,10 @@
                     <div class="tab-pane active" id="tabs-1" role="tabpanel">
                         <div class="compect_inner_monster mCustomScrollbar">
                             <div class="line_up_sec text-center" id="monster-list" ondrop="drop(event)">
-                                @foreach(DB::table('monsters')->get(['id', 'name', 'fr_name', 'icon_image', 'rarity']) as
+                                @foreach(DB::table('monsters')->get(['id', 'name', 'fr_name', 'slug', 'icon_image', 'rarity']) as
                                 $monster)
                                 <div class="line_up_monster" ondragstart="DragStart(event)">
-                                    <a href="{{ route('monster-detail').'?id='.$monster->id  }}" target="_blank">
+                                    <a href="{{ route('monster-detail', $monster->slug) }}" target="_blank">
                                         <div class="contain_shape contain_shape_{{ $monster->rarity }}">
                                             <div class="shape m-auto"><img id="{{$monster->id}}"
                                                     src="{{ asset('images/game/icon_images/'.$monster->icon_image) }}"
@@ -675,10 +675,10 @@
 
                         <div class="compect_inner_monster mCustomScrollbar">
                             <div class="line_up_sec text-center">
-                                @foreach(DB::table('monsters')->get(['id', 'name', 'fr_name', 'icon_image']) as
+                                @foreach(DB::table('monsters')->get(['id', 'name', 'fr_name', 'slug', 'icon_image']) as
                                 $monster)
                                 <div class="line_up_monster">
-                                    <a href="{{ route('monster-detail').'?id='.$monster->id  }}" target="_blank">
+                                    <a href="{{ route('monster-detail', $monster->slug) }}" target="_blank">
                                         <div class="contain_shape">
                                             <div class="shape"><img
                                                     src="{{ asset('images/game/icon_images/'.$monster->icon_image) }}"
@@ -887,7 +887,7 @@ $(document).on('submit', '#publish', function(e) {
                 success: function(data) {
                     if(data) {
                         toastr.success('You have successfully submitted!');
-                        // location.reload();
+                        location.reload();
                     } else {
                         toastr.success('Server has any problem!');
                     }

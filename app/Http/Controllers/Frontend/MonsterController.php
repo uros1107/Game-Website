@@ -19,6 +19,7 @@ class MonsterController extends Controller
         $monsters = Monster::paginate(15, [
             'id', 
             'name', 
+            'slug', 
             'fr_name',
             'mana_cost',
             'role',
@@ -30,10 +31,9 @@ class MonsterController extends Controller
         return view('frontend.monster-list', compact('monsters'));
     }
 
-    public function monster_detail(Request $request)
+    public function monster_detail(Request $request, $slug)
     {
-        $id = $request->id;
-        $monster = Monster::where('id', $id)->first();
+        $monster = Monster::where('slug', $slug)->first();
         $rune_sets = Runeset::where('rs_monster_id', $monster->id)->where('verify', 1)->paginate(3);
         $team_comps = TeamComp::whereRaw("JSON_CONTAINS(c_position,'".$monster->id."','$')=1")->where('c_verify', 1)->paginate(5);
 
@@ -53,7 +53,7 @@ class MonsterController extends Controller
     public function get_monster(Request $request)
     {
         $monster_id = $request->monster_id;
-        $monster = Monster::where('id', $monster_id)->first(['id', 'name', 'fr_name', 'main_image', 'element', 'role', 'rarity', 'mana_cost']);
+        $monster = Monster::where('id', $monster_id)->first(['id', 'name', 'fr_name', 'slug', 'main_image', 'element', 'role', 'rarity', 'mana_cost']);
 
         return view('frontend.ajax-monster-item', ['monster' => $monster, 'drop_id' => $request->drop_id]);
     }
@@ -147,11 +147,10 @@ class MonsterController extends Controller
         return view('frontend.comps-listing', compact('team_comps'));
     }
 
-    public function comps_detail(Request $request)
+    public function comps_detail(Request $request, $slug)
     {
-        $id = $request->id;
-        $team_comp = TeamComp::where('c_id', $id)->first();
-        $comments = TeamCompsComment::where('comment_comps_id', $id)->get();
+        $team_comp = TeamComp::where('c_slug', $slug)->first();
+        $comments = TeamCompsComment::where('comment_comps_id', $team_comp->id)->get();
 
         return view('frontend.comps-detail', compact('team_comp', 'comments'));
     }
@@ -172,6 +171,7 @@ class MonsterController extends Controller
         $comps_info['c_spell'] = json_encode($c_spell);
 
         $comps_info['c_sent_by_user'] = Auth::user()->id;
+        $comps_info['c_slug'] = str_slug($comps_info['c_name'],'-').'-'.strtolower(str_random(8));
         
         $comps_info = TeamComp::create($comps_info);
 

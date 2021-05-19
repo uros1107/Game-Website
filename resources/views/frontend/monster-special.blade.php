@@ -12,7 +12,7 @@
 
 @section('content')
 <!-- Content Start-->
-<div class="main-content monster-special-page" style="background-image: url(./assets/image/test-bg-champ.jpg);">
+<div class="main-content monster-special-page" style="background-image: url({{ asset('assets/image/test-bg-champ.jpg') }}">
 
     <!-- Body Content -->
     <div class="monster_wrap">
@@ -73,7 +73,7 @@
                             <ul class="text-left">
                                 <li>
                                     <div class="stats_icon">
-                                        <img src="assets/image/atk-icon.png" alt="">
+                                        <img src="{{ asset('assets/image/atk-icon.png') }}" alt="">
                                     </div>
                                     <div class="stats_detais">
                                         <span class="basic_stats_title">ATQ</span>
@@ -82,7 +82,7 @@
                                 </li>
                                 <li>
                                     <div class="stats_icon">
-                                        <img src="assets/image/def-icon.png" alt="">
+                                        <img src="{{ asset('assets/image/def-icon.png') }}" alt="">
                                     </div>
                                     <div class="stats_detais">
                                         <span class="basic_stats_title">DEF</span>
@@ -91,7 +91,7 @@
                                 </li>
                                 <li>
                                     <div class="stats_icon">
-                                        <img src="assets/image/hp-icon.png" alt="">
+                                        <img src="{{ asset('assets/image/hp-icon.png') }}" alt="">
                                     </div>
                                     <div class="stats_detais">
                                         <span class="basic_stats_title">PV</span>
@@ -103,7 +103,7 @@
 
                                 <li>
                                     <div class="stats_icon">
-                                        <img src="assets/image/tc-icon.png" alt="">
+                                        <img src="{{ asset('assets/image/tc-icon.png') }}" alt="">
                                     </div>
                                     <div class="stats_detais">
                                         <span class="basic_stats_title">Tx critiq.</span>
@@ -112,7 +112,7 @@
                                 </li>
                                 <li>
                                     <div class="stats_icon">
-                                        <img src="assets/image/dc-icon.png" alt="">
+                                        <img src="{{ asset('assets/image/dc-icon.png') }}" alt="">
                                     </div>
                                     <div class="stats_detais">
                                         <span class="basic_stats_title">Dgts critiq.</span>
@@ -121,7 +121,7 @@
                                 </li>
                                 <li>
                                     <div class="stats_icon">
-                                        <img src="assets/image/acc-icon.png" alt="">
+                                        <img src="{{ asset('assets/image/acc-icon.png') }}" alt="">
                                     </div>
                                     <div class="stats_detais">
                                         <span class="basic_stats_title">Précision</span>
@@ -130,7 +130,7 @@
                                 </li>
                                 <li>
                                     <div class="stats_icon">
-                                        <img src="assets/image/res-icon.png" alt="">
+                                        <img src="{{ asset('assets/image/res-icon.png') }}" alt="">
                                     </div>
                                     <div class="stats_detais">
                                         <span class="basic_stats_title">Résistance</span>
@@ -207,7 +207,7 @@
                         </div>
                         <div class="monster_img">
                             <div class="icon_img">
-                                <img src="assets/image/mana-icone-carte.svg" alt="" class="icon_top_monster">
+                                <img src="{{ asset('assets/image/mana-icone-carte.svg') }}" alt="" class="icon_top_monster">
                                 <span>{{ $special_monster->s_mana_cost }}</span>
                             </div>
                             <img src="{{ asset('images/game/special_images/'.$special_monster->s_main_image) }}" alt=""
@@ -229,7 +229,7 @@
                             <ul class="text-left">
                                 <li>
                                     <div class="stats_icon">
-                                        <img src="assets/image/atk-icon.png" alt="">
+                                        <img src="{{ asset('assets/image/atk-icon.png') }}" alt="">
                                     </div>
                                     <div class="stats_detais">
                                         <span class="basic_stats_title">ATQ</span>
@@ -238,7 +238,7 @@
                                 </li>
                                 <li>
                                     <div class="stats_icon">
-                                        <img src="assets/image/def-icon.png" alt="">
+                                        <img src="{{ asset('assets/image/def-icon.png') }}" alt="">
                                     </div>
                                     <div class="stats_detais">
                                         <span class="basic_stats_title">DEF</span>
@@ -247,7 +247,7 @@
                                 </li>
                                 <li>
                                     <div class="stats_icon">
-                                        <img src="assets/image/hp-icon.png" alt="">
+                                        <img src="{{ asset('assets/image/hp-icon.png') }}" alt="">
                                     </div>
                                     <div class="stats_detais">
                                         <span class="basic_stats_title">PV</span>
@@ -259,7 +259,7 @@
 
                                 <li>
                                     <div class="stats_icon">
-                                        <img src="assets/image/tc-icon.png" alt="">
+                                        <img src="{{ asset('assets/image/tc-icon.png') }}" alt="">
                                     </div>
                                     <div class="stats_detais">
                                         <span class="basic_stats_title">Tx critiq.</span>
@@ -268,7 +268,7 @@
                                 </li>
                                 <li>
                                     <div class="stats_icon">
-                                        <img src="assets/image/dc-icon.png" alt="">
+                                        <img src="{{ asset('assets/image/dc-icon.png') }}" alt="">
                                     </div>
                                     <div class="stats_detais">
                                         <span class="basic_stats_title">Dgts critiq.</span>
@@ -277,7 +277,7 @@
                                 </li>
                                 <li>
                                     <div class="stats_icon">
-                                        <img src="assets/image/acc-icon.png" alt="">
+                                        <img src="{{ asset('assets/image/acc-icon.png') }}" alt="">
                                     </div>
                                     <div class="stats_detais">
                                         <span class="basic_stats_title">Précision</span>
@@ -286,7 +286,7 @@
                                 </li>
                                 <li>
                                     <div class="stats_icon">
-                                        <img src="assets/image/res-icon.png" alt="">
+                                        <img src="{{ asset('assets/image/res-icon.png') }}" alt="">
                                     </div>
                                     <div class="stats_detais">
                                         <span class="basic_stats_title">Résistance</span>
@@ -393,8 +393,8 @@
                         <span class="like">
                             <a href="#1">
                                 <div class="like-unlike-wrap">
-                                    <img src="assets/image/pouce_vide.png" alt="">
-                                    <img src="assets/image/like-active.png" alt="" class="active-like-inlike">
+                                    <img src="{{ asset('assets/image/pouce_vide.png') }}" alt="">
+                                    <img src="{{ asset('assets/image/like-active.png') }}" alt="" class="active-like-inlike">
                                 </div>
                                 2700
                             </a>
@@ -402,8 +402,8 @@
                         <span class="unlike">
                             <a href="#1">
                                 <div class="like-unlike-wrap">
-                                    <img src="assets/image/Pouce_bas.png" alt="">
-                                    <img src="assets/image/unlike-active.png" alt="" class="active-like-inlike">
+                                    <img src="{{ asset('assets/image/Pouce_bas.png') }}" alt="">
+                                    <img src="{{ asset('assets/image/unlike-active.png') }}" alt="" class="active-like-inlike">
                                 </div>
                                 32
                             </a>
@@ -456,8 +456,8 @@
                                     <span class="like">
                                         <a href="#1">
                                             <div class="like-unlike-wrap">
-                                                <img src="assets/image/pouce_vide.png" alt="">
-                                                <img src="assets/image/like-active.png" alt=""
+                                                <img src="{{ asset('assets/image/pouce_vide.png') }}" alt="">
+                                                <img src="{{ asset('assets/image/like-active.png') }}" alt=""
                                                     class="active-like-inlike">
                                             </div>
                                             <span>{{ $team_comp->c_likes }}</span>
@@ -466,8 +466,8 @@
                                     <span class="unlike">
                                         <a href="#1">
                                             <div class="like-unlike-wrap">
-                                                <img src="assets/image/Pouce_bas.png" alt="">
-                                                <img src="assets/image/unlike-active.png" alt=""
+                                                <img src="{{ asset('assets/image/Pouce_bas.png') }}" alt="">
+                                                <img src="{{ asset('assets/image/unlike-active.png') }}" alt=""
                                                     class="active-like-inlike">
                                             </div>
                                             <span>{{ $team_comp->c_dislikes }}</span>
@@ -481,7 +481,7 @@
                                         $c_monster = DB::table('monsters')->where('id', $comp)->first();
                                     @endphp
                                     <div class="line_up_monster">
-                                        <a href="{{ route('monster-detail').'?id='.$c_monster->id }}" target="_blank">
+                                        <a href="{{ route('monster-detail', $c_monster->slug) }}" target="_blank">
                                             <div class="contain_shape">
                                                 <div class="shape"><img src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
                                                 </div>
@@ -531,25 +531,25 @@
 
                                     <ul>
                                         <li>
-                                            <img src="assets/image/compect_bulider/icon-eau.png" alt="compect element1">
+                                            <img src="{{ asset('assets/image/compect_bulider/icon-eau.png') }}" alt="compect element1">
                                             <p>x {{ $team_comp->element_water }}</p>
                                         </li>
                                         <li>
-                                            <img src="assets/image/compect_bulider/icon-tenebre.png"
+                                            <img src="{{ asset('assets/image/compect_bulider/icon-tenebre.png') }}"
                                                 alt="compect element2">
                                             <p>x {{ $team_comp->element_dark }}</p>
                                         </li>
                                         <li>
-                                            <img src="assets/image/compect_bulider/icon-feu.png" alt="compect element3">
+                                            <img src="{{ asset('assets/image/compect_bulider/icon-feu.png') }}" alt="compect element3">
                                             <p>x {{ $team_comp->element_fire }}</p>
                                         </li>
                                         <li>
-                                            <img src="assets/image/compect_bulider/icon-lumiere.png"
+                                            <img src="{{ asset('assets/image/compect_bulider/icon-lumiere.png') }}"
                                                 alt="compect element4">
                                             <p>x {{ $team_comp->element_light }}</p>
                                         </li>
                                         <li>
-                                            <img src="assets/image/compect_bulider/icon-vent.png"
+                                            <img src="{{ asset('assets/image/compect_bulider/icon-vent.png') }}"
                                                 alt="compect element5">
                                             <p>x {{ $team_comp->element_wind }}</p>
                                         </li>
@@ -565,28 +565,28 @@
                                         <ul>
                                             <li>
                                                 <div class="cm_role_icone_img">
-                                                    <img src="assets/image/Monter-list/all_role_monter_icon_1.png"
+                                                    <img src="{{ asset('assets/image/Monter-list/all_role_monter_icon_1.png') }}"
                                                         alt="role icon1">
                                                 </div>
                                                 <p>x {{ $team_comp->role_atk }} in Attack</p>
                                             </li>
                                             <li>
                                                 <div class="cm_role_icone_img">
-                                                    <img src="assets/image/Monter-list/all_role_monter_icon_4.png"
+                                                    <img src="{{ asset('assets/image/Monter-list/all_role_monter_icon_4.png') }}"
                                                         alt="role icon1">
                                                 </div>
                                                 <p>x {{ $team_comp->role_defense }} in Defense</p>
                                             </li>
                                             <li>
                                                 <div class="cm_role_icone_img">
-                                                    <img src="assets/image/Monter-list/all_role_monter_icon_2.png"
+                                                    <img src="{{ asset('assets/image/Monter-list/all_role_monter_icon_2.png') }}"
                                                         alt="role icon1">
                                                 </div>
                                                 <p>x {{ $team_comp->role_hp }} in HP</p>
                                             </li>
                                             <li>
                                                 <div class="cm_role_icone_img">
-                                                    <img src="assets/image/Monter-list/all_role_support-ic_3.png"
+                                                    <img src="{{ asset('assets/image/Monter-list/all_role_support-ic_3.png') }}"
                                                         alt="role icon1">
                                                 </div>
                                                 <p>x {{ $team_comp->role_support }} in Support</p>
@@ -652,7 +652,7 @@
 
                                 <div class="compect_average mobile_block">
                                     <p>Average mana cost:{{ $team_comp->average_mana_cost }}</p>
-                                    <img src="assets/image/compect_bulider/cb_average_img.png" alt="average">
+                                    <img src="{{ asset('assets/image/compect_bulider/cb_average_img.png') }}" alt="average">
                                 </div>
                             </div>
 
@@ -678,7 +678,7 @@
                                                     $rarity = DB::table('rarity')->where('id', $c_monster->rarity)->first();
                                                 @endphp
                                                 @if($key % 8 < 4)
-                                                <a href="{{ route('monster-detail').'?id='.$c_monster->id }}" class="compect_monster_box compect_monster_box{{$key + 1}}"
+                                                <a href="{{ route('monster-detail', $c_monster->slug) }}" class="compect_monster_box compect_monster_box{{$key + 1}}"
                                                     target="_blank">
                                                     <div class="monster_img">
                                                         <div class="icon_img">
@@ -703,7 +703,7 @@
 
                                                 <div class="compect_average">
                                                     <p>Average mana cost:{{ $team_comp->average_mana_cost }}</p>
-                                                    <img src="assets/image/compect_bulider/cb_average_img.png"
+                                                    <img src="{{ asset('assets/image/compect_bulider/cb_average_img.png') }}"
                                                         alt="average">
                                                 </div>
                                             </div>
@@ -719,11 +719,11 @@
                                                     $rarity = DB::table('rarity')->where('id', $c_monster->rarity)->first();
                                                 @endphp
                                                 @if($key % 8 >= 4)
-                                                <a href="{{ route('monster-detail').'?id='.$c_monster->id }}" class="compect_monster_box compect_monster_box{{$key % 4 + 1}}"
+                                                <a href="{{ route('monster-detail', $c_monster->slug) }}" class="compect_monster_box compect_monster_box{{$key % 4 + 1}}"
                                                     target="_blank">
                                                     <div class="monster_img">
                                                         <div class="icon_img">
-                                                            <img src="assets/image/mana-icone-carte.svg" alt="icon"
+                                                            <img src="{{ asset('assets/image/mana-icone-carte.svg') }}" alt="icon"
                                                                 class="icon_top_monster">
                                                             <span>{{ $c_monster->mana_cost }}</span>
                                                         </div>

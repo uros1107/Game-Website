@@ -9,6 +9,7 @@ class TeamComp extends Model
     protected $fillable = [
         'c_id',
         'c_name',
+        'c_slug',
         'c_fr_name',
         'c_general_info',
         'c_fr_general_info',

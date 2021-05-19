@@ -87,20 +87,22 @@
                     $rarity = DB::table('rarity')->where('id', $monster->rarity)->first();
                 @endphp
                 <div class="monster-single monster-{{ $element->id }}">
-                    <div class="monster-item" data-value="{{$monster->id}}">
-                        <div class="monster-single-inner monster_img">
-                            <div class="icon_img">
-                                <span class="polygon-corner">{{ $monster->mana_cost }}</span>
-                                <img src="{{ asset('assets/image/Monter-list/mana-icone-carte.svg') }}" alt="" class="icon_top_monster">
+                    <a href="{{ route('monster-detail', $monster->slug) }}">
+                        <div class="monster-item" data-value="{{$monster->slug}}">
+                            <div class="monster-single-inner monster_img">
+                                <div class="icon_img">
+                                    <span class="polygon-corner">{{ $monster->mana_cost }}</span>
+                                    <img src="{{ asset('assets/image/Monter-list/mana-icone-carte.svg') }}" alt="" class="icon_top_monster">
+                                </div>
+                                <img src="{{ asset('images/game/main_images/'.$monster->main_image) }}" alt="" class="monster-individual">
+                                <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="" class="icon_monster">
                             </div>
-                            <img src="{{ asset('images/game/main_images/'.$monster->main_image) }}" alt="" class="monster-individual">
-                            <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="" class="icon_monster">
+                            <div class="monter-single-name">
+                                <a><span style="background-color:{{ $rarity->color }}!important"></span> {{ $monster->name }} <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}" alt=""
+                                        srcset=""> </a>
+                            </div>
                         </div>
-                        <div class="monter-single-name">
-                            <a href="{{ route('monster-detail') }}"><span style="background-color:{{ $rarity->color }}!important"></span> {{ $monster->name }} <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}" alt=""
-                                    srcset=""> </a>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 @endforeach
             </div>
@@ -159,10 +161,7 @@
     });
 
     $(document).ready(function() {
-        $(document).on('click', '.monster-item', function() {
-            var id = $(this).data('value');
-            location.href = "{{ route('monster-detail') }}?id=" + id;
-        })
+       
 
         $(".element, .rarity, .role").on('change', function() {
             filter();
