@@ -71,7 +71,7 @@ class LoginController extends Controller
         {
             $this->guard()->logout();
 
-            return redirect('/login');
+            return redirect('/');
         } else {
             return redirect()->route('user-list');
         }

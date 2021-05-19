@@ -61,7 +61,7 @@ class TeamCompController extends Controller
     public function update_team_comp(Request $request)
     {
         $positions = $request->c_position;
-        for ($i=0; $i < count($positions)-1; $i++) { 
+        for ($i=0; $i < count($positions); $i++) { 
             $first = $positions[$i];
             for ($j=$i+1; $j < count($positions); $j++) { 
                 $second = $positions[$j];
@@ -81,8 +81,22 @@ class TeamCompController extends Controller
                 }
             }
         }
+        
         $teamcomp = TeamComp::where('c_id', $request->c_id);
         $teamcomp_info = $request->all();
+
+        $c_position = $teamcomp_info['c_position'];
+        for ($i=0; $i < count($c_position); $i++) { 
+            $c_position[$i] = intval($c_position[$i]);
+        }
+        $teamcomp_info['c_position'] = json_encode($c_position);
+
+        $c_spell = $teamcomp_info['c_spell'];
+        for ($i=0; $i < count($c_spell); $i++) { 
+            $c_spell[$i] = intval($c_spell[$i]);
+        }
+        $teamcomp_info['c_spell'] = json_encode($c_spell);
+        
         unset($teamcomp_info['_token']);
         
         $teamcomp->update($teamcomp_info);

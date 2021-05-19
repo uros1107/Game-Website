@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -49,9 +51,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => 'required|string|unique:users',
+            'email' => 'required|string|email|unique:users',
+            'password' => 'required',
         ]);
     }
 
@@ -63,11 +65,55 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        echo "fdsafdsafds";
+        // return User::create([
+        //     'name' => $data['name'],
+        //     'email' => $data['email'],
+        //     'password' => Hash::make($data['password']),
+        // ]);
+    }
+
+    public function register(Request $request)
+    {
+        $rules = [
+            'email' => 'required|string|email|unique:users',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json(['success' => false]);
+        }
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'game_name' => $request->game_name,
+            'guild_name' => $request->guild_name,
         ]);
+
+        $user = User::where('email', $request->email)->first();
+        Auth::login($user);
+
+        return response()->json(['success' => true]);
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|required',
+        ]);
+
+        $user = Auth::user();
+        $user->email = $request->email;
+        if($request->password) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->game_name = $request->game_name;
+        $user->guild_name = $request->guild_name;
+        $user->save();
+        
+        return redirect('user-private')->with('success', 'Successfully updated!');
     }
 
     // Register

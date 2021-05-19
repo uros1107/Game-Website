@@ -1,42 +1,53 @@
 @extends('layouts.frontend.layout')
 
 @section('styles')
-
+<style>
+.mb_padd:last-child {
+    padding-bottom: 0px!important;
+    margin-bottom: 0px!important;
+    border-bottom: 0px solid #dee2e6!important;
+}
+</style>
 @endsection
 
 @section('content')
-    <!-- Content Start-->
-    <div class="main-content user-page-public">
-        
-        <!-- Body Content -->
-        <div class="monster_wrap page-space">
-            
-            <div class="text-center ragdoll-top-sec page-title-section mt-3 mt-md-0 ">
-                <h1 class="page-title ">Hakio's Profil</h1>
-                <img src="assets/image/add-run-set/separator-title.png" alt="">
-                <p class="page-title-subtext">
-                    Find here all of the Summoners War: Lost Centuria monster comps
-                    and rune sets published by Hakio. Do not hesitate to steal his ideas!
-                    </p>
-            </div>
-            
-            <!-- comps with ragdoll sec -->
-            <div class="comps_sec">
-                <div class="row text-center">
-                    <div class="col-12">
-                        <h2>Team Comps published by Hakio</h2>
-                    </div>
+<!-- Content Start-->
+<div class="main-content user-page-public">
+
+    <!-- Body Content -->
+    <div class="monster_wrap page-space">
+
+        <div class="text-center ragdoll-top-sec page-title-section mt-3 mt-md-0 ">
+            <h1 class="page-title ">{{ Auth::user()->name }}'s Profil</h1>
+            <img src="assets/image/add-run-set/separator-title.png" alt="">
+            <p class="page-title-subtext">
+                Find here all of the Summoners War: Lost Centuria monster comps
+                and rune sets published by {{ Auth::user()->name }}. Do not hesitate to steal his ideas!
+            </p>
+        </div>
+
+        <!-- comps with ragdoll sec -->
+        <div class="comps_sec">
+            <div class="row text-center">
+                <div class="col-12">
+                    <h2>Team Comps published by {{ Auth::user()->name }}</h2>
                 </div>
-                
+            </div>
+            <div id="team_comps_pagination">
+                @foreach($team_comps as $team_comp)
                 <div class="ct_accordion_wrap accordion_close">
                     <div class="force_sec bg_br remove">
                         <div class="row">
                             <div class="col-md-3">
+                                @php
+                                    $c_monsters = json_decode($team_comp->c_position);
+                                    $c_monster = DB::table('monsters')->where('id', $c_monsters[0])->first();
+                                @endphp
                                 <div class="force_heading">
                                     <div class="bg_img_block">
-                                        <img src="assets/image/user-public/team-1.png">
+                                        <img src="{{ asset('images/game/bc_images/'.$c_monster->bg_comp_image) }}">
                                     </div>
-                                    <h2 class="desk_heading">Colleen la Colline</h2>
+                                    <h2 class="desk_heading">{{ $team_comp->c_name }}</h2>
                                 </div>
                             </div>
                             <div class="col-md-9">
@@ -45,87 +56,39 @@
                                         <span class="like">
                                             <a href="#1">
                                                 <div class="like-unlike-wrap">
-                                                    <img src="assets/image/pouce_vide.png" alt="">
-                                                    <img src="assets/image/like-active.png" alt="" class="active-like-inlike">
+                                                    <img src="{{ asset('assets/image/pouce_vide.png') }}" alt="">
+                                                    <img src="{{ asset('assets/image/like-active.png') }}" alt=""
+                                                        class="active-like-inlike">
                                                 </div>
-                                                <span>2700</span>
+                                                <span>{{ $team_comp->c_likes }}</span>
                                             </a>
                                         </span>
                                         <span class="unlike">
                                             <a href="#1">
                                                 <div class="like-unlike-wrap">
-                                                    <img src="assets/image/Pouce_bas.png" alt="">
-                                                    <img src="assets/image/unlike-active.png" alt="" class="active-like-inlike">
+                                                    <img src="{{ asset('assets/image/Pouce_bas.png') }}" alt="">
+                                                    <img src="{{ asset('assets/image/unlike-active.png') }}" alt=""
+                                                        class="active-like-inlike">
                                                 </div>
-                                                <span>32</span>
+                                                <span>{{ $team_comp->c_dislikes }}</span>
                                             </a>
                                         </span>
                                     </div>
                                     <div class="line_up_sec text-center">
+                                        @foreach(json_decode($team_comp->c_position) as $comp)
+                                        @php
+                                            $c_monster = DB::table('monsters')->where('id', $comp)->first();
+                                        @endphp
                                         <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                                <div class="contain_shape">
-                                                    <div class="shape"><img src="assets/image/colleen-thumb.jpg" alt=""></div>
+                                            <a href="{{ route('monster-detail').'?id='.$c_monster->id }}" target="_blank">
+                                                <div class="contain_shape contain_shape_{{ $c_monster->rarity }}">
+                                                    <div class="shape"><img src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
+                                                    </div>
                                                 </div>
-                                                <span>Colleen</span>
+                                                <span>{{ $c_monster->name }}</span>
                                             </a>
                                         </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                                <div class="contain_shape">
-                                                    <div class="shape"><img src="assets/image/hwadam-thumb.jpg" alt=""></div>
-                                                </div>
-                                                <span>Hwadam</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                                <div class="contain_shape">
-                                                    <div class="shape"><img src="assets/image/train-thumb.jpg" alt=""></div>
-                                                </div>
-                                                <span>Thrain</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                                <div class="contain_shape">
-                                                    <div class="shape"><img src="assets/image/belladeon-thumb.jpg" alt=""></div>
-                                                </div>
-                                                <span>Belladeon</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">    
-                                                <div class="contain_shape">
-                                                    <div class="shape"><img src="assets/image/ramagos-thumb.jpg" alt=""></div>
-                                                </div>
-                                                <span>Ramagos</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                                <div class="contain_shape">
-                                                    <div class="shape"><img src="assets/image/orochi-thumb.jpg" alt=""></div>
-                                                </div>
-                                                <span>Orochi</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                                <div class="contain_shape">
-                                                    <div class="shape"><img src="assets/image/mikene-thumb.jpg" alt=""></div>
-                                                </div>
-                                                <span>Mikene</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                                <div class="contain_shape">
-                                                    <div class="shape"><img src="assets/image/megan-thumb.jpg" alt=""></div>
-                                                </div>
-                                                <span>Megan</span>
-                                            </a>
-                                        </div>
+                                        @endforeach
                                     </div>
                                     <div class="down_arrow ct_accordion_lable">
                                         <i class="fal fa-angle-down"></i>
@@ -140,70 +103,23 @@
                                 <div class="compect_left_element_bar">
                                     <div class="colleen_section mobile_block">
                                         <ul>
+                                            @foreach(json_decode($team_comp->c_position) as $key => $comp)
+                                            @php
+                                                $c_monster = DB::table('monsters')->where('id', $comp)->first();
+                                                $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                            @endphp
                                             <li>
-                                                <p><span>1</span>. Colleen</p>
+                                                <p><span>{{ $key++ }}</span>. {{ $c_monster->name }}</p>
                                                 <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-feu.png" alt="collen icon">
+                                                    <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
                                                 </div>
                                             </li>
-
-                                            <li>
-                                                <p><span>2</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-lumiere.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>3</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-feu.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>4</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-lumiere.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>5</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-vent.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>6</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-vent.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>7</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-eau.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>8</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-eau.png" alt="collen icon">
-                                                </div>
-                                            </li>
+                                            @endforeach
                                         </ul>
-                                    </div>
-
-
-                                    <div class="compect_genral_info_section mobile-genral_info d-md-none">
-                                        <h3 class="general-info-title">General Info</h3>
-                                        <p class="general-info-desc mCustomScrollbar">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec velit leo. Proin nec nunc id purus auctor commodo a vulputate velit. 
-                                        Nullam tincidunt purus in ante pellentesque rutrum vel quis odio. orbi convallis, justo nec posuere interdum, 
-                                        risus tellus bibendum orci, at bibendum orci nisl et nisl.</p>
+                                        <div class="compect_genral_info_section mobile-genral_info d-md-none">
+                                            <h3 class="general-info-title">General Info</h3>
+                                            <p class="general-info-desc mCustomScrollbar">{{ $team_comp->c_general_info }}</p>
+                                        </div>
                                     </div>
                                     <div class="compect_element_section">
                                         <div class="compect_element_title">
@@ -213,23 +129,26 @@
                                         <ul>
                                             <li>
                                                 <img src="assets/image/compect_bulider/icon-eau.png" alt="compect element1">
-                                                <p>x 1</p>
+                                                <p>x {{ $team_comp->element_water }}</p>
                                             </li>
                                             <li>
-                                                <img src="assets/image/compect_bulider/icon-tenebre.png" alt="compect element2">
-                                                <p>x 0</p>
+                                                <img src="assets/image/compect_bulider/icon-tenebre.png"
+                                                    alt="compect element2">
+                                                <p>x {{ $team_comp->element_dark }}</p>
                                             </li>
                                             <li>
                                                 <img src="assets/image/compect_bulider/icon-feu.png" alt="compect element3">
-                                                <p>x 0</p>
+                                                <p>x {{ $team_comp->element_fire }}</p>
                                             </li>
                                             <li>
-                                                <img src="assets/image/compect_bulider/icon-lumiere.png" alt="compect element4">
-                                                <p>x 0</p>
+                                                <img src="assets/image/compect_bulider/icon-lumiere.png"
+                                                    alt="compect element4">
+                                                <p>x {{ $team_comp->element_light }}</p>
                                             </li>
                                             <li>
-                                                <img src="assets/image/compect_bulider/icon-vent.png" alt="compect element5">
-                                                <p>x 0</p>
+                                                <img src="assets/image/compect_bulider/icon-vent.png"
+                                                    alt="compect element5">
+                                                <p>x {{ $team_comp->element_wind }}</p>
                                             </li>
                                         </ul>
                                     </div>
@@ -243,30 +162,34 @@
                                             <ul>
                                                 <li>
                                                     <div class="cm_role_icone_img">
-                                                        <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="role icon1">
+                                                        <img src="assets/image/Monter-list/all_role_monter_icon_1.png"
+                                                            alt="role icon1">
                                                     </div>
-                                                    <p>x 7 in Attack</p>
+                                                    <p>x {{ $team_comp->role_atk }} in Attack</p>
                                                 </li>
                                                 <li>
                                                     <div class="cm_role_icone_img">
-                                                        <img src="assets/image/Monter-list/all_role_monter_icon_4.png" alt="role icon1">
+                                                        <img src="assets/image/Monter-list/all_role_monter_icon_4.png"
+                                                            alt="role icon1">
                                                     </div>
-                                                    <p>x 0 in Defense</p>
+                                                    <p>x {{ $team_comp->role_defense }} in Defense</p>
                                                 </li>
                                                 <li>
                                                     <div class="cm_role_icone_img">
-                                                        <img src="assets/image/Monter-list/all_role_monter_icon_2.png" alt="role icon1">
+                                                        <img src="assets/image/Monter-list/all_role_monter_icon_2.png"
+                                                            alt="role icon1">
                                                     </div>
-                                                    <p>x 0 in HP</p>
+                                                    <p>x {{ $team_comp->role_hp }} in HP</p>
                                                 </li>
                                                 <li>
                                                     <div class="cm_role_icone_img">
-                                                        <img src="assets/image/Monter-list/all_role_support-ic_3.png" alt="role icon1">
+                                                        <img src="assets/image/Monter-list/all_role_support-ic_3.png"
+                                                            alt="role icon1">
                                                     </div>
-                                                    <p>x 0 in Support</p>
+                                                    <p>x {{ $team_comp->role_support }} in Support</p>
                                                 </li>
-                                            </ul>   
-                                        </div> 
+                                            </ul>
+                                        </div>
                                     </div>
 
 
@@ -279,22 +202,22 @@
                                             <ul>
                                                 <li>
                                                     <span></span>
-                                                    <p>x 0</p>
+                                                    <p>x {{ $team_comp->rarity_normal }}</p>
                                                 </li>
 
                                                 <li>
                                                     <span class="raity_color_2"></span>
-                                                    <p>x 0</p>
+                                                    <p>x {{ $team_comp->rarity_hero }}</p>
                                                 </li>
 
                                                 <li>
                                                     <span class="raity_color_3"></span>
-                                                    <p>x 0</p>
+                                                    <p>x {{ $team_comp->rarity_rare }}</p>
                                                 </li>
 
                                                 <li>
                                                     <span class="raity_color_4"></span>
-                                                    <p>x 7</p>
+                                                    <p>x {{ $team_comp->rarity_legend }}</p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -304,176 +227,118 @@
                                         <div class="compect_element_title">
                                             <h3>Spells</h3>
                                         </div>
-
+                                        @php
+                                            $spell_ids = json_decode($team_comp->c_spell);
+                                        @endphp
                                         <div class="spells_item">
                                             <ul>
+                                                @foreach($spell_ids as $spell_id)
+                                                @php
+                                                    $spell = DB::table('spells')->where('id', $spell_id)->first();
+                                                @endphp
                                                 <li>
                                                     <div class="spells_iiner_iteam">
-                                                        <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="compect_icon">
+                                                        <img src="{{ asset('images/game/icon_images/'.$spell->icon_image) }}"
+                                                            alt="compect_icon">
                                                     </div>
                                                 </li>
-                                                <li>
-                                                    <div class="spells_iiner_iteam">
-                                                        <img src="assets/image/compect_bulider/compect_big_spells_2.png" alt="compect_icon">
-                                                    </div>
-                                                </li>
-                                                 <li>
-                                                    <div class="spells_iiner_iteam">
-                                                        <img src="assets/image/compect_bulider/compect_big_spells_2.png" alt="compect_icon">
-                                                    </div>
-                                                </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
 
                                     <div class="compect_average mobile_block">
-                                        <p>Average mana cost:3.2</p>
+                                        <p>Average mana cost:{{ $team_comp->average_mana_cost }}</p>
                                         <img src="assets/image/compect_bulider/cb_average_img.png" alt="average">
                                     </div>
+
                                 </div>
 
                                 <div class="compect_right_section">
-                                    <div class="compect_right_bg_banner" style="background-image: url(./assets/image/comp_sec-monster_bg.png);">
+                                    <div class="compect_right_bg_banner"
+                                        style="background-image: url(./assets/image/comp_sec-monster_bg.png);">
                                         <div class="compect_genral_info_section">
-                                            <h3 class="general-info-title">GENERAL INFO</h3>
-                                            <p class="general-info-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec velit leo. Proin nec nunc id purus auctor commodo a vulputate velit. 
-Nullam tincidunt purus in ante pellentesque rutrum vel quis odio. orbi convallis, justo nec posuere interdum, 
-risus tellus bibendum orci, at bibendum orci nisl et nisl.</p>
+                                            <h3 class="general-info-title">General Info</h3>
+                                            <p class="general-info-desc">{{ $team_comp->c_general_info }}</p>
                                         </div>
 
                                         <div class="row desktop_block">
                                             <div class="col-md-6">
+                                                @php
+                                                    $c_monster_ids = json_decode($team_comp->c_position);
+                                                @endphp
                                                 <div class="compect_plus_box">
-                                                    <a href="#1" class="compect_monster_box compect_monster_box1" target="_blank">    
+                                                    @foreach($c_monster_ids as $key => $c_monster_id)
+                                                    @php
+                                                        $c_monster = DB::table('monsters')->where('id', $c_monster_id)->first();
+                                                        $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                                        $role = DB::table('role')->where('id', $c_monster->role)->first();
+                                                        $rarity = DB::table('rarity')->where('id', $c_monster->rarity)->first();
+                                                    @endphp
+                                                    @if($key % 8 < 4)
+                                                    <a href="{{ route('monster-detail').'?id='.$c_monster->id }}" class="compect_monster_box compect_monster_box{{$key + 1}}"
+                                                        target="_blank">
                                                         <div class="monster_img">
                                                             <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
+                                                                <img src="{{ asset('assets/image/mana-icone-carte.svg') }}" alt="icon"
+                                                                    class="icon_top_monster">
+                                                                <span>{{ $c_monster->mana_cost }}</span>
                                                             </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
+                                                            <img src="{{ asset('images/game/main_images/'.$c_monster->main_image) }}"
+                                                                alt="monster" class="monster-individual">
+                                                            <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" style="width: 37px;"
+                                                                alt="right bar" class="icon_monster">
                                                         </div>
                                                         <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
+                                                            <span style="background-color:{{ $rarity->color }}!important"> </span>
+                                                            <p>{{ $c_monster->name }}</p>
+                                                            <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}"
+                                                                alt="cm icon">
                                                         </div>
                                                     </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box2" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box3" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box4" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
+                                                    @endif
+                                                    @endforeach
 
                                                     <div class="compect_average">
-                                                        <p>Average mana cost:3.2</p>
-                                                        <img src="assets/image/compect_bulider/cb_average_img.png" alt="average">
+                                                        <p>Average mana cost:{{ $team_comp->average_mana_cost }}</p>
+                                                        <img src="assets/image/compect_bulider/cb_average_img.png"
+                                                            alt="average">
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="compect_plus_right_box">
-                                                    <a href="#1" class="compect_monster_box compect_monster_box1" target="_blank">    
+                                                    @foreach($c_monster_ids as $key => $c_monster_id)
+                                                    @php
+                                                        $c_monster = DB::table('monsters')->where('id', $c_monster_id)->first();
+                                                        $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                                        $role = DB::table('role')->where('id', $c_monster->role)->first();
+                                                        $rarity = DB::table('rarity')->where('id', $c_monster->rarity)->first();
+                                                    @endphp
+                                                    @if($key % 8 >= 4)
+                                                    <a href="{{ route('monster-detail').'?id='.$c_monster->id }}" class="compect_monster_box compect_monster_box{{$key % 4 + 1}}"
+                                                        target="_blank">
                                                         <div class="monster_img">
                                                             <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
+                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon"
+                                                                    class="icon_top_monster">
+                                                                <span>{{ $c_monster->mana_cost }}</span>
                                                             </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
+                                                            <img src="{{ asset('images/game/main_images/'.$c_monster->main_image) }}"
+                                                                alt="monster" class="monster-individual">
+                                                            <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" style="width: 37px;"
+                                                                alt="right bar" class="icon_monster">
                                                         </div>
                                                         <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
+                                                            <span style="background-color:{{ $rarity->color }}!important"> </span>
+                                                            <p>{{ $c_monster->name }}</p>
+                                                            <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}"
+                                                                alt="cm icon">
                                                         </div>
                                                     </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box2" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box3" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box4" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
+                                                    @endif
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>
@@ -483,983 +348,72 @@ risus tellus bibendum orci, at bibendum orci nisl et nisl.</p>
                         </div>
                     </div>
                 </div>
+                @endforeach
 
-                <div class="ct_accordion_wrap accordion_close">
-                    <div class="force_sec bg_br">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="force_heading">
-                                    <div class="bg_img_block">
-                                        <img src="assets/image/user-public/team-2.png">
-                                    </div>
-                                    <h2 class="desk_heading">Le Clan des<br>Guerriers Solitaires</h2>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="line_up_ifo">
-                                    <div class="like_icon">
-                                        <span class="like">
-                                            <a href="#1">
-                                                <div class="like-unlike-wrap">
-                                                    <img src="assets/image/pouce_vide.png" alt="">
-                                                    <img src="assets/image/like-active.png" alt="" class="active-like-inlike">
-                                                </div>
-                                                <span>2700</span>
-                                            </a>
-                                        </span>
-                                        <span class="unlike">
-                                            <a href="#1">
-                                                <div class="like-unlike-wrap">
-                                                    <img src="assets/image/Pouce_bas.png" alt="">
-                                                    <img src="assets/image/unlike-active.png" alt="" class="active-like-inlike">
-                                                </div>
-                                                <span>32</span>
-                                            </a>
-                                        </span>
-                                    </div>
-                                    <div class="line_up_sec text-center">
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                            <div class="contain_shape">
-                                                <div class="shape"><img src="assets/image/colleen-thumb-1.jpg" alt=""></div>
-                                            </div>
-                                            <span>Roid</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                            <div class="contain_shape">
-                                                <div class="shape"><img src="assets/image/hwadam-thumb.jpg" alt=""></div>
-                                            </div>
-                                            <span>Hwadam</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                            <div class="contain_shape">
-                                                <div class="shape"><img src="assets/image/train-thumb.jpg" alt=""></div>
-                                            </div>
-                                            <span>Thrain</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                            <div class="contain_shape">
-                                                <div class="shape"><img src="assets/image/belladeon-thumb.jpg" alt=""></div>
-                                            </div>
-                                            <span>Belladeon</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                            <div class="contain_shape">
-                                                <div class="shape"><img src="assets/image/ramagos-thumb.jpg" alt=""></div>
-                                            </div>
-                                            <span>Ramagos</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                            <div class="contain_shape">
-                                                <div class="shape"><img src="assets/image/orochi-thumb.jpg" alt=""></div>
-                                            </div>
-                                            <span>Orochi</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                            <div class="contain_shape">
-                                                <div class="shape"><img src="assets/image/mikene-thumb.jpg" alt=""></div>
-                                            </div>
-                                            <span>Mikene</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                            <div class="contain_shape">
-                                                <div class="shape"><img src="assets/image/megan-thumb.jpg" alt=""></div>
-                                            </div>
-                                            <span>Megan</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="down_arrow ct_accordion_lable">
-                                        <i class="fal fa-angle-down"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content_tab ct_accordion_info comp_builder" style="display: none;">
-                        <div class="compact_bulider_element_section">
-                            <div class="compact_bulider_inner_section">
-                                <div class="compect_left_element_bar">
-                                    <div class="colleen_section mobile_block">
-                                        <ul>
-                                            <li>
-                                                <p><span>1</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-feu.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>2</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-lumiere.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>3</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-feu.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>4</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-lumiere.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>5</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-vent.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>6</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-vent.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>7</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-eau.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>8</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-eau.png" alt="collen icon">
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-
-                                    <div class="compect_genral_info_section mobile-genral_info d-md-none">
-                                        <h3 class="general-info-title">General Info</h3>
-                                        <p class="general-info-desc mCustomScrollbar">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec velit leo. Proin nec nunc id purus auctor commodo a vulputate velit. 
-                                        Nullam tincidunt purus in ante pellentesque rutrum vel quis odio. orbi convallis, justo nec posuere interdum, 
-                                        risus tellus bibendum orci, at bibendum orci nisl et nisl.</p>
-                                    </div>
-                                    <div class="compect_element_section">
-                                        <div class="compect_element_title">
-                                            <h3>Elements</h3>
-                                        </div>
-
-                                        <ul>
-                                            <li>
-                                                <img src="assets/image/compect_bulider/icon-eau.png" alt="compect element1">
-                                                <p>x 1</p>
-                                            </li>
-                                            <li>
-                                                <img src="assets/image/compect_bulider/icon-tenebre.png" alt="compect element2">
-                                                <p>x 0</p>
-                                            </li>
-                                            <li>
-                                                <img src="assets/image/compect_bulider/icon-feu.png" alt="compect element3">
-                                                <p>x 0</p>
-                                            </li>
-                                            <li>
-                                                <img src="assets/image/compect_bulider/icon-lumiere.png" alt="compect element4">
-                                                <p>x 0</p>
-                                            </li>
-                                            <li>
-                                                <img src="assets/image/compect_bulider/icon-vent.png" alt="compect element5">
-                                                <p>x 0</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="compect_role_section">
-                                        <div class="compect_element_title">
-                                            <h3>Roles</h3>
-                                        </div>
-
-                                        <div class="compect_role_items">
-                                            <ul>
-                                                <li>
-                                                    <div class="cm_role_icone_img">
-                                                        <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="role icon1">
-                                                    </div>
-                                                    <p>x 7 in Attack</p>
-                                                </li>
-                                                <li>
-                                                    <div class="cm_role_icone_img">
-                                                        <img src="assets/image/Monter-list/all_role_monter_icon_4.png" alt="role icon1">
-                                                    </div>
-                                                    <p>x 0 in Defense</p>
-                                                </li>
-                                                <li>
-                                                    <div class="cm_role_icone_img">
-                                                        <img src="assets/image/Monter-list/all_role_monter_icon_2.png" alt="role icon1">
-                                                    </div>
-                                                    <p>x 0 in HP</p>
-                                                </li>
-                                                <li>
-                                                    <div class="cm_role_icone_img">
-                                                        <img src="assets/image/Monter-list/all_role_support-ic_3.png" alt="role icon1">
-                                                    </div>
-                                                    <p>x 0 in Support</p>
-                                                </li>
-                                            </ul>   
-                                        </div> 
-                                    </div>
-
-
-                                    <div class="compect_raity_section">
-                                        <div class="compect_element_title">
-                                            <h3>Rarity</h3>
-                                        </div>
-
-                                        <div class="compect_raity_items">
-                                            <ul>
-                                                <li>
-                                                    <span></span>
-                                                    <p>x 0</p>
-                                                </li>
-
-                                                <li>
-                                                    <span class="raity_color_2"></span>
-                                                    <p>x 0</p>
-                                                </li>
-
-                                                <li>
-                                                    <span class="raity_color_3"></span>
-                                                    <p>x 0</p>
-                                                </li>
-
-                                                <li>
-                                                    <span class="raity_color_4"></span>
-                                                    <p>x 7</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="compect_spells_section">
-                                        <div class="compect_element_title">
-                                            <h3>Spells</h3>
-                                        </div>
-
-                                        <div class="spells_item">
-                                            <ul>
-                                                <li>
-                                                    <div class="spells_iiner_iteam">
-                                                        <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="compect_icon">
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="spells_iiner_iteam">
-                                                        <img src="assets/image/compect_bulider/compect_big_spells_2.png" alt="compect_icon">
-                                                    </div>
-                                                </li>
-                                                 <li>
-                                                    <div class="spells_iiner_iteam">
-                                                        <img src="assets/image/compect_bulider/compect_big_spells_2.png" alt="compect_icon">
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="compect_average mobile_block">
-                                        <p>Average mana cost:3.2</p>
-                                        <img src="assets/image/compect_bulider/cb_average_img.png" alt="average">
-                                    </div>
-                                </div>
-
-                                <div class="compect_right_section">
-                                    <div class="compect_right_bg_banner" style="background-image: url(./assets/image/comp_sec-monster_bg.png);">
-                                        <div class="compect_genral_info_section">
-                                            <p class="general-info-title">GENERAL INFO</p>
-                                            <p class="general-info-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec velit leo. Proin nec nunc id purus auctor commodo a vulputate velit. 
-Nullam tincidunt purus in ante pellentesque rutrum vel quis odio. orbi convallis, justo nec posuere interdum, 
-risus tellus bibendum orci, at bibendum orci nisl et nisl.</p>
-                                        </div>
-
-                                        <div class="row desktop_block">
-                                            <div class="col-md-6">
-                                                <div class="compect_plus_box">
-                                                    <a href="#1" class="compect_monster_box compect_monster_box1" target="_blank">    
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box2" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box3" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box4" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-
-                                                    <div class="compect_average">
-                                                        <p>Average mana cost:3.2</p>
-                                                        <img src="assets/image/compect_bulider/cb_average_img.png" alt="average">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="compect_plus_right_box">
-                                                    <a href="#1" class="compect_monster_box compect_monster_box1" target="_blank">    
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box2" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box3" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box4" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-
-                <div class="ct_accordion_wrap accordion_close">
-                    <div class="force_sec bg_br">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="force_heading">
-                                    <div class="bg_img_block">
-                                        <img src="assets/image/user-public/team-3.png">
-                                    </div>
-                                    <h2 class="desk_heading">Le Roi des Fées</h2>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="line_up_ifo">
-                                    <div class="like_icon">
-                                        <span class="like">
-                                            <a href="#1">
-                                                <div class="like-unlike-wrap">
-                                                    <img src="assets/image/pouce_vide.png" alt="">
-                                                    <img src="assets/image/like-active.png" alt="" class="active-like-inlike">
-                                                </div>
-                                                <span>2700</span>
-                                            </a>
-                                        </span>
-                                        <span class="unlike">
-                                            <a href="#1">
-                                                <div class="like-unlike-wrap">
-                                                    <img src="assets/image/Pouce_bas.png" alt="">
-                                                    <img src="assets/image/unlike-active.png" alt="" class="active-like-inlike">
-                                                </div>
-                                                <span>32</span>
-                                            </a>
-                                        </span>
-                                    </div>
-                                    <div class="line_up_sec text-center">
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                            <div class="contain_shape">
-                                                <div class="shape"><img src="assets/image/colleen-thumb-1.jpg" alt=""></div>
-                                            </div>
-                                            <span>Roid</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                            <div class="contain_shape">
-                                                <div class="shape"><img src="assets/image/hwadam-thumb.jpg" alt=""></div>
-                                            </div>
-                                            <span>Hwadam</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                            <div class="contain_shape">
-                                                <div class="shape"><img src="assets/image/train-thumb.jpg" alt=""></div>
-                                            </div>
-                                            <span>Thrain</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                            <div class="contain_shape">
-                                                <div class="shape"><img src="assets/image/belladeon-thumb.jpg" alt=""></div>
-                                            </div>
-                                            <span>Belladeon</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                            <div class="contain_shape">
-                                                <div class="shape"><img src="assets/image/ramagos-thumb.jpg" alt=""></div>
-                                            </div>
-                                            <span>Ramagos</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                            <div class="contain_shape">
-                                                <div class="shape"><img src="assets/image/orochi-thumb.jpg" alt=""></div>
-                                            </div>
-                                            <span>Orochi</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                            <div class="contain_shape">
-                                                <div class="shape"><img src="assets/image/mikene-thumb.jpg" alt=""></div>
-                                            </div>
-                                            <span>Mikene</span>
-                                            </a>
-                                        </div>
-                                        <div class="line_up_monster">
-                                            <a href="#0" target="_blank">
-                                            <div class="contain_shape">
-                                                <div class="shape"><img src="assets/image/megan-thumb.jpg" alt=""></div>
-                                            </div>
-                                            <span>Megan</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="down_arrow ct_accordion_lable">
-                                        <i class="fal fa-angle-down"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content_tab ct_accordion_info comp_builder" style="display: none;">
-                        <div class="compact_bulider_element_section">
-                            <div class="compact_bulider_inner_section">
-                                <div class="compect_left_element_bar">
-                                    <div class="colleen_section mobile_block">
-                                        <ul>
-                                            <li>
-                                                <p><span>1</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-feu.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>2</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-lumiere.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>3</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-feu.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>4</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-lumiere.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>5</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-vent.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>6</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-vent.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>7</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-eau.png" alt="collen icon">
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <p><span>8</span>. Colleen</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="assets/image/compect_bulider/icon-eau.png" alt="collen icon">
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-
-                                    <div class="compect_genral_info_section mobile-genral_info d-md-none">
-                                        <h3 class="general-info-title">General Info</h3>
-                                        <p class="general-info-desc mCustomScrollbar">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec velit leo. Proin nec nunc id purus auctor commodo a vulputate velit. 
-                                        Nullam tincidunt purus in ante pellentesque rutrum vel quis odio. orbi convallis, justo nec posuere interdum, 
-                                        risus tellus bibendum orci, at bibendum orci nisl et nisl.</p>
-                                    </div>
-                                    <div class="compect_element_section">
-                                        <div class="compect_element_title">
-                                            <h3>Elements</h3>
-                                        </div>
-
-                                        <ul>
-                                            <li>
-                                                <img src="assets/image/compect_bulider/icon-eau.png" alt="compect element1">
-                                                <p>x 1</p>
-                                            </li>
-                                            <li>
-                                                <img src="assets/image/compect_bulider/icon-tenebre.png" alt="compect element2">
-                                                <p>x 0</p>
-                                            </li>
-                                            <li>
-                                                <img src="assets/image/compect_bulider/icon-feu.png" alt="compect element3">
-                                                <p>x 0</p>
-                                            </li>
-                                            <li>
-                                                <img src="assets/image/compect_bulider/icon-lumiere.png" alt="compect element4">
-                                                <p>x 0</p>
-                                            </li>
-                                            <li>
-                                                <img src="assets/image/compect_bulider/icon-vent.png" alt="compect element5">
-                                                <p>x 0</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="compect_role_section">
-                                        <div class="compect_element_title">
-                                            <h3>Roles</h3>
-                                        </div>
-
-                                        <div class="compect_role_items">
-                                            <ul>
-                                                <li>
-                                                    <div class="cm_role_icone_img">
-                                                        <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="role icon1">
-                                                    </div>
-                                                    <p>x 7 in Attack</p>
-                                                </li>
-                                                <li>
-                                                    <div class="cm_role_icone_img">
-                                                        <img src="assets/image/Monter-list/all_role_monter_icon_4.png" alt="role icon1">
-                                                    </div>
-                                                    <p>x 0 in Defense</p>
-                                                </li>
-                                                <li>
-                                                    <div class="cm_role_icone_img">
-                                                        <img src="assets/image/Monter-list/all_role_monter_icon_2.png" alt="role icon1">
-                                                    </div>
-                                                    <p>x 0 in HP</p>
-                                                </li>
-                                                <li>
-                                                    <div class="cm_role_icone_img">
-                                                        <img src="assets/image/Monter-list/all_role_support-ic_3.png" alt="role icon1">
-                                                    </div>
-                                                    <p>x 0 in Support</p>
-                                                </li>
-                                            </ul>   
-                                        </div> 
-                                    </div>
-
-
-                                    <div class="compect_raity_section">
-                                        <div class="compect_element_title">
-                                            <h3>Rarity</h3>
-                                        </div>
-
-                                        <div class="compect_raity_items">
-                                            <ul>
-                                                <li>
-                                                    <span></span>
-                                                    <p>x 0</p>
-                                                </li>
-
-                                                <li>
-                                                    <span class="raity_color_2"></span>
-                                                    <p>x 0</p>
-                                                </li>
-
-                                                <li>
-                                                    <span class="raity_color_3"></span>
-                                                    <p>x 0</p>
-                                                </li>
-
-                                                <li>
-                                                    <span class="raity_color_4"></span>
-                                                    <p>x 7</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="compect_spells_section">
-                                        <div class="compect_element_title">
-                                            <h3>Spells</h3>
-                                        </div>
-
-                                        <div class="spells_item">
-                                            <ul>
-                                                <li>
-                                                    <div class="spells_iiner_iteam">
-                                                        <img src="assets/image/compect_bulider/compect_big_spells_1.png" alt="compect_icon">
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="spells_iiner_iteam">
-                                                        <img src="assets/image/compect_bulider/compect_big_spells_2.png" alt="compect_icon">
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="spells_iiner_iteam">
-                                                        <img src="assets/image/compect_bulider/compect_big_spells_2.png" alt="compect_icon">
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="compect_average mobile_block">
-                                        <p>Average mana cost:3.2</p>
-                                        <img src="assets/image/compect_bulider/cb_average_img.png" alt="average">
-                                    </div>
-                                </div>
-
-                                <div class="compect_right_section">
-                                    <div class="compect_right_bg_banner" style="background-image: url(./assets/image/comp_sec-monster_bg.png);">
-                                        <div class="compect_genral_info_section">
-                                            <p class="general-info-title">GENERAL INFO</p>
-                                            <p class="general-info-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec velit leo. Proin nec nunc id purus auctor commodo a vulputate velit. 
-Nullam tincidunt purus in ante pellentesque rutrum vel quis odio. orbi convallis, justo nec posuere interdum, 
-risus tellus bibendum orci, at bibendum orci nisl et nisl.</p>
-                                        </div>
-
-                                        <div class="row desktop_block">
-                                            <div class="col-md-6">
-                                                <div class="compect_plus_box">
-                                                    <a href="#1" class="compect_monster_box compect_monster_box1" target="_blank">    
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box2" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box3" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box4" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-
-                                                    <div class="compect_average">
-                                                        <p>Average mana cost:3.2</p>
-                                                        <img src="assets/image/compect_bulider/cb_average_img.png" alt="average">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="compect_plus_right_box">
-                                                    <a href="#1" class="compect_monster_box compect_monster_box1" target="_blank">    
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box2" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box3" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                    <a href="#1" class="compect_monster_box compect_monster_box4" target="_blank">
-                                                        <div class="monster_img">
-                                                            <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon" class="icon_top_monster">
-                                                                <span>4</span>
-                                                            </div>
-                                                            <img src="assets/image/compect_bulider/cb_monster.png" alt="monster" class="monster-individual">
-                                                            <img src="assets/image/compect_bulider/cb_right_bar_icon.png" alt="right bar" class="icon_monster">
-                                                        </div>
-                                                        <div class="cm_monster_name">
-                                                            <span class="round-heroic"> </span>
-                                                            <p>Poséidon</p>
-                                                            <img src="assets/image/Monter-list/all_role_monter_icon_1.png" alt="cm icon">
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-                
-            </div>
-
-            <!-- Pagination Section -->
-             <div class="pagination_sec text-center pt-3">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="pagination_number">
-                            <span>
-                                <a href="#">
-                                    <i class="fal fa-angle-left"></i>
-                                </a> 
-                                <a href="#">1</a> 
-                                <a href="#">2</a> 
-                                <a href="#">3</a> ... <a href="#">8</a> 
-                                <a href="#">
-                                    <i class="fal fa-angle-right"></i>
-                                </a>
-                            </span>
-                        </div>
-                    </div>
+                <!-- Pagination Section Strat -->
+                <div class="pagination_sec text-center pt-3" id="paginate">
+                    {!! $team_comps->links('frontend.custom-pagination') !!}
                 </div>
+                <!-- Pagination Section End -->
             </div>
+        </div>
 
 
+        
             <!-- Rangdoll Lost section -->
             <div class="monster_lost_sec-heading mb_bg mt-50">
                 <div class="text-center ">
-                    <h2>Rune Sets published by Hakio</h2>
+                    <h2>Rune Sets published by {{ Auth::user()->name }}</h2>
                 </div>
             </div>
-            <div class="monster_lost_sec bg_br">                
+        <div id="runeset_pagination">
+            <div class="monster_lost_sec bg_br">
+                @if(count($rune_sets))
+                @foreach($rune_sets as $rune_set)
                 <div class="row mb_padd border-bottom">
                     <div class="col-md-6">
                         <div class="lost_inner_sec_left runes-selector-wrapper">
                             <div class="lost_img runes-selector-inner">
-                                <img src="assets/image/runes-selector.png" alt="" class="runes-selector-img">
-                                <img src="assets/image/rune.png" alt="" class="rune-img rune-1-img">
-                                <img src="assets/image/rune.png" alt="" class="rune-img rune-2-img">
-                                <img src="assets/image/rune.png" alt="" class="rune-img rune-3-img">
+                                <img src="{{ asset('assets/image/runes-selector.png') }}" alt="" class="runes-selector-img">
+                                <img src="{{ asset('assets/image/rune.png') }}" alt="" class="rune-img rune-1-img">
+                                <img src="{{ asset('assets/image/rune.png') }}" alt="" class="rune-img rune-2-img">
+                                <img src="{{ asset('assets/image/rune.png') }}" alt="" class="rune-img rune-3-img">
                             </div>
                             <div class="lost_info">
-                                <h3>Ragdoll Tank - Top #30</h3>
+                                <h3>{{ $rune_set->rs_name }}</h3>
+                                @php
+                                    $rune = DB::table('runes')->where('r_id', $rune_set->rs_rune)->first();
+                                    $skill_stone = DB::table('skill_stones')->where('skill_id', $rune_set->rs_skill_stones)->first();
+                                    $rune_set->rs_substats = json_decode($rune_set->rs_substats);
+                                @endphp
                                 <ul>
-                                    <li><span>Rune Set to use : </span>Defense <img src="assets/image/rune-def.png" alt="" class="icons-after-text"></li>
+                                    <li><span>Rune Set to use : </span>{{ $rune->r_name }} <img src="{{ asset('images/game/icons/runes/'.$rune->r_icon) }}" alt=""
+                                            class="icons-after-text"></li>
                                     <li>
-                                        <span>Prioritized Sub-stats :</span>  
-                                        <img src="assets/image/def-icon.png" alt="" class="icons-after-text">
-                                        <img src="assets/image/hp-icon.png" alt="" class="">
-                                        <img src="assets/image/res-icon.png" alt="" class="">
+                                        <span>Prioritized Sub-stats :</span>
+                                        @foreach($rune_set->rs_substats as $rs)
+                                        @php
+                                            $sub_stat = DB::table('sub_stats')->where('sub_id', $rs)->first();
+                                        @endphp
+                                        <img src="{{ asset('images/game/icons/sub-stats/'.$sub_stat->sub_icon) }}" alt="">
+                                        @endforeach
                                     </li>
-                                    <li><span>Skill Stone : </span>Tooth for a Tooth<img src="assets/image/ragdoll.png" alt="" class="icons-after-text"></li>
-                                    <li><span>Position in comp : </span>1</li>
+                                    <li><span>Skill Stone : </span>{{ $skill_stone->skill_name }}<img src="{{ asset('images/game/icons/skill-stones/'.$skill_stone->skill_icon) }}"
+                                            alt="" class="icons-after-text"></li>
+                                    <li><span>Position in comp : </span>{{ $rune_set->rs_comp_position }}</li>
                                 </ul>
-                                <p class="date">By <span><a href="#1">Hakio</a></span> on the 16/04/2021</p>
+                                @php
+                                    $user = DB::table('users')->where('id', $rune_set->rs_user_id)->first();
+                                @endphp
+                                <p class="date">By <span><a href="#1">{{ $user->name }}</a></span> on the {{ $rune_set->created_at->format('m/d/Y') }}</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="lost_inner_sec">
-                            <div class="cm_scroll mCustomScrollbar" >
+                            <div class="cm_scroll mCustomScrollbar">
                                 <div class="lost_content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius nunc nec mauris sagittis, non vehicula eros blandit. Cras aliquam elit ultrices nisi tempus, sit amet pretium justo dignissim. </p>
-
-                                    <p>Proin iaculis ut mauris at venenatis. Etiam iaculis sapien blandit quam faucibus, eu lobortis erat semper. Donec consectetur sit amet nibh at lobortis. Sed sit amet eros et eros facilisis efficitur. Proin at augue est. Aliquam commodo tristique malesuada. Donec eget suscipit enim. Aliquam commodo tristique malesuada. Donec eget suscipit enim.</p>
+                                    <p>{{ $rune_set->rs_comment }}</p>
                                 </div>
                             </div>
                         </div>
@@ -1469,115 +423,81 @@ risus tellus bibendum orci, at bibendum orci nisl et nisl.</p>
                             <span class="like">
                                 <a href="#1">
                                     <div class="like-unlike-wrap">
-                                        <img src="assets/image/pouce_vide.png" alt="" >
+                                        <img src="assets/image/pouce_vide.png" alt="">
                                         <img src="assets/image/like-active.png" alt="" class="active-like-inlike">
                                     </div>
-                                    2700
+                                    0
                                 </a>
                             </span>
                             <span class="unlike">
                                 <a href="#1">
                                     <div class="like-unlike-wrap">
-                                        <img src="assets/image/Pouce_bas.png" alt="" >
+                                        <img src="assets/image/Pouce_bas.png" alt="">
                                         <img src="assets/image/unlike-active.png" alt="" class="active-like-inlike">
                                     </div>
-                                   32
+                                    0
                                 </a>
                             </span>
                         </div>
                     </div>
                 </div>
-                <div class="row  mb_padd">
-                    <div class="col-md-6">
-                        <div class="lost_inner_sec_left runes-selector-wrapper">
-                            <div class="lost_img runes-selector-inner">
-                                <img src="assets/image/runes-selector.png" alt="" class="runes-selector-img">
-                                <img src="assets/image/rune.png" alt="" class="rune-img rune-1-img">
-                                <img src="assets/image/rune.png" alt="" class="rune-img rune-2-img">
-                                <img src="assets/image/rune.png" alt="" class="rune-img rune-3-img">
-                            </div>
-                            <div class="lost_info">
-                                <h3>Colleen Not Tank - The best</h3>
-                                <ul>
-                                    <li><span>Rune Set to use: </span>Defense <img src="assets/image/rune-def.png" alt="" class="icons-after-text"></li>
-                                    <li>
-                                        <span>Prioritized Sub-stats :</span> 
-                                        <img src="assets/image/def-icon.png" alt="" class="icons-after-text">
-                                        <img src="assets/image/hp-icon.png" alt="">
-                                        <img src="assets/image/res-icon.png" alt="">
-                                    </li>
-                                    <li><span>Prioritized Sub-stats :</span>Tooth for a Tooth<img src="assets/image/ragdoll.png" alt="" class="icons-after-text"></li>
-                                    <li><span>Position in comp : </span>1</li>
-                                </ul>
-                                <p class="date">By <span><a href="#1">Hakio</a></span> on the 16/04/2021</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="lost_inner_sec">
-                            <div class="cm_scroll mCustomScrollbar" >
-                                <div class="lost_content">
-                                    <p>I don't play Colleen tank because we miss his powerful attack. Rather, you have to play it Violent and put it in position 4.</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius nunc nec mauris sagittis, non vehicula eros blandit. Cras aliquam elit ultrices nisi tempus, sit amet pretium justo dignissim. </p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius nunc nec mauris sagittis, non vehicula eros blandit. Cras aliquam elit ultrices nisi tempus, sit amet pretium justo dignissim. </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-1">
-                        <div class="like_icon">
-                            <span class="like">
-                                <a href="#1">
-                                    <div class="like-unlike-wrap">
-                                        <img src="assets/image/pouce_vide.png" alt="" >
-                                        <img src="assets/image/like-active.png" alt="" class="active-like-inlike">
-                                    </div>
-                                    2700
-                                </a>
-                            </span>
-                            <span class="unlike">
-                                <a href="#1">
-                                    <div class="like-unlike-wrap">
-                                        <img src="assets/image/Pouce_bas.png" alt="" >
-                                        <img src="assets/image/unlike-active.png" alt="" class="active-like-inlike">
-                                    </div>
-                                   32
-                                </a>
-                            </span>
-                        </div>
-                    </div>
+                @endforeach
+                @else
+                <div class="row mb_padd border-bottom" style="justify-content: center">
+                    There is no item yet... Be the first to add and help the community!
                 </div>
+                @endif
             </div>
 
             <!-- Pagination Section -->
             <div class="pagination_sec text-center pt-3">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="pagination_number">
-                            <span>
-                                <a href="#">
-                                    <i class="fal fa-angle-left"></i>
-                                </a> 
-                                <a href="#">1</a> 
-                                <a href="#">2</a> 
-                                <a href="#">3</a> ... <a href="#">8</a> 
-                                <a href="#">
-                                    <i class="fal fa-angle-right"></i>
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
+                {!! $rune_sets->links('frontend.custom-pagination') !!}
             </div>
-
         </div>
-        <!-- Body Content Close -->
-
 
     </div>
-    <!-- Content Start-->
+    <!-- Body Content Close -->
+
+
+</div>
+<!-- Content Start-->
 @endsection
 
 @section('scripts')
+<script>
+$(document).ready(function() {
 
+    $(document).on('click', '#team_comps_pagination #prev, #team_comps_pagination .page-number, #team_comps_pagination #next', function() {
+        console.log($(this).data('href'));
+        var url = $(this).data('href');
+
+        $.ajax({
+            url: url,
+            method: "get",
+            data: { 
+                team_comps: 1
+            },
+            success: function(data) {
+                $('#team_comps_pagination').html(data);
+            }
+        })
+    });
+
+    $(document).on('click', '#runeset_pagination #prev, #runeset_pagination .page-number, #runeset_pagination #next', function() {
+        console.log($(this).data('href'));
+        var url = $(this).data('href');
+
+        $.ajax({
+            url: url,
+            method: "get",
+            data: { 
+                rune_set: 1
+            },
+            success: function(data) {
+                $('#runeset_pagination').html(data);
+            }
+        })
+    });
+});
+</script>
 @endsection

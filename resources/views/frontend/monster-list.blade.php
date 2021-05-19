@@ -159,7 +159,7 @@
     });
 
     $(document).ready(function() {
-        $('.monster-item').on('click', function() {
+        $(document).on('click', '.monster-item', function() {
             var id = $(this).data('value');
             location.href = "{{ route('monster-detail') }}?id=" + id;
         })

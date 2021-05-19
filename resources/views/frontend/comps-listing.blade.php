@@ -506,67 +506,66 @@ function filterFunction() {
 }
 
 $(document).ready(function() {
-        $(".element, .monster").on('change', function() {
-            filter();
-        })
-
-        $(document).on('click', '.number-page, .prev-page, .next-page', function() {
-            var page_url = $(this).data('href');
-
-            let filterlink = '';
-            $(".element, .monster").each(function() {
-                if ($(this).is(':checked')) {
-                    filterlink += '&'+ $(this).attr('name') + '=' + $(this).val();
-                }
-            });
-            filterlink += '&' + $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
-            filterlink += '&sort=' + $('.btn_active').data('sort');
-
-            var url = page_url + encodeURI(filterlink);
-;
-            $.ajax({
-                url: url,
-                method: "get",
-                success: function(data) {
-                    $('#team_comps_list').html(data);
-                }
-            })
-        })
+    $(".element, .monster").on('change', function() {
+        filter();
     })
 
-    function filter() {
-        let filterlink = '';
+    $(document).on('click', '.number-page, .prev-page, .next-page', function() {
+        var page_url = $(this).data('href');
 
+        let filterlink = '';
         $(".element, .monster").each(function() {
             if ($(this).is(':checked')) {
-                if (filterlink == '') {
-                    filterlink += "{{route('get-filter-team-comps')}}" + '?'+ $(this).attr('name') + '=' + $(this).val();
-                } else {
-                    filterlink += '&' + $(this).attr('name') + '=' + $(this).val();
-                }
+                filterlink += '&'+ $(this).attr('name') + '=' + $(this).val();
             }
         });
+        filterlink += '&' + $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
+        filterlink += '&sort=' + $('.btn_active').data('sort');
 
-        if (filterlink == '') {
-            filterlink += "{{route('get-filter-team-comps')}}" + '?'+ $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
-        } else {
-            filterlink += '&' + $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
-        }
-
-        if (filterlink == '') {
-            filterlink += "{{route('get-filter-team-comps')}}" + '?sort=' + $('.btn_active').data('sort');
-        } else {
-            filterlink += '&sort=' + $('.btn_active').data('sort');
-        }
-
+        var url = page_url + encodeURI(filterlink);
         $.ajax({
-            url: encodeURI(filterlink),
+            url: url,
             method: "get",
             success: function(data) {
                 $('#team_comps_list').html(data);
             }
         })
+    })
+})
+
+function filter() {
+    let filterlink = '';
+
+    $(".element, .monster").each(function() {
+        if ($(this).is(':checked')) {
+            if (filterlink == '') {
+                filterlink += "{{route('get-filter-team-comps')}}" + '?'+ $(this).attr('name') + '=' + $(this).val();
+            } else {
+                filterlink += '&' + $(this).attr('name') + '=' + $(this).val();
+            }
+        }
+    });
+
+    if (filterlink == '') {
+        filterlink += "{{route('get-filter-team-comps')}}" + '?'+ $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
+    } else {
+        filterlink += '&' + $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
     }
+
+    if (filterlink == '') {
+        filterlink += "{{route('get-filter-team-comps')}}" + '?sort=' + $('.btn_active').data('sort');
+    } else {
+        filterlink += '&sort=' + $('.btn_active').data('sort');
+    }
+
+    $.ajax({
+        url: encodeURI(filterlink),
+        method: "get",
+        success: function(data) {
+            $('#team_comps_list').html(data);
+        }
+    })
+}
 
 </script>
 @endsection

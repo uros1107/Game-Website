@@ -48,17 +48,17 @@ $(document).ready(function() {
 
   // -------------------------- Team comp Js ----------------------------
   // Add new Team Comp
-  $(".add-team-comp").on("click", function() {
+  $(document).on("click", ".add-team-comp", function() {
     location.href = main_url + 'team-comp-add';
   })
 
   // On Edit
-  $('.edit-team-comp').on("click",function(e){
+  $(document).on("click", ".edit-team-comp", function() {
     location.href = main_url + 'team-comp-edit?c_id=' + $(this).data('value');
   });
 
   // On Delete
-  $('.delete-team-comp').on("click", function(e){
+  $(document).on("click", ".delete-team-comp", function() {
     e.stopPropagation();
 
     $.ajaxSetup({

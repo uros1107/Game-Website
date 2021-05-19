@@ -16,11 +16,24 @@ header('Access-Control-Allow-Headers: *');
 
 
 // Auth::routes();
+Route::get('/login', function() {
+    return redirect()->route('index');
+});
 Route::post('/login', 'Auth\LoginController@user_login')->name('login');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
+Route::post('/update', 'Auth\RegisterController@update')->name('update');
+
+
+Route::group([
+    'middleware' => 'auth'
+  ], function() {
+    Route::get('/user-private', 'Frontend\FrontendController@private')->name('user-private');
+    Route::get('/user-public', 'Frontend\FrontendController@public')->name('user-public');
+});
 
 // Route url
 Route::get('/', 'Frontend\FrontendController@index')->name('index');
+
 
 Route::get('/monsters', 'Frontend\MonsterController@monster_list')->name('monster-list');
 Route::get('/monster-detail', 'Frontend\MonsterController@monster_detail')->name('monster-detail');

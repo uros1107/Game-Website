@@ -197,12 +197,12 @@
             <div class="main--content-header-right">
                 @if(Auth::user())
                 <div class="main-content--single  main--content-profile">
-                    <a href="#1">
+                    <a href="{{ route('user-public') }}">
                         <i class="fad fa-user"></i>
                     </a>
                 </div>
                 <div class="main-content--single  main--content-setting">
-                    <a href="#1">
+                    <a href="{{ route('user-private') }}">
                         <i class="fad fa-cogs"></i>
                     </a>
                 </div>
@@ -277,7 +277,7 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="register_form ">
-                            <form class="register-form personal_form" action="{{ route('register') }}" method="POST">
+                            <form id="register_form" class="register-form personal_form" method="POST">
                                 {{ csrf_field() }}
                                 <div class="personal_info">
                                     <div class="form_field">
@@ -285,6 +285,11 @@
                                     </div>
                                     <div class="form_field">
                                         <input type="email" placeholder="Email*" name="email" required />
+                                    </div>
+                                    <div class="d-none" id="error_message">
+                                        <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
+                                            <p>Email should be unique.</p>
+                                        </span>
                                     </div>
                                     <div class="form_field">
                                         <input type="password" placeholder="Password*" name="password" required />
@@ -307,7 +312,7 @@
                                     </div>
                                 </div>
                             </form>
-                            <form class="login-form personal_form" action="{{ route('login') }}" method="POST">
+                            <form id="login_form" class="login-form personal_form" action="{{ route('login') }}" method="POST">
                                 {{ csrf_field() }}
                                 <div class="personal_info">
                                     <div class="form_field">
@@ -371,6 +376,31 @@
         $('#login_popup').modal('toggle');
         $(".register-form").parents('.register_content').removeClass('hide_register');                 
         $(".login-form").parents('.register_content').addClass('show_login');
+    })
+
+    $(document).on('submit', '#register_form', function(e) {
+        e.preventDefault();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "{{ route('register') }}",
+            method: "post",
+            data: $(this).serialize(),
+            success: function(data) {
+                if(data['success']) {
+                    location.reload();
+                } else {
+                    $('#error_message').removeClass('d-none');
+                }
+            },
+            error: function(error) {
+                alert(error);
+            }
+        })
     })
     
     </script>

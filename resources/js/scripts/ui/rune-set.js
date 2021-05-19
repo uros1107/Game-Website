@@ -48,17 +48,17 @@ $(document).ready(function() {
 
   // -------------------------- Rune Set Js ----------------------------
   // Add new Rune Set
-  $(".add-rune-set").on("click", function() {
+  $(document).on("click", ".add-rune-set", function() {
     location.href = main_url + 'rune-set-add';
   })
 
   // On Edit
-  $('.edit-rune-set').on("click",function(e){
+  $(document).on("click", ".edit-rune-set", function() {
     location.href = main_url + 'rune-set-edit?id=' + $(this).data('value');
   });
 
   // On Delete
-  $('.delete-rune-set').on("click", function(e){
+  $(document).on("click", ".delete-rune-set", function() {
     e.stopPropagation();
 
     $.ajaxSetup({

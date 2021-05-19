@@ -117,12 +117,13 @@ $(document).ready(function() {
 
   // ------------------------ Monster Js ----------------------------
   // Add new monster
-  $(".add-monster").on("click", function() {
+
+  $(document).on("click", ".add-monster", function() {
     location.href = main_url + 'monster-add';
   })
 
   // On Delete
-  $('.monster-delete').on("click", function(e){
+  $(document).on("click", ".monster-delete", function() {
     e.stopPropagation();
 
     $.ajaxSetup({
@@ -143,23 +144,23 @@ $(document).ready(function() {
   });
 
   // On Edit
-  $('.monster-edit').on("click",function(e){
+  $(document).on("click", ".monster-edit", function() {
     location.href = main_url + 'monster-edit?id=' + $(this).data('value');
   });
 
   // -------------------------- Spell Js ----------------------------
   // Add new spell
-  $(".add-spell").on("click", function() {
+  $(document).on("click", ".add-spell", function() {
     location.href = main_url + 'spell-add';
   })
 
   // On Edit
-  $('.action-edit').on("click",function(e){
+  $(document).on("click", ".action-edit", function() {
     location.href = main_url + 'spell-edit?id=' + $(this).data('value');
   });
 
   // On Delete
-  $('.action-delete').on("click", function(e){
+  $(document).on("click", ".action-delete", function() {
     e.stopPropagation();
 
     $.ajaxSetup({
@@ -181,12 +182,12 @@ $(document).ready(function() {
 
   // -------------------------- Rune Set Js ----------------------------
   // Add new spell
-  $(".add-rune-set").on("click", function() {
+  $(document).on("click", ".add-rune-set", function() {
     location.href = main_url + 'rune-set-add';
   })
 
   // On Edit
-  $('.edit-rune-set').on("click",function(e){
+  $(document).on("click", ".edit-rune-set", function() {
     location.href = main_url + 'rune-set-edit?id=' + $(this).data('value');
   });
 

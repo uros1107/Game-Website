@@ -6,11 +6,11 @@
                 <span>
                 
                     @if ($paginator->onFirstPage())
-                        <a href="#" class="disabled">
+                        <a class="disabled">
                             <i class="fal fa-angle-left"></i>
                         </a>
                     @else
-                        <a href="{{ $paginator->previousPageUrl() }}" rel="prev"><i class="fal fa-angle-left"></i></a>
+                        <a data-href="{{ $paginator->previousPageUrl() }}" id="prev" rel="prev"><i class="fal fa-angle-left"></i></a>
                     @endif
                 
                     @foreach ($elements as $element)
@@ -24,18 +24,18 @@
                                 @if ($page == $paginator->currentPage())
                                     <a class="active my-active" href="#">{{ $page }}</a>
                                 @else
-                                    <a href="{{ $url }}">{{ $page }}</a>
+                                    <a data-href="{{ $url }}" class="page-number">{{ $page }}</a>
                                 @endif
                             @endforeach
                         @endif
                     @endforeach
                     
                     @if ($paginator->hasMorePages())
-                        <a href="{{ $paginator->nextPageUrl() }}" rel="next">
+                        <a data-href="{{ $paginator->nextPageUrl() }}" id="next" rel="next">
                             <i class="fal fa-angle-right"></i>
                         </a>
                     @else
-                        <a href="#" class="disabled">
+                        <a class="disabled">
                             <i class="fal fa-angle-right"></i>
                         </a>
                     @endif

@@ -34,8 +34,14 @@ class MonsterController extends Controller
     {
         $id = $request->id;
         $monster = Monster::where('id', $id)->first();
-        $rune_sets = Runeset::where('rs_monster_id', $monster->id)->paginate(3);
-        $team_comps = TeamComp::whereRaw("JSON_CONTAINS(c_position,'".$monster->id."','$')=1")->paginate(5);
+        $rune_sets = Runeset::where('rs_monster_id', $monster->id)->where('verify', 1)->paginate(3);
+        $team_comps = TeamComp::whereRaw("JSON_CONTAINS(c_position,'".$monster->id."','$')=1")->where('c_verify', 1)->paginate(5);
+
+        if($request->ajax() && $request->team_comps) {
+            return view('frontend.ajax-comps-pagination', compact('team_comps'));
+        } else if($request->ajax() && $request->rune_set) {
+            return view('frontend.ajax-runeset-pagination', compact('rune_sets', 'monster'));
+        }
 
         if($monster->special_monster) {
             return view('frontend.monster-special', compact('monster', 'rune_sets', 'team_comps'));
@@ -137,7 +143,7 @@ class MonsterController extends Controller
 
     public function comps_list()
     {
-        $team_comps = TeamComp::paginate(10);
+        $team_comps = TeamComp::where('c_verify', 1)->paginate(10);
         return view('frontend.comps-listing', compact('team_comps'));
     }
 
@@ -198,10 +204,11 @@ class MonsterController extends Controller
     public function add_rune_set(Request $request)
     {
         $monster_id = $request->monster_id;
+        $monster = Monster::where('id', $monster_id)->first();
         $user_id = Auth::user()->id;
 
         return view('frontend.add-rune-set', [
-            'monster_id' => $monster_id,
+            'monster' => $monster,
             'user_id' => $user_id
         ]);
     }
