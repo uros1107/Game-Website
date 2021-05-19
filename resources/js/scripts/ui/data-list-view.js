@@ -123,7 +123,7 @@ $(document).ready(function() {
   })
 
   // On Delete
-  $(document).on("click", ".monster-delete", function() {
+  $(document).on("click", ".monster-delete", function(e) {
     e.stopPropagation();
 
     $.ajaxSetup({
@@ -160,7 +160,7 @@ $(document).ready(function() {
   });
 
   // On Delete
-  $(document).on("click", ".action-delete", function() {
+  $(document).on("click", ".action-delete", function(e) {
     e.stopPropagation();
 
     $.ajaxSetup({

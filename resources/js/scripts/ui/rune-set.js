@@ -58,7 +58,7 @@ $(document).ready(function() {
   });
 
   // On Delete
-  $(document).on("click", ".delete-rune-set", function() {
+  $(document).on("click", ".delete-rune-set", function(e) {
     e.stopPropagation();
 
     $.ajaxSetup({

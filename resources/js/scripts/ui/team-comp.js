@@ -58,7 +58,7 @@ $(document).ready(function() {
   });
 
   // On Delete
-  $(document).on("click", ".delete-team-comp", function() {
+  $(document).on("click", ".delete-team-comp", function(e) {
     e.stopPropagation();
 
     $.ajaxSetup({
