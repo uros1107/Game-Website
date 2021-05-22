@@ -99,7 +99,8 @@ class TeamCompController extends Controller
         $teamcomp_info['c_spell'] = json_encode($c_spell);
         
         unset($teamcomp_info['_token']);
-        $teamcomp_info['c_slug'] = str_slug($teamcomp_info['c_name'],'-').'-'.strtolower(str_random(8));
+        $teamcomp_info['c_slug'] = str_slug($teamcomp_info['c_name'],'-').'-'.strtolower(str_random(4));
+        $teamcomp_info['c_fr_slug'] = str_slug($teamcomp_info['c_fr_name'],'-').'-'.strtolower(str_random(4));
         
         $teamcomp->update($teamcomp_info);
 

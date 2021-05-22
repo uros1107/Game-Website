@@ -9,11 +9,29 @@
     <meta charset="UTF-8" />
     <meta name="HandheldFriendly" content="true">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    @if(isset($monster) && app()->getlocale() == 'en')
+    <meta name="keywords" content="{{ !empty($monster->meta_title) ?  $monster->meta_title : '' }}">
+    <meta name="description" content="{{ $monster->meta_description != null ? $monster->meta_description : strip_tags($monster->meta_description) }}">
+    <meta property="og:title" content="lostcenturia.gg" />
+	<meta property="og:description" content="lostcenturia.gg" />
+    <meta property="og:image" content="{{asset('images/game/og_images/'.$monster->og_image)}}" />
+    <meta name="author" content="lostcenturia.gg">
+    @elseif(isset($monster) && app()->getlocale() == 'fr')
+    <meta name="keywords" content="{{ !empty($monster->fr_meta_title) ?  $monster->fr_meta_title : '' }}">
+    <meta name="description" content="{{ $monster->fr_meta_description != null ? $monster->fr_meta_description : strip_tags($monster->fr_meta_description) }}">
+    <meta property="og:title" content="lostcenturia.gg" />
+	<meta property="og:description" content="lostcenturia.gg" />
+    <meta property="og:image" content="{{asset('images/game/og_images/'.$monster->og_image)}}" />
+    <meta name="author" content="lostcenturia.gg">
+    @else
+    <meta name="keywords" content="lostcenturia.gg">
+    <meta name="description" content="lostcenturia.gg">
+    <meta property="og:title" content="lostcenturia.gg" />
+	<meta property="og:description" content="lostcenturia.gg" />
+    <meta name="author" content="lostcenturia.gg">
+    @endif
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -47,16 +65,17 @@
 
         <div class="mobile-nav d-flex d-xl-none">
             <div>
-                <a href="{{ route('index') }}">
+                <a href="{{ route('index', Session::get('lang')) }}">
                     <img src="{{ asset('assets/image/logo-lost-centuria.svg') }}" alt="logo" class="">
                 </a>
             </div>
             <div class="main--content-search text-center">
                 <div class="mobile-search-inner">
-                    <input type="text" class="seach-input" id="m-monster-search" placeholder="Search for a monster...">
+                    <input type="text" class="seach-input" id="m-monster-search" placeholder="@lang('layout.search_monster')">
                     <i class="fa fa-search"></i>
                 </div>
             </div>
+
 
             <a href="#1" id="toggle" class="nav-mobile-btn">
                 <span></span>
@@ -69,7 +88,7 @@
         <div id="sidebar-container" class="bg-dark-blue sidebar-expanded d-xl-block">
             <div
                 class="logo list-group-item sidebar-separator-title text-muted d-none d-xl-flex align-items-center menu-collapsed">
-                <a href="{{ route('index') }}">
+                <a href="{{ route('index', Session::get('lang')) }}">
                     <img src="{{ asset('assets/image/logo-collapse-menu.svg') }}" alt="logo" class="collapse-menu">
                     <img src="{{ asset('assets/image/logo-lost-centuria.svg') }}" alt="logo" class="expand-menu">
                 </a>
@@ -77,65 +96,75 @@
             <ul class="list-group">
                 <!-- Monstres Menu -->
                 <li>
-                    <a href="{{ route('monster-list') }}"
+                    <a href="{{ route('monster-list', Session::get('lang')) }}"
                         class="bg-dark-blue list-group-item list-group-item-action flex-column align-items-start">
                         <div class="menu-lis-inner d-flex w-100 justify-content-start align-items-center">
                             <div class="fa-fa_icons">
                                 <i class="fad fa-helmet-battle"></i>
                             </div>
-                            <span class="menu-collapsed">Monstres</span>
+                            <span class="menu-collapsed">@lang('layout.monsters')</span>
                         </div>
                     </a>
                 </li>
 
                 <!-- Liste de compos Menu -->
                 <li>
-                    <a href="{{ route('comps-list') }}"
+                    <a href="{{ route('comps-list', Session::get('lang')) }}"
                         class="bg-dark-blue list-group-item list-group-item-action flex-column align-items-start">
                         <div class="menu-lis-inner d-flex w-100 justify-content-start align-items-center">
                             <div class="fa-fa_icons">
                                 <i class="fad fa-swords"></i>
                             </div>
-                            <span class="menu-collapsed">Team Comps</span>
+                            <span class="menu-collapsed">@lang('layout.team_comps')</span>
                         </div>
                     </a>
                 </li>
 
                 <!-- Création de compos Menu -->
                 <li>
-                    <a href="{{ route('comps-builder') }}"
+                    <a href="{{ route('comps-builder', Session::get('lang')) }}"
                         class="bg-dark-blue list-group-item list-group-item-action flex-column align-items-start">
                         <div class="menu-lis-inner d-flex w-100 justify-content-start align-items-center">
                             <div class="fa-fa_icons">
                                 <i class="fad fa-hammer-war"></i>
                             </div>
-                            <span class="menu-collapsed">Comps Builder</span>
+                            <span class="menu-collapsed">@lang('layout.comps_builder')</span>
                         </div>
                     </a>
                 </li>
 
                 <!-- Astuces Menu -->
                 <li>
-                    <a href="https://www.jeumobi.com/en/summoners-war-lost-centuria/astuces/" data-toggle="collapse" aria-expanded="false"
+                    @if(Session::get('lang') == 'en')
+                    <a href="https://www.jeumobi.com/en/summoners-war-lost-centuria/astuces/" 
                         class="bg-dark-blue list-group-item list-group-item-action flex-column align-items-start">
+                    @else
+                    <a href="https://www.jeumobi.com/summoners-war-lost-centuria/astuces/"
+                        class="bg-dark-blue list-group-item list-group-item-action flex-column align-items-start">
+                    @endif
                         <div class="menu-lis-inner d-flex w-100 justify-content-start align-items-center">
                             <div class="fa-fa_icons">
                                 <i class="fad fa-book-spells"></i>
                             </div>
-                            <span class="menu-collapsed">Tips</span>
+                            <span class="menu-collapsed">@lang('layout.tips')</span>
                         </div>
                     </a>
                 </li>
 
                 <!-- News Menu -->
                 <li>
-                    <a href="https://www.jeumobi.com/en/summoners-war-lost-centuria/news/" data-toggle="collapse" aria-expanded="false"
+                    @if(Session::get('lang') == 'en')
+                    <a href="https://www.jeumobi.com/en/summoners-war-lost-centuria/news/" 
                         class="bg-dark-blue list-group-item list-group-item-action flex-column align-items-start">
+                    @else
+                    <a href="https://www.jeumobi.com/summoners-war-lost-centuria/news/"
+                        class="bg-dark-blue list-group-item list-group-item-action flex-column align-items-start">
+                    @endif
                         <div class="menu-lis-inner d-flex w-100 justify-content-start align-items-center">
                             <div class="fa-fa_icons">
                                 <i class="fad fa-scroll-old"></i>
                             </div>
-                            <span class="menu-collapsed">News</span>
+                            <span class="menu-collapsed">@lang('layout.news')</span>
                         </div>
                     </a>
                 </li>
@@ -148,43 +177,43 @@
                             <div class="fa-fa_icons">
                                 <i class="fad fa-comment-alt-smile"></i>
                             </div>
-                            <span class="menu-collapsed">Contact</span>
+                            <span class="menu-collapsed">@lang('layout.contact')</span>
                         </div>
                     </a>
                 </li>
 
                 <div class="mobile-menu-login-lang d-flex justify-content-center align-items-center d-xl-none">
                     <div class="mobile-menu-login ">
-                        <a href="#1" class="common-btn">Log In</a>
+                        <a href="#1" class="common-btn">@lang('layout.login')</a>
                     </div>
                     <div class="mobile-menu-language">
                         <a href="javascript:void(0);" class="choose-lang">
                             <img src="{{ asset('assets/image/globe-americas-duotone.svg') }}" alt="">
                         </a>
                         <div class="select-lang lang-close">
-                            <a href="#1">
+                            <a href="{{ route('setting-lang').'?lang=en' }}">
                                 <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
                             </a>
-                            <a href="#2">
+                            <a href="{{ route('setting-lang').'?lang=fr' }}">
                                 <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="mobile-partnership-text d-flex justify-content-center align-items-center d-xl-none">
-                    In partnership with <a href="https://www.jeumobi.com/" target="_blank"> JeuMobi.com </a>
+                    @lang('layout.partner1') <a href="https://www.jeumobi.com/" target="_blank"> @lang('layout.partner2') </a>
                 </div>
             </ul>
 
             <div class="main-sidebar-footer d-none d-xl-block">
-                <p class="subtext">In partnership with <a href="https://www.jeumobi.com/"
-                        target="_blank">JeuMobi.com</a></p>
+                <p class="subtext">@lang('layout.partner1') <a href="https://www.jeumobi.com/"
+                        target="_blank">@lang('layout.partner2')</a></p>
                 <a href="javascript:void(0);" data-toggle="sidebar-colapse" class="sidebar-colapse-trigger">
                     <div class="d-flex w-100 justify-content-center align-items-center">
                         <div id="collapse-icon" class="chevron-double-icon">
                             <i class="fad fa-angle-double-left"></i>
                         </div>
-                        <span id="collapse-text" class="menu-collapsed">Collapse</span>
+                        <span id="collapse-text" class="menu-collapsed">@lang('layout.collapse')</span>
                     </div>
                 </a>
             </div>
@@ -194,27 +223,27 @@
         <!-- main--content-header -->
         <div class="main--content-header d-none d-xl-block">
             <div class="main--content-search text-center">
-                <input type="text" class="seach-input" id="monster-search" placeholder="Search for a monster...">
+                <input type="text" class="seach-input" id="monster-search" placeholder="@lang('layout.search_monster')">
                 <i class="fa fa-search"></i>
             </div>
             <div class="main--content-header-right">
                 @if(Auth::user())
                 <div class="main-content--single  main--content-profile">
-                    <a href="{{ route('user-public') }}">
+                    <a href="{{ route('user-public', Session::get('lang')) }}">
                         <i class="fad fa-user"></i>
                     </a>
                 </div>
                 <div class="main-content--single  main--content-setting">
-                    <a href="{{ route('user-private') }}">
+                    <a href="{{ route('user-private', Session::get('lang')) }}">
                         <i class="fad fa-cogs"></i>
                     </a>
                 </div>
                 <div class="main-content--single  main--content-deconnector-text">
-                    <a href="{{ route('admin.logout') }}" class="common-btn">Sign Out</a>
+                    <a href="{{ route('admin.logout') }}" class="common-btn">@lang('layout.sign_out')</a>
                 </div>
                 @else
                 <div class="main-content--single  main--content-deconnector-text">
-                    <a href="#1" class="common-btn" id="login_btn">Log In</a>
+                    <a href="#1" class="common-btn" id="login_btn">@lang('layout.login')</a>
                 </div>
                 @endif
                 <div class="main-content--single  main--content-language">
@@ -222,10 +251,10 @@
                         <i class="fas fa-globe-americas"></i>
                     </a>
                     <div class="select-lang lang-close">
-                        <a href="#1">
+                        <a href="{{ route('index', 'en') }}">
                             <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
                         </a>
-                        <a href="#2">
+                        <a href="{{ route('index', 'fr') }}">
                             <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
                         </a>
                     </div>
@@ -241,14 +270,14 @@
         <div class="footer-wrapper">
             <footer>
                 <div class="footer-left-content">
-                    Copyright © 2021 LostCenturia.gg. All rights reserved.
+                    @lang('layout.copyright')
                 </div>
                 <div class="footer-right-content">
                     <p class="sw-text">
-                        SW: Lost Centuria is a trademark registered by Com2Us.
+                        @lang('layout.sw1')
                     </p>
                     <p class="site-text">
-                        Fan site, unofficial and not affiliated with Com2Us.
+                        @lang('layout.sw2')
                     </p>
                 </div>
             </footer>
@@ -272,8 +301,8 @@
                             <img src="{{ asset('assets/image/add-run-set/separator-title.png') }}" alt="">
                         </div>
                         <div class="popup_title">
-                            <span class="modal-title">Register</span>
-                            <span class="login-modal-title">Log In</span>
+                            <span class="modal-title">@lang('layout.sw2')</span>
+                            <span class="login-modal-title">@lang('layout.login')</span>
                         </div>
                     </div>
 
@@ -284,34 +313,34 @@
                                 {{ csrf_field() }}
                                 <div class="personal_info">
                                     <div class="form_field">
-                                        <input type="text" value="" placeholder="Nickname*" name="name"  required/>
+                                        <input type="text" value="" placeholder="@lang('layout.nickname')" name="name"  required/>
                                     </div>
                                     <div class="form_field">
-                                        <input type="email" placeholder="Email*" name="email" required />
+                                        <input type="email" placeholder="@lang('layout.email')" name="email" required />
                                     </div>
                                     <div class="d-none" id="error_message">
                                         <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
-                                            <p>Email should be unique.</p>
+                                            <p>@lang('layout.email_unique')</p>
                                         </span>
                                     </div>
                                     <div class="form_field">
-                                        <input type="password" placeholder="Password*" name="password" required />
+                                        <input type="password" placeholder="@lang('layout.password')" name="password" required />
                                     </div>
                                     <div class="form_field">
-                                        <input type="text" placeholder="Lost Centuria in-game name" name="game_name" required />
+                                        <input type="text" placeholder="@lang('layout.game_name')" name="game_name" required />
                                     </div>
                                     <div class="form_field">
-                                        <input type="text" placeholder="Guild name" name="guild_name" required />
+                                        <input type="text" placeholder="@lang('layout.guild_name')" name="guild_name" required />
                                     </div>
                                     <div class="accept_field text-center">
                                         <label class="accept_option">
                                             <input type="checkbox" value="">
-                                            <p>I have read and accept the <a href="{{ route('terms-of-use') }}" target="_blank">Terms of Use.</a>
+                                            <p>@lang('layout.accept') <a href="{{ route('terms-of-use', Session::get('lang')) }}" target="_blank">@lang('layout.terms')</a>
                                             </p>
                                         </label>
                                     </div>
                                     <div class="form_field_btn text-center">
-                                        <input type="submit" value="Register" class="common-btn" />
+                                        <input type="submit" value="@lang('layout.register')" class="common-btn" />
                                     </div>
                                 </div>
                             </form>
@@ -319,25 +348,27 @@
                                 {{ csrf_field() }}
                                 <div class="personal_info">
                                     <div class="form_field">
-                                        <input type="text" name="email" placeholder="Nickname or Email" required />
+                                        <input type="text" name="email" placeholder="@lang('layout.nickname_email')" required />
                                     </div>
                                     <div class="form_field">
-                                        <input type="password" name="password" placeholder="Password*" required />
+                                        <input type="password" name="password" placeholder="@lang('layout.password')" required />
                                     </div>
                                     <div class="accept_field text-center">
                                         <label class="accept_option">
                                             <input type="checkbox" value="">
-                                            <p>Remember me</p>
+                                            <p>@lang('layout.remember_me')</p>
                                         </label>
                                     </div>
                                     <div class="form_field_btn text-center">
-                                        <input type="submit" value="Log In" class="common-btn" />
+                                        <input type="submit" value="@lang('layout.login')" class="common-btn" />
                                     </div>
                                 </div>
                             </form>
                             <div class="text-center register_btn">
-                                <a href="javascript:void(0);" class="log_in"><span class="modal-title">Log
-                                        In</span><span class="login-modal-title">Register</span></a>
+                                <a href="javascript:void(0);" class="log_in">
+                                    <span class="modal-title">@lang('layout.login')</span>
+                                    <span class="login-modal-title">@lang('layout.register')</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -412,7 +443,7 @@
         var search = $(this).val();
 
         $.ajax({
-            url: "{{ route('search') }}",
+            url: "{{ route('search', Session::get('lang')) }}",
             method: "get",
             data: { search: search },
             success: function(data) {

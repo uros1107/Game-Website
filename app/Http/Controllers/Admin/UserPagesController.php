@@ -42,7 +42,7 @@ class UserPagesController extends Controller
 
     public function get_users()
     {
-        $user = User::where('role', 0)->get();
+        $user = User::where('role', 0)->where('del_flag', 0)->get();
 
         return $user;
     }
@@ -103,8 +103,9 @@ class UserPagesController extends Controller
     public function delete_user(Request $request)
     {
         $user_id = $request->user_id;
-        UserInfo::where('user_id', $user_id)->delete();
-        User::where('id', $user_id)->delete();
+        $user = User::where('id', $user_id)->first();
+        $user->del_flag = 1;
+        $user->save();
 
         return response()->json(true);
     }

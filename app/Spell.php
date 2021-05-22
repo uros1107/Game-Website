@@ -13,6 +13,7 @@ class Spell extends Model
         'fr_description',
         'mana_cost',
         'main_image',
-        'icon_image'
+        'icon_image',
+        'del_flag'
     ];
 }

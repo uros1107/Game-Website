@@ -32,8 +32,8 @@ class RuneSetController extends Controller
         $rune_set = RuneSet::where('rs_id', $id)->first();
         $runes = Rune::all();
         $sub_stats = SubStats::all();
-        $skill_stones = SkillStone::all();
-        return view('rune_sets/edit-rune-sets', compact('rune_set', 'runes', 'sub_stats', 'skill_stones'));
+        // $skill_stones = SkillStone::all();
+        return view('rune_sets/edit-rune-sets', compact('rune_set', 'runes', 'sub_stats'));
     }
 
     public function add_rune_set()

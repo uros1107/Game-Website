@@ -18,7 +18,9 @@ class RuneSet extends Model
         'rs_substats',
         'rs_skill_stones',
         'rs_comp_position',
-        'verify'
+        'verify',
+        'rs_likes',
+        'rs_dislikes',
     ];
 
 

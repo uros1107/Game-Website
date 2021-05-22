@@ -17,49 +17,59 @@ header('Access-Control-Allow-Headers: *');
 
 // Auth::routes();
 Route::get('/login', function() {
-    return redirect()->route('index');
+    return redirect()->route('index', Session::get('lang'));
 });
 Route::post('/login', 'Auth\LoginController@user_login')->name('login');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
-Route::post('/update', 'Auth\RegisterController@update')->name('update');
 
 
 Route::group([
     'middleware' => 'auth'
   ], function() {
-    Route::get('/user-private', 'Frontend\FrontendController@private')->name('user-private');
-    Route::get('/user-public', 'Frontend\FrontendController@public')->name('user-public');
+    Route::get('/{lang}/user-private', 'Frontend\FrontendController@private')->name('user-private');
+    Route::get('/{lang}/user-public', 'Frontend\FrontendController@public')->name('user-public');
+
+    Route::post('/update', 'Auth\RegisterController@update')->name('update');
 });
 
 // Route url
-Route::get('/', 'Frontend\FrontendController@index')->name('index');
+Route::get('/', function() {
+    return redirect()->route('index', Session::get('lang'));
+});
+Route::get('/{lang}', 'Frontend\FrontendController@index')->name('index');
 
 
-Route::get('/monsters', 'Frontend\MonsterController@monster_list')->name('monster-list');
-Route::get('/monsters/{slug}', 'Frontend\MonsterController@monster_detail')->name('monster-detail');
-Route::get('/get-monster', 'Frontend\MonsterController@get_monster')->name('get-monster');
-Route::get('/calculate-monster', 'Frontend\MonsterController@calculate_character')->name('calculate-monster');
-Route::get('/get-spell', 'Frontend\MonsterController@get_spell')->name('get-spell');
+Route::get('/{lang}/monsters', 'Frontend\MonsterController@monster_list')->name('monster-list');
+Route::get('/{lang}/monsters/{slug?}', 'Frontend\MonsterController@monster_detail')->name('monster-detail');
+Route::get('/{lang}/get-monster', 'Frontend\MonsterController@get_monster')->name('get-monster');
+Route::get('/{lang}/calculate-monster', 'Frontend\MonsterController@calculate_character')->name('calculate-monster');
+Route::get('/{lang}/get-spell', 'Frontend\MonsterController@get_spell')->name('get-spell');
 
-Route::get('/add-rune-set', 'Frontend\MonsterController@add_rune_set')->name('user-add-rune-set');
-Route::POST('/store-rune-set', 'Frontend\MonsterController@store_rune_set')->name('rune-set-store');
+Route::get('/{lang}/add-rune-set', 'Frontend\MonsterController@add_rune_set')->name('user-add-rune-set');
+Route::POST('/{lang}/store-rune-set', 'Frontend\MonsterController@store_rune_set')->name('rune-set-store');
 
-Route::get('/comps', 'Frontend\MonsterController@comps_list')->name('comps-list');
-Route::POST('/comps-submit', 'Frontend\MonsterController@comps_submit')->name('comps-submit');
-Route::get('/comps-detail/{slug}', 'Frontend\MonsterController@comps_detail')->name('comps-detail');
-Route::POST('/comps-comment', 'Frontend\MonsterController@comps_comment')->name('comps-comment');
+Route::get('/{lang}/comps', 'Frontend\MonsterController@comps_list')->name('comps-list');
+Route::POST('/{lang}/comps-submit', 'Frontend\MonsterController@comps_submit')->name('comps-submit');
+Route::get('/{lang}/comps-detail/{slug}', 'Frontend\MonsterController@comps_detail')->name('comps-detail');
+Route::POST('/{lang}/comps-comment', 'Frontend\MonsterController@comps_comment')->name('comps-comment');
 
-Route::get('/comps-builder', 'Frontend\MonsterController@comps_builder')->name('comps-builder');
+Route::get('/{lang}/comps-builder', 'Frontend\MonsterController@comps_builder')->name('comps-builder');
 
-Route::get('/search', 'Frontend\MonsterController@search')->name('search');
-Route::get('/terms-of-use', 'Frontend\MonsterController@terms_of_use')->name('terms-of-use');
+Route::get('/{lang}/search', 'Frontend\MonsterController@search')->name('search');
+Route::get('/{lang}/terms-of-use', 'Frontend\MonsterController@terms_of_use')->name('terms-of-use');
+
+Route::post('/setting-lang', 'Frontend\FrontendController@setting_language')->name('setting-lang');
 
 // -------------------------- Filter route start -----------------------------
-Route::get('/get-filter-monster', 'Frontend\FilterController@get_monster')->name('get-filter-monster');
-Route::get('/get-filter-team-comps', 'Frontend\FilterController@get_team_comps')->name('get-filter-team-comps');
-Route::get('/get-filter-builder-monster', 'Frontend\FilterController@get_builder_monster')->name('get-filter-builder-monster');
+Route::get('/{lang}/get-filter-monster', 'Frontend\FilterController@get_monster')->name('get-filter-monster');
+Route::get('/{lang}/get-filter-team-comps', 'Frontend\FilterController@get_team_comps')->name('get-filter-team-comps');
+Route::get('/{lang}/get-filter-builder-monster', 'Frontend\FilterController@get_builder_monster')->name('get-filter-builder-monster');
 // -------------------------- Filter route end -----------------------------
 
+
+
+
+// ============================================================= Admin Route ==============================================
 Route::prefix('admin')->group(function() {
 
     // ------------- Admin login -------------

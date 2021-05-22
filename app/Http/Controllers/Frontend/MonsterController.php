@@ -11,29 +11,52 @@ use App\TeamComp;
 use App\Spell;
 use App\TeamCompsComment;
 use Auth;
+use App;
+use Session;
 
 class MonsterController extends Controller
 {
-    public function monster_list()
+    public function __construct() 
+    {
+        // App::setlocale(Session::get('lang'));
+    }
+    public function monster_list($lang)
     {
         $monsters = Monster::paginate(15, [
             'id', 
             'name', 
             'slug', 
+            'fr_slug', 
             'fr_name',
             'mana_cost',
             'role',
             'rarity',
             'element',
             'main_image',
+            'meta_title',
+            'fr_meta_title',
+            'og_image',
+            'meta_description',
+            'fr_meta_description',
+            'bg_image',
+            'bg_comp_image',
+            'icon_image'
         ]);
+        App::setlocale(Session::get('lang'));
         
         return view('frontend.monster-list', compact('monsters'));
     }
 
-    public function monster_detail(Request $request, $slug)
+    public function monster_detail(Request $request, $lang,$slug)
     {
-        $monster = Monster::where('slug', $slug)->first();
+        App::setlocale(Session::get('lang'));
+
+        if($lang == 'en') {
+            $monster = Monster::where('slug', $slug)->first();
+        } else {
+            $monster = Monster::where('fr_slug', $slug)->first();
+        }
+        
         $rune_sets = Runeset::where('rs_monster_id', $monster->id)->where('verify', 1)->paginate(3);
         $team_comps = TeamComp::whereRaw("JSON_CONTAINS(c_position,'".$monster->id."','$')=1")->where('c_verify', 1)->paginate(5);
 
@@ -50,15 +73,15 @@ class MonsterController extends Controller
         }
     }
 
-    public function get_monster(Request $request)
+    public function get_monster(Request $request, $lang)
     {
         $monster_id = $request->monster_id;
-        $monster = Monster::where('id', $monster_id)->first(['id', 'name', 'fr_name', 'slug', 'main_image', 'element', 'role', 'rarity', 'mana_cost']);
+        $monster = Monster::where('id', $monster_id)->first(['id', 'name', 'fr_name', 'slug', 'fr_slug', 'main_image', 'element', 'role', 'rarity', 'mana_cost', 'meta_title', 'fr_meta_title', 'og_image', 'meta_description', 'fr_meta_description', 'bg_image', 'bg_comp_image', 'icon_image']);
 
         return view('frontend.ajax-monster-item', ['monster' => $monster, 'drop_id' => $request->drop_id]);
     }
 
-    public function calculate_character(Request $request) 
+    public function calculate_character(Request $request, $lang) 
     {
         $monster_ids = $request->monster_ids;
         
@@ -141,22 +164,37 @@ class MonsterController extends Controller
         return view('frontend.ajax-spell-item', ['spell' => $spell, 'drop_id' => $request->drop_id]);
     }
 
-    public function comps_list()
+    public function comps_list(Request $request, $lang)
     {
+        App::setlocale(Session::get('lang'));
         $team_comps = TeamComp::where('c_verify', 1)->paginate(10);
-        return view('frontend.comps-listing', compact('team_comps'));
+
+        if($request->ajax()) {
+            return view('frontend.filter.filter-team-comps', compact('team_comps'));
+        } else {
+            return view('frontend.comps-listing', compact('team_comps'));
+        }
     }
 
-    public function comps_detail(Request $request, $slug)
+    public function comps_detail(Request $request, $lang, $slug)
     {
-        $team_comp = TeamComp::where('c_slug', $slug)->first();
-        $comments = TeamCompsComment::where('comment_comps_id', $team_comp->id)->get();
+        App::setlocale(Session::get('lang'));
+
+        if(Session::get('lang') == 'en') {
+            $team_comp = TeamComp::where('c_slug', $slug)->first();
+        } else {
+            $team_comp = TeamComp::where('c_fr_slug', $slug)->first();
+        }
+        
+        $comments = TeamCompsComment::where('comment_comps_id', $team_comp->c_id)->get();
 
         return view('frontend.comps-detail', compact('team_comp', 'comments'));
     }
 
-    public function comps_submit(Request $request)
+    public function comps_submit(Request $request, $lang)
     {
+        App::setlocale(Session::get('lang'));
+
         $comps_info = $request->all();
         $c_position = $comps_info['c_position'];
         for ($i=0; $i < count($c_position); $i++) { 
@@ -171,15 +209,19 @@ class MonsterController extends Controller
         $comps_info['c_spell'] = json_encode($c_spell);
 
         $comps_info['c_sent_by_user'] = Auth::user()->id;
-        $comps_info['c_slug'] = str_slug($comps_info['c_name'],'-').'-'.strtolower(str_random(8));
+        $comps_info['c_fr_name'] = $comps_info['c_name'];
+        $comps_info['c_slug'] = str_slug($comps_info['c_name'],'-').'-'.strtolower(str_random());
+        $comps_info['c_fr_slug'] = str_slug($comps_info['c_name'],'-').'-'.strtolower(str_random());
         
         $comps_info = TeamComp::create($comps_info);
 
         return response()->json(true);
     }
 
-    public function comps_comment(Request $request)
+    public function comps_comment(Request $request, $lang)
     {
+        App::setlocale(Session::get('lang'));
+
         $c_id = $request->c_id;
         $comment = $request->comment;
 
@@ -198,11 +240,31 @@ class MonsterController extends Controller
 
     public function comps_builder()
     {
-        return view('frontend.comps-builder');
+        App::setlocale(Session::get('lang'));
+
+        $monsters = Monster::get([
+            'id', 
+            'name', 
+            'fr_name', 
+            'slug', 
+            'fr_slug',
+            'icon_image', 
+            'rarity',
+            'meta_title',
+            'fr_meta_title',
+            'og_image',
+            'meta_description',
+            'fr_meta_description',
+            'bg_image',
+            'bg_comp_image',
+        ]);
+        return view('frontend.comps-builder', compact('monsters'));
     }
 
-    public function add_rune_set(Request $request)
+    public function add_rune_set(Request $request, $lang)
     {
+        App::setlocale(Session::get('lang'));
+        
         $monster_id = $request->monster_id;
         $monster = Monster::where('id', $monster_id)->first();
         $user_id = Auth::user()->id;
@@ -215,6 +277,8 @@ class MonsterController extends Controller
 
     public function store_rune_set(Request $request)
     {
+        App::setlocale(Session::get('lang'));
+
         $rune_set = $request->all();
         $rune_set['rs_substats'] = json_encode($rune_set['rs_substats']);
         $rune_set_info = Runeset::create($rune_set);
@@ -222,13 +286,20 @@ class MonsterController extends Controller
         return response()->json(true);
     }
 
-    public function search(Request $request)
+    public function search(Request $request, $lang)
     {
+        App::setlocale(Session::get('lang'));
+
         $search = $request->search;
 
-        $monster = Monster::where('name', 'like', '%'.$search.'%')->first();
+        if(Session::get('lang') == 'en') {
+            $monster = Monster::where('name', 'like', '%'.$search.'%')->where('del_flag', 0)->first();
+        } else {
+            $monster = Monster::where('fr_name', 'like', '%'.$search.'%')->where('del_flag', 0)->first();
+        }
+        
         if($monster) {
-            $redirect_url = route('monster-detail', $monster->slug);
+            $redirect_url = route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]);
             return response()->json(['success' => true, 'redirect_url' => $redirect_url]);
         } else {
             return response()->json(['success' => false]);
@@ -236,9 +307,12 @@ class MonsterController extends Controller
         
     }
 
-    public function terms_of_use() 
+    public function terms_of_use($lang) 
     {
-        return view('frontend.terms-of-use');
-        // return view('frontend.terms-of-use-fr');
+        if(Session::get('lang') == 'en') {
+            return view('frontend.terms-of-use');
+        } else {
+            return view('frontend.terms-of-use-fr');
+        }
     }
 }

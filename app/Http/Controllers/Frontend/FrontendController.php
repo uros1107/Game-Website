@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use Session;
 use App\TeamComp;
 use App\Runeset;
 
@@ -14,16 +16,25 @@ class FrontendController extends Controller
     }
      
     // Dashboard - Analytics
-    public function index(){
+    public function index($lang)
+    {
+        Session::put('lang', $lang);
+        App::setlocale($lang);
+
         return view('frontend.index');
     }
 
-    public function private(){
+    public function private()
+    {
+        App::setlocale(Session::get('lang'));
+
         return view('frontend.user-private');
     }
 
-    public function public(Request $request)
+    public function public(Request $request, $lang)
     {
+        App::setlocale(Session::get('lang'));
+
         $team_comps = TeamComp::where('c_sent_by_user', Auth::user()->id)->paginate(5);
         $rune_sets = Runeset::where('rs_user_id', Auth::user()->id)->paginate(3);
 
@@ -34,5 +45,15 @@ class FrontendController extends Controller
         }
 
         return view('frontend.user-public', compact('team_comps', 'rune_sets'));
+    }
+
+    public function setting_language(Request $request)
+    {
+
+        $lang = $request->lang;
+        Session::put('lang', $lang);
+        App::setlocale($lang);
+
+        return redirect()->route('index', $lang);
     }
 }

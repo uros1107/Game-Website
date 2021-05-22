@@ -2,7 +2,7 @@
 
 @section('styles')
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/12.0.0/nouislider.min.css"> -->
-<link rel="stylesheet" href="assets/css/all.min.css" type="text/css" />
+<link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}" type="text/css" />
 @endsection
 
 @section('content')
@@ -12,11 +12,10 @@
     <div class="monster_wrap page-space">
 
         <div class="text-center ragdoll-top-sec page-title-section mt-3 mt-md-0 ">
-            <h1 class="page-title ">Lost Centuria Composition List</h1>
-            <img src="assets/image/add-run-set/separator-title.png" alt="">
+            <h1 class="page-title ">@lang('comp-list.title')</h1>
+            <img src="{{ asset('assets/image/add-run-set/separator-title.png') }}" alt="">
             <p class="page-title-subtext">
-                Access the list of all Summoners War: Lost Centuria monster team comps.
-                Filter the compositions by element, monster, popularity and average mana cost.
+                @lang('comp-list.description')
             </p>
         </div>
 
@@ -27,17 +26,29 @@
                     <div class="checkbox-field">
 
                         <div class="dropdown dropdown1 dropdown-search-wrap" data-control="checkbox-dropdown">
-                            <label class="dropdown-label">Filter by monster</label>
+                            <label class="dropdown-label">@lang('comp-list.filter_monster')</label>
                             <div class="dropdown-list">
                                 <div class="search-filed">
-                                    <input type="search" placeholder="Search by name" class="dropdown-search" id="monster-search" onkeyup="filterFunction()" />
+                                    <input type="search" placeholder="@lang('comp-list.search')" class="dropdown-search" id="monster-search" onkeyup="filterFunction()" />
                                     <i class="fa fa-search"></i>
                                 </div>
                                 <div class="inner-dropdown-sec" id="search-box">
-                                    @foreach(DB::table('monsters')->get(['id', 'name', 'fr_name']) as $monster)
+                                    @foreach(DB::table('monsters')->get([
+                                        'id', 
+                                        'name', 
+                                        'fr_name',
+                                        'meta_title',
+                                        'fr_meta_title',
+                                        'og_image',
+                                        'meta_description',
+                                        'fr_meta_description',
+                                        'bg_image',
+                                        'bg_comp_image',
+                                        'icon_image'
+                                    ]) as $monster)
                                     <label class="dropdown-option search-dropdown">
                                         <input type="checkbox" name="monster[]" class="monster" value="{{ $monster->id }}">
-                                        <span>{{ $monster->name }}</span>
+                                        <span>{{ Session::get('lang') == 'en'? $monster->name : $monster->fr_name }}</span>
                                     </label>
                                     @endforeach
                                 </div>
@@ -45,7 +56,7 @@
                         </div>
 
                         <div class="range-slider-wrap">
-                            <div class="range-slider--diamond"><img src="assets/image/mana-icone-carte-violet.png"
+                            <div class="range-slider--diamond"><img src="{{ asset('assets/image/mana-icone-carte-violet.png') }}"
                                     alt="" class="mana-icone-carte-violet-img"></div>
 
                             <div class="range-slider--values">
@@ -59,13 +70,13 @@
                         </div>
 
                         <div class="dropdown dropdown2" data-control="checkbox-dropdown">
-                            <label class="dropdown-label">All elements</label>
+                            <label class="dropdown-label">@lang('comp-list.all_elements')</label>
                             <div class="dropdown-list">
                                 <div class="inner-dropdown-sec">
                                     @foreach(DB::table('element')->get() as $element)
                                     <label class="dropdown-option">
                                         <input type="checkbox" class="element dropdown-group" name="element[]" value="{{ $element->id }}" />
-                                        <span>{{ $element->name }}</span>
+                                        <span>{{ Session::get('lang') == 'en'? $element->name : $element->fr_name }}</span>
                                         <img src="{{ asset('images/game/icons/elements/'.$element->detail_icon) }}" alt="">
                                     </label>
                                     @endforeach
@@ -75,15 +86,15 @@
 
                         <div class="three_btn_design">
                             <span href="#0">
-                                Sort by
+                                @lang('comp-list.sort')
                             </span>
                             <div class="two_btn">
-                                <a href="#0" class="btn_active thumb-icon" data-sort="0">
-                                    <img src="assets/image/pouce_vide.png" alt="" class="hover_none">
-                                    <img src="assets/image/pouce-vide-tri.png" alt="" class="hover_block">
+                                <a  class="btn_active thumb-icon" data-sort="0">
+                                    <img src="{{ asset('assets/image/pouce_vide.png') }}" alt="" class="hover_none">
+                                    <img src="{{ asset('assets/image/pouce-vide-tri.png') }}" alt="" class="hover_block">
                                 </a>
-                                <a href="#0" class="date-txt" data-sort="1">
-                                    Date
+                                <a  class="date-txt" data-sort="1">
+                                    @lang('comp-list.date')
                                 </a>
                             </div>
                         </div>
@@ -139,12 +150,12 @@
                                             $c_monster = DB::table('monsters')->where('id', $comp)->first();
                                         @endphp
                                         <div class="line_up_monster">
-                                            <a href="{{ route('monster-detail', $c_monster->slug) }}" target="_blank">
+                                            <a href="{{ route('monster-detail', [app()->getlocale(), app()->getlocale() == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" target="_blank">
                                                 <div class="contain_shape contain_shape_{{ $c_monster->rarity }}">
                                                     <div class="shape"><img src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
                                                     </div>
                                                 </div>
-                                                <span>{{ $c_monster->name }}</span>
+                                                <span>{{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</span>
                                             </a>
                                         </div>
                                         @endforeach
@@ -168,7 +179,7 @@
                                                 $element = DB::table('element')->where('id', $c_monster->element)->first();
                                             @endphp
                                             <li>
-                                                <p><span>{{ $key++ }}</span>. {{ $c_monster->name }}</p>
+                                                <p><span>{{ $key++ }}</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
                                                 <div class="collen_icon_img">
                                                     <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
                                                 </div>
@@ -176,36 +187,36 @@
                                             @endforeach
                                         </ul>
                                         <div class="compect_genral_info_section mobile-genral_info d-md-none">
-                                            <h3 class="general-info-title">General Info</h3>
+                                            <h3 class="general-info-title">@lang('info')</h3>
                                             <p class="general-info-desc mCustomScrollbar">{{ $team_comp->c_general_info }}</p>
                                         </div>
                                     </div>
                                     <div class="compect_element_section">
                                         <div class="compect_element_title">
-                                            <h3>Elements</h3>
+                                            <h3>@lang('comp-list.elements')</h3>
                                         </div>
 
                                         <ul>
                                             <li>
-                                                <img src="assets/image/compect_bulider/icon-eau.png" alt="compect element1">
+                                                <img src="{{ asset('assets/image/compect_bulider/icon-eau.png') }}" alt="compect element1">
                                                 <p>x {{ $team_comp->element_water }}</p>
                                             </li>
                                             <li>
-                                                <img src="assets/image/compect_bulider/icon-tenebre.png"
+                                                <img src="{{ asset('assets/image/compect_bulider/icon-tenebre.png') }}"
                                                     alt="compect element2">
                                                 <p>x {{ $team_comp->element_dark }}</p>
                                             </li>
                                             <li>
-                                                <img src="assets/image/compect_bulider/icon-feu.png" alt="compect element3">
+                                                <img src="{{ asset('assets/image/compect_bulider/icon-feu.png') }}" alt="compect element3">
                                                 <p>x {{ $team_comp->element_fire }}</p>
                                             </li>
                                             <li>
-                                                <img src="assets/image/compect_bulider/icon-lumiere.png"
+                                                <img src="{{ asset('assets/image/compect_bulider/icon-lumiere.png') }}"
                                                     alt="compect element4">
                                                 <p>x {{ $team_comp->element_light }}</p>
                                             </li>
                                             <li>
-                                                <img src="assets/image/compect_bulider/icon-vent.png"
+                                                <img src="{{ asset('assets/image/compect_bulider/icon-vent.png') }}"
                                                     alt="compect element5">
                                                 <p>x {{ $team_comp->element_wind }}</p>
                                             </li>
@@ -214,38 +225,38 @@
 
                                     <div class="compect_role_section">
                                         <div class="compect_element_title">
-                                            <h3>Roles</h3>
+                                            <h3>@lang('comp-list.roles')</h3>
                                         </div>
 
                                         <div class="compect_role_items">
                                             <ul>
                                                 <li>
                                                     <div class="cm_role_icone_img">
-                                                        <img src="assets/image/Monter-list/all_role_monter_icon_1.png"
+                                                        <img src="{{ asset('assets/image/Monter-list/all_role_monter_icon_1.png') }}"
                                                             alt="role icon1">
                                                     </div>
-                                                    <p>x {{ $team_comp->role_atk }} in Attack</p>
+                                                    <p>x {{ $team_comp->role_atk }} @lang('monster-detail.in_atk')</p>
                                                 </li>
                                                 <li>
                                                     <div class="cm_role_icone_img">
-                                                        <img src="assets/image/Monter-list/all_role_monter_icon_4.png"
+                                                        <img src="{{ asset('assets/image/Monter-list/all_role_monter_icon_4.png') }}"
                                                             alt="role icon1">
                                                     </div>
-                                                    <p>x {{ $team_comp->role_defense }} in Defense</p>
+                                                    <p>x {{ $team_comp->role_defense }} @lang('monster-detail.in_def')</p>
                                                 </li>
                                                 <li>
                                                     <div class="cm_role_icone_img">
-                                                        <img src="assets/image/Monter-list/all_role_monter_icon_2.png"
+                                                        <img src="{{ asset('assets/image/Monter-list/all_role_monter_icon_2.png') }}"
                                                             alt="role icon1">
                                                     </div>
-                                                    <p>x {{ $team_comp->role_hp }} in HP</p>
+                                                    <p>x {{ $team_comp->role_hp }} @lang('monster-detail.in_hp')</p>
                                                 </li>
                                                 <li>
                                                     <div class="cm_role_icone_img">
-                                                        <img src="assets/image/Monter-list/all_role_support-ic_3.png"
+                                                        <img src="{{ asset('assets/image/Monter-list/all_role_support-ic_3.png') }}"
                                                             alt="role icon1">
                                                     </div>
-                                                    <p>x {{ $team_comp->role_support }} in Support</p>
+                                                    <p>x {{ $team_comp->role_support }} @lang('monster-detail.in_sup')</p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -254,7 +265,7 @@
 
                                     <div class="compect_raity_section">
                                         <div class="compect_element_title">
-                                            <h3>Rarity</h3>
+                                            <h3>@lang('comp-list.rarity')</h3>
                                         </div>
 
                                         <div class="compect_raity_items">
@@ -284,7 +295,7 @@
 
                                     <div class="compect_spells_section">
                                         <div class="compect_element_title">
-                                            <h3>Spells</h3>
+                                            <h3>@lang('comp-list.spells')</h3>
                                         </div>
                                         @php
                                             $spell_ids = json_decode($team_comp->c_spell);
@@ -307,12 +318,12 @@
                                     </div>
 
                                     <div class="compect_average mobile_block">
-                                        <p>Average mana cost:{{ $team_comp->average_mana_cost }}</p>
-                                        <img src="assets/image/compect_bulider/cb_average_img.png" alt="average">
+                                        <p>@lang('comp-list.avg_mana'):{{ $team_comp->average_mana_cost }}</p>
+                                        <img src="{{ asset('assets/image/compect_bulider/cb_average_img.png') }}" alt="average">
                                     </div>
                                     <div class="mobile_block mobile-see-more">
                                         <div class="cb_save_and_publish_btn see-more-btn">
-                                            <a href="{{ route('comps-detail', $team_comp->c_slug) }}" class="all_btn">See more</a>
+                                            <a href="{{ route('comps-detail', [Session::get('lang'), Session::get('lang') == 'en'? $team_comp->c_slug : $team_comp->c_fr_slug]) }}" class="all_btn">@lang('comp-list.see')</a>
                                         </div>
                                     </div>
 
@@ -323,10 +334,10 @@
                                         $c_monster_ids = json_decode($team_comp->c_position);
                                         $c_monster = DB::table('monsters')->where('id', $c_monster_ids[0])->first();
                                     @endphp
-                                    <div class="compect_right_bg_banner" style="background-image: url(./assets/image/comp_sec-monster_bg.png);">
+                                    <div class="compect_right_bg_banner" style="background-image: url({{ asset('assets/image/comp_sec-monster_bg.png') }});">
                                     <!-- <div class="compect_right_bg_banner" style="background-image: url({{ asset('images/game/bc_images/'.$c_monster->bg_comp_image) }})"> -->
                                         <div class="compect_genral_info_section">
-                                            <h3 class="general-info-title">General Info</h3>
+                                            <h3 class="general-info-title">@lang('comp-list.info')</h3>
                                             <p class="general-info-desc">{{ $team_comp->c_general_info }}</p>
                                         </div>
 
@@ -344,7 +355,7 @@
                                                         $rarity = DB::table('rarity')->where('id', $c_monster->rarity)->first();
                                                     @endphp
                                                     @if($key % 8 < 4)
-                                                    <a href="{{ route('monster-detail', $c_monster->slug) }}" class="compect_monster_box compect_monster_box{{$key + 1}}"
+                                                    <a href="{{ route('monster-detail', [app()->getlocale(), app()->getlocale() == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" class="compect_monster_box compect_monster_box{{$key + 1}}"
                                                         target="_blank">
                                                         <div class="monster_img">
                                                             <div class="icon_img">
@@ -359,7 +370,7 @@
                                                         </div>
                                                         <div class="cm_monster_name">
                                                             <span style="background-color:{{ $rarity->color }}!important"> </span>
-                                                            <p>{{ $c_monster->name }}</p>
+                                                            <p>{{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
                                                             <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}"
                                                                 alt="cm icon">
                                                         </div>
@@ -368,8 +379,8 @@
                                                     @endforeach
 
                                                     <div class="compect_average">
-                                                        <p>Average mana cost:{{ $team_comp->average_mana_cost }}</p>
-                                                        <img src="assets/image/compect_bulider/cb_average_img.png"
+                                                        <p>@lang('comp-list.avg_mana'):{{ $team_comp->average_mana_cost }}</p>
+                                                        <img src="{{ asset('assets/image/compect_bulider/cb_average_img.png') }}"
                                                             alt="average">
                                                     </div>
                                                 </div>
@@ -385,11 +396,11 @@
                                                         $rarity = DB::table('rarity')->where('id', $c_monster->rarity)->first();
                                                     @endphp
                                                     @if($key % 8 >= 4)
-                                                    <a href="{{ route('monster-detail', $c_monster->slug) }}" class="compect_monster_box compect_monster_box{{$key % 4 + 1}}"
+                                                    <a href="{{ route('monster-detail', [app()->getlocale(), app()->getlocale() == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" class="compect_monster_box compect_monster_box{{$key % 4 + 1}}"
                                                         target="_blank">
                                                         <div class="monster_img">
                                                             <div class="icon_img">
-                                                                <img src="assets/image/mana-icone-carte.svg" alt="icon"
+                                                                <img src="{{ asset('assets/image/mana-icone-carte.svg') }}" alt="icon"
                                                                     class="icon_top_monster">
                                                                 <span>{{ $c_monster->mana_cost }}</span>
                                                             </div>
@@ -400,13 +411,13 @@
                                                         </div>
                                                         <div class="cm_monster_name">
                                                             <span style="background-color:{{ $rarity->color }}!important"> </span>
-                                                            <p>{{ $c_monster->name }}</p>
+                                                            <p>{{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
                                                             <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}"
                                                                 alt="cm icon">
                                                         </div>
                                                     </a>
                                                     <div class="cb_save_and_publish_btn see-more-btn">
-                                                        <a href="{{ route('comps-detail', $team_comp->c_slug) }}" class="all_btn">See more</a>
+                                                        <a href="{{ route('comps-detail', [Session::get('lang'), Session::get('lang') == 'en'? $team_comp->c_slug : $team_comp->c_fr_slug]) }}" class="all_btn">@lang('comp-list.see')</a>
                                                     </div>
                                                     @endif
                                                     @endforeach
@@ -514,7 +525,8 @@ $(document).ready(function() {
         filter();
     })
 
-    $(document).on('click', '.number-page, .prev-page, .next-page', function() {
+    $(document).on('click', '.page-number, .prev-page, .next-page', function() {
+        console.log(12)
         var page_url = $(this).data('href');
 
         let filterlink = '';
@@ -543,7 +555,7 @@ function filter() {
     $(".element, .monster").each(function() {
         if ($(this).is(':checked')) {
             if (filterlink == '') {
-                filterlink += "{{route('get-filter-team-comps')}}" + '?'+ $(this).attr('name') + '=' + $(this).val();
+                filterlink += "{{route('get-filter-team-comps', Session::get('lang'))}}" + '?'+ $(this).attr('name') + '=' + $(this).val();
             } else {
                 filterlink += '&' + $(this).attr('name') + '=' + $(this).val();
             }
@@ -551,13 +563,13 @@ function filter() {
     });
 
     if (filterlink == '') {
-        filterlink += "{{route('get-filter-team-comps')}}" + '?'+ $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
+        filterlink += "{{route('get-filter-team-comps', Session::get('lang'))}}" + '?'+ $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
     } else {
         filterlink += '&' + $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
     }
 
     if (filterlink == '') {
-        filterlink += "{{route('get-filter-team-comps')}}" + '?sort=' + $('.btn_active').data('sort');
+        filterlink += "{{route('get-filter-team-comps', Session::get('lang'))}}" + '?sort=' + $('.btn_active').data('sort');
     } else {
         filterlink += '&sort=' + $('.btn_active').data('sort');
     }

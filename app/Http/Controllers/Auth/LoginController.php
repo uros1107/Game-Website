@@ -89,7 +89,7 @@ class LoginController extends Controller
             return redirect()->back();
         $user = $request->user();
         
-        if($user->role == 1) 
+        if($user->role == 1 || $user->del_flag == 1) 
         {
             $this->guard()->logout();
 

@@ -19,7 +19,7 @@
             paraphonic unassessable foramination Caulopteris worral Spirophyton encrimson esparcet aggerate chondrule
             restate whistler shallopy biosystematy area bertram plotting unstarting quarterstaff.
           </p>
-          <a class="btn btn-primary btn-lg mt-2" href="{{ route('index') }}">Back to Home</a>
+          <a class="btn btn-primary btn-lg mt-2" href="{{ route('index', app()->getlocale()) }}">Back to Home</a>
         </div>
       </div>
     </div>

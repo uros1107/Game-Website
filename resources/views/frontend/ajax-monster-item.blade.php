@@ -3,11 +3,11 @@
     $role = DB::table('role')->where('id', $monster->role)->first();
     $rarity = DB::table('rarity')->where('id', $monster->rarity)->first();
 @endphp
-<a href="{{ route('monster-detail', $monster->slug) }}" class="compect_monster_box compect_monster_box{{ $drop_id <= 4? $drop_id : $drop_id - 4 }}"
+<a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}" class="compect_monster_box compect_monster_box{{ $drop_id <= 4? $drop_id : $drop_id - 4 }}"
     target="_blank">
     <div class="monster_img">
         <div class="icon_img">
-            <img src="assets/image/mana-icone-carte.svg" alt="icon"
+            <img src="{{ asset('assets/image/mana-icone-carte.svg') }}" alt="icon"
                 class="icon_top_monster">
             <span>{{ $monster->mana_cost }}</span>
         </div>
@@ -18,7 +18,7 @@
     </div>
     <div class="cm_monster_name">
         <span style="background-color:{{ $rarity->color }}!important"> </span>
-        <p>{{ $monster->name }}</p>
+        <p>{{ Session::get('lang') == 'en' ? $monster->name : $monster->fr_name }}</p>
         <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}"
             alt="cm icon">
     </div>

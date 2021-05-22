@@ -13,16 +13,15 @@
     <div class="monster-lists page-space">
         <!--  -->
         <div class="text-center ragdoll-top-sec page-title-section mt-3 mt-md-0">
-            <h1 class="page-title">Lost Centuria Monster List</h1>
+            <h1 class="page-title">@lang('monster-list.title')</h1>
             <img src="{{ asset('assets/image/add-run-set/separator-title.png') }}" alt="">
-            <p class="page-title-subtext"> Access the list of all Summoners War: Lost Centuria monsters
-                with the possibility to filter them by element, rarity and role.</p>
+            <p class="page-title-subtext">@lang('monster-list.description')</p>
         </div>
 
         <form class="runes-form">
             <div class="checkbox-field">
                 <div class="range-slider-wrap">
-                    <div class="range-slider--diamond"><img src="assets/image/Monter-list/mana-icone-carte-violet.png"
+                    <div class="range-slider--diamond"><img src="{{ asset('assets/image/Monter-list/mana-icone-carte-violet.png') }}"
                             alt="" class="mana-icone-carte-violet-img"></div>
                     <div class="range-slider--values">
                         <span id="slider-value1" class="slider-value"></span> &#8722; <span id="slider-value2"
@@ -32,13 +31,13 @@
                     <input type="hidden" name="mana_cost" id="mana_cost">
                 </div>
                 <div class="dropdown dropdown2" data-control="checkbox-dropdown">
-                    <label class="dropdown-label">All Elements</label>
+                    <label class="dropdown-label">@lang('monster-list.all_elements')</label>
                     <div class="dropdown-list">
                         <div class="inner-dropdown-sec">
                             @foreach(DB::table('element')->get() as $element)
                             <label class="dropdown-option">
                                 <input type="checkbox" class="element" name="element[]" value="{{ $element->id }}" />
-                                <span>{{ $element->name }}</span>
+                                <span>{{ Session::get('lang') == 'en'? $element->name : $element->fr_name }}</span>
                                 <img src="{{ asset('images/game/icons/elements/'.$element->detail_icon) }}" alt="">
                             </label>
                             @endforeach
@@ -46,13 +45,13 @@
                     </div>
                 </div>
                 <div class="dropdown dropdown3" data-control="checkbox-dropdown">
-                    <label class="dropdown-label">All Rarity</label>
+                    <label class="dropdown-label">@lang('monster-list.all_rarity')</label>
                     <div class="dropdown-list">
                         <div class="inner-dropdown-sec">
                             @foreach(DB::table('rarity')->get() as $rarity)
                             <label class="dropdown-option">
                                 <input type="checkbox" class="rarity" name="rarity[]" value="{{ $rarity->id }}" />
-                                <span>{{ $rarity->name }}</span>
+                                <span>{{ Session::get('lang') == 'en'? $rarity->name : $rarity->fr_name }}</span>
                                 <span class="round-color" style="background: {{ $rarity->color }}"></span>
                             </label>
                             @endforeach
@@ -60,13 +59,13 @@
                     </div>
                 </div>
                 <div class="dropdown dropdown4" data-control="checkbox-dropdown">
-                    <label class="dropdown-label">All Roles</label>
+                    <label class="dropdown-label">@lang('monster-list.all_roles')</label>
                     <div class="dropdown-list">
                         <div class="inner-dropdown-sec">
                             @foreach(DB::table('role')->get() as $role)
                             <label class="dropdown-option">
                                 <input type="checkbox" class="role" name="role[]" value="{{ $role->id }}" />
-                                <span>{{ $role->name }}</span>
+                                <span>{{ Session::get('lang') == 'en'? $role->name : $role->fr_name }}</span>
                                 <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}" alt="">
                             </label>
                             @endforeach
@@ -87,8 +86,8 @@
                     $rarity = DB::table('rarity')->where('id', $monster->rarity)->first();
                 @endphp
                 <div class="monster-single monster-{{ $element->id }}">
-                    <a href="{{ route('monster-detail', $monster->slug) }}">
-                        <div class="monster-item" data-value="{{$monster->slug}}">
+                    <a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}">
+                        <div class="monster-item" data-value="{{Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug}}">
                             <div class="monster-single-inner monster_img">
                                 <div class="icon_img">
                                     <span class="polygon-corner">{{ $monster->mana_cost }}</span>
@@ -98,7 +97,7 @@
                                 <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="" class="icon_monster">
                             </div>
                             <div class="monter-single-name">
-                                <a><span style="background-color:{{ $rarity->color }}!important"></span> {{ $monster->name }} <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}" alt=""
+                                <a><span style="background-color:{{ $rarity->color }}!important"></span> {{ Session::get('lang') == 'en' ? $monster->name : $monster->fr_name }} <img src="{{ asset('images/game/icons/roles/'.$role->icon) }}" alt=""
                                         srcset=""> </a>
                             </div>
                         </div>
@@ -106,7 +105,6 @@
                 </div>
                 @endforeach
             </div>
-
 
             <!-- Pagination Section -->
             <div class="pagination_sec text-center pt-3" id="pagination" style="width: 100%;justify-content: center">
@@ -196,7 +194,7 @@
         $(".element, .rarity, .role").each(function() {
             if ($(this).is(':checked')) {
                 if (filterlink == '') {
-                    filterlink += "{{route('get-filter-monster')}}" + '?'+ $(this).attr('name') + '=' + $(this).val();
+                    filterlink += "{{route('get-filter-monster', Session::get('lang'))}}" + '?'+ $(this).attr('name') + '=' + $(this).val();
                 } else {
                     filterlink += '&' + $(this).attr('name') + '=' + $(this).val();
                 }
@@ -205,7 +203,7 @@
 
 
         if (filterlink == '') {
-            filterlink += "{{route('get-filter-monster')}}" + '?'+ $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
+            filterlink += "{{route('get-filter-monster', Session::get('lang'))}}" + '?'+ $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
         } else {
             filterlink += '&' + $('#mana_cost').attr('name') + '=[' + $('#mana_cost').val() + ']';
         }

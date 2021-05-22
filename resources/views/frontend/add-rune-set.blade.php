@@ -6,31 +6,30 @@
 
 @section('content')
 <!-- Content Start-->
-<div class="main-content run-set-1-page" style="background-image: url(./assets/image/test-bg-champ.jpg);">
+<div class="main-content run-set-1-page" style="background-image: url({{ asset('assets/image/test-bg-champ.jpg') }})">
 <!-- <div class="main-content run-set-1-page" style="background-image: url({{ asset('images/game/bg_images/'.$monster->bg_image) }});"> -->
 
     <!-- Body Content -->
     <div class="main-top-sec page-space">
         <div class="text-center ragdoll-top-sec page-title-section mt-3 mt-md-0 ">
-            <h1 class="page-title">Add a Rune Set for {{ $monster->name }}</h1>
-            <img src="assets/image/add-run-set/separator-title.png" alt="">
-            <p class="page-title-subtext">Once your Rune Set is ready, you can send it in for verification! Thank you
-                for helping us! ;)</p>
+            <h1 class="page-title">@lang('add-rune.title') {{ Session::get('lang') == 'en'? $monster->name : $monster->fr_name }}</h1>
+            <img src="{{ asset('assets/image/add-run-set/separator-title.png') }}" alt="">
+            <p class="page-title-subtext">@lang('add-rune.description')</p>
         </div>
         <form class="runes-form" id="add-rune-set" method="POST">
             {{ csrf_field() }}
             <div class="name-field">
                 <input type='hidden' name="rs_user_id" value="{{ $user_id }}">
                 <input type='hidden' name="rs_monster_id" value="{{ $monster->id }}">
-                <input type="text" name="rs_name" id="user-name" placeholder="Rune Set name" required >
+                <input type="text" name="rs_name" id="user-name" placeholder="@lang('add-rune.rune_name')" required >
             </div>
             <div class="checkbox-field">
 
                 <div class="dropdown dropdown1 dropdown-search-wrap" data-control="checkbox-dropdown">
-                    <label class="dropdown-label">Rune Set</label>
+                    <label class="dropdown-label">@lang('add-rune.rune')</label>
                     <div class="dropdown-list">
                         <div class="search-filed">
-                            <input type="search" placeholder="Search by name" class="dropdown-search" id="rune-set-search" onkeyup="filterFunction()"/>
+                            <input type="search" placeholder="@lang('add-rune.search')" class="dropdown-search" id="rune-set-search" onkeyup="filterFunction()"/>
                             <i class="fa fa-search"></i>
                         </div>
                         @php
@@ -40,7 +39,7 @@
                             @foreach($runes as $rune)
                             <label class="dropdown-option search-dropdown">
                                 <input type="radio" name="rs_rune" value="{{ $rune->r_id }}"/>
-                                <span>{{ $rune->r_name }}</span>
+                                <span>{{ Session::get('lang') == 'en'? $rune->r_name : $rune->fr_r_name }}</span>
                                 <img src="{{ asset('images/game/icons/runes/'.$rune->r_icon) }}" alt="">
                             </label>
                             @endforeach
@@ -49,7 +48,7 @@
                 </div>
 
                 <div class="dropdown dropdown2" data-control="checkbox-dropdown">
-                    <label class="dropdown-label">Sub-Stats</label>
+                    <label class="dropdown-label">@lang('add-rune.sub_stats')</label>
                     <div class="dropdown-list">
                         @php
                             $sub_stats = DB::table('sub_stats')->get();
@@ -58,7 +57,7 @@
                             @foreach($sub_stats as $sub_stat)
                             <label class="dropdown-option">
                                 <input type="checkbox" name="rs_substats[]" class="rs_substats" value="{{ $sub_stat->sub_id }}" />
-                                <span class="check_btn">{{ $sub_stat->sub_name }}</span>
+                                <span class="check_btn">{{ Session::get('lang') == 'en'? $sub_stat->sub_name : $sub_stat->fr_sub_name }}</span>
                                 <img src="{{ asset('images/game/icons/sub-stats/'.$sub_stat->sub_icon) }}" alt="">
                             </label>
                             @endforeach
@@ -67,33 +66,33 @@
                 </div>
 
                 <div class="dropdown dropdown3" data-control="checkbox-dropdown">
-                    <label class="dropdown-label">Skill Stone</label>
+                    <label class="dropdown-label">@lang('add-rune.skill')</label>
                     <div class="dropdown-list">
                         <div class="inner-dropdown-sec">
                             <label class="dropdown-option">
                                 <input type="radio" name="rs_skill_stones" value="1" />
-                                <span>Damage</span>
+                                <span>{{ Session::get('lang') == 'en'? $monster->skill_stone1_name : $monster->fr_skill_stone1_name }}</span>
                             </label>
                             <label class="dropdown-option">
                                 <input type="radio" name="rs_skill_stones" value="2" />
-                                <span>Mana Cost</span>
+                                <span>{{ Session::get('lang') == 'en'? $monster->skill_stone2_name : $monster->fr_skill_stone2_name }}</span>
                             </label>
                             <label class="dropdown-option">
                                 <input type="radio" name="rs_skill_stones" value="3" />
-                                <span>Tooth for a tooth</span>
+                                <span>{{ Session::get('lang') == 'en'? $monster->skill_stone3_name : $monster->fr_skill_stone3_name }}</span>
                             </label>
                         </div>
                     </div>
                 </div>
 
                 <div class="dropdown dropdown4" data-control="checkbox-dropdown">
-                    <label class="dropdown-label">Comp Position</label>
+                    <label class="dropdown-label">@lang('add-rune.position')</label>
                     <div class="dropdown-list">
                         <div class="inner-dropdown-sec">
                             @for($i=1; $i<=8; $i++)
                             <label class="dropdown-option">
                                 <input type="radio" name="rs_comp_position" value="{{ $i }}" />
-                                <span>{{ $i }} - {{ $i%8 > 4 ? "Back Lane" : "Front Lane"}}</span>
+                                <span>{{ $i }} - {{ $i%8 > 4 ? 'Back Lane' : 'Front Lane' }}</span>
                             </label>
                             @endfor
                         </div>
@@ -104,10 +103,10 @@
 
             <div class="textarea-field">
                 <textarea name="rs_comment" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false"
-                    placeholder="Indicate the purpose of the rune set and how to use it..." required></textarea>
+                    placeholder="@lang('add-rune.textarea')" required></textarea>
             </div>
             <div class="submit-field">
-                <input type="submit" value="Submit">
+                <input type="submit" value="@lang('add-rune.submit')">
             </div>
 
         </form>
@@ -178,7 +177,7 @@ $(document).ready(function () {
                 }
             });
             $.ajax({
-                url: "{{ route('rune-set-store') }}",
+                url: "{{ route('rune-set-store', Session::get('lang')) }}",
                 method: "POST",
                 data: $(this).serialize(),
                 success: function(data) {

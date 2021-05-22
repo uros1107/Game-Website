@@ -2,8 +2,8 @@
 <div class="monster_lost_sec bg_br mt-50">
     <div class="row mb_bg mb-40">
         <div class="col-12 text-center ">
-            <h2>Ragdoll Runes in Lost Centuria</h2>
-            <a id="add-rune-set-btn" data-value="{{ $monster->id }}" class="all_btn">+ Add Rune Set</a>
+            <h2>{{ Session::get('lang') == 'en'? $monster->name : $monster->fr_name }} @lang('monster-detail.rune_set')</h2>
+            <a id="add-rune-set-btn" data-value="{{ $monster->id }}" class="all_btn">+ @lang('monster-detail.add_rune')</a>
         </div>
     </div>
     @if(count($rune_sets))
@@ -25,10 +25,10 @@
                         $rune_set->rs_substats = json_decode($rune_set->rs_substats);
                     @endphp
                     <ul>
-                        <li><span>Rune Set to use : </span>{{ $rune->r_name }} <img src="{{ asset('images/game/icons/runes/'.$rune->r_icon) }}" alt=""
+                        <li><span>@lang('monster-detail.rune_use') : </span>{{ Session::get('lang') == 'en'? $monster->r_name : $monster->fr_r_name }} <img src="{{ asset('images/game/icons/runes/'.$rune->r_icon) }}" alt=""
                                 class="icons-after-text"></li>
                         <li>
-                            <span>Prioritized Sub-stats :</span>
+                            <span>@lang('monster-detail.sub_stats') :</span>
                             @foreach($rune_set->rs_substats as $rs)
                             @php
                                 $sub_stat = DB::table('sub_stats')->where('sub_id', $rs)->first();
@@ -36,14 +36,14 @@
                             <img src="{{ asset('images/game/icons/sub-stats/'.$sub_stat->sub_icon) }}" alt="">
                             @endforeach
                         </li>
-                        <li><span>Skill Stone : </span>{{ $skill_stone->skill_name }}<img src="{{ asset('images/game/icons/skill-stones/'.$skill_stone->skill_icon) }}"
+                        <li><span>@lang('monster-detail.skill_stones') : </span>{{ Session::get('lang') == 'en'? $monster->skill_name : $monster->fr_skill_name }}<img src="{{ asset('images/game/icons/skill-stones/'.$skill_stone->skill_icon) }}"
                                 alt="" class="icons-after-text"></li>
-                        <li><span>Position in comp : </span>{{ $rune_set->rs_comp_position }}</li>
+                        <li><span>@lang('monster-detail.position') : </span>{{ $rune_set->rs_comp_position }}</li>
                     </ul>
                     @php
                         $user = DB::table('users')->where('id', $rune_set->rs_user_id)->first();
                     @endphp
-                    <p class="date">By <span><a href="#1">{{ $user->name }}</a></span> on the {{ $rune_set->created_at->format('m/d/Y') }}</p>
+                    <p class="date">@lang('monster-detail.by') <span><a href="#1">{{ $user->name }}</a></span> @lang('monster-detail.on') {{ $rune_set->created_at->format('m/d/Y') }}</p>
                 </div>
             </div>
         </div>
@@ -61,8 +61,8 @@
                 <span class="like">
                     <a href="#1">
                         <div class="like-unlike-wrap">
-                            <img src="assets/image/pouce_vide.png" alt="">
-                            <img src="assets/image/like-active.png" alt="" class="active-like-inlike">
+                            <img src="{{ asset('assets/image/pouce_vide.png') }}" alt="">
+                            <img src="{{ asset('assets/image/like-active.png') }}" alt="" class="active-like-inlike">
                         </div>
                         2700
                     </a>
@@ -70,8 +70,8 @@
                 <span class="unlike">
                     <a href="#1">
                         <div class="like-unlike-wrap">
-                            <img src="assets/image/Pouce_bas.png" alt="">
-                            <img src="assets/image/unlike-active.png" alt="" class="active-like-inlike">
+                            <img src="{{ asset('assets/image/Pouce_bas.png') }}" alt="">
+                            <img src="{{ asset('assets/image/unlike-active.png') }}" alt="" class="active-like-inlike">
                         </div>
                         32
                     </a>
@@ -82,12 +82,12 @@
     @endforeach
     @else
     <div class="row mb_padd border-bottom" style="justify-content: center">
-        There is no item yet... Be the first to add and help the community!
+        @lang('monster-detail.empty_msg')
     </div>
     @endif
 </div>
 
 <!-- Pagination Section -->
 <div class="pagination_sec text-center pt-3">
-{!! $rune_sets->appends(['id' => $monster->id])->links('frontend.custom-pagination') !!}
+    {!! $rune_sets->appends(['id' => $monster->id])->links('frontend.custom-pagination') !!}
 </div>

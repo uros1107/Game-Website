@@ -10,6 +10,7 @@ class Monster extends Model
         'name',
         'fr_name',
         'slug',
+        'fr_slug',
         'second_name',
         'fr_second_name',
         'spell_name',
@@ -52,6 +53,7 @@ class Monster extends Model
         'fr_skill_stone3_name',
         'skill_stone3_description',
         'fr_skill_stone3_description',
-        'skill_stone3_image'
+        'skill_stone3_image',
+        'del_flag'
     ];
 }

@@ -155,20 +155,42 @@
                   <div class="form-group">
                     <label>Skill Stone</label>
                     <ul class="list-unstyled mb-0">
-                      @foreach($skill_stones as $skill_stone)
                       <li class="d-inline-block mr-2">
                         <fieldset>
                           <div class="vs-radio-con">
-                            <input type="radio" name="rs_skill_stones" value="{{ $skill_stone->skill_id }}" required  {{ $skill_stone->skill_id == $rune_set->rs_skill_stones? 'checked' : '' }} value="{{ $rune->r_id }}">
+                            <input type="radio" name="rs_skill_stones" value="1" required  {{ $rune_set->rs_skill_stones == 1 ? 'checked' : '' }} value="{{ $rune->r_id }}">
                             <span class="vs-radio">
                               <span class="vs-radio--border"></span>
                               <span class="vs-radio--circle"></span>
                             </span>
-                            {{ $skill_stone->skill_name }}
+                            {{ $monster->skill_stone1_name }}
                           </div>
                         </fieldset>
                       </li>
-                      @endforeach
+                      <li class="d-inline-block mr-2">
+                        <fieldset>
+                          <div class="vs-radio-con">
+                            <input type="radio" name="rs_skill_stones" value="2" required  {{ $rune_set->rs_skill_stones == 2 ? 'checked' : '' }} value="{{ $rune->r_id }}">
+                            <span class="vs-radio">
+                              <span class="vs-radio--border"></span>
+                              <span class="vs-radio--circle"></span>
+                            </span>
+                            {{ $monster->skill_stone2_name }}
+                          </div>
+                        </fieldset>
+                      </li>
+                      <li class="d-inline-block mr-2">
+                        <fieldset>
+                          <div class="vs-radio-con">
+                            <input type="radio" name="rs_skill_stones" value="3" required  {{ $rune_set->rs_skill_stones == 3 ? 'checked' : '' }} value="{{ $rune->r_id }}">
+                            <span class="vs-radio">
+                              <span class="vs-radio--border"></span>
+                              <span class="vs-radio--circle"></span>
+                            </span>
+                            {{ $monster->skill_stone3_name }}
+                          </div>
+                        </fieldset>
+                      </li>
                     </ul>
                   </div>
                 </div>

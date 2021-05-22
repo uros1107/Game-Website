@@ -12,9 +12,9 @@
         <div class="page-space">
             <!--  -->
             <div class="text-center ragdoll-top-sec page-title-section mt-3 mt-md-0">
-                <h1 class="page-title">Personal Info</h1>
-                <img src="assets/image/add-run-set/separator-title.png" alt="">
-                <p class="page-title-subtext">You can edit your profile information from this page.</p>
+                <h1 class="page-title">@lang('user-private.personal')</h1>
+                <img src="{{ asset('assets/image/add-run-set/separator-title.png') }}" alt="">
+                <p class="page-title-subtext">@lang('user-private.descript')</p>
             </div>
             
             @if(Session::has('success'))
@@ -28,10 +28,10 @@
                 <div class="personal_info">
                     <div class="form_field form_field_group">
                         <input type="text" value="{{ Auth::user()->name }}" readonly/>
-                        <p>Kindly note that your profile name is not editable once the profil has been created.</p>
+                        <p>@lang('user-private.description1')</p>
                     </div>
                     <div class="form_field">
-                        <input type="email" name="email" placeholder="Email*" value="{{ Auth::user()->email }}" />
+                        <input type="email" name="email" placeholder="@lang('user-private.email')" value="{{ Auth::user()->email }}" />
                     </div>
                     @if ($errors->has('email'))
                         <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
@@ -39,16 +39,16 @@
                         </span>
                     @endif
                     <div class="form_field">
-                        <input type="password" name="password" placeholder="Password*" value="" />
+                        <input type="password" name="password" placeholder="@lang('user-private.password')" value="" />
                     </div>
                     <div class="form_field">
-                        <input type="text" name="game_name" placeholder="Lost Centuria in-game name" value="{{ Auth::user()->game_name }}" />
+                        <input type="text" name="game_name" placeholder="@lang('user-private.game_name')" value="{{ Auth::user()->game_name }}" />
                     </div>
                     <div class="form_field">
-                        <input type="text" name="guild_name" placeholder="Guild name" value="{{ Auth::user()->guild_name }}" />
+                        <input type="text" name="guild_name" placeholder="@lang('user-private.guild_name')" value="{{ Auth::user()->guild_name }}" />
                     </div>
                     <div class="form_field_btn text-center">
-                        <input type="submit" value="Save" class="common-btn" />
+                        <input type="submit" value="@lang('user-private.save')" class="common-btn" />
                     </div>
                 </div>
             </form>

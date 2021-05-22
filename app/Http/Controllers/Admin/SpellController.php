@@ -21,7 +21,7 @@ class SpellController extends Controller
             ['link'=>"/",'name'=>"Home"], ['name'=>"Spell Manage"]
         ];
 
-        $spells = Spell::all();
+        $spells = Spell::where('del_flag', 0)->get();
 
         return view('/spell/spell-list', [
             'breadcrumbs' => $breadcrumbs,
@@ -113,7 +113,9 @@ class SpellController extends Controller
 
     public function delete_spell(Request $request)
     {
-        $spell = Spell::where('id', $request->id)->delete();
+        $spell = Spell::where('id', $request->id)->first();
+        $spell->del_flag = 1;
+        $spell->save();
 
         return response()->json(true);
     }

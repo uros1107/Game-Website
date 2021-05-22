@@ -11,9 +11,9 @@
     <div class="page-space home-main-sec">
         <!--  -->
         <div class="text-center ragdoll-top-sec page-title-section mt-3 mt-md-0 hero-banner-sec">
-            <h1 class="page-title">The perfect tool for <span>Lost Centuria </span> players</h1>
+            <h1 class="page-title">@lang('home.perfect_tool')<span>@lang('home.lost')</span>@lang('home.player')</h1>
             <img src="assets/image/add-run-set/separator-title.png" alt="" class="title-btm-img">
-            <p class="page-title-subtext hero-des">Monsters, comps, guides, runes, stats... It's all here.</p>
+            <p class="page-title-subtext hero-des">@lang('home.desription')</p>
             <a href="#collaborative-sec" class="collaborative-sec-sec-1">
                 <img src="assets/image/arrow-icon-btm.png" alt="" class="title-btm-img">
             </a>
@@ -26,20 +26,16 @@
                             <img src="assets/image/Home/collaborative.png" alt="">
                         </div>
                         <div class="col-sm-6  page-title-section collection_right_sec">
-                            <h3 class="page-title page-title-btm">A collaborative creation</h3>
+                            <h3 class="page-title page-title-btm">@lang('home.collaborative')</h3>
                             <div class="collaborative-des">
-                                <p class="page-title-subtext">You will find here the compositions and rune sets
-                                    created by other members of the community thanks to our specialized tools.
+                                <p class="page-title-subtext">@lang('home.specialized')
                                 </p>
-                                <p class="page-title-subtext">Designed especially for your Summoners War: Lost
-                                    Centuria monsters, the other players' comps and rune sets will allow you to
-                                    acquire expertise quickly by putting new ideas in practice.
+                                <p class="page-title-subtext">@lang('home.designed')
                                 </p>
-                                <p class="page-title-subtext">Create your own comps and rune sets and share
-                                    them!
+                                <p class="page-title-subtext">@lang('home.create')
                                 </p>
                                 <div class="home-btn">
-                                    <a id="comp_builder" class="all_btn">Comp Builder</a>
+                                    <a id="comp_builder" class="all_btn">@lang('home.comp_builder')</a>
                                 </div>
                             </div>
                         </div>
@@ -50,20 +46,16 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6  page-title-section collection_right_sec collection_left_sec">
-                            <h3 class="page-title page-title-btm">In depth guides</h3>
+                            <h3 class="page-title page-title-btm">@lang('home.guides')</h3>
                             <div class="collaborative-des">
-                                <p class="page-title-subtext">All Summoners War: Lost Centuria monsters are
-                                    included in our database with their basic stats, skill stones and all other
-                                    essential info.
+                                <p class="page-title-subtext">@lang('home.essential')
                                 </p>
-                                <p class="page-title-subtext">But there's more! On each monster's page, you can
-                                    also find rune sets and compositions created by the community.
+                                <p class="page-title-subtext">@lang('home.more')
                                 </p>
-                                <p class="page-title-subtext">Our partner website JeuMobi also offers tips and
-                                    guides on game mecanics as well as overall PvP strategies in SWLC.
+                                <p class="page-title-subtext">@lang('home.partner')
                                 </p>
                                 <div class="home-btn">
-                                    <a href="{{ route('monster-list') }}" class="all_btn">Monster List</a>
+                                    <a href="{{ route('monster-list', app()->getLocale()) }}" class="all_btn">@lang('home.monster_list')</a>
                                 </div>
                             </div>
                         </div>
@@ -80,39 +72,33 @@
                             <img src="assets/image/Home/comp-list-swlc-filter.png" alt="">
                         </div>
                         <div class="col-sm-6  page-title-section collection_right_sec">
-                            <h3 class="page-title page-title-btm">Many precise and efficient filters</h3>
+                            <h3 class="page-title page-title-btm">@lang('home.efficient')</h3>
                             <div class="collaborative-des">
-                                <p class="page-title-subtext">Do not waste your time browsing the internet for
-                                    ages or opening fifty different web pages simply because you can't find the
-                                    right comp or the right rune set.</p>
-                                <p class="page-title-subtext"> Instead, use our filters to sort content by
-                                    monster, element, role, rarity, mana cost or even publishing date to quickly
-                                    find the content that you need on the last up-to-date patch.
+                                <p class="page-title-subtext">@lang('home.waste')</p>
+                                <p class="page-title-subtext"> @lang('home.instead')
                                 </p>
                                 <div class="home-btn">
-                                    <a href="{{ route('comps-list') }}" class="all_btn">Find your ideal comp</a>
+                                    <a href="{{ route('comps-list', Session::get('lang')) }}" class="all_btn">@lang('home.ideal')</a>
                                 </div>
                             </div>
                         </div>
             </section>
             <section class="home-sec-4 page-title-section  more-soon_sec collaborative-des ">
-                <h3 class="page-title page-title-btm title-line-center">More soon...</h3>
+                <h3 class="page-title page-title-btm title-line-center">@lang('home.soon')</h3>
                 <div class="more-soon-des">
-                    <p class="page-title-subtext">Thank you for you support and, if you are waiting for new
-                        features, you won't be disappointed.</p>
-                    <p class="page-title-subtext">Several features will soon be available on SWLC.gg:</p>
+                    <p class="page-title-subtext">@lang('home.support')</p>
+                    <p class="page-title-subtext">@lang('home.features')</p>
                 </div>
                 <ul class="more-soon-list">
-                    <li>Monster Tierlists</li>
-                    <li>Possibility to add runes to each monster <br> in the comp Builder</li>
-                    <li> Recruitment of players for your alliance directly on the website</li>
+                    <li>@lang('home.tierlists')</li>
+                    <li>@lang('home.each')<br>@lang('home.comp')</li>
+                    <li>@lang('home.alliance')</li>
                 </ul>
                 <div class="more-soon-des  more-soon-des-last-des">
-                    <p class="page-title-subtext">To not miss out on those and much more as well support us,
-                        register now for free!</p>
+                    <p class="page-title-subtext">@lang('home.miss')</p>
                 </div>
                 <div class="home-btn wow fadeInUp">
-                    <a class="all_btn" id="register_btn">Register</a>
+                    <a class="all_btn" id="register_btn">@lang('home.register')</a>
                 </div>
             </section>
 
@@ -131,7 +117,7 @@
         $(".login-form").parents('.register_content').addClass('hide_login');
     })
     $(document).on('click', '#comp_builder', function() {
-        location.href = "{{ route('comps-builder') }}";
+        location.href = "{{ route('comps-builder', Session::get('lang')) }}";
     })
 </script>
 @endsection

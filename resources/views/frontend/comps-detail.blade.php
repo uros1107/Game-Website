@@ -42,10 +42,10 @@
                 $user = DB::table('users')->where('id', $team_comp->c_sent_by_user)->first();
             @endphp
             <p class="page-title-subtext">
-                This deck of Lost Centuria has been created by <a href="#1" class="hakio-text">{{ $user->name }}</a> on {{ $team_comp->created_at }}.
+                @lang('comp-detail.title') <a href="#1" class="hakio-text">{{ $user->name }}</a> @lang('comp-detail.on') {{ $team_comp->created_at->format('m/d/Y') }}.
             </p>
             <div class="social-media-block">
-                <span> Share on : </span>
+                <span> @lang('comp-detail.share') : </span>
                 <ul>
                     <li class="facebook-icon">
                         <a href="#1"> <i class="fab fa-facebook-f"></i> </a>
@@ -63,7 +63,7 @@
         <!-- compect elements sec -->
         <div class="comps_sec">
             <div class="desktop_block">
-                <h2>Deck details ans tips</h2>
+                <h2>@lang('comp-detail.detail')</h2>
             </div>
             <div class="compact_bulider_element_section comp_builder">
                 <div class="compact_bulider_inner_section">
@@ -84,14 +84,14 @@
                                 @endforeach
                             </ul>
                             <div class="compect_genral_info_section mobile-genral_info d-md-none">
-                                <h3 class="general-info-title">General Info</h3>
+                                <h3 class="general-info-title">@lang('comp-detail.info')</h3>
                                 <p class="general-info-desc mCustomScrollbar">{{ $team_comp->c_general_info }}</p>
                             </div>
                         </div>
 
                         <div class="compect_element_section">
                             <div class="compect_element_title">
-                                <h3>Elements</h3>
+                                <h3>@lang('comp-detail.elements')</h3>
                             </div>
 
                             <ul>
@@ -120,7 +120,7 @@
 
                         <div class="compect_role_section">
                             <div class="compect_element_title">
-                                <h3>Roles</h3>
+                                <h3>@lang('comp-detail.role')</h3>
                             </div>
 
                             <div class="compect_role_items">
@@ -130,28 +130,28 @@
                                             <img src="{{ asset('assets/image/Monter-list/all_role_monter_icon_1.png') }}"
                                                 alt="role icon1">
                                         </div>
-                                        <p>x {{ $team_comp->role_atk }} in Attack</p>
+                                        <p>x {{ $team_comp->role_atk }} @lang('comp-detail.atk')</p>
                                     </li>
                                     <li>
                                         <div class="cm_role_icone_img">
                                             <img src="{{ asset('assets/image/Monter-list/all_role_monter_icon_4.png') }}"
                                                 alt="role icon1">
                                         </div>
-                                        <p>x {{ $team_comp->role_defense }} in Defense</p>
+                                        <p>x {{ $team_comp->role_defense }} @lang('comp-detail.def')</p>
                                     </li>
                                     <li>
                                         <div class="cm_role_icone_img">
                                             <img src="{{ asset('assets/image/Monter-list/all_role_monter_icon_2.png') }}"
                                                 alt="role icon1">
                                         </div>
-                                        <p>x {{ $team_comp->role_hp }} in HP</p>
+                                        <p>x {{ $team_comp->role_hp }} @lang('comp-detail.hp')</p>
                                     </li>
                                     <li>
                                         <div class="cm_role_icone_img">
                                             <img src="{{ asset('assets/image/Monter-list/all_role_support-ic_3.png') }}"
                                                 alt="role icon1">
                                         </div>
-                                        <p>x {{ $team_comp->role_support }} in Support</p>
+                                        <p>x {{ $team_comp->role_support }} @lang('comp-detail.sup')</p>
                                     </li>
                                 </ul>
                             </div>
@@ -160,7 +160,7 @@
 
                         <div class="compect_raity_section">
                             <div class="compect_element_title">
-                                <h3>Rarity</h3>
+                                <h3>@lang('comp-detail.rarity')</h3>
                             </div>
 
                             <div class="compect_raity_items">
@@ -190,7 +190,7 @@
 
                         <div class="compect_spells_section">
                             <div class="compect_element_title">
-                                <h3>Spells</h3>
+                                <h3>@lang('comp-detail.spells')</h3>
                             </div>
                             @php
                                 $spell_ids = json_decode($team_comp->c_spell);
@@ -215,7 +215,7 @@
                         </div>
 
                         <div class="compect_average mobile_block">
-                            <p>Average mana cost:{{ $team_comp->average_mana_cost }}</p>
+                            <p>@lang('comp-detail.avg_mana'):{{ $team_comp->average_mana_cost }}</p>
                             <img src="{{ asset('assets/image/compect_bulider/cb_average_img.png') }}" alt="average">
                         </div>
                     </div>
@@ -228,7 +228,7 @@
                         <div class="compect_right_bg_banner" style="background-image: url({{ asset('assets/image/comp_sec-monster_bg.png') }})">
                         <!-- <div class="compect_right_bg_banner" style="background-image: url({{ asset('images/game/bc_images/'.$c_monster->bg_comp_image) }})"> -->
                             <div class="compect_genral_info_section">
-                                <h3 class="general-info-title">General Info</h3>
+                                <h3 class="general-info-title">@lang('comp-detail.info')</h3>
                                 <p class="general-info-desc">{{ $team_comp->c_general_info }}</p>
                             </div>
 
@@ -243,7 +243,7 @@
                                             $rarity = DB::table('rarity')->where('id', $c_monster->rarity)->first();
                                         @endphp
                                         @if($key % 8 < 4)
-                                        <a href="{{ route('monster-detail', $c_monster->slug) }}" class="compect_monster_box compect_monster_box{{$key + 1}}" target="_blank">
+                                        <a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" class="compect_monster_box compect_monster_box{{$key + 1}}" target="_blank">
                                             <div class="monster_img">
                                                 <div class="icon_img">
                                                     <img src="{{ asset('assets/image/mana-icone-carte.svg') }}" alt="icon"
@@ -266,7 +266,7 @@
                                         @endforeach
 
                                         <div class="compect_average">
-                                            <p>Average mana cost:{{ $team_comp->average_mana_cost }}</p>
+                                            <p>@lang('comp-detail.avg_mana'):{{ $team_comp->average_mana_cost }}</p>
                                             <img src="{{ asset('assets/image/compect_bulider/cb_average_img.png') }}" alt="average">
                                         </div>
                                     </div>
@@ -282,7 +282,7 @@
                                             $rarity = DB::table('rarity')->where('id', $c_monster->rarity)->first();
                                         @endphp
                                         @if($key % 8 >= 4)
-                                        <a href="{{ route('monster-detail', $c_monster->slug) }}" class="compect_monster_box compect_monster_box{{$key % 4 + 1}}" target="_blank">
+                                        <a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" class="compect_monster_box compect_monster_box{{$key % 4 + 1}}" target="_blank">
                                             <div class="monster_img">
                                                 <div class="icon_img">
                                                     <img src="{{ asset('assets/image/mana-icone-carte.svg') }}" alt="icon"
@@ -309,7 +309,7 @@
                                 <div class="col">
                                     <div class="compect_mobil_bg">
                                         <div class="compect_coleen_title">
-                                            <h2>Deck details ans tips</h2>
+                                            <h2>@lang('comp-detail.title')</h2>
                                         </div>
 
                                         <div class="compect_mobile_boder">
@@ -320,7 +320,7 @@
                                                         $c_monster = DB::table('monsters')->where('id', $comp)->first();
                                                     @endphp
                                                     <div class="line_up_monster">
-                                                        <a href="{{ route('monster-detail', $c_monster->slug) }}" target="_blank">
+                                                        <a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" target="_blank">
                                                             <div class="contain_shape">
                                                                 <div class="shape"><img
                                                                         src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
@@ -346,7 +346,7 @@
             {{ csrf_field() }}
             <!--  Commment Section Start -->
             <div class="comment-section">
-                <h2>Comments on this deck</h2>
+                <h2>@lang('comp-detail.comment_title')</h2>
                 @foreach($comments as $comment)
                 <div class="seperate-comment-block">
                     <div class="seperate-comment">
@@ -356,17 +356,17 @@
                         @php
                             $user = DB::table('users')->where('id', $comment->comment_user_id)->first();
                         @endphp
-                        <span class="commentor-name">By <a href="#1">{{ $user->name }}</a> </span>
+                        <span class="commentor-name">@lang('comp-detail.by') <a href="#1">{{ $user->name }}</a> </span>
                         <br>
-                        <span class="comment-date">{{ $comment->created_at }}</span>
+                        <span class="comment-date">{{ $comment->created_at->format('m/d/Y') }}</span>
                     </div>
                 </div>
                 @endforeach
-                <textarea rows="4" class="seperate-comment-textarea" id="comment" placeholder="Enter your comment..."></textarea>
+                <textarea rows="4" class="seperate-comment-textarea" id="comment" placeholder="@lang('comp-detail.enter')"></textarea>
             </div>
             <!--  Commment Section End-->
             <div class="cb_save_and_publish_btn submit-btn">
-                <button type="submit" id="submit_btn" data-value="{{ $team_comp->c_id }}" class="all_btn">Submit</button>
+                <button type="submit" id="submit_btn" data-value="{{ $team_comp->c_id }}" class="all_btn">@lang('comp-detail.submit')</button>
             </div>
         </form>
         
@@ -398,7 +398,7 @@
                         }
                     });
                     $.ajax({
-                        url: "{{ route('comps-comment') }}",
+                        url: "{{ route('comps-comment', Session::get('lang')) }}",
                         method: "POST",
                         data: { 
                             comment: comment,

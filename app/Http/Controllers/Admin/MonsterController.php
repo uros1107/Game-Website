@@ -19,7 +19,7 @@ class MonsterController extends Controller
             ['link'=>"/",'name'=>"Home"], ['name'=>"Monster Manage"]
         ];
 
-        $monsters = Monster::all();
+        $monsters = Monster::where('del_flag', 0)->get();
 
         return view('/monster/monster-list', [
             'breadcrumbs' => $breadcrumbs,
@@ -159,7 +159,8 @@ class MonsterController extends Controller
         $monster_info['skill_stone2_image'] = $skill_stone2_image;
         $monster_info['skill_stone3_image'] = $skill_stone3_image;
 
-        $monster_info['slug'] = str_slug($monster_info['name'],'-').'-'.strtolower(str_random(8));
+        $monster_info['slug'] = str_slug($monster_info['name'],'-');
+        $monster_info['fr_slug'] = str_slug($monster_info['fr_name'],'-');
 
         $monster = Monster::create($monster_info);
         if($request->special_monster == 1) {
@@ -428,7 +429,8 @@ class MonsterController extends Controller
             SpecialMonster::where('s_id', $monster->first()->special_monster_id)->delete();
         }
 
-        $monster_info['slug'] = str_slug($monster_info['name'],'-').'-'.strtolower(str_random(8));
+        $monster_info['slug'] = str_slug($monster_info['name'],'-');
+        $monster_info['fr_slug'] = str_slug($monster_info['fr_name'],'-');
         $monster->update($monster_info);
 
         return redirect()->back()->with('success',"You have successfully updated!");
@@ -436,11 +438,12 @@ class MonsterController extends Controller
 
     public function delete_monster(Request $request)
     {
-        $monster = Monster::where('id', $request->id);
-        if($monster->first()->special_monster == 1) {
-            SpecialMonster::where('s_id', $monster->first()->special_monster_id)->delete();
-        }
-        $monster->delete();
+        $monster = Monster::where('id', $request->id)->first();
+        // if($monster->first()->special_monster == 1) {
+        //     SpecialMonster::where('s_id', $monster->first()->special_monster_id)->delete();
+        // }
+        $monster->del_flag = 1;
+        $monster->save();
 
         return response()->json(true);
     }

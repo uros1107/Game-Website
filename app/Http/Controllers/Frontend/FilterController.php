@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 
 use App\Monster;
 use DB;
+use App;
+use Session;
 
 class FilterController extends Controller
 {
-    public function get_monster(Request $request)
+    public function get_monster(Request $request, $lang)
     {
+        App::setlocale(Session::get('lang'));
         $mana_cost = $request->mana_cost;
         $element = $request->element;
         $role = $request->role;
@@ -57,18 +60,29 @@ class FilterController extends Controller
                                 'id', 
                                 'name', 
                                 'fr_name',
+                                'slug',
+                                'fr_slug',
                                 'mana_cost',
                                 'role',
                                 'rarity',
                                 'element',
                                 'main_image',
+                                'meta_title',
+                                'fr_meta_title',
+                                'og_image',
+                                'meta_description',
+                                'fr_meta_description',
+                                'bg_image',
+                                'bg_comp_image',
+                                'icon_image'
                             ]);
 
         return view('frontend.filter.filter-monster', compact('monsters'));
     }
 
-    public function get_builder_monster(Request $request)
+    public function get_builder_monster(Request $request, $lang)
     {
+        App::setlocale(Session::get('lang'));
         $mana_cost1 = $request->mana_cost1;
         $mana_cost2 = $request->mana_cost2;
         $monster = $request->monster;
@@ -123,13 +137,29 @@ class FilterController extends Controller
                                         }
                                     }
                                 });
-                            })->get(['id', 'name', 'fr_name', 'icon_image']);
+                            })->get([
+                                'id', 
+                                'name', 
+                                'fr_name', 
+                                'slug',
+                                'fr_slug',
+                                'icon_image', 
+                                'meta_title',
+                                'fr_meta_title',
+                                'og_image',
+                                'meta_description',
+                                'fr_meta_description',
+                                'bg_image',
+                                'bg_comp_image',
+                                'icon_image'
+                            ]);
 
         return view('frontend.filter.filter-builder-monster', compact('monsters'));
     }
 
-    public function get_team_comps(Request $request)
+    public function get_team_comps(Request $request, $lang)
     {
+        App::setlocale(Session::get('lang'));
         $mana_cost = $request->mana_cost;
         $monster = $request->monster;
         $element = $request->element;

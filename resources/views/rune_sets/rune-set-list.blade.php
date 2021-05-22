@@ -60,15 +60,28 @@
                   <p class="text-center">{{ $rune->r_name }}</p>
                 </div>
               </td>
-              @php
-                $skill_stone = DB::table('skill_stones')->where('skill_id', $rune_set->rs_skill_stones)->first();
-              @endphp
+              @if($rune_set->rs_skill_stones == 1)
               <td>
                 <div class="text-center">
-                  <img src="{{ asset('images/game/icons/skill-stones/'.$skill_stone->skill_icon) }}" style="height: 50px">
-                  <p class="text-center">{{ $skill_stone->skill_name }}</p>
+                  <img src="{{ asset('images/game/skill_images/'.$monster->skill_stone1_image) }}" style="height: 50px">
+                  <p class="text-center">{{ $monster->skill_stone1_name }}</p>
                 </div>
               </td>
+              @elseif($rune_set->rs_skill_stones == 2)
+              <td>
+                <div class="text-center">
+                  <img src="{{ asset('images/game/skill_images/'.$monster->skill_stone2_image) }}" style="height: 50px">
+                  <p class="text-center">{{ $monster->skill_stone2_name }}</p>
+                </div>
+              </td>
+              @elseif($rune_set->rs_skill_stones == 3)
+              <td>
+                <div class="text-center">
+                  <img src="{{ asset('images/game/skill_images/'.$monster->skill_stone3_image) }}" style="height: 50px">
+                  <p class="text-center">{{ $monster->skill_stone3_name }}</p>
+                </div>
+              </td>
+              @endif
               <td>
                 @if($rune_set->verify == 1)
                   <?php $color = "success" ?>
