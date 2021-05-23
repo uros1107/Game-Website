@@ -15,6 +15,7 @@ header('Access-Control-Allow-Headers: *');
 */
 
 
+
 // Auth::routes();
 Route::get('/login', function() {
     return redirect()->route('index', Session::get('lang'));
@@ -65,6 +66,16 @@ Route::get('/{lang}/get-filter-monster', 'Frontend\FilterController@get_monster'
 Route::get('/{lang}/get-filter-team-comps', 'Frontend\FilterController@get_team_comps')->name('get-filter-team-comps');
 Route::get('/{lang}/get-filter-builder-monster', 'Frontend\FilterController@get_builder_monster')->name('get-filter-builder-monster');
 // -------------------------- Filter route end -----------------------------
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -129,6 +140,23 @@ Route::prefix('admin')->group(function() {
 
 Route::get('/error-404', 'Frontend\MiscellaneousController@error_404');
 Route::get('/error-500', 'Frontend\MiscellaneousController@error_500');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // // Users Pages
 // Route::get('/app-user-list', 'UserPagesController@user_list');
