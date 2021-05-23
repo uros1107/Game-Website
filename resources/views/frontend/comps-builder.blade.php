@@ -787,6 +787,7 @@ function drop(eve) {
                     success: function(data) {
                         $('#character').html(data);
                         var avg_mana = $('#avg_mana').val();
+                        console.log(avg_mana)
                         $('#avg_mana_cost > span').text(avg_mana);
                     }
                 })

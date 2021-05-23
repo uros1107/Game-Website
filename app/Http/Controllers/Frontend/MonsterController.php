@@ -153,7 +153,6 @@ class MonsterController extends Controller
         $comp_character['average_mana_cost'] = round($comp_character['average_mana_cost'] / count($monster_ids), 1);
 
         return view('frontend.ajax-character', ['comp_character' => $comp_character]);
-        // return $comp_character;
     }
 
     public function get_spell(Request $request)
