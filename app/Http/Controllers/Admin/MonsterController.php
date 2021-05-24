@@ -131,7 +131,7 @@ class MonsterController extends Controller
         $request->og_image->move(public_path('images/game/og_images'), $og_imageName);
 
         $fr_og_imageName = $request->fr_og_image->getClientOriginalName();
-        $request->og_image->move(public_path('images/game/og_images'), $fr_og_imageName);
+        $request->fr_og_image->move(public_path('images/game/og_images'), $fr_og_imageName);
 
         $main_imageName = $request->main_image->getClientOriginalName();
         $request->main_image->move(public_path('images/game/main_images'), $main_imageName);
