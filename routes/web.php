@@ -84,12 +84,12 @@ Route::get('/{lang}/get-filter-builder-monster', 'Frontend\FilterController@get_
 
 
 // ============================================================= Admin Route ==============================================
-Route::prefix('public/admin')->group(function() {
+Route::prefix('admin')->group(function() {
 
     // ------------- Admin login -------------
-    Route::get('/', function() {
-        return redirect()->route('admin.login');
-    });
+    // Route::get('/', function() {
+    //     return redirect()->route('admin.login');
+    // });
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\LoginController@login')->name('admin.login.submit');
     Route::get('/logout', 'Auth\LoginController@logout')->name('admin.logout');
