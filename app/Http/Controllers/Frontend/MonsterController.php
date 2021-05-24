@@ -76,6 +76,8 @@ class MonsterController extends Controller
 
     public function get_monster(Request $request, $lang)
     {
+        App::setlocale(Session::get('lang'));
+
         $monster_id = $request->monster_id;
         $monster = Monster::where('id', $monster_id)->first(['id', 'name', 'fr_name', 'slug', 'fr_slug', 'main_image', 'element', 'role', 'rarity', 'mana_cost', 'meta_title', 'fr_meta_title', 'og_image', 'meta_description', 'fr_meta_description', 'bg_image', 'bg_comp_image', 'icon_image']);
 
@@ -84,6 +86,8 @@ class MonsterController extends Controller
 
     public function calculate_character(Request $request, $lang) 
     {
+        App::setlocale(Session::get('lang'));
+        
         $monster_ids = $request->monster_ids;
         
         $comp_character = array(
