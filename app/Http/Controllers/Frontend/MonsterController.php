@@ -21,7 +21,7 @@ class MonsterController extends Controller
     {
         // App::setlocale(Session::get('lang'));
     }
-    public function monster_list($lang)
+    public function monster_list(Request $request, $lang)
     {
         $monsters = Monster::paginate(15, [
             'id', 
@@ -45,7 +45,11 @@ class MonsterController extends Controller
         ]);
         App::setlocale(Session::get('lang'));
         
-        return view('frontend.monster-list', compact('monsters'));
+        if($request->ajax()) {
+            return view('frontend.filter.filter-monster', compact('monsters'));
+        } else {
+            return view('frontend.monster-list', compact('monsters'));
+        }
     }
 
     public function monster_detail(Request $request, $lang,$slug)
@@ -87,7 +91,7 @@ class MonsterController extends Controller
     public function calculate_character(Request $request, $lang) 
     {
         App::setlocale(Session::get('lang'));
-        
+
         $monster_ids = $request->monster_ids;
         
         $comp_character = array(

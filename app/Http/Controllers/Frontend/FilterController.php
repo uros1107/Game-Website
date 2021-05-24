@@ -168,7 +168,7 @@ class FilterController extends Controller
         $mana_cost = substr($mana_cost, 1, -1);
         $mana_cost = explode(',', $mana_cost);
 
-        $query = DB::table('team_comps');
+        $query = DB::table('team_comps')->where('c_verify', 1);
         if($mana_cost) {
             $query->where('average_mana_cost', '>=', $mana_cost[0])->where('average_mana_cost', '<=', $mana_cost[1]);       
         }

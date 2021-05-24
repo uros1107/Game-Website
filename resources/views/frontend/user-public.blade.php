@@ -50,7 +50,7 @@
                                     <div class="bg_img_block">
                                         <img src="{{ asset('images/game/bc_images/'.$c_monster->bg_comp_image) }}">
                                     </div>
-                                    <h3 class="desk_heading">{{ Session::get('lang') == 'en'? $team_comp->c_name : $team_comp->fr_c_name }}</h3>
+                                    <h3 class="desk_heading">{{ Session::get('lang') == 'en'? $team_comp->c_name : $team_comp->c_fr_name }}</h3>
                                 </div>
                             </div>
                             <div class="col-md-9">

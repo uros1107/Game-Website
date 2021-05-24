@@ -11,7 +11,7 @@
                     <div class="bg_img_block">
                         <img src="{{ asset('images/game/bc_images/'.$c_monster->bg_comp_image) }}">
                     </div>
-                    <h2 class="desk_heading">{{ $team_comp->c_name }}</h2>
+                    <h2 class="desk_heading">{{ Session::get('lang') == 'en'? $team_comp->c_name : $team_comp->c_fr_name }}</h2>
                 </div>
             </div>
             <div class="col-md-9">

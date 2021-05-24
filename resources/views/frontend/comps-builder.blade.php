@@ -912,7 +912,7 @@ $(document).ready(function() {
         filter();
     })
 
-    $(document).on('click', '.number-page, .prev-page, .next-page', function() {
+    $(document).on('click', '.number-page, #prev, #next', function() {
         var page_url = $(this).data('href');
 
         let filterlink = '';

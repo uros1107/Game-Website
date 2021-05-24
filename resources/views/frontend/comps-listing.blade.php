@@ -604,8 +604,7 @@ $(document).ready(function() {
         })
     })
 
-    $(document).on('click', '.page-number, .prev-page, .next-page', function() {
-        console.log(12)
+    $(document).on('click', '.page-number, #prev, #next', function() {
         var page_url = $(this).data('href');
 
         let filterlink = '';
