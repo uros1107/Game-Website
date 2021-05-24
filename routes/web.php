@@ -110,7 +110,7 @@ Route::prefix('admin')->group(function() {
             Route::post('/delete-user', 'Admin\UserPagesController@delete_user')->name('delete-user');
     
             // Monster
-            Route::get('/monsters','Admin\MonsterController@index');
+            Route::get('/monster','Admin\MonsterController@index');
             Route::get('/monster-edit','Admin\MonsterController@edit_monster')->name('edit-monster');
             Route::get('/monster-add','Admin\MonsterController@add_monster')->name('add-monster');
             Route::POST('/monster-store','Admin\MonsterController@store_monster')->name('store-monster');
