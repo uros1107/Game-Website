@@ -31,7 +31,7 @@ class Monster extends Model
         'meta_title',
         'fr_meta_title',
         'meta_description',
-        'fr_meta_desciption',
+        'fr_meta_description',
         'og_image',
         'fr_og_image',
         'main_image',
