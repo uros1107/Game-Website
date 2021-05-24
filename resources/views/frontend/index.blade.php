@@ -59,7 +59,7 @@
                                 <p class="page-title-subtext">@lang('home.partner')
                                 </p>
                                 <div class="home-btn">
-                                    <a href="{{ route('monster-list', app()->getLocale()) }}" class="all_btn">@lang('home.monster_list')</a>
+                                    <a href="{{ route('monster-list', Session::get('lang')) }}" class="all_btn">@lang('home.monster_list')</a>
                                 </div>
                             </div>
                         </div>
