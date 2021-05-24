@@ -493,7 +493,8 @@ $(document).ready(function() {
             url: url,
             method: "get",
             data: { 
-                team_comps: 1
+                team_comps: 1,
+                id: "{{ $user->id }}"
             },
             success: function(data) {
                 $('#team_comps_pagination').html(data);

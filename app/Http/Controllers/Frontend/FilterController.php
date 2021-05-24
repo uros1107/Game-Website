@@ -20,7 +20,8 @@ class FilterController extends Controller
         $role = $request->role;
         $rarity = $request->rarity;
 
-        $monsters = Monster::when($mana_cost, function($query, $mana_cost){
+        $monsters = Monster::where('del_flag', 0)
+                            ->when($mana_cost, function($query, $mana_cost){
                                 $query->where('mana_cost', '>=', $mana_cost[1])->where('mana_cost', '<=', $mana_cost[3]);
                             })
                             ->when($element, function($query, $element){
@@ -91,7 +92,8 @@ class FilterController extends Controller
         $rarity = $request->rarity;
 
         $mana_cost = [$mana_cost1, $mana_cost2];
-        $monsters = Monster::when($mana_cost, function($query, $mana_cost){
+        $monsters = Monster::where('del_flag', 0)
+                            ->when($mana_cost, function($query, $mana_cost){
                                 $query->where('mana_cost', '>=', $mana_cost[0])->where('mana_cost', '<=', $mana_cost[1]);
                             })
                             ->when($monster, function($query, $monster){

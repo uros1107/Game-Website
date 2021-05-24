@@ -23,7 +23,7 @@ class MonsterController extends Controller
     }
     public function monster_list(Request $request, $lang)
     {
-        $monsters = Monster::paginate(15, [
+        $monsters = Monster::where('del_flag', 0)->paginate(15, [
             'id', 
             'name', 
             'slug', 
@@ -287,7 +287,7 @@ class MonsterController extends Controller
     {
         App::setlocale(Session::get('lang'));
 
-        $monsters = Monster::get([
+        $monsters = Monster::where('del_flag', 0)->get([
             'id', 
             'name', 
             'fr_name', 
