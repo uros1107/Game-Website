@@ -158,7 +158,7 @@ class MonsterController extends Controller
         $monster_info['main_image'] = $main_imageName;
         $monster_info['icon_image'] = $icon_imageName;
         $monster_info['og_image'] = $og_imageName;
-        $monster_info['fr_og_image'] = $fr_og_image;
+        $monster_info['fr_og_image'] = $fr_og_imageName;
         $monster_info['bg_image'] = $bg_imageName;
         $monster_info['bg_comp_image'] = $bg_comp_imageName;
         $monster_info['skill_stone1_image'] = $skill_stone1_image;
