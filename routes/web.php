@@ -52,6 +52,8 @@ Route::get('/{lang}/comps', 'Frontend\MonsterController@comps_list')->name('comp
 Route::POST('/{lang}/comps-submit', 'Frontend\MonsterController@comps_submit')->name('comps-submit');
 Route::get('/{lang}/comps-detail/{slug}', 'Frontend\MonsterController@comps_detail')->name('comps-detail');
 Route::POST('/{lang}/comps-comment', 'Frontend\MonsterController@comps_comment')->name('comps-comment');
+Route::POST('/{lang}/add-comps-likes', 'Frontend\MonsterController@add_comps_likes')->name('add-comps-likes');
+Route::POST('/{lang}/add-comps-dislikes', 'Frontend\MonsterController@add_comps_dislikes')->name('add-comps-dislikes');
 
 Route::get('/{lang}/comps-builder', 'Frontend\MonsterController@comps_builder')->name('comps-builder');
 

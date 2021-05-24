@@ -249,6 +249,32 @@ class MonsterController extends Controller
         }
     }
 
+    public function add_comps_likes(Request $request, $lang)
+    {
+        App::setlocale(Session::get('lang'));
+
+        $c_id = $request->c_id;
+        $comps = TeamComp::where('c_id', $c_id);
+        $comps->update([
+            'c_likes' => $comps->first()->c_likes + 1
+        ]);
+
+        return response()->json(['c_likes' => $comps->first()->c_likes]);
+    }
+
+    public function add_comps_dislikes(Request $request, $lang)
+    {
+        App::setlocale(Session::get('lang'));
+
+        $c_id = $request->c_id;
+        $comps = TeamComp::where('c_id', $c_id);
+        $comps->update([
+            'c_dislikes' => $comps->first()->c_dislikes + 1
+        ]);
+
+        return response()->json(['c_dislikes' => $comps->first()->c_dislikes]);
+    }
+
     public function comps_builder()
     {
         App::setlocale(Session::get('lang'));

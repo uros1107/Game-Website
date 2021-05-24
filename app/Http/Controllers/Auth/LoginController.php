@@ -80,12 +80,16 @@ class LoginController extends Controller
     public function user_login(Request $request)
     {
         $request->validate([
-            'email' => 'required|string|email',
+            'email' => 'required|string',
             'password' => 'required|string',
             'remember_me' => 'boolean'
         ]);
         $credentials = request(['email', 'password']);
-        if(!Auth::attempt($credentials))
+        $credentials1 = [
+            'name' => $request->email,
+            'password' => $request->password,
+        ];
+        if(!Auth::attempt($credentials) && !Auth::attempt($credentials1))
             return redirect()->back();
         $user = $request->user();
         
@@ -120,6 +124,5 @@ class LoginController extends Controller
 
             return $this->loggedOut($request) ?: redirect('/');
         }
-        
     }
 }
