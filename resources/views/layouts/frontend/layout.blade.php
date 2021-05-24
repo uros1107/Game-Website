@@ -5,7 +5,7 @@
     
     @if(isset($monster) && Session::get('lang') == 'en')
     <title>{{ $monster->meta_title != null ? $monster->meta_title : strip_tags($monster->meta_title) }}</title>
-    @elseif(isset($monster) && ession::get('lang') == 'fr')
+    @elseif(isset($monster) && Session::get('lang') == 'fr')
     <title>{{ $monster->fr_meta_title != null ? $monster->fr_meta_title : strip_tags($monster->fr_meta_title) }}</title>
     @else
     <title>LostCenturia</title>
