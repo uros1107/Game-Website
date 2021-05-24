@@ -3,9 +3,9 @@
 
 <head>
     
-    @if(isset($monster) && app()->getlocale() == 'en')
+    @if(isset($monster) && Session::get('lang') == 'en')
     <title>{{ $monster->meta_title != null ? $monster->meta_title : strip_tags($monster->meta_title) }}</title>
-    @elseif(isset($monster) && app()->getlocale() == 'fr')
+    @elseif(isset($monster) && ession::get('lang') == 'fr')
     <title>{{ $monster->fr_meta_title != null ? $monster->fr_meta_title : strip_tags($monster->fr_meta_title) }}</title>
     @else
     <title>LostCenturia</title>
@@ -18,14 +18,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    @if(isset($monster) && app()->getlocale() == 'en')
+    @if(isset($monster) && Session::get('lang') == 'en')
     <!-- <meta name="keywords" content="{{ !empty($monster->meta_title) ?  $monster->meta_title : '' }}"> -->
     <meta name="description" content="{{ $monster->meta_description != null ? $monster->meta_description : strip_tags($monster->meta_description) }}">
     <meta property="og:title" content="{{ !empty($monster->meta_title) ?  $monster->meta_title : '' }}" />
 	<meta property="og:description" content="{{ $monster->meta_description != null ? $monster->meta_description : strip_tags($monster->meta_description) }}" />
     <meta property="og:image" content="{{asset('images/game/og_images/'.$monster->og_image)}}" />
     <meta name="author" content="lostcenturia.gg">
-    @elseif(isset($monster) && app()->getlocale() == 'fr')
+    @elseif(isset($monster) && Session::get('lang') == 'fr')
     <!-- <meta name="keywords" content="{{ !empty($monster->fr_meta_title) ?  $monster->fr_meta_title : '' }}"> -->
     <meta name="description" content="{{ $monster->fr_meta_description != null ? $monster->fr_meta_description : strip_tags($monster->fr_meta_description) }}">
     <meta property="og:title" content="{{ !empty($monster->meta_title) ?  $monster->meta_title : '' }}" />
