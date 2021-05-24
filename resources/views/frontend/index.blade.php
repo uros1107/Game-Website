@@ -11,7 +11,11 @@
     <div class="page-space home-main-sec">
         <!--  -->
         <div class="text-center ragdoll-top-sec page-title-section mt-3 mt-md-0 hero-banner-sec">
+            @if(Session::get('lang') == 'en')
             <h1 class="page-title">@lang('home.perfect_tool')<span>@lang('home.lost')</span>@lang('home.player')</h1>
+            @else
+            <h1 class="page-title">@lang('home.perfect_tool')@lang('home.player')<span>@lang('home.lost')</span></h1>
+            @endif
             <img src="assets/image/add-run-set/separator-title.png" alt="" class="title-btm-img">
             <p class="page-title-subtext hero-des">@lang('home.desription')</p>
             <a href="#collaborative-sec" class="collaborative-sec-sec-1">
@@ -19,7 +23,7 @@
             </a>
         </div>
         <div>
-            <section class="home-sec-1 collaborative-sec-sec-1" id="collaborative-sec">
+            <section class="home-sec-1" id="collaborative-sec">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6 wow fadeInLeft">
@@ -35,7 +39,7 @@
                                 <p class="page-title-subtext">@lang('home.create')
                                 </p>
                                 <div class="home-btn">
-                                    <a id="comp_builder" class="all_btn">@lang('home.comp_builder')</a>
+                                    <a href="{{ route('comps-builder', Session::get('lang')) }}" class="all_btn">@lang('home.comp_builder')</a>
                                 </div>
                             </div>
                         </div>
@@ -115,9 +119,6 @@
         $('#login_popup').modal('toggle');
         $(".register-form").parents('.register_content').removeClass('show_register');                 
         $(".login-form").parents('.register_content').addClass('hide_login');
-    })
-    $(document).on('click', '#comp_builder', function() {
-        location.href = "{{ route('comps-builder', Session::get('lang')) }}";
     })
 </script>
 @endsection

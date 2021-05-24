@@ -179,7 +179,11 @@
             <div class="monster_lost_sec bg_br mt-50">
                 <div class="row mb_bg mb-40">
                     <div class="col-12 text-center ">
-                        <h2>{{ Session::get('lang') == 'en'? $monster->name : $monster->fr_name }} @lang('monster-detail.rune_set')</h2>
+                        @if(Session::get('lang') == 'en')
+                        <h2>{{ $monster->name }} @lang('monster-detail.rune_set')</h2>
+                        @else
+                        <h2>@lang('monster-detail.rune_set1') {{ $monster->fr_name }} @lang('monster-detail.rune_set')</h2>
+                        @endif
                         <a id="add-rune-set-btn" data-value="{{ $monster->id }}" class="all_btn">+ @lang('monster-detail.add_rune')</a>
                     </div>
                 </div>
@@ -195,7 +199,7 @@
                                 <img src="{{ asset('assets/image/rune.png') }}" alt="" class="rune-img rune-3-img">
                             </div>
                             <div class="lost_info">
-                                <h3>{{ $rune_set->rs_name }}</h3>
+                                <h3>{{ Session::get('lang') == 'en'? $rune_set->rs_name : $rune_set->fr_rs_name }}</h3>
                                 @php
                                     $rune = DB::table('runes')->where('r_id', $rune_set->rs_rune)->first();
                                     $skill_stone = DB::table('skill_stones')->where('skill_id', $rune_set->rs_skill_stones)->first();
@@ -220,7 +224,7 @@
                                 @php
                                     $user = DB::table('users')->where('id', $rune_set->rs_user_id)->first();
                                 @endphp
-                                <p class="date">@lang('monster-detail.by') <span><a href="#1">{{ $user->name }}</a></span> @lang('monster-detail.on') {{ $rune_set->created_at->format('m/d/Y') }}</p>
+                                <p class="date">@lang('monster-detail.by') <span><a href="{{ route('user-public', Session::get('lang')).'?id='.$user->id }}">{{ $user->name }}</a></span> @lang('monster-detail.on') {{ $rune_set->created_at->format('m/d/Y') }}</p>
                             </div>
                         </div>
                     </div>
@@ -228,7 +232,7 @@
                         <div class="lost_inner_sec">
                             <div class="cm_scroll mCustomScrollbar">
                                 <div class="lost_content">
-                                    <p>{{ $rune_set->rs_comment }}</p>
+                                    <p>{{ Session::get('lang') == 'en'? $rune_set->rs_comment : $rune_set->fr_rs_comment }}</p>
                                 </div>
                             </div>
                         </div>
@@ -272,7 +276,7 @@
 
 
         <div class="mb_btn">
-            <a href="#" class="all_btn">+ @lang('monster-detail.add_rune')</a>
+            <a id="m-add-rune-set-btn" data-value="{{ $monster->id }}" class="all_btn">+ @lang('monster-detail.add_rune')</a>
         </div>
 
         <!-- comps with ragdoll sec -->
@@ -291,7 +295,7 @@
                             <div class="col-md-3">
                                 @php
                                     $c_monsters = json_decode($team_comp->c_position);
-                                    $c_monster = DB::table('monsters')->where('id', $c_monsters[0])->first();
+                                    $c_monster = DB::table('monsters')->where('id', $c_monsters[5])->first();
                                 @endphp
                                 <div class="force_heading">
                                     <div class="bg_img_block">
@@ -359,6 +363,7 @@
                                             @php
                                                 $c_monster = DB::table('monsters')->where('id', $comp)->first();
                                                 $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                                $key = $key + 1;
                                             @endphp
                                             <li>
                                                 <p><span>{{ $key++ }}</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
@@ -372,7 +377,7 @@
 
                                     <div class="compect_genral_info_section mobile-genral_info d-md-none">
                                         <h3 class="general-info-title">@lang('monster-detail.gen_info')</h3>
-                                        <p class="general-info-desc mCustomScrollbar">{{ $team_comp->c_general_info }}</p>
+                                        <p class="general-info-desc mCustomScrollbar">{{ Session::get('lang') == 'en'? $team_comp->c_general_info : $team_comp->c_fr_general_info }}</p>
                                     </div>
                                     <div class="compect_element_section">
                                         <div class="compect_element_title">
@@ -504,6 +509,11 @@
                                         <p>@lang('monster-detail.avg_mana'):{{ $team_comp->average_mana_cost }}</p>
                                         <img src="{{ asset('assets/image/compect_bulider/cb_average_img.png') }}" alt="average">
                                     </div>
+                                    <div class="mobile_block mobile-see-more">
+                                        <div class="cb_save_and_publish_btn see-more-btn">
+                                            <a href="{{ route('comps-detail', [Session::get('lang'), Session::get('lang') == 'en'? $team_comp->c_slug : $team_comp->c_fr_slug]) }}" class="all_btn">@lang('comp-list.see')</a>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="compect_right_section">
@@ -515,7 +525,7 @@
                                     <!-- <div class="compect_right_bg_banner" style="background-image: url({{ asset('images/game/bc_images/'.$c_monster->bg_comp_image) }})"> -->
                                         <div class="compect_genral_info_section">
                                             <h3 class="general-info-title">@lang('monster-detail.gen_info')</h3>
-                                            <p class="general-info-desc">{{ $team_comp->c_general_info }}</p>
+                                            <p class="general-info-desc">{{ Session::get('lang') == 'en'? $team_comp->c_general_info : $team_comp->c_fr_general_info }}</p>
                                         </div>
 
                                         <div class="row desktop_block">
@@ -595,6 +605,9 @@
                                                     </a>
                                                     @endif
                                                     @endforeach
+                                                    <div class="cb_save_and_publish_btn see-more-btn">
+                                                        <a href="{{ route('comps-detail', [Session::get('lang'), Session::get('lang') == 'en'? $team_comp->c_slug : $team_comp->c_fr_slug]) }}" class="all_btn">@lang('comp-list.see')</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -628,14 +641,14 @@
 @section('scripts')
 <script>
 $(document).ready(function() {
-    $(document).on('click', '#add-rune-set-btn', function() {
+    $(document).on('click', '#add-rune-set-btn, #m-add-rune-set-btn', function() {
         @if(!Auth::user())
             $('#login_popup').modal('toggle');
             $(".register-form").parents('.register_content').removeClass('hide_register');                 
             $(".login-form").parents('.register_content').addClass('show_login');
         @else
             var monster_id = $(this).data('value');
-            location.href = "{{ route('user-add-rune-set', Session::get('lang')) }}" + '?monster_id=' + monster_id;
+            location.href = "{{ route('user-add-rune-set', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}";
         @endif
     })
 

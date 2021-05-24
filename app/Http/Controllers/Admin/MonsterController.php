@@ -297,7 +297,7 @@ class MonsterController extends Controller
             }
 
             $skill_stone1_image = $request->skill_stone1_image->getClientOriginalName();
-            $request->skill_stone1_image->move(public_path('images/game/bc_images'), $skill_stone1_image);
+            $request->skill_stone1_image->move(public_path('images/game/skill_images'), $skill_stone1_image);
             $monster_info['skill_stone1_image'] = $skill_stone1_image;
         }
 
@@ -314,7 +314,7 @@ class MonsterController extends Controller
             }
 
             $skill_stone2_image = $request->skill_stone2_image->getClientOriginalName();
-            $request->skill_stone2_image->move(public_path('images/game/bc_images'), $skill_stone2_image);
+            $request->skill_stone2_image->move(public_path('images/game/skill_images'), $skill_stone2_image);
             $monster_info['skill_stone2_image'] = $skill_stone2_image;
         }
 
@@ -331,7 +331,7 @@ class MonsterController extends Controller
             }
   
             $skill_stone3_image = $request->skill_stone3_image->getClientOriginalName();
-            $request->skill_stone3_image->move(public_path('images/game/bc_images'), $skill_stone3_image);
+            $request->skill_stone3_image->move(public_path('images/game/skill_images'), $skill_stone3_image);
             $monster_info['skill_stone3_image'] = $skill_stone3_image;
         }
 

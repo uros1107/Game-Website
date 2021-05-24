@@ -48,13 +48,13 @@
                 <span> @lang('comp-detail.share') : </span>
                 <ul>
                     <li class="facebook-icon">
-                        <a href="#1"> <i class="fab fa-facebook-f"></i> </a>
+                        <a href="{{ $social['facebook'] }}"> <i class="fab fa-facebook-f"></i> </a>
                     </li>
                     <li>
-                        <a href="#1"> <i class="fab fa-reddit-alien"></i> </a>
+                        <a href="{{ $social['reddit'] }}"> <i class="fab fa-reddit-alien"></i> </a>
                     </li>
                     <li>
-                        <a href="#1"> <i class="fab fa-twitter"></i> </a>
+                        <a href="{{ $social['twitter'] }}"> <i class="fab fa-twitter"></i> </a>
                     </li>
                 </ul>
             </div>
@@ -74,6 +74,7 @@
                                 @php
                                     $c_monster = DB::table('monsters')->where('id', $comp)->first();
                                     $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                    $key = $key + 1;
                                 @endphp
                                 <li>
                                     <p><span>{{ $key++ }}</span>. {{ $c_monster->name }}</p>

@@ -88,7 +88,7 @@
                       <label>General Info</label>
                       <div class="d-flex">
                         <input type="text" name="c_general_info" class="form-control" value="{{ $team_comp->c_general_info }}"
-                          placeholder="Please input description"
+                          placeholder="Please input description" required
                           data-validation-required-message="This Spell Description field is required">
                           <span class="font-italic" style="margin: auto 5px">EN</span>
                       </div>
@@ -99,7 +99,7 @@
                     <div class="controls">
                       <div class="d-flex">
                         <input type="text" name="c_fr_general_info" class="form-control" value="{{ $team_comp->c_fr_general_info }}"
-                          placeholder="Please input description"
+                          placeholder="Please input description" required
                           data-validation-required-message="This Spell Description field is required">
                           <span class="font-italic" style="margin: auto 5px">FR</span>
                       </div>

@@ -1,29 +1,34 @@
 {
   "menu": [
     {
-      "url": "user-list",
+      "url": "users",
       "name": "Users",
       "icon": "feather icon-unlock"
     },
     {
-      "url": "monster-list",
+      "url": "monsters",
       "name": "Monsters",
       "icon": "feather icon-box"
     },
     {
-      "url": "spell-list",
+      "url": "spells",
       "name": "Spells",
       "icon": "feather icon-package"
     },
     {
-      "url": "rune-set-list",
+      "url": "runesets",
       "name": "Rune Sets",
       "icon": "feather icon-life-buoy"
     },
     {
-      "url": "team-comp-list",
+      "url": "team-comps",
       "name": "Team comp",
       "icon": "feather icon-grid"
+    },
+    {
+      "url": "comments",
+      "name": "Comments",
+      "icon": "feather icon-message-square"
     }
   ]
 }

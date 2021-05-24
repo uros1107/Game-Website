@@ -28,7 +28,6 @@ Route::group([
     'middleware' => 'auth'
   ], function() {
     Route::get('/{lang}/user-private', 'Frontend\FrontendController@private')->name('user-private');
-    Route::get('/{lang}/user-public', 'Frontend\FrontendController@public')->name('user-public');
 
     Route::post('/update', 'Auth\RegisterController@update')->name('update');
 });
@@ -46,7 +45,7 @@ Route::get('/{lang}/get-monster', 'Frontend\MonsterController@get_monster')->nam
 Route::get('/{lang}/calculate-monster', 'Frontend\MonsterController@calculate_character')->name('calculate-monster');
 Route::get('/{lang}/get-spell', 'Frontend\MonsterController@get_spell')->name('get-spell');
 
-Route::get('/{lang}/add-rune-set', 'Frontend\MonsterController@add_rune_set')->name('user-add-rune-set');
+Route::get('/{lang}/add-rune-set/{slug}', 'Frontend\MonsterController@add_rune_set')->name('user-add-rune-set');
 Route::POST('/{lang}/store-rune-set', 'Frontend\MonsterController@store_rune_set')->name('rune-set-store');
 
 Route::get('/{lang}/comps', 'Frontend\MonsterController@comps_list')->name('comps-list');
@@ -60,6 +59,8 @@ Route::get('/{lang}/search', 'Frontend\MonsterController@search')->name('search'
 Route::get('/{lang}/terms-of-use', 'Frontend\MonsterController@terms_of_use')->name('terms-of-use');
 
 Route::post('/setting-lang', 'Frontend\FrontendController@setting_language')->name('setting-lang');
+
+Route::get('/{lang}/user-public', 'Frontend\FrontendController@public')->name('user-public');
 
 // -------------------------- Filter route start -----------------------------
 Route::get('/{lang}/get-filter-monster', 'Frontend\FilterController@get_monster')->name('get-filter-monster');
@@ -81,9 +82,12 @@ Route::get('/{lang}/get-filter-builder-monster', 'Frontend\FilterController@get_
 
 
 // ============================================================= Admin Route ==============================================
-Route::prefix('admin')->group(function() {
+Route::prefix('public/admin')->group(function() {
 
     // ------------- Admin login -------------
+    Route::get('/', function() {
+        return redirect()->route('admin.login');
+    });
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\LoginController@login')->name('admin.login.submit');
     Route::get('/logout', 'Auth\LoginController@logout')->name('admin.logout');
@@ -94,7 +98,7 @@ Route::prefix('admin')->group(function() {
             // Route::get('logout', 'Auth\LoginController@logout');
     
             // Users Pages
-            Route::get('/user-list', 'Admin\UserPagesController@user_list')->name('user-list');
+            Route::get('/users', 'Admin\UserPagesController@user_list')->name('user-list');
             Route::get('/get-users', 'Admin\UserPagesController@get_users')->name('get-users');
             Route::get('/edit-user', 'Admin\UserPagesController@edit_user')->name('edit-user');
             Route::post('/create-user', 'Admin\UserPagesController@create_user')->name('create-user');
@@ -104,7 +108,7 @@ Route::prefix('admin')->group(function() {
             Route::post('/delete-user', 'Admin\UserPagesController@delete_user')->name('delete-user');
     
             // Monster
-            Route::get('/monster-list','Admin\MonsterController@index');
+            Route::get('/monsters','Admin\MonsterController@index');
             Route::get('/monster-edit','Admin\MonsterController@edit_monster')->name('edit-monster');
             Route::get('/monster-add','Admin\MonsterController@add_monster')->name('add-monster');
             Route::POST('/monster-store','Admin\MonsterController@store_monster')->name('store-monster');
@@ -112,7 +116,7 @@ Route::prefix('admin')->group(function() {
             Route::POST('/monster-delete','Admin\MonsterController@delete_monster')->name('delete-monster');
     
             // Spell
-            Route::get('/spell-list','Admin\SpellController@index');
+            Route::get('/spells','Admin\SpellController@index');
             Route::get('/spell-edit','Admin\SpellController@edit_spell')->name('edit-spell');
             Route::get('/spell-add','Admin\SpellController@add_spell')->name('add-spell');
             Route::POST('/spell-store','Admin\SpellController@store_spell')->name('store-spell');
@@ -120,7 +124,7 @@ Route::prefix('admin')->group(function() {
             Route::POST('/spell-delete','Admin\SpellController@delete_spell')->name('delete-spell');
     
             // Rune Set
-            Route::get('/rune-set-list','Admin\RuneSetController@index');
+            Route::get('/runesets','Admin\RuneSetController@index');
             Route::get('/rune-set-edit','Admin\RuneSetController@edit_rune_set')->name('edit-rune-set');
             // Route::get('/rune-set-add','Admin\RuneSetController@add_rune_set')->name('add-rune-set');
             Route::POST('/rune-set-store','Admin\RuneSetController@store_rune_set')->name('store-rune-set');
@@ -128,12 +132,18 @@ Route::prefix('admin')->group(function() {
             Route::POST('/rune-set-delete','Admin\RuneSetController@delete_rune_set')->name('delete-rune-set');
     
             // Team comp
-            Route::get('/team-comp-list','Admin\TeamCompController@index');
+            Route::get('/team-comps','Admin\TeamCompController@index');
             Route::get('/team-comp-edit','Admin\TeamCompController@edit_team_comp')->name('edit-team-comp');
-            Route::get('/team-comp-add','Admin\TeamCompController@add_team_comp')->name('add-team-comp');
+            // Route::get('/team-comp-add','Admin\TeamCompController@add_team_comp')->name('add-team-comp');
             Route::POST('/team-comp-store','Admin\TeamCompController@store_team_comp')->name('store-team-comp');
             Route::POST('/team-comp-update','Admin\TeamCompController@update_team_comp')->name('update-team-comp');
             Route::POST('/team-comp-delete','Admin\TeamCompController@delete_team_comp')->name('delete-team-comp');
+
+            // Comment
+            Route::get('/comments','Admin\CommentController@index');
+            Route::get('/comment-edit','Admin\CommentController@edit_comment')->name('edit-comment');
+            Route::POST('/comment-update','Admin\CommentController@update_comment')->name('update-comment');
+            Route::POST('/comment-delete','Admin\CommentController@delete_comment')->name('delete-delete');
     });
 });
 

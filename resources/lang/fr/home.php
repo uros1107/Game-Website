@@ -3,7 +3,7 @@
     return [
         'perfect_tool' => 'Le Tool des ',
         'lost' => 'Lost Centuria',
-        'player' => ' joueurs',
+        'player' => ' joueurs de ',
         'desription' => "Monstres, compos, guides, runes, caractéristiques...Tout est là.",
         'collaborative' => 'Une création communautaire',
         'specialized' => "Retrouvez les compositions et sets de runes créés par les membres de la communauté grâce à nos outils intégrés.Pensés spécialement pour vos monstres Summoners War: Lost Centuria, les compos et sets de runes des autres joueurs peuvent vous permettre de progresser rapidement en utilisant de nouvelles idées.Réalisez vos propres compos et sets de runes et partagez-les !",

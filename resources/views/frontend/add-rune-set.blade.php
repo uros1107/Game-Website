@@ -6,8 +6,8 @@
 
 @section('content')
 <!-- Content Start-->
-<div class="main-content run-set-1-page" style="background-image: url({{ asset('assets/image/test-bg-champ.jpg') }})">
-<!-- <div class="main-content run-set-1-page" style="background-image: url({{ asset('images/game/bg_images/'.$monster->bg_image) }});"> -->
+<!-- <div class="main-content run-set-1-page" style="background-image: url({{ asset('assets/image/test-bg-champ.jpg') }})"> -->
+<div class="main-content run-set-1-page" style="background-image: url({{ asset('images/game/bg_images/'.$monster->bg_image) }});">
 
     <!-- Body Content -->
     <div class="main-top-sec page-space">

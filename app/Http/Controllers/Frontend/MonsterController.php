@@ -13,6 +13,7 @@ use App\TeamCompsComment;
 use Auth;
 use App;
 use Session;
+use Share;
 
 class MonsterController extends Controller
 {
@@ -187,7 +188,18 @@ class MonsterController extends Controller
         
         $comments = TeamCompsComment::where('comment_comps_id', $team_comp->c_id)->get();
 
-        return view('frontend.comps-detail', compact('team_comp', 'comments'));
+        $slug = Session::get('lang') == 'en' ? $team_comp->c_slug : $team_comp->c_fr_slug;
+        $url = 'https://lostcenturia.gg/'.Session::get('lang').'/comps-detail/'.$slug;
+        $facebook = 'https://www.facebook.com/sharer/sharer.php?u='.urlencode($url);
+        $twitter = 'https://twitter.com/intent/tweet?url='.urlencode($url);
+        $reddit = 'https://www.reddit.com/submit?url='.urlencode($url);
+        $social = [
+            'facebook' => $facebook,
+            'twitter' => $twitter,
+            'reddit' => $reddit,
+        ];
+
+        return view('frontend.comps-detail', compact('team_comp', 'comments', 'social'));
     }
 
     public function comps_submit(Request $request, $lang)
@@ -209,8 +221,8 @@ class MonsterController extends Controller
 
         $comps_info['c_sent_by_user'] = Auth::user()->id;
         $comps_info['c_fr_name'] = $comps_info['c_name'];
-        $comps_info['c_slug'] = str_slug($comps_info['c_name'],'-').'-'.strtolower(str_random());
-        $comps_info['c_fr_slug'] = str_slug($comps_info['c_name'],'-').'-'.strtolower(str_random());
+        $comps_info['c_slug'] = str_slug($comps_info['c_name'],'-').'-'.strtolower(str_random(4));
+        $comps_info['c_fr_slug'] = str_slug($comps_info['c_name'],'-').'-'.strtolower(str_random(4));
         
         $comps_info = TeamComp::create($comps_info);
 
@@ -260,12 +272,16 @@ class MonsterController extends Controller
         return view('frontend.comps-builder', compact('monsters'));
     }
 
-    public function add_rune_set(Request $request, $lang)
+    public function add_rune_set(Request $request, $lang, $slug)
     {
         App::setlocale(Session::get('lang'));
+
+        if(Session::get('lang') == 'en') {
+            $monster = Monster::where('slug', $slug)->first();
+        } else {
+            $monster = Monster::where('fr_slug', $slug)->first();
+        }
         
-        $monster_id = $request->monster_id;
-        $monster = Monster::where('id', $monster_id)->first();
         $user_id = Auth::user()->id;
 
         return view('frontend.add-rune-set', [

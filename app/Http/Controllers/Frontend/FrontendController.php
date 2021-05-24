@@ -9,6 +9,7 @@ use Auth;
 use Session;
 use App\TeamComp;
 use App\Runeset;
+use App\User;
 
 class FrontendController extends Controller
 {
@@ -35,16 +36,17 @@ class FrontendController extends Controller
     {
         App::setlocale(Session::get('lang'));
 
-        $team_comps = TeamComp::where('c_sent_by_user', Auth::user()->id)->paginate(5);
-        $rune_sets = Runeset::where('rs_user_id', Auth::user()->id)->paginate(3);
+        $user = User::where('id', $request->id)->first();
+        $team_comps = TeamComp::where('c_sent_by_user', $request->id)->paginate(5);
+        $rune_sets = Runeset::where('rs_user_id', $request->id)->paginate(3);
 
         if($request->ajax() && $request->team_comps) {
-            return view('frontend.ajax-comps-pagination', compact('team_comps'));
+            return view('frontend.ajax-comps-pagination', compact('team_comps', 'user'));
         } else if($request->ajax() && $request->rune_set) {
-            return view('frontend.ajax-user-runeset-pagination', compact('rune_sets'));
+            return view('frontend.ajax-user-runeset-pagination', compact('rune_sets', 'user'));
         }
 
-        return view('frontend.user-public', compact('team_comps', 'rune_sets'));
+        return view('frontend.user-public', compact('team_comps', 'rune_sets', 'user'));
     }
 
     public function setting_language(Request $request)

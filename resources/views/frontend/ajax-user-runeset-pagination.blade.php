@@ -75,7 +75,7 @@
 @endforeach
 @else
 <div class="row mb_padd border-bottom" style="justify-content: center">
-    There is no item yet... Be the first to add and help the community!
+    @lang('monster-detail.empty_msg')
 </div>
 @endif
 </div>

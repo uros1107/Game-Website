@@ -22,14 +22,4 @@ class RuneSet extends Model
         'rs_likes',
         'rs_dislikes',
     ];
-
-
-
-
-
-
-
-
-
-
 }

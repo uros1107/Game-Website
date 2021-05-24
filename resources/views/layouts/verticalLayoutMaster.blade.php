@@ -61,7 +61,7 @@
 
     {{-- include default scripts --}}
     <script>
-        var main_url = 'http://localhost:8000/admin/';
+        var main_url = 'http://localhost:8000/public/admin/';
         // var main_url = 'https://lostcenturia.gg/admin/';
     </script>
     @include('panels/scripts')

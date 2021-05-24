@@ -1,7 +1,7 @@
 <?php 
     //English
     return [
-        'title' => 'Add a Rune Set for',
+        'title' => 'Ajouter un Set de Rune pour',
         'description' => "Une fois que votre set de runes est prêt, vous pouvez l'envoyer pour vérification ! Merci de nous aider ! ;)",
         'rune' => 'Set de runes',
         'search' => 'Rechercher par nom',
@@ -13,7 +13,7 @@
         'position' => 'Position de comp',
         'back' => 'Back Lane',
         'front' => 'Front Lane',
-        'textarea' => 'Indicate the purpose of the rune set and how to use it...',
+        'textarea' => "Indiquez le but du set de runes et comment l'utiliser...",
         'submit' => 'Envoyer',
         'rune_name' => 'Nom du set de runes'
     ]

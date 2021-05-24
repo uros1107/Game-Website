@@ -37,6 +37,8 @@
                                         'id', 
                                         'name', 
                                         'fr_name',
+                                        'slug',
+                                        'fr_slug',
                                         'meta_title',
                                         'fr_meta_title',
                                         'og_image',
@@ -111,13 +113,13 @@
                             <div class="col-md-3">
                                 @php
                                     $c_monsters = json_decode($team_comp->c_position);
-                                    $c_monster = DB::table('monsters')->where('id', $c_monsters[0])->first();
+                                    $c_monster = DB::table('monsters')->where('id', $c_monsters[5])->first();
                                 @endphp
                                 <div class="force_heading">
                                     <div class="bg_img_block">
                                         <img src="{{ asset('images/game/bc_images/'.$c_monster->bg_comp_image) }}">
                                     </div>
-                                    <h2 class="desk_heading">{{ $team_comp->c_name }}</h2>
+                                    <h2 class="desk_heading">{{ Session::get('lang') == 'en' ? $team_comp->c_name : $team_comp->c_fr_name }}</h2>
                                 </div>
                             </div>
                             <div class="col-md-9">
@@ -177,6 +179,7 @@
                                             @php
                                                 $c_monster = DB::table('monsters')->where('id', $comp)->first();
                                                 $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                                $key = $key + 1;
                                             @endphp
                                             <li>
                                                 <p><span>{{ $key++ }}</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
@@ -188,7 +191,7 @@
                                         </ul>
                                         <div class="compect_genral_info_section mobile-genral_info d-md-none">
                                             <h3 class="general-info-title">@lang('info')</h3>
-                                            <p class="general-info-desc mCustomScrollbar">{{ $team_comp->c_general_info }}</p>
+                                            <p class="general-info-desc mCustomScrollbar">{{ Session::get('lang') == 'en'? $team_comp->c_general_info : $team_comp->c_fr_general_info }}</p>
                                         </div>
                                     </div>
                                     <div class="compect_element_section">
@@ -338,7 +341,7 @@
                                     <!-- <div class="compect_right_bg_banner" style="background-image: url({{ asset('images/game/bc_images/'.$c_monster->bg_comp_image) }})"> -->
                                         <div class="compect_genral_info_section">
                                             <h3 class="general-info-title">@lang('comp-list.info')</h3>
-                                            <p class="general-info-desc">{{ $team_comp->c_general_info }}</p>
+                                            <p class="general-info-desc">{{ Session::get('lang') == 'en'? $team_comp->c_general_info : $team_comp->c_fr_general_info }}</p>
                                         </div>
 
                                         <div class="row desktop_block">
@@ -416,11 +419,11 @@
                                                                 alt="cm icon">
                                                         </div>
                                                     </a>
+                                                    @endif
+                                                    @endforeach
                                                     <div class="cb_save_and_publish_btn see-more-btn">
                                                         <a href="{{ route('comps-detail', [Session::get('lang'), Session::get('lang') == 'en'? $team_comp->c_slug : $team_comp->c_fr_slug]) }}" class="all_btn">@lang('comp-list.see')</a>
                                                     </div>
-                                                    @endif
-                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>

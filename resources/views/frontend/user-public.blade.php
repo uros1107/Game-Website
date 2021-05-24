@@ -19,13 +19,13 @@
 
         <div class="text-center ragdoll-top-sec page-title-section mt-3 mt-md-0 ">
             @if(Session::get('lang') == 'en')
-            <h1 class="page-title ">{{ Auth::user()->name }}@lang('user-public.profile')</h1>
+            <h1 class="page-title ">{{ $user->name }}@lang('user-public.profile')</h1>
             @else
-            <h1 class="page-title ">@lang('user-public.profile') {{ Auth::user()->name }}</h1>
+            <h1 class="page-title ">@lang('user-public.profile') {{ $user->name }}</h1>
             @endif
             <img src="{{ asset('assets/image/add-run-set/separator-title.png') }}" alt="">
             <p class="page-title-subtext">
-                @lang('user-public.description1') {{ Auth::user()->name }}. @lang('user-public.description2')
+                @lang('user-public.description1') {{ $user->name }}. @lang('user-public.description2')
             </p>
         </div>
 
@@ -33,7 +33,7 @@
         <div class="comps_sec">
             <div class="row text-center">
                 <div class="col-12">
-                    <h2>@lang('user-public.published') {{ Auth::user()->name }}</h2>
+                    <h2>@lang('user-public.published') {{ $user->name }}</h2>
                 </div>
             </div>
             <div id="team_comps_pagination">
@@ -44,7 +44,7 @@
                             <div class="col-md-3">
                                 @php
                                     $c_monsters = json_decode($team_comp->c_position);
-                                    $c_monster = DB::table('monsters')->where('id', $c_monsters[0])->first();
+                                    $c_monster = DB::table('monsters')->where('id', $c_monsters[5])->first();
                                 @endphp
                                 <div class="force_heading">
                                     <div class="bg_img_block">
@@ -112,6 +112,7 @@
                                             @php
                                                 $c_monster = DB::table('monsters')->where('id', $comp)->first();
                                                 $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                                $key = $key + 1;
                                             @endphp
                                             <li>
                                                 <p><span>{{ $key++ }}</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
@@ -125,7 +126,7 @@
 
                                     <div class="compect_genral_info_section mobile-genral_info d-md-none">
                                         <h3 class="general-info-title">@lang('monster-detail.gen_info')</h3>
-                                        <p class="general-info-desc mCustomScrollbar">{{ $team_comp->c_general_info }}</p>
+                                        <p class="general-info-desc mCustomScrollbar">{{ Session::get('lang') == 'en'? $team_comp->c_general_info : $team_comp->c_fr_general_info }}</p>
                                     </div>
                                     <div class="compect_element_section">
                                         <div class="compect_element_title">
@@ -257,6 +258,11 @@
                                         <p>@lang('monster-detail.avg_mana'):{{ $team_comp->average_mana_cost }}</p>
                                         <img src="{{ asset('assets/image/compect_bulider/cb_average_img.png') }}" alt="average">
                                     </div>
+                                    <div class="mobile_block mobile-see-more">
+                                        <div class="cb_save_and_publish_btn see-more-btn">
+                                            <a href="{{ route('comps-detail', [Session::get('lang'), Session::get('lang') == 'en'? $team_comp->c_slug : $team_comp->c_fr_slug]) }}" class="all_btn">@lang('comp-list.see')</a>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="compect_right_section">
@@ -268,7 +274,7 @@
                                     <!-- <div class="compect_right_bg_banner" style="background-image: url({{ asset('images/game/bc_images/'.$c_monster->bg_comp_image) }})"> -->
                                         <div class="compect_genral_info_section">
                                             <h3 class="general-info-title">@lang('monster-detail.gen_info')</h3>
-                                            <p class="general-info-desc">{{ $team_comp->c_general_info }}</p>
+                                            <p class="general-info-desc">{{ Session::get('lang') == 'en'? $team_comp->c_general_info : $team_comp->c_fr_general_info }}</p>
                                         </div>
 
                                         <div class="row desktop_block">
@@ -348,6 +354,9 @@
                                                     </a>
                                                     @endif
                                                     @endforeach
+                                                    <div class="cb_save_and_publish_btn see-more-btn">
+                                                        <a href="{{ route('comps-detail', [Session::get('lang'), Session::get('lang') == 'en'? $team_comp->c_slug : $team_comp->c_fr_slug]) }}" class="all_btn">@lang('comp-list.see')</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -372,7 +381,7 @@
             <!-- Rangdoll Lost section -->
             <div class="monster_lost_sec-heading mb_bg mt-50">
                 <div class="text-center ">
-                    <h2>@lang('user-public.rune_published') {{ Auth::user()->name }}</h2>
+                    <h2>@lang('user-public.rune_published') {{ $user->name }}</h2>
                 </div>
             </div>
         <div id="runeset_pagination">
@@ -414,7 +423,7 @@
                                 @php
                                     $user = DB::table('users')->where('id', $rune_set->rs_user_id)->first();
                                 @endphp
-                                <p class="date">@lang('monster-detail.by') <span><a href="#1">{{ $user->name }}</a></span> @lang('monster-detail.on') {{ $rune_set->created_at->format('m/d/Y') }}</p>
+                                <p class="date">@lang('monster-detail.by') <span><a>{{ $user->name }}</a></span> @lang('monster-detail.on') {{ $rune_set->created_at->format('m/d/Y') }}</p>
                             </div>
                         </div>
                     </div>
@@ -422,7 +431,7 @@
                         <div class="lost_inner_sec">
                             <div class="cm_scroll mCustomScrollbar">
                                 <div class="lost_content">
-                                    <p>{{ $rune_set->rs_comment }}</p>
+                                    <p>{{ Session::get('lang') == 'en'? $rune_set->rs_comment : $rune_set->fr_rs_comment }}</p>
                                 </div>
                             </div>
                         </div>
@@ -453,7 +462,7 @@
                 @endforeach
                 @else
                 <div class="row mb_padd border-bottom" style="justify-content: center">
-                    There is no item yet... Be the first to add and help the community!
+                    @lang('monster-detail.empty_msg')
                 </div>
                 @endif
             </div>

@@ -5,7 +5,7 @@
             <div class="col-md-3">
                 @php
                     $c_monsters = json_decode($team_comp->c_position);
-                    $c_monster = DB::table('monsters')->where('id', $c_monsters[0])->first();
+                    $c_monster = DB::table('monsters')->where('id', $c_monsters[5])->first();
                 @endphp
                 <div class="force_heading">
                     <div class="bg_img_block">
@@ -71,6 +71,7 @@
                             @php
                                 $c_monster = DB::table('monsters')->where('id', $comp)->first();
                                 $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                $key = $key + 1;
                             @endphp
                             <li>
                                 <p><span>{{ $key++ }}</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
