@@ -218,20 +218,30 @@
                 </li>
 
                 <div class="mobile-menu-login-lang d-flex justify-content-center align-items-center d-xl-none">
+                    @if(Auth::user())
+                    <div class="main-content--single  main--content-profile">
+                        <a href="{{ route('user-public', [Session::get('lang'), Auth::user()->slug]) }}">
+                            <i class="fad fa-user"></i>
+                        </a>
+                    </div>
+                    <div class="main-content--single  main--content-setting">
+                        <a href="{{ route('user-private', [Session::get('lang'), Auth::user()->slug]) }}">
+                            <i class="fad fa-cogs"></i>
+                        </a>
+                    </div>
+                    <div class="main-content--single  main--content-deconnector-text">
+                        <a href="{{ route('admin.logout') }}" class="common-btn">@lang('layout.sign_out')</a>
+                    </div>
+                    @else
                     <div class="mobile-menu-login ">
                         <a href="#1" class="common-btn" id="login_btn">@lang('layout.login')</a>
                     </div>
+                    @endif
                     <div class="mobile-menu-language">
                         <a href="javascript:void(0);" class="choose-lang">
                             <img src="{{ asset('assets/image/globe-americas-duotone.svg') }}" alt="">
                         </a>
                         <div class="select-lang lang-close">
-                            <!-- <a href="{{ route('index', 'en') }}">
-                                <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
-                            </a>
-                            <a href="{{ route('index', 'fr') }}">
-                                <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
-                            </a> -->
                             <a href="{{ route('setting-lang', Session::get('lang')).'?lang=en' }}">
                                 <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
                             </a>
