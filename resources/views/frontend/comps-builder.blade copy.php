@@ -538,7 +538,7 @@
                             <div class="line_up_sec text-center" id="monster-list" ondrop="drop(event)">
                                 @foreach($monsters as $monster)
                                 <div class="line_up_monster" ondragstart="DragStart(event)">
-                                    <a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}" target="_blank">
+                                    <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}" target="_blank">
                                         <div class="contain_shape contain_shape_{{ $monster->rarity }}">
                                             <div class="shape m-auto"><img id="{{$monster->id}}"
                                                     src="{{ asset('images/game/icon_images/'.$monster->icon_image) }}"
@@ -674,7 +674,7 @@
                             <div class="line_up_sec text-center">
                                 @foreach($monsters as $monster)
                                 <div class="line_up_monster">
-                                    <a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}" target="_blank">
+                                    <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}" target="_blank">
                                         <div class="contain_shape">
                                             <div class="shape"><img
                                                     src="{{ asset('images/game/icon_images/'.$monster->icon_image) }}"

@@ -1,6 +1,9 @@
 @extends('layouts.frontend.layout')
 
 @section('head')
+<link rel="alternate" hreflang="en" href="{{ url('en') }}" />
+<link rel="alternate" hreflang="fr" href="{{ url('fr') }}" />
+<link rel="alternate" hreflang="x-default" href="{{ url('en') }}" />
 @endsection
 
 @section('styles')
@@ -42,7 +45,11 @@
                                 <p class="page-title-subtext">@lang('home.create')
                                 </p>
                                 <div class="home-btn">
+                                    @if(Session::get('lang') == 'en')
                                     <a href="{{ route('comps-builder', Session::get('lang')) }}" class="all_btn">@lang('home.comp_builder')</a>
+                                    @else
+                                    <a href="{{ route('fr-comps-builder', Session::get('lang')) }}" class="all_btn">@lang('home.comp_builder')</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

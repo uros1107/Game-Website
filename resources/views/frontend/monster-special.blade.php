@@ -1,6 +1,9 @@
 @extends('layouts.frontend.layout')
 
 @section('head')
+<link rel="alternate" hreflang="en" href="{{ url('en/monsters/'.$monster->slug) }}" />
+<link rel="alternate" hreflang="fr" href="{{ url('fr/monstres/'.$monster->fr_slug) }}" />
+<link rel="alternate" hreflang="x-default" href="{{ url('en/monsters/'.$monster->slug) }}" />
 @endsection
 
 @section('styles')
@@ -503,7 +506,7 @@
                                             $c_monster = DB::table('monsters')->where('id', $comp)->first();
                                         @endphp
                                         <div class="line_up_monster">
-                                            <a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" target="_blank">
+                                            <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" target="_blank">
                                                 <div class="contain_shape contain_shape_{{ $c_monster->rarity }}">
                                                     <div class="shape"><img src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
                                                     </div>
@@ -773,7 +776,7 @@
                                                         $rarity = DB::table('rarity')->where('id', $c_monster->rarity)->first();
                                                     @endphp
                                                     @if($key % 8 < 4)
-                                                    <a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" class="compect_monster_box compect_monster_box{{$key + 1}}"
+                                                    <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" class="compect_monster_box compect_monster_box{{$key + 1}}"
                                                         target="_blank">
                                                         <div class="monster_img">
                                                             <div class="icon_img">
@@ -814,7 +817,7 @@
                                                         $rarity = DB::table('rarity')->where('id', $c_monster->rarity)->first();
                                                     @endphp
                                                     @if($key % 8 >= 4)
-                                                    <a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" class="compect_monster_box compect_monster_box{{$key % 4 + 1}}"
+                                                    <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" class="compect_monster_box compect_monster_box{{$key % 4 + 1}}"
                                                         target="_blank">
                                                         <div class="monster_img">
                                                             <div class="icon_img">

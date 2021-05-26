@@ -1,7 +1,9 @@
 @extends('layouts.frontend.layout')
 
 @section('head')
-
+<link rel="alternate" hreflang="en" href="{{ url('en/comps-detail/'.$team_comp->c_slug) }}" />
+<link rel="alternate" hreflang="fr" href="{{ url('fr/compos-detail/'.$team_comp->c_fr_slug) }}" />
+<link rel="alternate" hreflang="x-default" href="{{ url('en/comps-detail/'.$team_comp->c_slug) }}" />
 @endsection
 
 @section('styles')
@@ -46,7 +48,7 @@
                 $user = DB::table('users')->where('id', $team_comp->c_sent_by_user)->first();
             @endphp
             <p class="page-title-subtext">
-                @lang('comp-detail.title') <a href="{{ route('user-public', [Session::get('lang'), $user->name]) }}" class="hakio-text">{{ $user->name }}</a> @lang('comp-detail.on') {{ $team_comp->created_at->format('m/d/Y') }}.
+                @lang('comp-detail.title') <a href="{{ route('user-public', [Session::get('lang'), $user->slug]) }}" class="hakio-text">{{ $user->name }}</a> @lang('comp-detail.on') {{ $team_comp->created_at->format('m/d/Y') }}.
             </p>
             <div class="social-media-block">
                 <span> @lang('comp-detail.share') : </span>
@@ -316,7 +318,7 @@
                                             $rarity = DB::table('rarity')->where('id', $c_monster->rarity)->first();
                                         @endphp
                                         @if($key % 8 < 4)
-                                        <a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" class="compect_monster_box compect_monster_box{{$key + 1}}" target="_blank">
+                                        <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" class="compect_monster_box compect_monster_box{{$key + 1}}" target="_blank">
                                             <div class="monster_img">
                                                 <div class="icon_img">
                                                     <img src="{{ asset('assets/image/mana-icone-carte.svg') }}" alt="icon"
@@ -355,7 +357,7 @@
                                             $rarity = DB::table('rarity')->where('id', $c_monster->rarity)->first();
                                         @endphp
                                         @if($key % 8 >= 4)
-                                        <a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" class="compect_monster_box compect_monster_box{{$key % 4 + 1}}" target="_blank">
+                                        <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" class="compect_monster_box compect_monster_box{{$key % 4 + 1}}" target="_blank">
                                             <div class="monster_img">
                                                 <div class="icon_img">
                                                     <img src="{{ asset('assets/image/mana-icone-carte.svg') }}" alt="icon"
@@ -393,7 +395,7 @@
                                                         $c_monster = DB::table('monsters')->where('id', $comp)->first();
                                                     @endphp
                                                     <div class="line_up_monster">
-                                                        <a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" target="_blank">
+                                                        <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" target="_blank">
                                                             <div class="contain_shape">
                                                                 <div class="shape"><img
                                                                         src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
@@ -429,7 +431,7 @@
                         @php
                             $user = DB::table('users')->where('id', $comment->comment_user_id)->first();
                         @endphp
-                        <span class="commentor-name">@lang('comp-detail.by') <a href="{{ route('user-public', [Session::get('lang'), $user->name]) }}">{{ $user->name }}</a> </span>
+                        <span class="commentor-name">@lang('comp-detail.by') <a href="{{ route('user-public', [Session::get('lang'), $user->slug]) }}">{{ $user->name }}</a> </span>
                         <br>
                         <span class="comment-date">{{ $comment->created_at->format('m/d/Y') }}</span>
                     </div>

@@ -1,7 +1,9 @@
 @extends('layouts.frontend.layout')
 
 @section('head')
-
+<link rel="alternate" hreflang="en" href="{{ url('en/comps-builder') }}" />
+<link rel="alternate" hreflang="fr" href="{{ url('fr/compos-builder') }}" />
+<link rel="alternate" hreflang="x-default" href="{{ url('en/comps-builder') }}" />
 @endsection
 
 @section('styles')
@@ -361,7 +363,8 @@
                             <div class="compect_mobile_boder">
                                 <div class="mobile_monster_section">
                                     <div class="line_up_sec text-center">
-                                        <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
+                                        <input type="hidden" id="position">
+                                        <div class="line_up_monster line_up_monster_1" data-position="1" data-toggle="modal" data-target="#monster-modal">
                                             <div>
                                                 <div>
                                                     <img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}" alt="monster">
@@ -369,7 +372,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
+                                        <div class="line_up_monster line_up_monster_2" data-position="2" data-toggle="modal" data-target="#monster-modal">
                                             <div>
                                                 <div>
                                                     <img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}" alt="monster">
@@ -377,7 +380,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
+                                        <div class="line_up_monster line_up_monster_3" data-position="3" data-toggle="modal" data-target="#monster-modal">
                                             <div>
                                                 <div>
                                                     <img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}" alt="monster">
@@ -385,7 +388,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
+                                        <div class="line_up_monster line_up_monster_4" data-position="4" data-toggle="modal" data-target="#monster-modal">
                                             <div>
                                                 <div>
                                                     <img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}" alt="monster">
@@ -393,7 +396,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
+                                        <div class="line_up_monster line_up_monster_5" data-position="5" data-toggle="modal" data-target="#monster-modal">
                                             <div>
                                                 <div>
                                                     <img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}" alt="monster">
@@ -401,14 +404,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
+                                        <div class="line_up_monster line_up_monster_6" data-position="6" data-toggle="modal" data-target="#monster-modal">
                                             <div>
                                                 <div><img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}"
                                                         alt="monster"></div>
                                             </div>
                                         </div>
 
-                                        <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
+                                        <div class="line_up_monster line_up_monster_7" data-position="7" data-toggle="modal" data-target="#monster-modal">
                                             <div>
                                                 <div>
                                                     <img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}" alt="monster">
@@ -416,7 +419,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
+                                        <div class="line_up_monster line_up_monster_8" data-position="8" data-toggle="modal" data-target="#monster-modal">
                                             <div>
                                                 <div>
                                                     <img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}" alt="monster">
@@ -536,7 +539,7 @@
                             <div class="line_up_sec text-center" id="monster-list" ondrop="drop(event)">
                                 @foreach($monsters as $monster)
                                 <div class="line_up_monster" ondragstart="DragStart(event)">
-                                    <a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}" target="_blank">
+                                    <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}" target="_blank">
                                         <div class="contain_shape contain_shape_{{ $monster->rarity }}">
                                             <div class="shape m-auto"><img id="{{$monster->id}}"
                                                     src="{{ asset('images/game/icon_images/'.$monster->icon_image) }}"
@@ -597,12 +600,12 @@
                             <div class="dropdown-list">
                                 <div class="search-filed">
                                     <input type="search" placeholder="@lang('comp-builder.search_name')" class="dropdown-search"
-                                        id="monster-search" onkeyup="filterFunction()">
+                                        id="m-monster-search" onkeyup="m_filterFunction()">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </div>
-                                <div class="inner-dropdown-sec " id="search-box">
+                                <div class="inner-dropdown-sec " id="m-search-box">
                                     @foreach($monsters as $monster)
-                                    <label class="dropdown-option search-dropdown">
+                                    <label class="dropdown-option m-search-dropdown">
                                         <input type="checkbox" name="monster[]" class="monster"
                                             value="{{ $monster->id }}">
                                         <span>{{ Session::get('lang') == 'en' ? $monster->name : $monster->fr_name }}</span>
@@ -668,13 +671,13 @@
                             </div>
                         </div>
 
-                        <div class="compect_inner_monster mCustomScrollbar">
-                            <div class="line_up_sec text-center">
+                        <div class="compect_inner_monster mCustomScrollbar w-100">
+                            <div class="line_up_sec text-center" id="m-monster-list">
                                 @foreach($monsters as $monster)
                                 <div class="line_up_monster">
-                                    <a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}" target="_blank">
-                                        <div class="contain_shape">
-                                            <div class="shape"><img
+                                    <a class="monster-item" href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}" target="_blank">
+                                        <div class="contain_shape contain_shape_{{ $monster->rarity }}">
+                                            <div class="shape"><img id="{{$monster->id}}"
                                                     src="{{ asset('images/game/icon_images/'.$monster->icon_image) }}"
                                                     alt="monster img"></div>
                                         </div>
@@ -709,7 +712,7 @@
             </div>
             <div class="modal-body comp_builder p-0">
                 <!--  -->
-                <div class="compect_inner_monster2 mCustomScrollbar">
+                <div class="compect_inner_monster2 mCustomScrollbar w-100">
                     <div class="line_up_sec text-center">
                         @foreach(DB::table('spells')->where('del_flag', 0)->get() as $spell)
                         <div class="line_up_monster">
@@ -790,7 +793,6 @@ function drop(eve) {
                     success: function(data) {
                         $('#character').html(data);
                         var avg_mana = $('#avg_mana').val();
-                        console.log(avg_mana)
                         $('#avg_mana_cost > span').text(avg_mana);
                     }
                 })
@@ -908,6 +910,23 @@ function filterFunction() {
     }
 }
 
+function m_filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("m-monster-search");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("m-search-box");
+    search_dropdown = document.getElementsByClassName("m-search-dropdown");
+    span = div.getElementsByTagName("span");
+    for (i = 0; i < span.length; i++) {
+        txtValue = span[i].textContent || span[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            search_dropdown[i].style.display = "";
+        } else {
+            search_dropdown[i].style.display = "none";
+        }
+    }
+}
+
 // ========================== filter part start =========================
 $(document).ready(function() {
 
@@ -933,6 +952,7 @@ $(document).ready(function() {
             method: "get",
             success: function(data) {
                 $('#monster-list').html(data);
+                $('#m-monster-list').html(data);
             }
         })
     })
@@ -965,6 +985,7 @@ function filter() {
         method: "get",
         success: function(data) {
             $('#monster-list').html(data);
+            $('#m-monster-list').html(data);
         }
     })
 }
@@ -1018,5 +1039,18 @@ $('#exampleModal').on('show.bs.modal', function(event) {
     modal.find('.modal-title').text('New message to ' + recipient)
     modal.find('.modal-body input').val(recipient)
 })
+
+
+// ---------------- mobile js ---------------
+$(document).on('click', '.line_up_monster', function() {
+    $('#position').val($(this).data('position'));
+})
+$(document).on('click', '.monster-item', function(e) {
+    e.preventDefault();
+
+    var position = $('#position').val();
+    $('.line_up_monster_' + position).html($(this).html());
+    $('#monster-modal').modal('hide');
+});
 </script>
 @endsection

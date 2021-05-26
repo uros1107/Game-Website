@@ -40,6 +40,7 @@ class MonsterController extends Controller
             'meta_title',
             'fr_meta_title',
             'og_image',
+            'fr_og_image',
             'meta_description',
             'fr_meta_description',
             'bg_image',
@@ -92,7 +93,7 @@ class MonsterController extends Controller
         App::setlocale(Session::get('lang'));
 
         $monster_id = $request->monster_id;
-        $monster = Monster::where('id', $monster_id)->first(['id', 'name', 'fr_name', 'slug', 'fr_slug', 'main_image', 'element', 'role', 'rarity', 'mana_cost', 'meta_title', 'fr_meta_title', 'og_image', 'meta_description', 'fr_meta_description', 'bg_image', 'bg_comp_image', 'icon_image']);
+        $monster = Monster::where('id', $monster_id)->first(['id', 'name', 'fr_name', 'slug', 'fr_slug', 'main_image', 'element', 'role', 'rarity', 'mana_cost', 'meta_title', 'fr_meta_title', 'og_image', 'fr_og_image', 'meta_description', 'fr_meta_description', 'bg_image', 'bg_comp_image', 'icon_image']);
 
         return view('frontend.ajax-monster-item', ['monster' => $monster, 'drop_id' => $request->drop_id]);
     }
@@ -334,6 +335,7 @@ class MonsterController extends Controller
             'meta_title',
             'fr_meta_title',
             'og_image',
+            'fr_og_image',
             'meta_description',
             'fr_meta_description',
             'bg_image',
@@ -398,7 +400,7 @@ class MonsterController extends Controller
         }
         
         if($monster) {
-            $redirect_url = route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]);
+            $redirect_url = route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]);
             return response()->json(['success' => true, 'redirect_url' => $redirect_url]);
         } else {
             return response()->json(['success' => false]);

@@ -6,7 +6,7 @@
     $rarity = DB::table('rarity')->where('id', $monster->rarity)->first();
 @endphp
 <div class="monster-single monster-{{ $element->id }}">
-    <a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}">
+    <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}">
         <div class="monster-item" data-value="{{Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug}}">
             <div class="monster-single-inner monster_img">
                 <div class="icon_img">

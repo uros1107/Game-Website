@@ -1,6 +1,9 @@
 @extends('layouts.frontend.layout')
 
 @section('head')
+<link rel="alternate" hreflang="en" href="{{ url('en/terms-of-use') }}" />
+<link rel="alternate" hreflang="fr" href="{{ url('fr/terms-of-use') }}" />
+<link rel="alternate" hreflang="x-default" href="{{ url('en/terms-of-use') }}" />
 @endsection
 
 @section('styles')

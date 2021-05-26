@@ -1,5 +1,11 @@
 @extends('layouts.frontend.layout')
 
+@section('head')
+<link rel="alternate" hreflang="en" href="{{ url('en/add-rune-set/').$monster->name }}" />
+<link rel="alternate" hreflang="fr" href="{{ url('fr/add-rune-set/').$monster->fr_name }}" />
+<link rel="alternate" hreflang="x-default" href="{{ url('en/add-rune-set/').$monster->name }}" />
+@endsection
+
 @section('styles')
 
 @endsection

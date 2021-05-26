@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Session;
 use App\TeamComp;
-use App\Runeset;
+use App\RuneSet;
 use App\User;
 
 class FrontendController extends Controller
@@ -28,7 +28,7 @@ class FrontendController extends Controller
         return view('frontend.index');
     }
 
-    public function private($lang)
+    public function private($lang, $slug)
     {
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
@@ -38,16 +38,16 @@ class FrontendController extends Controller
         return view('frontend.user-private');
     }
 
-    public function public(Request $request, $lang, $name)
+    public function public(Request $request, $lang, $slug)
     {
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }
         App::setlocale(Session::get('lang'));
 
-        $user = User::where('name', $name)->first();
+        $user = User::where('slug', $slug)->first();
         $team_comps = TeamComp::where('c_sent_by_user', $user->id)->paginate(5);
-        $rune_sets = Runeset::where('rs_user_id', $user->id)->paginate(3);
+        $rune_sets = RuneSet::where('rs_user_id', $user->id)->paginate(3);
 
         if($request->ajax() && $request->team_comps) {
             return view('frontend.ajax-comps-pagination', compact('team_comps', 'user'));

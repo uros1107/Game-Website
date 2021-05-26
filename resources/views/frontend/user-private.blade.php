@@ -1,6 +1,9 @@
 @extends('layouts.frontend.layout')
 
 @section('head')
+<link rel="alternate" hreflang="en" href="{{ url('en/user-private/'.Auth::user()->slug) }}" />
+<link rel="alternate" hreflang="fr" href="{{ url('fr/user-private/'.Auth::user()->slug) }}" />
+<link rel="alternate" hreflang="x-default" href="{{ url('en/user-private/'.Auth::user()->slug) }}" />
 @endsection
 
 @section('styles')

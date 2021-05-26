@@ -1,6 +1,9 @@
 @extends('layouts.frontend.layout')
 
 @section('head')
+<link rel="alternate" hreflang="en" href="{{ url('en/monsters') }}" />
+<link rel="alternate" hreflang="fr" href="{{ url('fr/monstres') }}" />
+<link rel="alternate" hreflang="x-default" href="{{ url('en/monsters') }}" />
 @endsection
 
 @section('styles')
@@ -89,7 +92,7 @@
                     $rarity = DB::table('rarity')->where('id', $monster->rarity)->first();
                 @endphp
                 <div class="monster-single monster-{{ $element->id }}">
-                    <a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}">
+                    <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}">
                         <div class="monster-item" data-value="{{Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug}}">
                             <div class="monster-single-inner monster_img">
                                 <div class="icon_img">

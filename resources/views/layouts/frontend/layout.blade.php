@@ -28,7 +28,7 @@
     <meta name="description" content="{{ $monster->fr_meta_description != null ? $monster->fr_meta_description : strip_tags($monster->fr_meta_description) }}">
     <meta property="og:title" content="{{ !empty($monster->fr_meta_title) ?  $monster->fr_meta_title : '' }}" />
 	<meta property="og:description" content="{{ $monster->fr_meta_description != null ? $monster->fr_meta_description : strip_tags($monster->fr_meta_description) }}" />
-    <meta property="og:image" content="{{asset('images/game/og_images/'.$monster->og_image)}}" />
+    <meta property="og:image" content="{{asset('images/game/og_images/'.$monster->fr_og_image)}}" />
     <meta name="author" content="lostcenturia.gg">
     @else
     <meta name="description" content="lostcenturia.gg">
@@ -37,14 +37,6 @@
     <meta name="author" content="lostcenturia.gg">
     @endif
 
-    <link rel="alternate" hreflang="en" href="https://lostcenturia.gg/en" />
-    <link rel="alternate" hreflang="fr" href="https://lostcenturia.gg/fr" />
-    <link rel="alternate" hreflang="x-default" href="https://lostcenturia.gg/en" />
-    @if(isset($monster))
-    <!-- <link rel="alternate" hreflang="en" href="https://lostcenturia.gg/en/monsters/{{ $monster->slug }}" />
-    <link rel="alternate" hreflang="fr" href="https://lostcenturia.gg/fr/monsters/{{ $monster->fr_slug }}" />
-    <link rel="alternate" hreflang="x-default" href="https://lostcenturia.gg/en/monsters/{{ $monster->slug }}" /> -->
-    @endif
     @yield('head')
 
     <!-- Google Fonts -->
@@ -160,8 +152,13 @@
 
                 <!-- Création de compos Menu -->
                 <li>
+                    @if(Session::get('lang') == 'en')
                     <a href="{{ route('comps-builder', Session::get('lang')) }}"
                         class="bg-dark-blue list-group-item list-group-item-action flex-column align-items-start">
+                    @else
+                    <a href="{{ route('fr-comps-builder', Session::get('lang')) }}"
+                        class="bg-dark-blue list-group-item list-group-item-action flex-column align-items-start">
+                    @endif
                         <div class="menu-lis-inner d-flex w-100 justify-content-start align-items-center">
                             <div class="fa-fa_icons">
                                 <i class="fad fa-hammer-war"></i>
@@ -229,10 +226,16 @@
                             <img src="{{ asset('assets/image/globe-americas-duotone.svg') }}" alt="">
                         </a>
                         <div class="select-lang lang-close">
-                            <a href="{{ route('index', 'en') }}">
+                            <!-- <a href="{{ route('index', 'en') }}">
                                 <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
                             </a>
                             <a href="{{ route('index', 'fr') }}">
+                                <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
+                            </a> -->
+                            <a href="{{ route('setting-lang', Session::get('lang')).'?lang=en' }}">
+                                <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
+                            </a>
+                            <a href="{{ route('setting-lang', Session::get('lang')).'?lang=fr' }}">
                                 <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
                             </a>
                         </div>
@@ -267,12 +270,12 @@
             <div class="main--content-header-right">
                 @if(Auth::user())
                 <div class="main-content--single  main--content-profile">
-                    <a href="{{ route('user-public', [Session::get('lang'), Auth::user()->name]) }}">
+                    <a href="{{ route('user-public', [Session::get('lang'), Auth::user()->slug]) }}">
                         <i class="fad fa-user"></i>
                     </a>
                 </div>
                 <div class="main-content--single  main--content-setting">
-                    <a href="{{ route('user-private', Session::get('lang')) }}">
+                    <a href="{{ route('user-private', [Session::get('lang'), Auth::user()->slug]) }}">
                         <i class="fad fa-cogs"></i>
                     </a>
                 </div>
@@ -289,12 +292,6 @@
                         <i class="fas fa-globe-americas"></i>
                     </a>
                     <div class="select-lang lang-close">
-                        <!-- <a href="{{ route('index', 'en') }}">
-                            <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
-                        </a>
-                        <a href="{{ route('index', 'fr') }}">
-                            <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
-                        </a> -->
                         <a href="{{ route('setting-lang', Session::get('lang')).'?lang=en' }}">
                             <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
                         </a>

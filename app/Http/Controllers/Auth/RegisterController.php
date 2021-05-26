@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Auth;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -86,6 +87,7 @@ class RegisterController extends Controller
 
         User::create([
             'name' => $request->name,
+            'slug' => str_slug($request->name,'-'),
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'game_name' => $request->game_name,
@@ -113,7 +115,7 @@ class RegisterController extends Controller
         $user->guild_name = $request->guild_name;
         $user->save();
         
-        return redirect('user-private')->with('success', 'Successfully updated!');
+        return redirect()->route('user-private', [Session::get('lang'), $user->slug])->with('success', 'Successfully updated!');
     }
 
     // Register

@@ -3,7 +3,7 @@
     $role = DB::table('role')->where('id', $monster->role)->first();
     $rarity = DB::table('rarity')->where('id', $monster->rarity)->first();
 @endphp
-<a href="{{ route('monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}" class="compect_monster_box compect_monster_box{{ $drop_id <= 4? $drop_id : $drop_id - 4 }}"
+<a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}" class="compect_monster_box compect_monster_box{{ $drop_id <= 4? $drop_id : $drop_id - 4 }}"
     target="_blank">
     <div class="monster_img">
         <div class="icon_img">
