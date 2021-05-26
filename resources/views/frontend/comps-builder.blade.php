@@ -554,7 +554,7 @@
                     <div class="tab-pane" id="tabs-2" role="tabpanel">
                         <div class="compect_inner_monster2 mCustomScrollbar">
                             <div class="line_up_sec text-center" ondrop="drop1(event)">
-                                @foreach(DB::table('spells')->get() as $spell)
+                                @foreach(DB::table('spells')->where('del_flag', 0)->get() as $spell)
                                 <div class="line_up_monster" ondragstart="DragStart1(event)">
                                     <a href="#1">
                                         <div class="compect_spells_big">
@@ -712,7 +712,7 @@
                 <!--  -->
                 <div class="compect_inner_monster2 mCustomScrollbar">
                     <div class="line_up_sec text-center">
-                        @foreach(DB::table('spells')->get() as $spell)
+                        @foreach(DB::table('spells')->where('del_flag', 0)->get() as $spell)
                         <div class="line_up_monster">
                             <a href="#1">
                                 <div class="compect_spells_big">
