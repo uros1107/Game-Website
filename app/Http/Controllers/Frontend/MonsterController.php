@@ -55,7 +55,7 @@ class MonsterController extends Controller
         }
     }
 
-    public function monster_detail(Request $request, $lang,$slug)
+    public function monster_detail(Request $request, $lang, $slug)
     {
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
@@ -176,7 +176,7 @@ class MonsterController extends Controller
         return view('frontend.ajax-character', ['comp_character' => $comp_character]);
     }
 
-    public function get_spell(Request $request)
+    public function get_spell(Request $request, $lang)
     {
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
@@ -372,6 +372,11 @@ class MonsterController extends Controller
 
         $rune_set = $request->all();
         $rune_set['rs_substats'] = json_encode($rune_set['rs_substats']);
+
+        if(Session::get('lang') == 'fr') {
+            $rune_set['fr_rs_comment'] = $rune_set['rs_comment'];
+            unset($rune_set['rs_comment']);
+        }
         $rune_set_info = Runeset::create($rune_set);
 
         return response()->json(true);

@@ -205,7 +205,6 @@
                                 <h3>{{ Session::get('lang') == 'en'? $rune_set->rs_name : $rune_set->fr_rs_name }}</h3>
                                 @php
                                     $rune = DB::table('runes')->where('r_id', $rune_set->rs_rune)->first();
-                                    $skill_stone = DB::table('skill_stones')->where('skill_id', $rune_set->rs_skill_stones)->first();
                                     $rune_set->rs_substats = json_decode($rune_set->rs_substats);
                                 @endphp
                                 <ul>
@@ -220,8 +219,19 @@
                                         <img src="{{ asset('images/game/icons/sub-stats/'.$sub_stat->sub_icon) }}" alt="">
                                         @endforeach
                                     </li>
-                                    <li><span>@lang('monster-detail.skill_stones') : </span>{{ Session::get('lang') == 'en'? $monster->skill_name : $monster->fr_skill_name }}<img src="{{ asset('images/game/icons/skill-stones/'.$skill_stone->skill_icon) }}"
-                                            alt="" class="icons-after-text"></li>
+                                    <li>
+                                        <span>@lang('monster-detail.skill_stones') : </span>
+                                        @if($rune_set->rs_skill_stones == 1)
+                                        {{ Session::get('lang') == 'en'? $monster->skill_stone1_name : $monster->fr_skill_stone1_name }}
+                                        <img src="{{ asset('images/game/skill_images/'.$monster->skill_stone1_image) }}" alt="" class="icons-after-text">
+                                        @elseif($rune_set->rs_skill_stones == 2)
+                                        {{ Session::get('lang') == 'en'? $monster->skill_stone2_name : $monster->fr_skill_stone2_name }}
+                                        <img src="{{ asset('images/game/skill_images/'.$monster->skill_stone2_image) }}" alt="" class="icons-after-text">
+                                        @elseif($rune_set->rs_skill_stones == 3)
+                                        {{ Session::get('lang') == 'en'? $monster->skill_stone3_name : $monster->fr_skill_stone3_name }}
+                                        <img src="{{ asset('images/game/skill_images/'.$monster->skill_stone3_image) }}" alt="" class="icons-after-text">
+                                        @endif
+                                    </li>
                                     <li><span>@lang('monster-detail.position') : </span>{{ $rune_set->rs_comp_position }}</li>
                                 </ul>
                                 @php

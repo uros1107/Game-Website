@@ -85,7 +85,7 @@
                       <label>Comment</label>
                       <div class="d-flex">
                         <input type="text" name="rs_comment" class="form-control" value="{{ $rune_set->rs_comment }}"
-                          placeholder="Please input description"
+                          placeholder="Please input description" required
                           data-validation-required-message="This Spell Description field is required">
                           <span class="font-italic" style="margin: auto 5px">EN</span>
                       </div>
