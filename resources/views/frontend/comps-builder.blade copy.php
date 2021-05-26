@@ -362,11 +362,19 @@
                                 <div class="mobile_monster_section">
                                     <div class="line_up_sec text-center">
                                         <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
-                                            <div>
-                                                <div>
-                                                    <img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}" alt="monster">
-                                                </div>
+                                            <div class="contain_shape">
+                                                <div class="shape"><img src="{{ asset('assets/image/colleen-thumb.jpg') }}"
+                                                        alt="monster"></div>
                                             </div>
+                                            <span>Colleen</span>
+                                        </div>
+
+                                        <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
+                                            <div class="contain_shape">
+                                                <div class="shape"><img src="{{ asset('assets/image/hwadam-thumb.jpg') }}"
+                                                        alt="monster"></div>
+                                            </div>
+                                            <span>Hwadam</span>
                                         </div>
 
                                         <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
@@ -375,30 +383,23 @@
                                                     <img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}" alt="monster">
                                                 </div>
                                             </div>
+                                            <span></span>
                                         </div>
 
                                         <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
-                                            <div>
-                                                <div>
-                                                    <img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}" alt="monster">
-                                                </div>
+                                            <div class="contain_shape">
+                                                <div class="shape"><img src="{{ asset('assets/image/belladeon-thumb.jpg') }}"
+                                                        alt="monster"></div>
                                             </div>
+                                            <span>Belladeon</span>
                                         </div>
 
                                         <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
-                                            <div>
-                                                <div>
-                                                    <img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}" alt="monster">
-                                                </div>
+                                            <div class="contain_shape">
+                                                <div class="shape"><img src="{{ asset('assets/image/ramagos-thumb.jpg') }}"
+                                                        alt="monster"></div>
                                             </div>
-                                        </div>
-
-                                        <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
-                                            <div>
-                                                <div>
-                                                    <img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}" alt="monster">
-                                                </div>
-                                            </div>
+                                            <span>Ramagos</span>
                                         </div>
 
                                         <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
@@ -406,22 +407,23 @@
                                                 <div><img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}"
                                                         alt="monster"></div>
                                             </div>
+                                            <span></span>
                                         </div>
 
                                         <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
                                             <div>
-                                                <div>
-                                                    <img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}" alt="monster">
-                                                </div>
+                                                <div><img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}"
+                                                        alt="monster"></div>
                                             </div>
+                                            <span>Mikene</span>
                                         </div>
 
                                         <div class="line_up_monster" data-toggle="modal" data-target="#monster-modal">
-                                            <div>
-                                                <div>
-                                                    <img src="{{ asset('assets/image/compect_bulider/mobile_add_pluse.png') }}" alt="monster">
-                                                </div>
+                                            <div class="contain_shape">
+                                                <div class="shape"><img src="{{ asset('assets/image/megan-thumb.jpg') }}"
+                                                        alt="monster"></div>
                                             </div>
+                                            <span>Megan</span>
                                         </div>
                                     </div>
                                 </div>
@@ -600,7 +602,7 @@
                                         id="monster-search" onkeyup="filterFunction()">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </div>
-                                <div class="inner-dropdown-sec " id="search-box">
+                                <div class="inner-dropdown-sec ">
                                     @foreach($monsters as $monster)
                                     <label class="dropdown-option search-dropdown">
                                         <input type="checkbox" name="monster[]" class="monster"

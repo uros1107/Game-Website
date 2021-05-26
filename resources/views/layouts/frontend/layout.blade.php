@@ -85,7 +85,7 @@
             </div>
             <div class="main--content-search text-center">
                 <div class="mobile-search-inner">
-                    <input type="text" class="seach-input" id="m-monster-search" placeholder="@lang('layout.search_monster')">
+                    <input type="text" class="seach-input" id="m_monster_search" placeholder="@lang('layout.search_monster')">
                     <i class="fa fa-search"></i>
                 </div>
             </div>
@@ -261,7 +261,7 @@
         <!-- main--content-header -->
         <div class="main--content-header d-none d-xl-block">
             <div class="main--content-search text-center">
-                <input type="text" class="seach-input" id="monster-search" placeholder="@lang('layout.search_monster')">
+                <input type="text" class="seach-input" id="monster_search" placeholder="@lang('layout.search_monster')">
                 <i class="fa fa-search"></i>
             </div>
             <div class="main--content-header-right">
@@ -483,7 +483,7 @@
         })
     })
 
-    $(document).on('change', '#monster-search, #m-monster-search', function() {
+    $(document).on('change', '#monster_search, #m_monster_search', function() {
         var search = $(this).val();
 
         $.ajax({
