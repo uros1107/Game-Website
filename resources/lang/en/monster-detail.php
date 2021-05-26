@@ -15,6 +15,7 @@
         'res' => 'RES',
         'skill_stones' => 'Skill Stones',
         'rune_set' => 'Runes in Lost Centuria',
+        'rune_set1' => 'Runes',
         'add_rune' => 'Add Rune Set',
         'comps' => 'Skill Stone',
         'position' => 'Position in comp',

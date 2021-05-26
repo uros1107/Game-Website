@@ -65,18 +65,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        echo "fdsafdsafds";
-        // return User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
-        // ]);
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
     }
 
     public function register(Request $request)
     {
         $rules = [
             'email' => 'required|string|email|unique:users',
+            'name' => 'required|string|unique:users',
         ];
         $validator = Validator::make($request->all(), $rules);
 

@@ -1,5 +1,8 @@
 @extends('layouts.frontend.layout')
 
+@section('head')
+@endsection
+
 @section('styles')
     <!-- No UISlider -->
     

@@ -1,5 +1,9 @@
 @extends('layouts.frontend.layout')
 
+@section('head')
+
+@endsection
+
 @section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}" type="text/css" />
 <style>

@@ -19,36 +19,33 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @if(isset($monster) && Session::get('lang') == 'en')
-    <!-- <meta name="keywords" content="{{ !empty($monster->meta_title) ?  $monster->meta_title : '' }}"> -->
     <meta name="description" content="{{ $monster->meta_description != null ? $monster->meta_description : strip_tags($monster->meta_description) }}">
     <meta property="og:title" content="{{ !empty($monster->meta_title) ?  $monster->meta_title : '' }}" />
 	<meta property="og:description" content="{{ $monster->meta_description != null ? $monster->meta_description : strip_tags($monster->meta_description) }}" />
     <meta property="og:image" content="{{asset('images/game/og_images/'.$monster->og_image)}}" />
     <meta name="author" content="lostcenturia.gg">
     @elseif(isset($monster) && Session::get('lang') == 'fr')
-    <!-- <meta name="keywords" content="{{ !empty($monster->fr_meta_title) ?  $monster->fr_meta_title : '' }}"> -->
     <meta name="description" content="{{ $monster->fr_meta_description != null ? $monster->fr_meta_description : strip_tags($monster->fr_meta_description) }}">
-    <meta property="og:title" content="{{ !empty($monster->meta_title) ?  $monster->meta_title : '' }}" />
-	<meta property="og:description" content="{{ $monster->meta_description != null ? $monster->meta_description : strip_tags($monster->meta_description) }}" />
+    <meta property="og:title" content="{{ !empty($monster->fr_meta_title) ?  $monster->fr_meta_title : '' }}" />
+	<meta property="og:description" content="{{ $monster->fr_meta_description != null ? $monster->fr_meta_description : strip_tags($monster->fr_meta_description) }}" />
     <meta property="og:image" content="{{asset('images/game/og_images/'.$monster->og_image)}}" />
     <meta name="author" content="lostcenturia.gg">
     @else
-    <!-- <meta name="keywords" content="lostcenturia.gg"> -->
     <meta name="description" content="lostcenturia.gg">
     <meta property="og:title" content="lostcenturia.gg" />
 	<meta property="og:description" content="lostcenturia.gg" />
     <meta name="author" content="lostcenturia.gg">
     @endif
 
-    @if(isset($monster))
-    <link rel="alternate" hreflang="en" href="https://lostcenturia.gg/en/monsters/{{ $monster->slug }}" />
-    <link rel="alternate" hreflang="fr" href="https://lostcenturia.gg/fr/monsters/{{ $monster->fr_slug }}" />
-    <link rel="alternate" hreflang="x-default" href="https://lostcenturia.gg/en/monsters/{{ $monster->slug }}" />
-    @else
     <link rel="alternate" hreflang="en" href="https://lostcenturia.gg/en" />
     <link rel="alternate" hreflang="fr" href="https://lostcenturia.gg/fr" />
     <link rel="alternate" hreflang="x-default" href="https://lostcenturia.gg/en" />
+    @if(isset($monster))
+    <!-- <link rel="alternate" hreflang="en" href="https://lostcenturia.gg/en/monsters/{{ $monster->slug }}" />
+    <link rel="alternate" hreflang="fr" href="https://lostcenturia.gg/fr/monsters/{{ $monster->fr_slug }}" />
+    <link rel="alternate" hreflang="x-default" href="https://lostcenturia.gg/en/monsters/{{ $monster->slug }}" /> -->
     @endif
+    @yield('head')
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -113,6 +110,7 @@
             <ul class="list-group">
                 <!-- Monstres Menu -->
                 <li>
+                    @if(Session::get('lang') == 'en')
                     <a href="{{ route('monster-list', Session::get('lang')) }}"
                         class="bg-dark-blue list-group-item list-group-item-action flex-column align-items-start">
                         <div class="menu-lis-inner d-flex w-100 justify-content-start align-items-center">
@@ -122,10 +120,22 @@
                             <span class="menu-collapsed">@lang('layout.monsters')</span>
                         </div>
                     </a>
+                    @else
+                    <a href="{{ route('fr-monster-list', Session::get('lang')) }}"
+                        class="bg-dark-blue list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="menu-lis-inner d-flex w-100 justify-content-start align-items-center">
+                            <div class="fa-fa_icons">
+                                <i class="fad fa-helmet-battle"></i>
+                            </div>
+                            <span class="menu-collapsed">@lang('layout.monsters')</span>
+                        </div>
+                    </a>
+                    @endif
                 </li>
 
                 <!-- Liste de compos Menu -->
                 <li>
+                    @if(Session::get('lang') == 'en')
                     <a href="{{ route('comps-list', Session::get('lang')) }}"
                         class="bg-dark-blue list-group-item list-group-item-action flex-column align-items-start">
                         <div class="menu-lis-inner d-flex w-100 justify-content-start align-items-center">
@@ -135,6 +145,17 @@
                             <span class="menu-collapsed">@lang('layout.team_comps')</span>
                         </div>
                     </a>
+                    @else
+                    <a href="{{ route('fr-comps-list', Session::get('lang')) }}"
+                        class="bg-dark-blue list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="menu-lis-inner d-flex w-100 justify-content-start align-items-center">
+                            <div class="fa-fa_icons">
+                                <i class="fad fa-swords"></i>
+                            </div>
+                            <span class="menu-collapsed">@lang('layout.team_comps')</span>
+                        </div>
+                    </a>
+                    @endif
                 </li>
 
                 <!-- Création de compos Menu -->
@@ -188,7 +209,7 @@
 
                 <!-- Contact Menu -->
                 <li>
-                    <a href="https://contact@lostcenturia.gg"
+                    <a href="mailto:contact@lostcenturia.gg"
                         class="bg-dark-blue list-group-item list-group-item-action flex-column align-items-start">
                         <div class="menu-lis-inner d-flex w-100 justify-content-start align-items-center">
                             <div class="fa-fa_icons">
@@ -208,10 +229,10 @@
                             <img src="{{ asset('assets/image/globe-americas-duotone.svg') }}" alt="">
                         </a>
                         <div class="select-lang lang-close">
-                            <a href="{{ route('setting-lang').'?lang=en' }}">
+                            <a href="{{ route('index', 'en') }}">
                                 <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
                             </a>
-                            <a href="{{ route('setting-lang').'?lang=fr' }}">
+                            <a href="{{ route('index', 'fr') }}">
                                 <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
                             </a>
                         </div>
@@ -246,7 +267,7 @@
             <div class="main--content-header-right">
                 @if(Auth::user())
                 <div class="main-content--single  main--content-profile">
-                    <a href="{{ route('user-public', Session::get('lang')).'?id='.Auth::user()->id }}">
+                    <a href="{{ route('user-public', [Session::get('lang'), Auth::user()->name]) }}">
                         <i class="fad fa-user"></i>
                     </a>
                 </div>
@@ -268,10 +289,16 @@
                         <i class="fas fa-globe-americas"></i>
                     </a>
                     <div class="select-lang lang-close">
-                        <a href="{{ route('index', 'en') }}">
+                        <!-- <a href="{{ route('index', 'en') }}">
                             <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
                         </a>
                         <a href="{{ route('index', 'fr') }}">
+                            <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
+                        </a> -->
+                        <a href="{{ route('setting-lang', Session::get('lang')).'?lang=en' }}">
+                            <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
+                        </a>
+                        <a href="{{ route('setting-lang', Session::get('lang')).'?lang=fr' }}">
                             <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
                         </a>
                     </div>

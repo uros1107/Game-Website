@@ -19,26 +19,35 @@ class FrontendController extends Controller
     // Dashboard - Analytics
     public function index($lang)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         Session::put('lang', $lang);
-        App::setlocale($lang);
+        App::setlocale(Session::get('lang'));
 
         return view('frontend.index');
     }
 
-    public function private()
+    public function private($lang)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         App::setlocale(Session::get('lang'));
 
         return view('frontend.user-private');
     }
 
-    public function public(Request $request, $lang)
+    public function public(Request $request, $lang, $name)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         App::setlocale(Session::get('lang'));
 
-        $user = User::where('id', $request->id)->first();
-        $team_comps = TeamComp::where('c_sent_by_user', $request->id)->paginate(5);
-        $rune_sets = Runeset::where('rs_user_id', $request->id)->paginate(3);
+        $user = User::where('name', $name)->first();
+        $team_comps = TeamComp::where('c_sent_by_user', $user->id)->paginate(5);
+        $rune_sets = Runeset::where('rs_user_id', $user->id)->paginate(3);
 
         if($request->ajax() && $request->team_comps) {
             return view('frontend.ajax-comps-pagination', compact('team_comps', 'user'));
@@ -49,13 +58,15 @@ class FrontendController extends Controller
         return view('frontend.user-public', compact('team_comps', 'rune_sets', 'user'));
     }
 
-    public function setting_language(Request $request)
+    public function setting_language(Request $request, $lang)
     {
-
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         $lang = $request->lang;
         Session::put('lang', $lang);
-        App::setlocale($lang);
+        App::setlocale(Session::get('lang'));
 
-        return redirect()->route('index', $lang);
+        return redirect()->back();
     }
 }

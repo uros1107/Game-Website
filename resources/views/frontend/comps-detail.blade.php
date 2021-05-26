@@ -1,5 +1,9 @@
 @extends('layouts.frontend.layout')
 
+@section('head')
+
+@endsection
+
 @section('styles')
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/12.0.0/nouislider.min.css"> -->
 <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}" type="text/css" />
@@ -42,7 +46,7 @@
                 $user = DB::table('users')->where('id', $team_comp->c_sent_by_user)->first();
             @endphp
             <p class="page-title-subtext">
-                @lang('comp-detail.title') <a href="#1" class="hakio-text">{{ $user->name }}</a> @lang('comp-detail.on') {{ $team_comp->created_at->format('m/d/Y') }}.
+                @lang('comp-detail.title') <a href="{{ route('user-public', [Session::get('lang'), $user->name]) }}" class="hakio-text">{{ $user->name }}</a> @lang('comp-detail.on') {{ $team_comp->created_at->format('m/d/Y') }}.
             </p>
             <div class="social-media-block">
                 <span> @lang('comp-detail.share') : </span>
@@ -70,19 +74,87 @@
                     <div class="compect_left_element_bar">
                         <div class="colleen_section mobile_block">
                             <ul>
-                                @foreach(json_decode($team_comp->c_position) as $key => $comp)
                                 @php
-                                    $c_monster = DB::table('monsters')->where('id', $comp)->first();
+                                    $teamcomps = json_decode($team_comp->c_position);
+                                    $c_monster = DB::table('monsters')->where('id', $teamcomps[5])->first();
                                     $element = DB::table('element')->where('id', $c_monster->element)->first();
-                                    $key = $key + 1;
                                 @endphp
                                 <li>
-                                    <p><span>{{ $key++ }}</span>. {{ $c_monster->name }}</p>
+                                    <p><span>1</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
                                     <div class="collen_icon_img">
                                         <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
                                     </div>
                                 </li>
-                                @endforeach
+                                @php
+                                    $c_monster = DB::table('monsters')->where('id', $teamcomps[7])->first();
+                                    $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                @endphp
+                                <li>
+                                    <p><span>2</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                    <div class="collen_icon_img">
+                                        <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                    </div>
+                                </li>
+                                @php
+                                    $c_monster = DB::table('monsters')->where('id', $teamcomps[4])->first();
+                                    $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                @endphp
+                                <li>
+                                    <p><span>3</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                    <div class="collen_icon_img">
+                                        <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                    </div>
+                                </li>
+                                @php
+                                    $c_monster = DB::table('monsters')->where('id', $teamcomps[6])->first();
+                                    $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                @endphp
+                                <li>
+                                    <p><span>4</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                    <div class="collen_icon_img">
+                                        <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                    </div>
+                                </li>
+                                @php
+                                    $c_monster = DB::table('monsters')->where('id', $teamcomps[1])->first();
+                                    $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                @endphp
+                                <li>
+                                    <p><span>5</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                    <div class="collen_icon_img">
+                                        <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                    </div>
+                                </li>
+                                @php
+                                    $c_monster = DB::table('monsters')->where('id', $teamcomps[3])->first();
+                                    $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                @endphp
+                                <li>
+                                    <p><span>6</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                    <div class="collen_icon_img">
+                                        <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                    </div>
+                                </li>
+                                @php
+                                    $c_monster = DB::table('monsters')->where('id', $teamcomps[0])->first();
+                                    $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                @endphp
+                                <li>
+                                    <p><span>7</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                    <div class="collen_icon_img">
+                                        <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                    </div>
+                                </li>
+                                @php
+                                    $c_monster = DB::table('monsters')->where('id', $teamcomps[2])->first();
+                                    $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                @endphp
+                                <li>
+                                    <p><span>8</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                    <div class="collen_icon_img">
+                                        <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                    </div>
+                                </li>
                             </ul>
                             <div class="compect_genral_info_section mobile-genral_info d-md-none">
                                 <h3 class="general-info-title">@lang('comp-detail.info')</h3>
@@ -357,7 +429,7 @@
                         @php
                             $user = DB::table('users')->where('id', $comment->comment_user_id)->first();
                         @endphp
-                        <span class="commentor-name">@lang('comp-detail.by') <a href="#1">{{ $user->name }}</a> </span>
+                        <span class="commentor-name">@lang('comp-detail.by') <a href="{{ route('user-public', [Session::get('lang'), $user->name]) }}">{{ $user->name }}</a> </span>
                         <br>
                         <span class="comment-date">{{ $comment->created_at->format('m/d/Y') }}</span>
                     </div>

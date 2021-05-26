@@ -1,5 +1,8 @@
 @extends('layouts.frontend.layout')
 
+@section('head')
+@endsection
+
 @section('styles')
 @endsection
 
@@ -59,7 +62,11 @@
                                 <p class="page-title-subtext">@lang('home.partner')
                                 </p>
                                 <div class="home-btn">
+                                    @if(Session::get('lang') == 'en')
                                     <a href="{{ route('monster-list', Session::get('lang')) }}" class="all_btn">@lang('home.monster_list')</a>
+                                    @else
+                                    <a href="{{ route('fr-monster-list', Session::get('lang')) }}" class="all_btn">@lang('home.monster_list')</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -82,7 +89,11 @@
                                 <p class="page-title-subtext"> @lang('home.instead')
                                 </p>
                                 <div class="home-btn">
+                                    @if(Session::get('lang') == 'en')
                                     <a href="{{ route('comps-list', Session::get('lang')) }}" class="all_btn">@lang('home.ideal')</a>
+                                    @else
+                                    <a href="{{ route('fr-comps-list', Session::get('lang')) }}" class="all_btn">@lang('home.ideal')</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

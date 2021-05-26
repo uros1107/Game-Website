@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\UserInfo;
+use Hash;
 
 class UserPagesController extends Controller
 {
@@ -69,6 +70,11 @@ class UserPagesController extends Controller
     {
         $user = User::where('id', $request->id);
         $input = $request->all();
+        if(!$request->password) {
+            unset($input['password']);
+        } else {
+            $input['password'] = Hash::make($request->password);
+        }
         $user->update($input);
 
         return response()->json(true);

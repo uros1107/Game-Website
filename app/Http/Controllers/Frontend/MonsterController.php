@@ -23,6 +23,9 @@ class MonsterController extends Controller
     }
     public function monster_list(Request $request, $lang)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         $monsters = Monster::where('del_flag', 0)->paginate(15, [
             'id', 
             'name', 
@@ -54,6 +57,9 @@ class MonsterController extends Controller
 
     public function monster_detail(Request $request, $lang,$slug)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         App::setlocale(Session::get('lang'));
 
         if($lang == 'en') {
@@ -80,6 +86,9 @@ class MonsterController extends Controller
 
     public function get_monster(Request $request, $lang)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         App::setlocale(Session::get('lang'));
 
         $monster_id = $request->monster_id;
@@ -90,6 +99,9 @@ class MonsterController extends Controller
 
     public function calculate_character(Request $request, $lang) 
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         App::setlocale(Session::get('lang'));
 
         $monster_ids = $request->monster_ids;
@@ -166,6 +178,9 @@ class MonsterController extends Controller
 
     public function get_spell(Request $request)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         $spell_id = $request->spell_id;
         $spell = Spell::where('id', $spell_id)->first(['id', 'name', 'fr_name', 'main_image', 'mana_cost', 'icon_image']);
 
@@ -174,6 +189,9 @@ class MonsterController extends Controller
 
     public function comps_list(Request $request, $lang)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         App::setlocale(Session::get('lang'));
         $team_comps = TeamComp::where('c_verify', 1)->paginate(10);
 
@@ -186,6 +204,9 @@ class MonsterController extends Controller
 
     public function comps_detail(Request $request, $lang, $slug)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         App::setlocale(Session::get('lang'));
 
         if(Session::get('lang') == 'en') {
@@ -212,6 +233,9 @@ class MonsterController extends Controller
 
     public function comps_submit(Request $request, $lang)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         App::setlocale(Session::get('lang'));
 
         $comps_info = $request->all();
@@ -239,6 +263,9 @@ class MonsterController extends Controller
 
     public function comps_comment(Request $request, $lang)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         App::setlocale(Session::get('lang'));
 
         $c_id = $request->c_id;
@@ -259,6 +286,9 @@ class MonsterController extends Controller
 
     public function add_comps_likes(Request $request, $lang)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         App::setlocale(Session::get('lang'));
 
         $c_id = $request->c_id;
@@ -272,6 +302,9 @@ class MonsterController extends Controller
 
     public function add_comps_dislikes(Request $request, $lang)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         App::setlocale(Session::get('lang'));
 
         $c_id = $request->c_id;
@@ -283,8 +316,11 @@ class MonsterController extends Controller
         return response()->json(['c_dislikes' => $comps->first()->c_dislikes]);
     }
 
-    public function comps_builder()
+    public function comps_builder($lang)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         App::setlocale(Session::get('lang'));
 
         $monsters = Monster::where('del_flag', 0)->get([
@@ -308,6 +344,9 @@ class MonsterController extends Controller
 
     public function add_rune_set(Request $request, $lang, $slug)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         App::setlocale(Session::get('lang'));
 
         if(Session::get('lang') == 'en') {
@@ -324,8 +363,11 @@ class MonsterController extends Controller
         ]);
     }
 
-    public function store_rune_set(Request $request)
+    public function store_rune_set(Request $request, $lang)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         App::setlocale(Session::get('lang'));
 
         $rune_set = $request->all();
@@ -337,6 +379,9 @@ class MonsterController extends Controller
 
     public function search(Request $request, $lang)
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         App::setlocale(Session::get('lang'));
 
         $search = $request->search;
@@ -358,6 +403,9 @@ class MonsterController extends Controller
 
     public function terms_of_use($lang) 
     {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
         if(Session::get('lang') == 'en') {
             return view('frontend.terms-of-use');
         } else {

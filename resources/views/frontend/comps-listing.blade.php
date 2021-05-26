@@ -1,5 +1,9 @@
 @extends('layouts.frontend.layout')
 
+@section('head')
+
+@endsection
+
 @section('styles')
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/12.0.0/nouislider.min.css"> -->
 <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}" type="text/css" />
@@ -175,19 +179,87 @@
                                 <div class="compect_left_element_bar">
                                     <div class="colleen_section mobile_block">
                                         <ul>
-                                            @foreach(json_decode($team_comp->c_position) as $key => $comp)
-                                            @php
-                                                $c_monster = DB::table('monsters')->where('id', $comp)->first();
-                                                $element = DB::table('element')->where('id', $c_monster->element)->first();
-                                                $key = $key + 1;
-                                            @endphp
-                                            <li>
-                                                <p><span>{{ $key++ }}</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
-                                                <div class="collen_icon_img">
-                                                    <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
-                                                </div>
-                                            </li>
-                                            @endforeach
+                                        @php
+                                            $teamcomps = json_decode($team_comp->c_position);
+                                            $c_monster = DB::table('monsters')->where('id', $teamcomps[5])->first();
+                                            $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                        @endphp
+                                        <li>
+                                            <p><span>1</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                            <div class="collen_icon_img">
+                                                <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                            </div>
+                                        </li>
+                                        @php
+                                            $c_monster = DB::table('monsters')->where('id', $teamcomps[7])->first();
+                                            $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                        @endphp
+                                        <li>
+                                            <p><span>2</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                            <div class="collen_icon_img">
+                                                <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                            </div>
+                                        </li>
+                                        @php
+                                            $c_monster = DB::table('monsters')->where('id', $teamcomps[4])->first();
+                                            $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                        @endphp
+                                        <li>
+                                            <p><span>3</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                            <div class="collen_icon_img">
+                                                <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                            </div>
+                                        </li>
+                                        @php
+                                            $c_monster = DB::table('monsters')->where('id', $teamcomps[6])->first();
+                                            $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                        @endphp
+                                        <li>
+                                            <p><span>4</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                            <div class="collen_icon_img">
+                                                <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                            </div>
+                                        </li>
+                                        @php
+                                            $c_monster = DB::table('monsters')->where('id', $teamcomps[1])->first();
+                                            $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                        @endphp
+                                        <li>
+                                            <p><span>5</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                            <div class="collen_icon_img">
+                                                <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                            </div>
+                                        </li>
+                                        @php
+                                            $c_monster = DB::table('monsters')->where('id', $teamcomps[3])->first();
+                                            $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                        @endphp
+                                        <li>
+                                            <p><span>6</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                            <div class="collen_icon_img">
+                                                <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                            </div>
+                                        </li>
+                                        @php
+                                            $c_monster = DB::table('monsters')->where('id', $teamcomps[0])->first();
+                                            $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                        @endphp
+                                        <li>
+                                            <p><span>7</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                            <div class="collen_icon_img">
+                                                <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                            </div>
+                                        </li>
+                                        @php
+                                            $c_monster = DB::table('monsters')->where('id', $teamcomps[2])->first();
+                                            $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                        @endphp
+                                        <li>
+                                            <p><span>8</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                            <div class="collen_icon_img">
+                                                <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                            </div>
+                                        </li>
                                         </ul>
                                         <div class="compect_genral_info_section mobile-genral_info d-md-none">
                                             <h3 class="general-info-title">@lang('info')</h3>
@@ -549,7 +621,7 @@ function getCookie(c_name) {
             return unescape(document.cookie.substring(c_start, c_end));
         }
     }
-    return "";
+    return [];
 }
 
 $(document).ready(function() {
@@ -557,16 +629,14 @@ $(document).ready(function() {
         filter();
     })
 
+    var arr = getCookie('comps_cookie');
     $(document).on('click', ".likes", function() {
         var c_id = $(this).data('value');
-        var check = $(this).find('img').hasClass('active-like-inlike');
-        localStorage['likes'] = c_id;
+        if(arr.indexOf(c_id) == -1) {
+            arr.push(c_id);
+            var json_str = JSON.stringify(arr);
+            createCookie('comps_cookie', json_str);
 
-        var arr = ['foo', 'bar', 'baz'];
-        var json_str = JSON.stringify(arr);
-        createCookie('mycookie', json_str);
-
-        if(!check) {
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -588,20 +658,26 @@ $(document).ready(function() {
     $(document).on('click', ".dislikes", function() {
         var c_id = $(this).data('value');
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: "{{ route('add-comps-dislikes', Session::get('lang')) }}",
-            method: "POST",
-            data: { c_id: c_id },
-            success: function(data) {
-                $('#dislikes_' + c_id).html(data['c_dislikes']);
-                toastr.success('Successfully added!');
-            }
-        })
+        if(arr.indexOf(c_id) == -1) {
+            arr.push(c_id);
+            var json_str = JSON.stringify(arr);
+            createCookie('comps_cookie', json_str);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{ route('add-comps-dislikes', Session::get('lang')) }}",
+                method: "POST",
+                data: { c_id: c_id },
+                success: function(data) {
+                    $('#dislikes_' + c_id).html(data['c_dislikes']);
+                    toastr.success('Successfully added!');
+                }
+            })
+        }
     })
 
     $(document).on('click', '.page-number, #prev, #next', function() {

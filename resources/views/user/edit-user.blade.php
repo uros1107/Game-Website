@@ -30,7 +30,7 @@
               <i class="feather icon-user mr-25"></i><span class="d-none d-sm-block">Account</span>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link d-flex align-items-center" id="information-tab" data-toggle="tab" href="#information"
               aria-controls="information" role="tab" aria-selected="false">
               <i class="feather icon-info mr-25"></i><span class="d-none d-sm-block">Information</span>
@@ -41,39 +41,14 @@
               aria-controls="social" role="tab" aria-selected="false">
               <i class="feather icon-share-2 mr-25"></i><span class="d-none d-sm-block">Social</span>
             </a>
-          </li>
+          </li> -->
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="account" aria-labelledby="account-tab" role="tabpanel">
-            <!-- users edit media object start -->
-            <!-- <div class="media mb-2">
-              <a class="mr-2 my-25" href="#">
-                <img src="{{ asset('images/portrait/small/avatar-s-12.jpg') }}" alt="users avatar"
-                  class="users-avatar-shadow rounded" height="64" width="64">
-              </a>
-              <div class="media-body mt-50">
-                <h4 class="media-heading">{{$user->name}}</h4>
-                <div class="col-12 d-flex mt-1 px-0">
-                  <a href="#" class="btn btn-primary d-none d-sm-block mr-75">Change</a>
-                  <a href="#" class="btn btn-primary d-block d-sm-none mr-75"><i
-                      class="feather icon-edit-1"></i></a>
-                  <a href="#" class="btn btn-outline-danger d-none d-sm-block">Remove</a>
-                  <a href="#" class="btn btn-outline-danger d-block d-sm-none"><i class="feather icon-trash-2"></i></a>
-                </div>
-              </div>
-            </div> -->
-            <!-- users edit media object ends -->
             <!-- users edit account form start -->
             <form novalidate id="account">
               <div class="row">
                 <div class="col-12 col-sm-6">
-                  <!-- <div class="form-group">
-                    <div class="controls">
-                      <label>Username</label>
-                      <input type="text" class="form-control" placeholder="Username" value="{{$user->name}}" required
-                        data-validation-required-message="This username field is required">
-                    </div>
-                  </div> -->
                   <input type="hidden" value="{{ $user->id }}" name="id">
                   <div class="form-group">
                     <div class="controls">
@@ -88,6 +63,13 @@
                       <input type="email" class="form-control" name="email" placeholder="Email" value="{{$user->email}}"
                         required data-validation-required-message="This email field is required">
                     </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="controls">
+                      <label>Password</label>
+                      <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                    <input type="hidden" name="password" id="password">
                   </div>
                   <div class="form-group">
                     <div class="controls">
@@ -109,8 +91,8 @@
                   <div class="form-group">
                     <label>Verified</label>
                     <select class="form-control" name="verified">
-                      <option value="1">Verified</option>
-                      <option value="0">Unverified</option>
+                      <option value="1"  {{ $user->verified == 1  ? 'selected' : '' }}>Verified</option>
+                      <option value="0"  {{ $user->verified == 0  ? 'selected' : '' }}>Unverified</option>
                     </select>
                   </div>
                   <div class="form-group">
@@ -121,110 +103,9 @@
                     </select>
                   </div>
                 </div>
-                <!-- <div class="col-12">
-                  <div class="table-responsive border rounded px-1 ">
-                    <h6 class="border-bottom py-1 mx-1 mb-0 font-medium-2"><i
-                        class="feather icon-lock mr-50 "></i>Permission</h6>
-                    <table class="table table-borderless">
-                      <thead>
-                        <tr>
-                          <th>Module</th>
-                          <th>Read</th>
-                          <th>Write</th>
-                          <th>Create</th>
-                          <th>Delete</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Users</td>
-                          <td>
-                            <div class="custom-control custom-checkbox"><input type="checkbox" id="users-checkbox1"
-                                class="custom-control-input" checked>
-                              <label class="custom-control-label" for="users-checkbox1"></label>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="custom-control custom-checkbox"><input type="checkbox" id="users-checkbox2"
-                                class="custom-control-input"><label class="custom-control-label"
-                                for="users-checkbox2"></label>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="custom-control custom-checkbox"><input type="checkbox" id="users-checkbox3"
-                                class="custom-control-input"><label class="custom-control-label"
-                                for="users-checkbox3"></label>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="custom-control custom-checkbox"><input type="checkbox" id="users-checkbox4"
-                                class="custom-control-input" checked>
-                              <label class="custom-control-label" for="users-checkbox4"></label>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Articles</td>
-                          <td>
-                            <div class="custom-control custom-checkbox"><input type="checkbox" id="users-checkbox5"
-                                class="custom-control-input"><label class="custom-control-label"
-                                for="users-checkbox5"></label>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="custom-control custom-checkbox"><input type="checkbox" id="users-checkbox6"
-                                class="custom-control-input" checked>
-                              <label class="custom-control-label" for="users-checkbox6"></label>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="custom-control custom-checkbox"><input type="checkbox" id="users-checkbox7"
-                                class="custom-control-input"><label class="custom-control-label"
-                                for="users-checkbox7"></label>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="custom-control custom-checkbox"><input type="checkbox" id="users-checkbox8"
-                                class="custom-control-input" checked>
-                              <label class="custom-control-label" for="users-checkbox8"></label>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Staff</td>
-                          <td>
-                            <div class="custom-control custom-checkbox"><input type="checkbox" id="users-checkbox9"
-                                class="custom-control-input" checked>
-                              <label class="custom-control-label" for="users-checkbox9"></label>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="custom-control custom-checkbox"><input type="checkbox" id="users-checkbox10"
-                                class="custom-control-input" checked>
-                              <label class="custom-control-label" for="users-checkbox10"></label>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="custom-control custom-checkbox"><input type="checkbox" id="users-checkbox11"
-                                class="custom-control-input"><label class="custom-control-label"
-                                for="users-checkbox11"></label>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="custom-control custom-checkbox"><input type="checkbox" id="users-checkbox12"
-                                class="custom-control-input"><label class="custom-control-label"
-                                for="users-checkbox12"></label>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div> -->
                 <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
                   <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">Save
                     Changes</button>
-                  <!-- <button type="reset" class="btn btn-outline-warning">Reset</button> -->
                 </div>
               </div>
             </form>
@@ -257,26 +138,6 @@
                     </div>
                   </div>
 
-                  <!-- <div class="form-group">
-                    <div class="controls">
-                      <label>Website</label>
-                      <input type="text" class="form-control" required placeholder="Website here..."
-                        value="https://rowboat.com/insititious/Angelo"
-                        data-validation-required-message="This Website field is required">
-                    </div>
-                  </div> -->
-                  <!-- <div class="form-group">
-                    <label>Languages</label>
-                    <select class="form-control" id="users-language-select2" multiple="multiple">
-                      <option value="English" selected>English</option>
-                      <option value="Spanish">Spanish</option>
-                      <option value="French">French</option>
-                      <option value="Russian">Russian</option>
-                      <option value="German">German</option>
-                      <option value="Arabic" selected>Arabic</option>
-                      <option value="Sanskrit">Sanskrit</option>
-                    </select>
-                  </div> -->
                   <div class="form-group">
                     <label>Gender</label>
                     <ul class="list-unstyled mb-0">
@@ -304,52 +165,9 @@
                           </div>
                         </fieldset>
                       </li>
-                      <!-- <li class="d-inline-block mr-2">
-                        <fieldset>
-                          <div class="vs-radio-con">
-                            <input type="radio" name="gender" value="false">
-                            <span class="vs-radio">
-                              <span class="vs-radio--border"></span>
-                              <span class="vs-radio--circle"></span>
-                            </span>
-                            Other
-                          </div>
-                        </fieldset>
-                      </li> -->
 
                     </ul>
                   </div>
-                  <!-- <div class="form-group">
-                    <label>Contact Options</label>
-                    <ul class="list-unstyled mb-0">
-                      <li class="d-inline-block mr-2">
-                        <fieldset>
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" checked name="customCheck1"
-                              id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">Email</label>
-                          </div>
-                        </fieldset>
-                      </li>
-                      <li class="d-inline-block mr-2">
-                        <fieldset>
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" checked name="customCheck2"
-                              id="customCheck2">
-                            <label class="custom-control-label" for="customCheck2">Message</label>
-                          </div>
-                        </fieldset>
-                      </li>
-                      <li class="d-inline-block mr-2">
-                        <fieldset>
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" name="customCheck3" id="customCheck3">
-                            <label class="custom-control-label" for="customCheck3">Phone</label>
-                          </div>
-                        </fieldset>
-                      </li>
-                    </ul>
-                  </div> -->
 
                 </div>
                 <div class="col-12 col-sm-6">
@@ -361,13 +179,6 @@
                         placeholder="Address Line 1" data-validation-required-message="This Address field is required">
                     </div>
                   </div>
-                  <!-- <div class="form-group">
-                    <div class="controls">
-                      <label>Address Line 2</label>
-                      <input type="text" class="form-control" required placeholder="Address Line 2"
-                        data-validation-required-message="This Address field is required">
-                    </div>
-                  </div> -->
                   <div class="form-group">
                     <div class="controls">
                       <label>Postcode</label>
@@ -400,7 +211,6 @@
                 <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
                   <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">Save
                     Changes</button>
-                  <!-- <button type="reset" class="btn btn-outline-warning">Reset</button> -->
                 </div>
               </div>
             </form>
@@ -440,32 +250,6 @@
                     </div>
                   </fieldset>
                 </div>
-                <!-- <div class="col-12 col-sm-6">
-                  <label>Github</label>
-                  <div class="input-group mb-75">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text feather icon-github" id="basic-addon9"></span>
-                    </div>
-                    <input type="text" class="form-control" value="https://www.github.com/madop818"
-                      placeholder="https://www.github.com/" aria-describedby="basic-addon9">
-                  </div>
-                  <label>Codepen</label>
-                  <div class="input-group mb-75">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text feather icon-codepen" id="basic-addon12"></span>
-                    </div>
-                    <input type="text" class="form-control" value="https://www.codepen.com/adoptism243"
-                      placeholder="https://www.codepen.com/" aria-describedby="basic-addon12">
-                  </div>
-                  <label>Slack</label>
-                  <div class="input-group mb-75">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text feather icon-slack" id="basic-addon11"></span>
-                    </div>
-                    <input type="text" class="form-control" value="@adoptionism744" placeholder="https://www.slack.com/"
-                      aria-describedby="basic-addon11">
-                  </div>
-                </div> -->
                 <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
                   <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">Save
                     Changes</button>
@@ -497,5 +281,13 @@
   <script src="{{ asset(mix('js/scripts/pages/app-user.js')) }}"></script>
   <script src="{{ asset(mix('js/scripts/navs/navs.js')) }}"></script>
   <script src="{{ asset(mix('js/scripts/extensions/toastr.js')) }}"></script>
+
+  <script>
+    $(document).ready(function() {
+      $(document).on('change', "input[type='password']", function() {
+        $('#password').val($(this).val());
+      });
+    });
+  </script>
 @endsection
 

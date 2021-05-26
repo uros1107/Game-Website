@@ -38,9 +38,9 @@ Route::get('/', function() {
 });
 Route::get('/{lang}', 'Frontend\FrontendController@index')->name('index');
 
-
 Route::get('/{lang}/monsters', 'Frontend\MonsterController@monster_list')->name('monster-list');
-Route::get('/{lang}/monsters/{slug?}', 'Frontend\MonsterController@monster_detail')->name('monster-detail');
+Route::get('/{lang}/monstres', 'Frontend\MonsterController@monster_list')->name('fr-monster-list');
+Route::get(Session::get('lang') == 'en' ? '/{lang}/monsters/{slug?}' : '/{lang}/monstres/{slug?}', 'Frontend\MonsterController@monster_detail')->name('monster-detail');
 Route::get('/{lang}/get-monster', 'Frontend\MonsterController@get_monster')->name('get-monster');
 Route::get('/{lang}/calculate-monster', 'Frontend\MonsterController@calculate_character')->name('calculate-monster');
 Route::get('/{lang}/get-spell', 'Frontend\MonsterController@get_spell')->name('get-spell');
@@ -49,8 +49,9 @@ Route::get('/{lang}/add-rune-set/{slug}', 'Frontend\MonsterController@add_rune_s
 Route::POST('/{lang}/store-rune-set', 'Frontend\MonsterController@store_rune_set')->name('rune-set-store');
 
 Route::get('/{lang}/comps', 'Frontend\MonsterController@comps_list')->name('comps-list');
+Route::get('/{lang}/compos', 'Frontend\MonsterController@comps_list')->name('fr-comps-list');
 Route::POST('/{lang}/comps-submit', 'Frontend\MonsterController@comps_submit')->name('comps-submit');
-Route::get('/{lang}/comps-detail/{slug}', 'Frontend\MonsterController@comps_detail')->name('comps-detail');
+Route::get(Session::get('lang') == 'en' ? '/{lang}/comps-detail/{slug}' : '/{lang}/compos-detail/{slug}', 'Frontend\MonsterController@comps_detail')->name('comps-detail');
 Route::POST('/{lang}/comps-comment', 'Frontend\MonsterController@comps_comment')->name('comps-comment');
 Route::POST('/{lang}/add-comps-likes', 'Frontend\MonsterController@add_comps_likes')->name('add-comps-likes');
 Route::POST('/{lang}/add-comps-dislikes', 'Frontend\MonsterController@add_comps_dislikes')->name('add-comps-dislikes');
@@ -60,9 +61,9 @@ Route::get('/{lang}/comps-builder', 'Frontend\MonsterController@comps_builder')-
 Route::get('/{lang}/search', 'Frontend\MonsterController@search')->name('search');
 Route::get('/{lang}/terms-of-use', 'Frontend\MonsterController@terms_of_use')->name('terms-of-use');
 
-Route::post('/setting-lang', 'Frontend\FrontendController@setting_language')->name('setting-lang');
+Route::get('/{lang}/setting-lang', 'Frontend\FrontendController@setting_language')->name('setting-lang');
 
-Route::get('/{lang}/user-public', 'Frontend\FrontendController@public')->name('user-public');
+Route::get('/{lang}/user-public/{name}', 'Frontend\FrontendController@public')->name('user-public');
 
 // -------------------------- Filter route start -----------------------------
 Route::get('/{lang}/get-filter-monster', 'Frontend\FilterController@get_monster')->name('get-filter-monster');

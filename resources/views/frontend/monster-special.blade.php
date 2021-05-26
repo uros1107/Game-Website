@@ -1,5 +1,8 @@
 @extends('layouts.frontend.layout')
 
+@section('head')
+@endsection
+
 @section('styles')
 <style>
 .mb_padd:last-child {
@@ -510,19 +513,87 @@
                                 <div class="compect_left_element_bar">
                                     <div class="colleen_section mobile_block">
                                         <ul>
-                                            @foreach(json_decode($team_comp->c_position) as $key => $comp)
                                             @php
-                                                $c_monster = DB::table('monsters')->where('id', $comp)->first();
+                                                $teamcomps = json_decode($team_comp->c_position);
+                                                $c_monster = DB::table('monsters')->where('id', $teamcomps[5])->first();
                                                 $element = DB::table('element')->where('id', $c_monster->element)->first();
-                                                $key = $key + 1;
                                             @endphp
                                             <li>
-                                                <p><span>{{ $key++ }}</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                                <p><span>1</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
                                                 <div class="collen_icon_img">
                                                     <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
                                                 </div>
                                             </li>
-                                            @endforeach
+                                            @php
+                                                $c_monster = DB::table('monsters')->where('id', $teamcomps[7])->first();
+                                                $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                            @endphp
+                                            <li>
+                                                <p><span>2</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                                <div class="collen_icon_img">
+                                                    <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                                </div>
+                                            </li>
+                                            @php
+                                                $c_monster = DB::table('monsters')->where('id', $teamcomps[4])->first();
+                                                $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                            @endphp
+                                            <li>
+                                                <p><span>3</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                                <div class="collen_icon_img">
+                                                    <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                                </div>
+                                            </li>
+                                            @php
+                                                $c_monster = DB::table('monsters')->where('id', $teamcomps[6])->first();
+                                                $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                            @endphp
+                                            <li>
+                                                <p><span>4</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                                <div class="collen_icon_img">
+                                                    <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                                </div>
+                                            </li>
+                                            @php
+                                                $c_monster = DB::table('monsters')->where('id', $teamcomps[1])->first();
+                                                $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                            @endphp
+                                            <li>
+                                                <p><span>5</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                                <div class="collen_icon_img">
+                                                    <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                                </div>
+                                            </li>
+                                            @php
+                                                $c_monster = DB::table('monsters')->where('id', $teamcomps[3])->first();
+                                                $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                            @endphp
+                                            <li>
+                                                <p><span>6</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                                <div class="collen_icon_img">
+                                                    <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                                </div>
+                                            </li>
+                                            @php
+                                                $c_monster = DB::table('monsters')->where('id', $teamcomps[0])->first();
+                                                $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                            @endphp
+                                            <li>
+                                                <p><span>7</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                                <div class="collen_icon_img">
+                                                    <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                                </div>
+                                            </li>
+                                            @php
+                                                $c_monster = DB::table('monsters')->where('id', $teamcomps[2])->first();
+                                                $element = DB::table('element')->where('id', $c_monster->element)->first();
+                                            @endphp
+                                            <li>
+                                                <p><span>8</span>. {{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</p>
+                                                <div class="collen_icon_img">
+                                                    <img src="{{ asset('images/game/icons/elements/'.$element->image) }}" alt="collen icon">
+                                                </div>
+                                            </li>
                                         </ul>
                                     </div>
 
