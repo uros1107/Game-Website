@@ -219,7 +219,7 @@
 
                 <div class="mobile-menu-login-lang d-flex justify-content-center align-items-center d-xl-none">
                     <div class="mobile-menu-login ">
-                        <a href="#1" class="common-btn">@lang('layout.login')</a>
+                        <a href="#1" class="common-btn" id="login_btn">@lang('layout.login')</a>
                     </div>
                     <div class="mobile-menu-language">
                         <a href="javascript:void(0);" class="choose-lang">

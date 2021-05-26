@@ -61,6 +61,7 @@ class UserPagesController extends Controller
     public function create_user(Request $request)
     {
         $input = $request->all();
+        $input['slug'] = str_slug($request->name,'-');
         $user = User::create($input);
 
         return redirect()->back();
@@ -70,6 +71,7 @@ class UserPagesController extends Controller
     {
         $user = User::where('id', $request->id);
         $input = $request->all();
+        $input['slug'] = str_slug($request->name,'-');
         if(!$request->password) {
             unset($input['password']);
         } else {
