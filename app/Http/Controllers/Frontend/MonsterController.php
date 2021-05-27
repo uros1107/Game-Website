@@ -411,7 +411,9 @@ class MonsterController extends Controller
 
         if(Session::get('lang') == 'fr') {
             $rune_set['fr_rs_comment'] = $rune_set['rs_comment'];
+            $rune_set['fr_rs_name'] = $rune_set['rs_name'];
             unset($rune_set['rs_comment']);
+            unset($rune_set['rs_name']);
         }
         $rune_set_info = Runeset::create($rune_set);
 
