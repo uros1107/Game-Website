@@ -1,0 +1,34 @@
+{
+  "menu": [
+    {
+      "url": "users",
+      "name": "Users",
+      "icon": "feather icon-unlock"
+    },
+    {
+      "url": "monster",
+      "name": "Monsters",
+      "icon": "feather icon-box"
+    },
+    {
+      "url": "spells",
+      "name": "Spells",
+      "icon": "feather icon-package"
+    },
+    {
+      "url": "runesets",
+      "name": "Rune Sets",
+      "icon": "feather icon-life-buoy"
+    },
+    {
+      "url": "team-comps",
+      "name": "Team comp",
+      "icon": "feather icon-grid"
+    },
+    {
+      "url": "comments",
+      "name": "Comments",
+      "icon": "feather icon-message-square"
+    }
+  ]
+}
