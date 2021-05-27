@@ -117,6 +117,19 @@ class MonsterController extends Controller
         return view('frontend.ajax-m-monster-item', ['monster' => $monster]);
     }
 
+    public function get_li_monster(Request $request, $lang)
+    {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
+        App::setlocale(Session::get('lang'));
+
+        $monster_id = $request->monster_id;
+        $monster = Monster::where('id', $monster_id)->first(['id', 'name', 'fr_name', 'slug', 'fr_slug', 'element']);
+
+        return view('frontend.ajax-li-monster-item', ['monster' => $monster, 'position' => $request->position]);
+    }
+
     public function calculate_character(Request $request, $lang) 
     {
         if($lang != 'en' && $lang != 'fr') {
@@ -207,6 +220,17 @@ class MonsterController extends Controller
         return view('frontend.ajax-spell-item', ['spell' => $spell, 'drop_id' => $request->drop_id]);
     }
 
+    public function get_m_spell(Request $request, $lang)
+    {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
+        $spell_id = $request->spell_id;
+        $spell = Spell::where('id', $spell_id)->first(['id', 'name', 'fr_name', 'main_image', 'mana_cost', 'icon_image']);
+
+        return view('frontend.ajax-m-spell-item', ['spell' => $spell]);
+    }
+
     public function comps_list(Request $request, $lang)
     {
         if(strpos(url()->current(), '/public')) {
@@ -276,6 +300,51 @@ class MonsterController extends Controller
             $c_spell[$i] = intval($c_spell[$i]);
         }
         $comps_info['c_spell'] = json_encode($c_spell);
+
+        if(Session::get('lang') == 'fr') {
+            $comps_info['c_fr_general_info'] = $comps_info['c_general_info'];
+            unset($comps_info['c_general_info']);
+        }
+
+        $comps_info['c_sent_by_user'] = Auth::user()->id;
+        $comps_info['c_fr_name'] = $comps_info['c_name'];
+        $comps_info['c_slug'] = str_slug($comps_info['c_name'],'-').'-'.strtolower(str_random(4));
+        $comps_info['c_fr_slug'] = str_slug($comps_info['c_name'],'-').'-'.strtolower(str_random(4));
+        
+        $comps_info = TeamComp::create($comps_info);
+
+        return response()->json(true);
+    }
+
+    public function comps_m_submit(Request $request, $lang)
+    {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
+        App::setlocale(Session::get('lang'));
+
+        $comps_info = $request->all();
+        $m_position = $comps_info['m_position'];
+        for ($i=0; $i < count($m_position); $i++) { 
+            $m_position[$i] = intval($m_position[$i]);
+        }
+        $comps_info['c_position'] = json_encode($m_position);
+        unset($comps_info['m_position']);
+
+        $m_spell = $comps_info['m_spell'];
+        for ($i=0; $i < count($m_spell); $i++) { 
+            $m_spell[$i] = intval($m_spell[$i]);
+        }
+        $comps_info['c_spell'] = json_encode($m_spell);
+        unset($comps_info['m_spell']);
+
+        if(Session::get('lang') == 'fr') {
+            $comps_info['c_fr_general_info'] = $comps_info['c_m_general_info'];
+            unset($comps_info['c_m_general_info']);
+        } else {
+            $comps_info['c_general_info'] = $comps_info['c_m_general_info'];
+            unset($comps_info['c_m_general_info']);
+        }
 
         $comps_info['c_sent_by_user'] = Auth::user()->id;
         $comps_info['c_fr_name'] = $comps_info['c_name'];

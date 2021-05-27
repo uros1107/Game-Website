@@ -62,7 +62,7 @@
                     </div>
                     <div class="comp_textarea_section d-block d-md-none mt-4">
                         <div class="comp_textarea_field">
-                            <textarea
+                            <textarea name="c_m_general_info" id="c_m_general_info"
                                 placeholder="@lang('comp-builder.enter')"></textarea>
                         </div>
                     </div>
@@ -77,56 +77,56 @@
                 <div class="compect_left_element_bar">
                     <div class="colleen_section mobile_block">
                         <ul>
-                            <li>
+                            <li id="li_1">
                                 <p><span>1</span>. Colleen</p>
                                 <div class="collen_icon_img">
                                     <img src="{{ asset('assets/image/compect_bulider/icon-feu.png') }}" alt="collen icon">
                                 </div>
                             </li>
 
-                            <li>
+                            <li id="li_2">
                                 <p><span>2</span>. Colleen</p>
                                 <div class="collen_icon_img">
                                     <img src="{{ asset('assets/image/compect_bulider/icon-lumiere.png') }}" alt="collen icon">
                                 </div>
                             </li>
 
-                            <li>
+                            <li id="li_3">
                                 <p><span>3</span>. Colleen</p>
                                 <div class="collen_icon_img">
                                     <img src="{{ asset('assets/image/compect_bulider/icon-feu.png') }}" alt="collen icon">
                                 </div>
                             </li>
 
-                            <li>
+                            <li id="li_4">
                                 <p><span>4</span>. Colleen</p>
                                 <div class="collen_icon_img">
                                     <img src="{{ asset('assets/image/compect_bulider/icon-lumiere.png') }}" alt="collen icon">
                                 </div>
                             </li>
 
-                            <li>
+                            <li id="li_5">
                                 <p><span>5</span>. Colleen</p>
                                 <div class="collen_icon_img">
                                     <img src="{{ asset('assets/image/compect_bulider/icon-vent.png') }}" alt="collen icon">
                                 </div>
                             </li>
 
-                            <li>
+                            <li id="li_6">
                                 <p><span>6</span>. Colleen</p>
                                 <div class="collen_icon_img">
                                     <img src="{{ asset('assets/image/compect_bulider/icon-vent.png') }}" alt="collen icon">
                                 </div>
                             </li>
 
-                            <li>
+                            <li id="li_7">
                                 <p><span>7</span>. Colleen</p>
                                 <div class="collen_icon_img">
                                     <img src="{{ asset('assets/image/compect_bulider/icon-eau.png') }}" alt="collen icon">
                                 </div>
                             </li>
 
-                            <li>
+                            <li id="li_8">
                                 <p><span>8</span>. Colleen</p>
                                 <div class="collen_icon_img">
                                     <img src="{{ asset('assets/image/compect_bulider/icon-eau.png') }}" alt="collen icon">
@@ -237,22 +237,23 @@
 
                         <div class="spells_item" ondragover="allowDrop1(event)" ondrop="drop1(event)">
                             <ul>
-                                <li id="spell_1">
-                                    <a href="#1" data-toggle="modal" class="switch-modal-a" data-target="">
+                                <input type="hidden" id="spell_position" value="">
+                                <li id="spell_1" class="spell-item" data-value="1">
+                                    <a data-toggle="modal" class="switch-modal-a" data-target="">
                                         <div class="spells_iiner_iteam">
                                             <img src="{{ asset('assets/image/compect_bulider/spell_shape.png') }}" alt="compect_icon" data-position="1">
                                         </div>
                                     </a>
                                 </li>
-                                <li id="spell_2">
-                                    <a href="#1" data-toggle="modal" class="switch-modal-a" data-target="">
+                                <li id="spell_2" class="spell-item" data-value="2">
+                                    <a data-toggle="modal" class="switch-modal-a" data-target="">
                                         <div class="spells_iiner_iteam">
                                             <img src="{{ asset('assets/image/compect_bulider/spell_shape.png') }}" alt="compect_icon"  data-position="2">
                                         </div>
                                     </a>
                                 </li>
-                                <li id="spell_3">
-                                    <a href="#1" data-toggle="modal" class="switch-modal-a" data-target="">
+                                <li id="spell_3" class="spell-item" data-value="3">
+                                    <a data-toggle="modal" class="switch-modal-a" data-target="">
                                         <div class="spells_iiner_iteam">
                                             <img src="{{ asset('assets/image/compect_bulider/spell_shape.png') }}" alt="compect_icon"  data-position="3">
                                         </div>
@@ -575,7 +576,7 @@
     </div>
 </div>
 <div class="mobile_save_and_pub_btn mobile_block">
-    <a href="#" class="all_btn">@lang('comp-builder.save')</a>
+    <a class="all_btn mobile-submit">@lang('comp-builder.save')</a>
 </div>
 
 </div>
@@ -716,7 +717,7 @@
                     <div class="line_up_sec text-center">
                         @foreach(DB::table('spells')->where('del_flag', 0)->get() as $spell)
                         <div class="line_up_monster">
-                            <a href="#1">
+                            <a class="spell-modal-item" value="{{ $spell->id }}">
                                 <div class="compect_spells_big">
                                     <img src="{{ asset('images/game/icon_images/'.$spell->icon_image) }}" alt="spells">
                                 </div>
@@ -1056,9 +1057,8 @@ $(document).on('click', '.monster-item', function(e) {
         if ($(this).attr('value') == monster_id) {
             toastr.error("You can't choose same monster! Please chooose other monster.");
             is_same = true;
-            $('#position').val(position);
-            console.log(position)
-            // return false;
+            $('#monster-modal').modal('hide');
+            return false;
         }
     });
     if(!is_same) {
@@ -1069,9 +1069,128 @@ $(document).on('click', '.monster-item', function(e) {
             success: function(data) {
                 $('.line_up_monster_' + position).html(data);
                 $('#monster-modal').modal('hide');
+
+                var monster_ids = [];
+                var i = 0;
+                $('.m_position').each(function() {
+                    monster_ids[i] = $(this).attr('value');
+                    i++;
+                });
+                $.ajax({
+                    url: "{{ route('calculate-monster', Session::get('lang')) }}",
+                    method: "get",
+                    data: {
+                        monster_ids: monster_ids
+                    },
+                    success: function(data) {
+                        $('#character').html(data);
+                        var avg_mana = $('#avg_mana').val();
+                        $('#avg_mana_cost > span').text(avg_mana);
+                    }
+                })
+            }
+        })
+        $.ajax({
+            url: "{{ route('get-li-monster', Session::get('lang')) }}",
+            method: "get",
+            data: { 
+                monster_id, monster_id,
+                position: position
+            },
+            success: function(data) {
+                $('#li_' + position).html(data);
             }
         })
     }
 });
+
+$(document).on('click', '.spell-item', function() {
+    $('#spell_position').val($(this).data('value'));
+})
+$(document).on('click', '.spell-modal-item', function() {
+    var position = $('#spell_position').val();
+    var spell_id = $(this).attr('value');
+    var is_same = false;
+
+    $('.m_spell').each(function() {
+        if ($(this).attr('value') == spell_id) {
+            toastr.error("You can't choose same spell! Please chooose other spell.")
+            is_same = true;
+            return false;
+        }
+    });
+
+    if(!is_same) {
+        $.ajax({
+            url: "{{ route('get-m-spell', Session::get('lang')) }}",
+            method: "get",
+            data: {
+                spell_id: spell_id
+            },
+            success: function(data) {
+                // var html = data;
+                // $('#spell_' + drop_id).html(html);
+                $('#spell_' + position).html(data);
+                $('#switch-modal').modal('hide');
+            }
+        })
+    }
+})
+$(document).on('click', '.mobile-submit', function() {
+    @if(!Auth::user())
+        $('#login_popup').modal('toggle');
+        $(".register-form").parents('.register_content').removeClass('hide_register');                 
+        $(".login-form").parents('.register_content').addClass('show_login');
+    @else
+        if(!$('input[name="c_name"]').val()) {
+            toastr.error('You should input team comp name!');
+            return false;
+        }
+        if(!$('#c_m_general_info').val()) {
+            toastr.error('You should input general information!');
+            return false;
+        }
+        var monster_count = 0; 
+        $('.m_position').each(function() {
+            monster_count++;  
+        });
+
+        if(monster_count != 8) {
+            toastr.error('You should choose 8 monsters!');
+        }
+
+        var spell_count = 0;
+        $('.m_spell').each(function() {
+            spell_count++;
+        });
+        console.log(spell_count)
+
+        if(spell_count != 3) {
+            toastr.error('You should choose 3 spells!');
+        }
+
+        if(spell_count == 3 && monster_count == 8) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{ route('comps-m-submit', Session::get('lang')) }}",
+                method: "POST",
+                data: $('#publish').serialize(),
+                success: function(data) {
+                    if(data) {
+                        toastr.success('You have successfully submitted!');
+                        location.reload();
+                    } else {
+                        toastr.success('Server has any problem!');
+                    }
+                    
+                }
+            })
+        }
+    @endif
+})
 </script>
 @endsection

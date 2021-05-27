@@ -1,6 +1,6 @@
 @foreach($monsters as $monster)
 <div class="line_up_monster" ondragstart="DragStart(event)">
-    <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}" target="_blank">
+    <a  class="monster-item" data-value="{{ $monster->id }}" href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}" target="_blank">
         <div class="contain_shape contain_shape_{{ $monster->rarity }}">
             <div class="shape m-auto"><img id="{{$monster->id}}"
                     src="{{ asset('images/game/icon_images/'.$monster->icon_image) }}"

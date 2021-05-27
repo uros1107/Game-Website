@@ -44,8 +44,10 @@ Route::get('/{lang}/monsters/{slug?}', 'Frontend\MonsterController@monster_detai
 Route::get('/{lang}/monstres/{slug?}', 'Frontend\MonsterController@monster_detail')->name('fr-monster-detail');
 Route::get('/{lang}/get-monster', 'Frontend\MonsterController@get_monster')->name('get-monster');
 Route::get('/{lang}/get-m-monster', 'Frontend\MonsterController@get_m_monster')->name('get-m-monster');
+Route::get('/{lang}/get-li-monster', 'Frontend\MonsterController@get_li_monster')->name('get-li-monster');
 Route::get('/{lang}/calculate-monster', 'Frontend\MonsterController@calculate_character')->name('calculate-monster');
 Route::get('/{lang}/get-spell', 'Frontend\MonsterController@get_spell')->name('get-spell');
+Route::get('/{lang}/get-m-spell', 'Frontend\MonsterController@get_m_spell')->name('get-m-spell');
 
 Route::get('/{lang}/add-rune-set/{slug}', 'Frontend\MonsterController@add_rune_set')->name('user-add-rune-set');
 Route::POST('/{lang}/store-rune-set', 'Frontend\MonsterController@store_rune_set')->name('rune-set-store');
@@ -55,6 +57,7 @@ Route::POST('/{lang}/add-runes-dislikes', 'Frontend\MonsterController@add_runes_
 Route::get('/{lang}/comps', 'Frontend\MonsterController@comps_list')->name('comps-list');
 Route::get('/{lang}/compos', 'Frontend\MonsterController@comps_list')->name('fr-comps-list');
 Route::POST('/{lang}/comps-submit', 'Frontend\MonsterController@comps_submit')->name('comps-submit');
+Route::POST('/{lang}/comps-m-submit', 'Frontend\MonsterController@comps_m_submit')->name('comps-m-submit');
 Route::get('/{lang}/comps/{slug}', 'Frontend\MonsterController@comps_detail')->name('comps-detail');
 Route::get('/{lang}/compos/{slug}', 'Frontend\MonsterController@comps_detail')->name('fr-comps-detail');
 Route::POST('/{lang}/comps-comment', 'Frontend\MonsterController@comps_comment')->name('comps-comment');
