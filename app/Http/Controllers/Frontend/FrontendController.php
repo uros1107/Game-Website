@@ -76,6 +76,22 @@ class FrontendController extends Controller
         Session::put('lang', $lang);
         App::setlocale(Session::get('lang'));
 
-        return redirect()->back();
+        if(Session::get('lang') == 'fr') {
+            $url = str_replace('en', 'fr', url()->previous());
+            $url = str_replace('monsters', 'monstres', $url);
+            $url = str_replace('comps', 'compos', $url);
+
+            return redirect($url);
+        }
+
+        if(Session::get('lang') == 'en') {
+            $url = str_replace('fr', 'en', url()->previous());
+            $url = str_replace('monstres', 'monsters', $url);
+            $url = str_replace('compos', 'comps', $url);
+
+            return redirect($url);
+        }
+
+        return redirect(url()->previous());
     }
 }
