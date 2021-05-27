@@ -346,20 +346,103 @@
                                     </div>
 
                                     <div class="line_up_sec text-center">
-                                        @foreach(json_decode($team_comp->c_position) as $comp)
-                                        @php
-                                            $c_monster = DB::table('monsters')->where('id', $comp)->first();
-                                        @endphp
-                                        <div class="line_up_monster">
-                                            <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" target="_blank">
-                                                <div class="contain_shape contain_shape_{{ $c_monster->rarity }}">
-                                                    <div class="shape"><img src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
-                                                    </div>
+                                    @php
+                                        $comps = json_decode($team_comp->c_position);
+                                        $c_monster = DB::table('monsters')->where('id', $comps[5])->first();
+                                    @endphp
+                                    <div class="line_up_monster">
+                                        <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" target="_blank">
+                                            <div class="contain_shape contain_shape_{{ $c_monster->rarity }}">
+                                                <div class="shape"><img src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
                                                 </div>
-                                                <span>{{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</span>
-                                            </a>
-                                        </div>
-                                        @endforeach
+                                            </div>
+                                            <span>{{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</span>
+                                        </a>
+                                    </div>
+                                    @php
+                                        $c_monster = DB::table('monsters')->where('id', $comps[7])->first();
+                                    @endphp
+                                    <div class="line_up_monster">
+                                        <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" target="_blank">
+                                            <div class="contain_shape contain_shape_{{ $c_monster->rarity }}">
+                                                <div class="shape"><img src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
+                                                </div>
+                                            </div>
+                                            <span>{{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</span>
+                                        </a>
+                                    </div>
+                                    @php
+                                        $c_monster = DB::table('monsters')->where('id', $comps[4])->first();
+                                    @endphp
+                                    <div class="line_up_monster">
+                                        <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" target="_blank">
+                                            <div class="contain_shape contain_shape_{{ $c_monster->rarity }}">
+                                                <div class="shape"><img src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
+                                                </div>
+                                            </div>
+                                            <span>{{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</span>
+                                        </a>
+                                    </div>
+                                    @php
+                                        $c_monster = DB::table('monsters')->where('id', $comps[6])->first();
+                                    @endphp
+                                    <div class="line_up_monster">
+                                        <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" target="_blank">
+                                            <div class="contain_shape contain_shape_{{ $c_monster->rarity }}">
+                                                <div class="shape"><img src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
+                                                </div>
+                                            </div>
+                                            <span>{{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</span>
+                                        </a>
+                                    </div>
+                                    @php
+                                        $c_monster = DB::table('monsters')->where('id', $comps[1])->first();
+                                    @endphp
+                                    <div class="line_up_monster">
+                                        <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" target="_blank">
+                                            <div class="contain_shape contain_shape_{{ $c_monster->rarity }}">
+                                                <div class="shape"><img src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
+                                                </div>
+                                            </div>
+                                            <span>{{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</span>
+                                        </a>
+                                    </div>
+                                    @php
+                                        $c_monster = DB::table('monsters')->where('id', $comps[3])->first();
+                                    @endphp
+                                    <div class="line_up_monster">
+                                        <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" target="_blank">
+                                            <div class="contain_shape contain_shape_{{ $c_monster->rarity }}">
+                                                <div class="shape"><img src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
+                                                </div>
+                                            </div>
+                                            <span>{{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</span>
+                                        </a>
+                                    </div>
+                                    @php
+                                        $c_monster = DB::table('monsters')->where('id', $comps[0])->first();
+                                    @endphp
+                                    <div class="line_up_monster">
+                                        <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" target="_blank">
+                                            <div class="contain_shape contain_shape_{{ $c_monster->rarity }}">
+                                                <div class="shape"><img src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
+                                                </div>
+                                            </div>
+                                            <span>{{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</span>
+                                        </a>
+                                    </div>
+                                    @php
+                                        $c_monster = DB::table('monsters')->where('id', $comps[2])->first();
+                                    @endphp
+                                    <div class="line_up_monster">
+                                        <a href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $c_monster->slug : $c_monster->fr_slug]) }}" target="_blank">
+                                            <div class="contain_shape contain_shape_{{ $c_monster->rarity }}">
+                                                <div class="shape"><img src="{{ asset('images/game/icon_images/'.$c_monster->icon_image) }}" alt="">
+                                                </div>
+                                            </div>
+                                            <span>{{ Session::get('lang') == 'en'? $c_monster->name : $c_monster->fr_name }}</span>
+                                        </a>
+                                    </div>
                                     </div>
 
                                     <div class="down_arrow ct_accordion_lable">
