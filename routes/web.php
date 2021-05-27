@@ -53,8 +53,8 @@ Route::POST('/{lang}/store-rune-set', 'Frontend\MonsterController@store_rune_set
 Route::get('/{lang}/comps', 'Frontend\MonsterController@comps_list')->name('comps-list');
 Route::get('/{lang}/compos', 'Frontend\MonsterController@comps_list')->name('fr-comps-list');
 Route::POST('/{lang}/comps-submit', 'Frontend\MonsterController@comps_submit')->name('comps-submit');
-Route::get('/{lang}/comps-detail/{slug}', 'Frontend\MonsterController@comps_detail')->name('comps-detail');
-Route::get('/{lang}/compos-detail/{slug}', 'Frontend\MonsterController@comps_detail')->name('fr-comps-detail');
+Route::get('/{lang}/comps/{slug}', 'Frontend\MonsterController@comps_detail')->name('comps-detail');
+Route::get('/{lang}/compos/{slug}', 'Frontend\MonsterController@comps_detail')->name('fr-comps-detail');
 Route::POST('/{lang}/comps-comment', 'Frontend\MonsterController@comps_comment')->name('comps-comment');
 Route::POST('/{lang}/add-comps-likes', 'Frontend\MonsterController@add_comps_likes')->name('add-comps-likes');
 Route::POST('/{lang}/add-comps-dislikes', 'Frontend\MonsterController@add_comps_dislikes')->name('add-comps-dislikes');
@@ -67,7 +67,7 @@ Route::get('/{lang}/terms-of-use', 'Frontend\MonsterController@terms_of_use')->n
 
 Route::get('/{lang}/setting-lang', 'Frontend\FrontendController@setting_language')->name('setting-lang');
 
-Route::get('/{lang}/user-public/{name}', 'Frontend\FrontendController@public')->name('user-public');
+Route::get('/{lang}/user/{name}', 'Frontend\FrontendController@public')->name('user-public');
 
 // -------------------------- Filter route start -----------------------------
 Route::get('/{lang}/get-filter-monster', 'Frontend\FilterController@get_monster')->name('get-filter-monster');
