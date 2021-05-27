@@ -78,59 +78,35 @@
                     <div class="colleen_section mobile_block">
                         <ul>
                             <li id="li_1">
-                                <p><span>1</span>. Colleen</p>
-                                <div class="collen_icon_img">
-                                    <img src="{{ asset('assets/image/compect_bulider/icon-feu.png') }}" alt="collen icon">
-                                </div>
+                                <p><span>1</span>. </p>
                             </li>
 
                             <li id="li_2">
-                                <p><span>2</span>. Colleen</p>
-                                <div class="collen_icon_img">
-                                    <img src="{{ asset('assets/image/compect_bulider/icon-lumiere.png') }}" alt="collen icon">
-                                </div>
+                                <p><span>2</span>. </p>
                             </li>
 
                             <li id="li_3">
-                                <p><span>3</span>. Colleen</p>
-                                <div class="collen_icon_img">
-                                    <img src="{{ asset('assets/image/compect_bulider/icon-feu.png') }}" alt="collen icon">
-                                </div>
+                                <p><span>3</span>. </p>
                             </li>
 
                             <li id="li_4">
-                                <p><span>4</span>. Colleen</p>
-                                <div class="collen_icon_img">
-                                    <img src="{{ asset('assets/image/compect_bulider/icon-lumiere.png') }}" alt="collen icon">
-                                </div>
+                                <p><span>4</span>. </p>
                             </li>
 
                             <li id="li_5">
-                                <p><span>5</span>. Colleen</p>
-                                <div class="collen_icon_img">
-                                    <img src="{{ asset('assets/image/compect_bulider/icon-vent.png') }}" alt="collen icon">
-                                </div>
+                                <p><span>5</span>. </p>
                             </li>
 
                             <li id="li_6">
-                                <p><span>6</span>. Colleen</p>
-                                <div class="collen_icon_img">
-                                    <img src="{{ asset('assets/image/compect_bulider/icon-vent.png') }}" alt="collen icon">
-                                </div>
+                                <p><span>6</span>. </p>
                             </li>
 
                             <li id="li_7">
-                                <p><span>7</span>. Colleen</p>
-                                <div class="collen_icon_img">
-                                    <img src="{{ asset('assets/image/compect_bulider/icon-eau.png') }}" alt="collen icon">
-                                </div>
+                                <p><span>7</span>. </p>
                             </li>
 
                             <li id="li_8">
-                                <p><span>8</span>. Colleen</p>
-                                <div class="collen_icon_img">
-                                    <img src="{{ asset('assets/image/compect_bulider/icon-eau.png') }}" alt="collen icon">
-                                </div>
+                                <p><span>8</span>. </p>
                             </li>
                         </ul>
                     </div>
