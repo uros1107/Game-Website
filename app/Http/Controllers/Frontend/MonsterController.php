@@ -23,6 +23,9 @@ class MonsterController extends Controller
     }
     public function monster_list(Request $request, $lang)
     {
+        if(strpos(url()->current(), '/public')) {
+            return view('errors.error-404');
+        }
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }
@@ -58,6 +61,9 @@ class MonsterController extends Controller
 
     public function monster_detail(Request $request, $lang, $slug)
     {
+        if(strpos(url()->current(), '/public')) {
+            return view('errors.error-404');
+        }
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }
@@ -203,6 +209,9 @@ class MonsterController extends Controller
 
     public function comps_list(Request $request, $lang)
     {
+        if(strpos(url()->current(), '/public')) {
+            return view('errors.error-404');
+        }
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }
@@ -218,6 +227,9 @@ class MonsterController extends Controller
 
     public function comps_detail(Request $request, $lang, $slug)
     {
+        if(strpos(url()->current(), '/public')) {
+            return view('errors.error-404');
+        }
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }
@@ -277,6 +289,9 @@ class MonsterController extends Controller
 
     public function comps_comment(Request $request, $lang)
     {
+        if(strpos(url()->current(), '/public')) {
+            return view('errors.error-404');
+        }
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }
@@ -332,6 +347,9 @@ class MonsterController extends Controller
 
     public function comps_builder($lang)
     {
+        if(strpos(url()->current(), '/public')) {
+            return view('errors.error-404');
+        }
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }
@@ -359,6 +377,9 @@ class MonsterController extends Controller
 
     public function add_rune_set(Request $request, $lang, $slug)
     {
+        if(strpos(url()->current(), '/public')) {
+            return view('errors.error-404');
+        }
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }
@@ -423,6 +444,9 @@ class MonsterController extends Controller
 
     public function terms_of_use($lang) 
     {
+        if(strpos(url()->current(), '/public')) {
+            return view('errors.error-404');
+        }
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }

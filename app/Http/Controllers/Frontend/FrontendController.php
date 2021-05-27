@@ -19,6 +19,9 @@ class FrontendController extends Controller
     // Dashboard - Analytics
     public function index($lang)
     {
+        if(strpos(url()->current(), '/public')) {
+            return view('errors.error-404');
+        }
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }
@@ -30,6 +33,9 @@ class FrontendController extends Controller
 
     public function private($lang, $slug)
     {
+        if(strpos(url()->current(), '/public')) {
+            return view('errors.error-404');
+        }
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }
@@ -40,6 +46,9 @@ class FrontendController extends Controller
 
     public function public(Request $request, $lang, $slug)
     {
+        if(strpos(url()->current(), '/public')) {
+            return view('errors.error-404');
+        }
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }
