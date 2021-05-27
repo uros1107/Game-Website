@@ -675,7 +675,7 @@
                             <div class="line_up_sec text-center" id="m-monster-list">
                                 @foreach($monsters as $monster)
                                 <div class="line_up_monster">
-                                    <a class="monster-item" href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}" target="_blank">
+                                    <a class="monster-item" data-value="{{ $monster->id }}" href="{{ route(Session::get('lang') == 'en' ? 'monster-detail' : 'fr-monster-detail', [Session::get('lang'), Session::get('lang') == 'en' ? $monster->slug : $monster->fr_slug]) }}" target="_blank">
                                         <div class="contain_shape contain_shape_{{ $monster->rarity }}">
                                             <div class="shape"><img id="{{$monster->id}}"
                                                     src="{{ asset('images/game/icon_images/'.$monster->icon_image) }}"
@@ -1049,8 +1049,29 @@ $(document).on('click', '.monster-item', function(e) {
     e.preventDefault();
 
     var position = $('#position').val();
-    $('.line_up_monster_' + position).html($(this).html());
-    $('#monster-modal').modal('hide');
+    var monster_id = $(this).data('value');
+
+    var is_same = false;
+    $('.m_position').each(function() {
+        if ($(this).attr('value') == monster_id) {
+            toastr.error("You can't choose same monster! Please chooose other monster.");
+            is_same = true;
+            $('#position').val(position);
+            console.log(position)
+            // return false;
+        }
+    });
+    if(!is_same) {
+        $.ajax({
+            url: "{{ route('get-m-monster', Session::get('lang')) }}",
+            method: "get",
+            data: { monster_id, monster_id },
+            success: function(data) {
+                $('.line_up_monster_' + position).html(data);
+                $('#monster-modal').modal('hide');
+            }
+        })
+    }
 });
 </script>
 @endsection

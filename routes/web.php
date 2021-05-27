@@ -43,6 +43,7 @@ Route::get('/{lang}/monstres', 'Frontend\MonsterController@monster_list')->name(
 Route::get('/{lang}/monsters/{slug?}', 'Frontend\MonsterController@monster_detail')->name('monster-detail');
 Route::get('/{lang}/monstres/{slug?}', 'Frontend\MonsterController@monster_detail')->name('fr-monster-detail');
 Route::get('/{lang}/get-monster', 'Frontend\MonsterController@get_monster')->name('get-monster');
+Route::get('/{lang}/get-m-monster', 'Frontend\MonsterController@get_m_monster')->name('get-m-monster');
 Route::get('/{lang}/calculate-monster', 'Frontend\MonsterController@calculate_character')->name('calculate-monster');
 Route::get('/{lang}/get-spell', 'Frontend\MonsterController@get_spell')->name('get-spell');
 

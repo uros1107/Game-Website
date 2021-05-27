@@ -98,6 +98,19 @@ class MonsterController extends Controller
         return view('frontend.ajax-monster-item', ['monster' => $monster, 'drop_id' => $request->drop_id]);
     }
 
+    public function get_m_monster(Request $request, $lang)
+    {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
+        App::setlocale(Session::get('lang'));
+
+        $monster_id = $request->monster_id;
+        $monster = Monster::where('id', $monster_id)->first(['id', 'name', 'fr_name', 'slug', 'fr_slug', 'main_image', 'element', 'role', 'rarity', 'mana_cost', 'meta_title', 'fr_meta_title', 'og_image', 'fr_og_image', 'meta_description', 'fr_meta_description', 'bg_image', 'bg_comp_image', 'icon_image']);
+
+        return view('frontend.ajax-m-monster-item', ['monster' => $monster]);
+    }
+
     public function calculate_character(Request $request, $lang) 
     {
         if($lang != 'en' && $lang != 'fr') {
