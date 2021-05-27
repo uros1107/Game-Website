@@ -726,6 +726,8 @@ $(document).ready(function() {
     var arr = getCookie('comps_cookie');
     $(document).on('click', ".likes", function() {
         var c_id = $(this).data('value');
+        
+        if(typeof arr == 'string') arr = JSON.parse(arr);
         if(arr.indexOf(c_id) == -1) {
             arr.push(c_id);
             var json_str = JSON.stringify(arr);
@@ -752,6 +754,7 @@ $(document).ready(function() {
     $(document).on('click', ".dislikes", function() {
         var c_id = $(this).data('value');
 
+        if(typeof arr == 'string') arr = JSON.parse(arr);
         if(arr.indexOf(c_id) == -1) {
             arr.push(c_id);
             var json_str = JSON.stringify(arr);

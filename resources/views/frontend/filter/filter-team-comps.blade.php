@@ -18,23 +18,23 @@
                 <div class="line_up_ifo">
                     <div class="like_icon">
                         <span class="like">
-                            <a href="#1">
+                            <a class="likes" data-value="{{ $team_comp->c_id }}">
                                 <div class="like-unlike-wrap">
                                     <img src="{{ asset('assets/image/pouce_vide.png') }}" alt="">
                                     <img src="{{ asset('assets/image/like-active.png') }}" alt=""
                                         class="active-like-inlike">
                                 </div>
-                                <span>{{ $team_comp->c_likes }}</span>
+                                <span id="likes_{{ $team_comp->c_id }}">{{ $team_comp->c_likes }}</span>
                             </a>
                         </span>
                         <span class="unlike">
-                            <a href="#1">
+                            <a class="dislikes" data-value="{{ $team_comp->c_id }}">
                                 <div class="like-unlike-wrap">
                                     <img src="{{ asset('assets/image/Pouce_bas.png') }}" alt="">
                                     <img src="{{ asset('assets/image/unlike-active.png') }}" alt=""
                                         class="active-like-inlike">
                                 </div>
-                                <span>{{ $team_comp->c_dislikes }}</span>
+                                <span id="dislikes_{{ $team_comp->c_id }}">{{ $team_comp->c_dislikes }}</span>
                             </a>
                         </span>
                     </div>

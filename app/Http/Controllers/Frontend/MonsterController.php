@@ -312,6 +312,38 @@ class MonsterController extends Controller
             return response()->json(false);
         }
     }
+    
+    public function add_runes_likes(Request $request, $lang)
+    {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
+        App::setlocale(Session::get('lang'));
+
+        $r_id = $request->r_id;
+        $rune = RuneSet::where('rs_id', $r_id);
+        $rune->update([
+            'rs_likes' => $rune->first()->rs_likes + 1
+        ]);
+
+        return response()->json(['r_likes' => $rune->first()->rs_likes]);
+    }
+
+    public function add_runes_dislikes(Request $request, $lang)
+    {
+        if($lang != 'en' && $lang != 'fr') {
+            return view('errors.error-404');
+        }
+        App::setlocale(Session::get('lang'));
+
+        $r_id = $request->r_id;
+        $rune = RuneSet::where('rs_id', $r_id);
+        $rune->update([
+            'rs_dislikes' => $rune->first()->rs_dislikes + 1
+        ]);
+
+        return response()->json(['r_likes' => $rune->first()->rs_dislikes]);
+    }
 
     public function add_comps_likes(Request $request, $lang)
     {

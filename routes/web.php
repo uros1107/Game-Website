@@ -49,6 +49,8 @@ Route::get('/{lang}/get-spell', 'Frontend\MonsterController@get_spell')->name('g
 
 Route::get('/{lang}/add-rune-set/{slug}', 'Frontend\MonsterController@add_rune_set')->name('user-add-rune-set');
 Route::POST('/{lang}/store-rune-set', 'Frontend\MonsterController@store_rune_set')->name('rune-set-store');
+Route::POST('/{lang}/add-runes-likes', 'Frontend\MonsterController@add_runes_likes')->name('add-runes-likes');
+Route::POST('/{lang}/add-runes-dislikes', 'Frontend\MonsterController@add_runes_dislikes')->name('add-runes-dislikes');
 
 Route::get('/{lang}/comps', 'Frontend\MonsterController@comps_list')->name('comps-list');
 Route::get('/{lang}/compos', 'Frontend\MonsterController@comps_list')->name('fr-comps-list');

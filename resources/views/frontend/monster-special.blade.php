@@ -412,21 +412,21 @@
                     <div class="col-md-1">
                         <div class="like_icon">
                             <span class="like">
-                                <a href="#1">
+                                <a class="rs_likes" data-value="{{ $rune_set->rs_id }}">
                                     <div class="like-unlike-wrap">
                                         <img src="{{ asset('assets/image/pouce_vide.png') }}" alt="">
                                         <img src="{{ asset('assets/image/like-active.png') }}" alt="" class="active-like-inlike">
                                     </div>
-                                    2700
+                                    <span id="rs_likes_{{ $rune_set->rs_id }}">{{ $rune_set->rs_likes }}</span>
                                 </a>
                             </span>
                             <span class="unlike">
-                                <a href="#1">
+                                <a class="rs_dislikes" data-value="{{ $rune_set->rs_id }}">
                                     <div class="like-unlike-wrap">
                                         <img src="{{ asset('assets/image/Pouce_bas.png') }}" alt="">
                                         <img src="{{ asset('assets/image/unlike-active.png') }}" alt="" class="active-like-inlike">
                                     </div>
-                                    32
+                                    <span id="rs_dislikes_{{ $rune_set->rs_id }}">{{ $rune_set->rs_dislikes }}</span>
                                 </a>
                             </span>
                         </div>
@@ -479,23 +479,23 @@
                                 <div class="line_up_ifo">
                                     <div class="like_icon">
                                         <span class="like">
-                                            <a href="#1">
+                                            <a class="likes" data-value="{{ $team_comp->c_id }}">
                                                 <div class="like-unlike-wrap">
                                                     <img src="{{ asset('assets/image/pouce_vide.png') }}" alt="">
                                                     <img src="{{ asset('assets/image/like-active.png') }}" alt=""
                                                         class="active-like-inlike">
                                                 </div>
-                                                <span>{{ $team_comp->c_likes }}</span>
+                                                <span id="likes_{{ $team_comp->c_id }}">{{ $team_comp->c_likes }}</span>
                                             </a>
                                         </span>
                                         <span class="unlike">
-                                            <a href="#1">
+                                            <a class="dislikes" data-value="{{ $team_comp->c_id }}">
                                                 <div class="like-unlike-wrap">
                                                     <img src="{{ asset('assets/image/Pouce_bas.png') }}" alt="">
                                                     <img src="{{ asset('assets/image/unlike-active.png') }}" alt=""
                                                         class="active-like-inlike">
                                                 </div>
-                                                <span>{{ $team_comp->c_dislikes }}</span>
+                                                <span id="dislikes_{{ $team_comp->c_id }}">{{ $team_comp->c_dislikes }}</span>
                                             </a>
                                         </span>
                                     </div>
@@ -953,7 +953,144 @@
 
 @section('scripts')
 <script>
+
+var createCookie = function(name, value, days) {
+    var expires;
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    }
+    else {
+        expires = "";
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function getCookie(c_name) {
+    if (document.cookie.length > 0) {
+        c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start != -1) {
+            c_start = c_start + c_name.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) {
+                c_end = document.cookie.length;
+            }
+            return unescape(document.cookie.substring(c_start, c_end));
+        }
+    }
+    return [];
+}
+
 $(document).ready(function() {
+
+    var arr = getCookie('comps_cookie');
+    $(document).on('click', ".likes", function() {
+        var c_id = $(this).data('value');
+        
+        if(typeof arr == 'string') arr = JSON.parse(arr);
+        if(arr.indexOf(c_id) == -1) {
+            arr.push(c_id);
+            var json_str = JSON.stringify(arr);
+            createCookie('comps_cookie', json_str);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{ route('add-comps-likes', Session::get('lang')) }}",
+                method: "POST",
+                data: { c_id: c_id },
+                success: function(data) {
+                    $('#likes_' + c_id).html(data['c_likes']);
+                    $(this).find('img').addClass('active-like-inlike');
+                    toastr.success('Successfully added!');
+                }
+            })
+        }
+    })
+
+    $(document).on('click', ".dislikes", function() {
+        var c_id = $(this).data('value');
+
+        if(typeof arr == 'string') arr = JSON.parse(arr);
+        if(arr.indexOf(c_id) == -1) {
+            arr.push(c_id);
+            var json_str = JSON.stringify(arr);
+            createCookie('comps_cookie', json_str);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{ route('add-comps-dislikes', Session::get('lang')) }}",
+                method: "POST",
+                data: { c_id: c_id },
+                success: function(data) {
+                    $('#dislikes_' + c_id).html(data['c_dislikes']);
+                    toastr.success('Successfully added!');
+                }
+            })
+        }
+    })
+
+    var arr1 = getCookie('runes_cookie');
+    $(document).on('click', ".rs_likes", function() {
+        var r_id = $(this).data('value');
+        
+        if(typeof arr1 == 'string') arr1 = JSON.parse(arr1);
+        if(arr1.indexOf(r_id) == -1) {
+            arr1.push(r_id);
+            var json_str = JSON.stringify(arr1);
+            createCookie('runes_cookie', json_str);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{ route('add-runes-likes', Session::get('lang')) }}",
+                method: "POST",
+                data: { r_id: r_id },
+                success: function(data) {
+                    $('#rs_likes_' + r_id).html(data['r_likes']);
+                    $(this).find('img').addClass('active-like-inlike');
+                    toastr.success('Successfully added!');
+                }
+            })
+        }
+    })
+
+    $(document).on('click', ".rs_dislikes", function() {
+        var r_id = $(this).data('value');
+
+        if(typeof arr1 == 'string') arr1 = JSON.parse(arr1);
+        if(arr1.indexOf(r_id) == -1) {
+            arr1.push(r_id);
+            var json_str = JSON.stringify(arr1);
+            createCookie('runes_cookie', json_str);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{ route('add-runes-dislikes', Session::get('lang')) }}",
+                method: "POST",
+                data: { r_id: r_id },
+                success: function(data) {
+                    $('#rs_dislikes_' + r_id).html(data['r_dislikes']);
+                    toastr.success('Successfully added!');
+                }
+            })
+        }
+    });
 
     $(document).on('click', '#add-rune-set-btn', function() {
         @if(!Auth::user())

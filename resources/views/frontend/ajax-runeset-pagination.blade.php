@@ -69,21 +69,21 @@
         <div class="col-md-1">
             <div class="like_icon">
                 <span class="like">
-                    <a href="#1">
+                    <a class="rs_likes" data-value="{{ $rune_set->rs_id }}">
                         <div class="like-unlike-wrap">
                             <img src="{{ asset('assets/image/pouce_vide.png') }}" alt="">
                             <img src="{{ asset('assets/image/like-active.png') }}" alt="" class="active-like-inlike">
                         </div>
-                        2700
+                        <span id="rs_likes_{{ $rune_set->rs_id }}">{{ $rune_set->rs_likes }}</span>
                     </a>
                 </span>
                 <span class="unlike">
-                    <a href="#1">
+                    <a class="rs_dislikes" data-value="{{ $rune_set->rs_id }}">
                         <div class="like-unlike-wrap">
                             <img src="{{ asset('assets/image/Pouce_bas.png') }}" alt="">
                             <img src="{{ asset('assets/image/unlike-active.png') }}" alt="" class="active-like-inlike">
                         </div>
-                        32
+                        <span id="rs_dislikes_{{ $rune_set->rs_id }}">{{ $rune_set->rs_dislikes }}</span>
                     </a>
                 </span>
             </div>
