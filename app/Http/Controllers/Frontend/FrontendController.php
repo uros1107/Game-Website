@@ -22,7 +22,7 @@ class FrontendController extends Controller
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }
-        Session::put('lang', $lang);
+        // Session::put('lang', $lang);
         App::setlocale(Session::get('lang'));
 
         return view('frontend.index');
