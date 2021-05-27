@@ -29,7 +29,7 @@ class MonsterController extends Controller
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }
-        $monsters = Monster::where('del_flag', 0)->paginate(15, [
+        $monsters = Monster::where('del_flag', 0)->orderBy('name', 'asc')->paginate(15, [
             'id', 
             'name', 
             'slug', 
@@ -355,7 +355,7 @@ class MonsterController extends Controller
         }
         App::setlocale(Session::get('lang'));
 
-        $monsters = Monster::where('del_flag', 0)->get([
+        $monsters = Monster::where('del_flag', 0)->orderBy('name', 'asc')->get([
             'id', 
             'name', 
             'fr_name', 

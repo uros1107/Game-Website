@@ -57,6 +57,7 @@ class FilterController extends Controller
                                     }
                                 });
                             })
+                            ->orderBy('name', 'asc')
                             ->paginate(15, [
                                 'id', 
                                 'name', 
@@ -140,7 +141,9 @@ class FilterController extends Controller
                                         }
                                     }
                                 });
-                            })->get([
+                            })
+                            ->orderBy('name', 'asc')
+                            ->get([
                                 'id', 
                                 'name', 
                                 'fr_name', 
