@@ -328,7 +328,15 @@ class MonsterController extends Controller
         for ($i=0; $i < count($m_position); $i++) { 
             $m_position[$i] = intval($m_position[$i]);
         }
-        $comps_info['c_position'] = json_encode($m_position);
+        $position[0] = $m_position[5];
+        $position[1] = $m_position[7];
+        $position[2] = $m_position[4];
+        $position[3] = $m_position[6];
+        $position[4] = $m_position[1];
+        $position[5] = $m_position[3];
+        $position[6] = $m_position[0];
+        $position[7] = $m_position[2];
+        $comps_info['c_position'] = json_encode($position);
         unset($comps_info['m_position']);
 
         $m_spell = $comps_info['m_spell'];
