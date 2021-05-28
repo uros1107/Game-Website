@@ -72,7 +72,6 @@ class FrontendController extends Controller
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }
-        $lang = $request->lang;
         Session::put('lang', $lang);
         App::setlocale(Session::get('lang'));
 

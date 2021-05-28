@@ -242,10 +242,10 @@
                             <img src="{{ asset('assets/image/globe-americas-duotone.svg') }}" alt="">
                         </a>
                         <div class="select-lang lang-close">
-                            <a href="{{ route('setting-lang', Session::get('lang')).'?lang=en' }}">
+                            <a href="{{ route('setting-lang', 'en') }}">
                                 <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
                             </a>
-                            <a href="{{ route('setting-lang', Session::get('lang')).'?lang=fr' }}">
+                            <a href="{{ route('setting-lang', 'fr') }}">
                                 <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
                             </a>
                         </div>
@@ -302,10 +302,10 @@
                         <i class="fas fa-globe-americas"></i>
                     </a>
                     <div class="select-lang lang-close">
-                        <a href="{{ route('setting-lang', Session::get('lang')).'?lang=en' }}">
+                        <a href="{{ route('setting-lang', 'en') }}">
                             <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
                         </a>
-                        <a href="{{ route('setting-lang', Session::get('lang')).'?lang=fr' }}">
+                        <a href="{{ route('setting-lang', 'fr') }}">
                             <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
                         </a>
                     </div>
