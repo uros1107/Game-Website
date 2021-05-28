@@ -29,6 +29,14 @@ Route::group([
   ], function() {
     Route::get('/{lang}/user-private/{slug}', 'Frontend\FrontendController@private')->name('user-private');
 
+    Route::get('/{lang}/add-rune-set/{slug}', 'Frontend\MonsterController@add_rune_set')->name('user-add-rune-set');
+    Route::POST('/{lang}/store-rune-set', 'Frontend\MonsterController@store_rune_set')->name('rune-set-store');
+
+    Route::POST('/{lang}/comps-submit', 'Frontend\MonsterController@comps_submit')->name('comps-submit');
+    Route::POST('/{lang}/comps-m-submit', 'Frontend\MonsterController@comps_m_submit')->name('comps-m-submit');
+
+    Route::POST('/{lang}/comps-comment', 'Frontend\MonsterController@comps_comment')->name('comps-comment');
+
     Route::post('/update', 'Auth\RegisterController@update')->name('update');
 });
 
@@ -49,18 +57,13 @@ Route::get('/{lang}/calculate-monster', 'Frontend\MonsterController@calculate_ch
 Route::get('/{lang}/get-spell', 'Frontend\MonsterController@get_spell')->name('get-spell');
 Route::get('/{lang}/get-m-spell', 'Frontend\MonsterController@get_m_spell')->name('get-m-spell');
 
-Route::get('/{lang}/add-rune-set/{slug}', 'Frontend\MonsterController@add_rune_set')->name('user-add-rune-set');
-Route::POST('/{lang}/store-rune-set', 'Frontend\MonsterController@store_rune_set')->name('rune-set-store');
 Route::POST('/{lang}/add-runes-likes', 'Frontend\MonsterController@add_runes_likes')->name('add-runes-likes');
 Route::POST('/{lang}/add-runes-dislikes', 'Frontend\MonsterController@add_runes_dislikes')->name('add-runes-dislikes');
 
 Route::get('/{lang}/comps', 'Frontend\MonsterController@comps_list')->name('comps-list');
 Route::get('/{lang}/compos', 'Frontend\MonsterController@comps_list')->name('fr-comps-list');
-Route::POST('/{lang}/comps-submit', 'Frontend\MonsterController@comps_submit')->name('comps-submit');
-Route::POST('/{lang}/comps-m-submit', 'Frontend\MonsterController@comps_m_submit')->name('comps-m-submit');
 Route::get('/{lang}/comps/{slug}', 'Frontend\MonsterController@comps_detail')->name('comps-detail');
 Route::get('/{lang}/compos/{slug}', 'Frontend\MonsterController@comps_detail')->name('fr-comps-detail');
-Route::POST('/{lang}/comps-comment', 'Frontend\MonsterController@comps_comment')->name('comps-comment');
 Route::POST('/{lang}/add-comps-likes', 'Frontend\MonsterController@add_comps_likes')->name('add-comps-likes');
 Route::POST('/{lang}/add-comps-dislikes', 'Frontend\MonsterController@add_comps_dislikes')->name('add-comps-dislikes');
 
@@ -74,21 +77,14 @@ Route::get('/{lang}/setting-lang', 'Frontend\FrontendController@setting_language
 
 Route::get('/{lang}/user/{name}', 'Frontend\FrontendController@public')->name('user-public');
 
-// Route::get('/en/sitemap.xml', function() {
-//     return redirect(Request::root().'/en/sitemap.xml');
-// });
-// Route::get('/fr/sitemap.xml', function() {
-//     return redirect(Request::root().'/fr/sitemap.xml');
-// });
+// --------- sitemap
+Route::get('/{lang}/sitemap.xml', 'Frontend\SitemapController@index');
 
 // -------------------------- Filter route start -----------------------------
 Route::get('/{lang}/get-filter-monster', 'Frontend\FilterController@get_monster')->name('get-filter-monster');
 Route::get('/{lang}/get-filter-team-comps', 'Frontend\FilterController@get_team_comps')->name('get-filter-team-comps');
 Route::get('/{lang}/get-filter-builder-monster', 'Frontend\FilterController@get_builder_monster')->name('get-filter-builder-monster');
 // -------------------------- Filter route end -----------------------------
-
-
-
 
 
 

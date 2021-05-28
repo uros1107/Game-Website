@@ -242,14 +242,6 @@
                             <img src="{{ asset('assets/image/globe-americas-duotone.svg') }}" alt="">
                         </a>
                         @yield('language')
-                        <!-- <div class="select-lang lang-close">
-                            <a href="{{ route('setting-lang', 'en') }}">
-                                <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
-                            </a>
-                            <a href="{{ route('setting-lang', 'fr') }}">
-                                <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
-                            </a>
-                        </div> -->
                     </div>
                 </div>
                 <div class="mobile-partnership-text d-flex justify-content-center align-items-center d-xl-none">
@@ -303,14 +295,6 @@
                         <i class="fas fa-globe-americas"></i>
                     </a>
                     @yield('language')
-                    <!-- <div class="select-lang lang-close">
-                        <a href="{{ route('setting-lang', 'en') }}">
-                            <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
-                        </a>
-                        <a href="{{ route('setting-lang', 'fr') }}">
-                            <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
-                        </a>
-                    </div> -->
                 </div>
 
             </div>
