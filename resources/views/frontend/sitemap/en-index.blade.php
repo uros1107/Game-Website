@@ -40,21 +40,6 @@
 @foreach ($monsters as $monster)
     <url>
         <loc>http://lostcenturia.gg/en/monsters/{{ $monster->slug }}</loc>
-        <image:image>
-            <image:loc>http://lostcenturia.gg/images/game/main_images/{{ $monster->main_image }}</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://lostcenturia.gg/images/game/og_images/{{ $monster->fr_og_image }}</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://lostcenturia.gg/images/game/bg_images/{{ $monster->bg_image }}</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://lostcenturia.gg/images/game/bc_images/{{ $monster->bg_comp_image }}</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://lostcenturia.gg/images/game/icon_images/{{ $monster->icon_image }}</image:loc>
-        </image:image>
         <lastmod>{{ $monster->created_at->tz('UTC')->toAtomString() }}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -65,34 +50,6 @@
     <url>
         <loc>http://lostcenturia.gg/en/comps/{{ $team_comp->c_slug }}</loc>
         <lastmod>{{ $team_comp->created_at->tz('UTC')->toAtomString() }}</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-@endforeach
-
-@foreach ($rune_sets as $rune_set)
-    @php
-        $monster = DB::Table('monsters')->where('id', $rune_set->rs_monster_id)->first();
-    @endphp
-    <url>
-        <loc>http://lostcenturia.gg/en/add-rune-set/{{ $monster->name }}</loc>
-        <lastmod>{{ $rune_set->created_at->tz('UTC')->toAtomString() }}</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-@endforeach
-
-@foreach ($users as $user)
-    <url>
-        <loc>http://lostcenturia.gg/en/user/{{ $user->slug }}</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-@endforeach
-
-@foreach ($users as $user)
-    <url>
-        <loc>http://lostcenturia.gg/en/user-private/{{ $user->slug }}</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
