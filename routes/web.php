@@ -75,10 +75,10 @@ Route::get('/{lang}/setting-lang', 'Frontend\FrontendController@setting_language
 Route::get('/{lang}/user/{name}', 'Frontend\FrontendController@public')->name('user-public');
 
 Route::get('/en/sitemap.xml', function() {
-    return redirect(Request::root().'/sitemap.xml');
+    return redirect(Request::root().'/en/sitemap.xml');
 });
 Route::get('/fr/sitemap.xml', function() {
-    return redirect(Request::root().'/fr_sitemap.xml');
+    return redirect(Request::root().'/fr/sitemap.xml');
 });
 
 // -------------------------- Filter route start -----------------------------
