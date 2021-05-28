@@ -85,7 +85,6 @@
 @foreach ($users as $user)
     <url>
         <loc>http://lostcenturia.gg/fr/user/{{ $user->slug }}</loc>
-        <lastmod>{{ $user->created_at->tz('UTC')->toAtomString() }}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -94,7 +93,6 @@
 @foreach ($users as $user)
     <url>
         <loc>http://lostcenturia.gg/fr/user-private/{{ $user->slug }}</loc>
-        <lastmod>{{ $user->created_at->tz('UTC')->toAtomString() }}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
