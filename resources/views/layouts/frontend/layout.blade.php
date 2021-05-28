@@ -241,14 +241,15 @@
                         <a href="javascript:void(0);" class="choose-lang">
                             <img src="{{ asset('assets/image/globe-americas-duotone.svg') }}" alt="">
                         </a>
-                        <div class="select-lang lang-close">
+                        @yield('language')
+                        <!-- <div class="select-lang lang-close">
                             <a href="{{ route('setting-lang', 'en') }}">
                                 <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
                             </a>
                             <a href="{{ route('setting-lang', 'fr') }}">
                                 <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="mobile-partnership-text d-flex justify-content-center align-items-center d-xl-none">
@@ -301,14 +302,15 @@
                     <a href="javascript:void(0);" class="choose-lang border-open">
                         <i class="fas fa-globe-americas"></i>
                     </a>
-                    <div class="select-lang lang-close">
+                    @yield('language')
+                    <!-- <div class="select-lang lang-close">
                         <a href="{{ route('setting-lang', 'en') }}">
                             <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
                         </a>
                         <a href="{{ route('setting-lang', 'fr') }}">
                             <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
                         </a>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>

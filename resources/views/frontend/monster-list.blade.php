@@ -12,6 +12,17 @@
     <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}" type="text/css" />
 @endsection
 
+@section('language')
+<div class="select-lang lang-close">
+    <a href="{{ url('en/monsters') }}">
+        <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
+    </a>
+    <a href="{{ url('fr/monstres') }}">
+        <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
+    </a>
+</div>
+@endsection
+
 @section('content')
 <!-- Content Start-->
 <div class="main-content monster-list-page">

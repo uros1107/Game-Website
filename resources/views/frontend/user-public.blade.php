@@ -1,9 +1,9 @@
 @extends('layouts.frontend.layout')
 
 @section('head')
-<link rel="alternate" hreflang="en" href="{{ url('en/user-public/'.$user->slug) }}" />
-<link rel="alternate" hreflang="fr" href="{{ url('fr/user-public/'.$user->slug) }}" />
-<link rel="alternate" hreflang="x-default" href="{{ url('en/user-public/'.$user->slug) }}" />
+<link rel="alternate" hreflang="en" href="{{ url('en/user/'.$user->slug) }}" />
+<link rel="alternate" hreflang="fr" href="{{ url('fr/user/'.$user->slug) }}" />
+<link rel="alternate" hreflang="x-default" href="{{ url('en/user/'.$user->slug) }}" />
 @endsection
 
 @section('styles')
@@ -14,6 +14,17 @@
     border-bottom: 0px solid #dee2e6!important;
 }
 </style>
+@endsection
+
+@section('language')
+<div class="select-lang lang-close">
+    <a href="{{ url('en/user/'.$user->slug) }}">
+        <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
+    </a>
+    <a href="{{ url('fr/user/'.$user->slug) }}">
+        <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
+    </a>
+</div>
 @endsection
 
 @section('content')

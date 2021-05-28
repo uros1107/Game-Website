@@ -74,12 +74,12 @@ Route::get('/{lang}/setting-lang', 'Frontend\FrontendController@setting_language
 
 Route::get('/{lang}/user/{name}', 'Frontend\FrontendController@public')->name('user-public');
 
-Route::get('/en/sitemap.xml', function() {
-    return redirect(Request::root().'/en/sitemap.xml');
-});
-Route::get('/fr/sitemap.xml', function() {
-    return redirect(Request::root().'/fr/sitemap.xml');
-});
+// Route::get('/en/sitemap.xml', function() {
+//     return redirect(Request::root().'/en/sitemap.xml');
+// });
+// Route::get('/fr/sitemap.xml', function() {
+//     return redirect(Request::root().'/fr/sitemap.xml');
+// });
 
 // -------------------------- Filter route start -----------------------------
 Route::get('/{lang}/get-filter-monster', 'Frontend\FilterController@get_monster')->name('get-filter-monster');

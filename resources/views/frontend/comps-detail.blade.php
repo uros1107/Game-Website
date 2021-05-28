@@ -1,9 +1,9 @@
 @extends('layouts.frontend.layout')
 
 @section('head')
-<link rel="alternate" hreflang="en" href="{{ url('en/comps-detail/'.$team_comp->c_slug) }}" />
-<link rel="alternate" hreflang="fr" href="{{ url('fr/compos-detail/'.$team_comp->c_fr_slug) }}" />
-<link rel="alternate" hreflang="x-default" href="{{ url('en/comps-detail/'.$team_comp->c_slug) }}" />
+<link rel="alternate" hreflang="en" href="{{ url('en/comps/'.$team_comp->c_slug) }}" />
+<link rel="alternate" hreflang="fr" href="{{ url('fr/compos/'.$team_comp->c_fr_slug) }}" />
+<link rel="alternate" hreflang="x-default" href="{{ url('en/comps/'.$team_comp->c_slug) }}" />
 @endsection
 
 @section('styles')
@@ -34,6 +34,17 @@
         }
     }
 </style>
+@endsection
+
+@section('language')
+<div class="select-lang lang-close">
+    <a href="{{ url('en/comps/'.$team_comp->c_slug) }}">
+        <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
+    </a>
+    <a href="{{ url('fr/compos/'.$team_comp->c_fr_slug) }}">
+        <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
+    </a>
+</div>
 @endsection
 
 @section('content')

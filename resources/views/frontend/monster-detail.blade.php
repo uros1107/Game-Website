@@ -16,6 +16,17 @@
 </style>
 @endsection
 
+@section('language')
+<div class="select-lang lang-close">
+    <a href="{{ url('en/monsters/'.$monster->slug) }}">
+        <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
+    </a>
+    <a href="{{ url('fr/monstres/'.$monster->fr_slug) }}">
+        <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
+    </a>
+</div>
+@endsection
+
 @section('content')
 <!-- Content Start-->
 <div class="main-content monster-special-page" style="background-image: url({{ asset('images/game/bg_images/'.$monster->bg_image) }})">

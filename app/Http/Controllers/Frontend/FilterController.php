@@ -14,7 +14,7 @@ class FilterController extends Controller
 {
     public function get_monster(Request $request, $lang)
     {
-        App::setlocale(Session::get('lang'));
+        App::setlocale($lang);
         $mana_cost = $request->mana_cost;
         $element = $request->element;
         $role = $request->role;
@@ -85,7 +85,7 @@ class FilterController extends Controller
 
     public function get_builder_monster(Request $request, $lang)
     {
-        App::setlocale(Session::get('lang'));
+        App::setlocale($lang);
         $mana_cost1 = $request->mana_cost1;
         $mana_cost2 = $request->mana_cost2;
         $monster = $request->monster;
@@ -166,7 +166,7 @@ class FilterController extends Controller
 
     public function get_team_comps(Request $request, $lang)
     {
-        App::setlocale(Session::get('lang'));
+        App::setlocale($lang);
         $mana_cost = $request->mana_cost;
         $monster = $request->monster;
         $element = $request->element;

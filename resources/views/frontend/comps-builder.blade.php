@@ -37,6 +37,17 @@
 </style>
 @endsection
 
+@section('language')
+<div class="select-lang lang-close">
+    <a href="{{ url('en/comps-builder') }}">
+        <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
+    </a>
+    <a href="{{ url('fr/compos-builder') }}">
+        <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
+    </a>
+</div>
+@endsection
+
 @section('content')
 <!-- Content Start-->
 <div class="main-content user-page-public comp_builder-page comp_builder">

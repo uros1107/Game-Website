@@ -1,13 +1,24 @@
 @extends('layouts.frontend.layout')
 
 @section('head')
-<link rel="alternate" hreflang="en" href="{{ url('en/add-rune-set/').$monster->name }}" />
-<link rel="alternate" hreflang="fr" href="{{ url('fr/add-rune-set/').$monster->fr_name }}" />
-<link rel="alternate" hreflang="x-default" href="{{ url('en/add-rune-set/').$monster->name }}" />
+<link rel="alternate" hreflang="en" href="{{ url('en/add-rune-set/'.$monster->name) }}" />
+<link rel="alternate" hreflang="fr" href="{{ url('fr/add-rune-set/'.$monster->fr_name) }}" />
+<link rel="alternate" hreflang="x-default" href="{{ url('en/add-rune-set/'.$monster->name) }}" />
 @endsection
 
 @section('styles')
 
+@endsection
+
+@section('language')
+<div class="select-lang lang-close">
+    <a href="{{ url('en/add-rune-set/'.$monster->name) }}">
+        <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
+    </a>
+    <a href="{{ url('fr/add-rune-set/'.$monster->fr_name) }}">
+        <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
+    </a>
+</div>
 @endsection
 
 @section('content')

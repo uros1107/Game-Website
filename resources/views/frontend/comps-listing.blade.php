@@ -11,6 +11,17 @@
 <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}" type="text/css" />
 @endsection
 
+@section('language')
+<div class="select-lang lang-close">
+    <a href="{{ url('en/comps') }}">
+        <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
+    </a>
+    <a href="{{ url('fr/compos') }}">
+        <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
+    </a>
+</div>
+@endsection
+
 @section('content')
 <div class="main-content user-page-public" id="comps-listing-page">
 
@@ -726,7 +737,7 @@ $(document).ready(function() {
     var arr = getCookie('comps_cookie');
     $(document).on('click', ".likes", function() {
         var c_id = $(this).data('value');
-        
+
         if(typeof arr == 'string') arr = JSON.parse(arr);
         if(arr.indexOf(c_id) == -1) {
             arr.push(c_id);

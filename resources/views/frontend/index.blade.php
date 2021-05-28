@@ -9,6 +9,17 @@
 @section('styles')
 @endsection
 
+@section('language')
+<div class="select-lang lang-close">
+    <a href="{{ url('en') }}">
+        <img src="{{ asset('assets/image/england-flag.png') }}" alt="">
+    </a>
+    <a href="{{ url('fr') }}">
+        <img src="{{ asset('assets/image/france-flag.png') }}" alt="">
+    </a>
+</div>
+@endsection
+
 @section('content')
 <!-- Content Start-->
 <div class="main-content home-page-content">

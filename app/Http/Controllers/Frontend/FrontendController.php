@@ -26,7 +26,8 @@ class FrontendController extends Controller
             return view('errors.error-404');
         }
         // Session::put('lang', $lang);
-        App::setlocale(Session::get('lang'));
+        App::setlocale($lang);
+        Session::put('lang', $lang);
 
         return view('frontend.index');
     }
@@ -39,7 +40,8 @@ class FrontendController extends Controller
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }
-        App::setlocale(Session::get('lang'));
+        App::setlocale($lang);
+        Session::put('lang', $lang);
 
         return view('frontend.user-private');
     }
@@ -52,7 +54,8 @@ class FrontendController extends Controller
         if($lang != 'en' && $lang != 'fr') {
             return view('errors.error-404');
         }
-        App::setlocale(Session::get('lang'));
+        App::setlocale($lang);
+        Session::put('lang', $lang);
 
         $user = User::where('slug', $slug)->first();
         $team_comps = TeamComp::where('c_sent_by_user', $user->id)->paginate(5);
@@ -73,7 +76,7 @@ class FrontendController extends Controller
             return view('errors.error-404');
         }
         Session::put('lang', $lang);
-        App::setlocale(Session::get('lang'));
+        App::setlocale($lang);
 
         if(Session::get('lang') == 'fr') {
             $url = str_replace('/en', '/fr', url()->previous());
