@@ -9,6 +9,13 @@
 @section('styles')
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/12.0.0/nouislider.min.css"> -->
 <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}" type="text/css" />
+
+<style>
+.active {
+    opacity: 1!important;
+    visibility: initial!important;
+}
+</style>
 @endsection
 
 @section('language')
@@ -148,7 +155,7 @@
                                                 <div class="like-unlike-wrap">
                                                     <img src="{{ asset('assets/image/pouce_vide.png') }}" alt="">
                                                     <img src="{{ asset('assets/image/like-active.png') }}" alt=""
-                                                        class="active-like-inlike">
+                                                        class="active-like-inlike likes_active_{{ $team_comp->c_id }}">
                                                 </div>
                                                 <span id="likes_{{ $team_comp->c_id }}">{{ $team_comp->c_likes }}</span>
                                             </a>
@@ -158,7 +165,7 @@
                                                 <div class="like-unlike-wrap">
                                                     <img src="{{ asset('assets/image/Pouce_bas.png') }}" alt="">
                                                     <img src="{{ asset('assets/image/unlike-active.png') }}" alt=""
-                                                        class="active-like-inlike">
+                                                        class="active-like-inlike dislikes_active_{{ $team_comp->c_id }}">
                                                 </div>
                                                 <span id="dislikes_{{ $team_comp->c_id }}">{{ $team_comp->c_dislikes }}</span>
                                             </a>
@@ -730,19 +737,33 @@ function getCookie(c_name) {
 }
 
 $(document).ready(function() {
-    $(document).on('change', ".element, .monster", function() {
-        filter();
-    })
+    var likes = getCookie('comps_likes_cookie');
+    var dislikes = getCookie('comps_dislikes_cookie');
 
-    var arr = getCookie('comps_cookie');
+    if(likes.length) {
+        var arr_likes = JSON.parse(likes);
+        for (let index = 0; index < arr_likes.length; index++) {
+            const element = arr_likes[index];
+            $('.likes_active_' + element).addClass('active');
+        }
+    }
+
+    if(dislikes.length) {
+        var arr_dislikes = JSON.parse(dislikes);
+        for (let index = 0; index < arr_dislikes.length; index++) {
+            const element = arr_dislikes[index];
+            $('.dislikes_active_' + element).addClass('active');
+        }
+    }
+
     $(document).on('click', ".likes", function() {
         var c_id = $(this).data('value');
 
-        if(typeof arr == 'string') arr = JSON.parse(arr);
-        if(arr.indexOf(c_id) == -1) {
-            arr.push(c_id);
-            var json_str = JSON.stringify(arr);
-            createCookie('comps_cookie', json_str);
+        if(typeof likes == 'string') likes = JSON.parse(likes);
+        if(likes.indexOf(c_id) == -1 && dislikes.indexOf(c_id) == -1) {
+            likes.push(c_id);
+            var json_str = JSON.stringify(likes);
+            createCookie('comps_likes_cookie', json_str);
 
             $.ajaxSetup({
                 headers: {
@@ -755,21 +776,21 @@ $(document).ready(function() {
                 data: { c_id: c_id },
                 success: function(data) {
                     $('#likes_' + c_id).html(data['c_likes']);
-                    $(this).find('img').addClass('active-like-inlike');
+                    $('.likes_active_' + c_id).addClass('active');
                     toastr.success('Successfully added!');
                 }
             })
         }
     })
-
+    
     $(document).on('click', ".dislikes", function() {
         var c_id = $(this).data('value');
 
-        if(typeof arr == 'string') arr = JSON.parse(arr);
-        if(arr.indexOf(c_id) == -1) {
-            arr.push(c_id);
-            var json_str = JSON.stringify(arr);
-            createCookie('comps_cookie', json_str);
+        if(typeof dislikes == 'string') dislikes = JSON.parse(dislikes);
+        if(likes.indexOf(c_id) == -1 && dislikes.indexOf(c_id) == -1) {
+            dislikes.push(c_id);
+            var json_str = JSON.stringify(dislikes);
+            createCookie('comps_dislikes_cookie', json_str);
 
             $.ajaxSetup({
                 headers: {
@@ -782,10 +803,15 @@ $(document).ready(function() {
                 data: { c_id: c_id },
                 success: function(data) {
                     $('#dislikes_' + c_id).html(data['c_dislikes']);
+                    $('.dislikes_active_' + c_id).addClass('active');
                     toastr.success('Successfully added!');
                 }
             })
         }
+    })
+
+    $(document).on('change', ".element, .monster", function() {
+        filter();
     })
 
     $(document).on('click', '.page-number, #prev, #next', function() {

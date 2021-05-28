@@ -13,6 +13,10 @@
     margin-bottom: 0px!important;
     border-bottom: 0px solid #dee2e6!important;
 }
+.active {
+    opacity: 1!important;
+    visibility: initial!important;
+}
 </style>
 @endsection
 
@@ -270,7 +274,7 @@
                                 <a class="rs_likes" data-value="{{ $rune_set->rs_id }}">
                                     <div class="like-unlike-wrap">
                                         <img src="{{ asset('assets/image/pouce_vide.png') }}" alt="">
-                                        <img src="{{ asset('assets/image/like-active.png') }}" alt="" class="active-like-inlike">
+                                        <img src="{{ asset('assets/image/like-active.png') }}" alt="" class="active-like-inlike rs_likes_active_{{ $rune_set->rs_id }}">
                                     </div>
                                     <span id="rs_likes_{{ $rune_set->rs_id }}">{{ $rune_set->rs_likes }}</span>
                                 </a>
@@ -279,7 +283,7 @@
                                 <a class="rs_dislikes" data-value="{{ $rune_set->rs_id }}">
                                     <div class="like-unlike-wrap">
                                         <img src="{{ asset('assets/image/Pouce_bas.png') }}" alt="">
-                                        <img src="{{ asset('assets/image/unlike-active.png') }}" alt="" class="active-like-inlike">
+                                        <img src="{{ asset('assets/image/unlike-active.png') }}" alt="" class="active-like-inlike rs_dislikes_active_{{ $rune_set->rs_id }}">
                                     </div>
                                     <span id="rs_dislikes_{{ $rune_set->rs_id }}">{{ $rune_set->rs_dislikes }}</span>
                                 </a>
@@ -339,7 +343,7 @@
                                                 <div class="like-unlike-wrap">
                                                     <img src="{{ asset('assets/image/pouce_vide.png') }}" alt="">
                                                     <img src="{{ asset('assets/image/like-active.png') }}" alt=""
-                                                        class="active-like-inlike">
+                                                        class="active-like-inlike likes_active_{{ $team_comp->c_id }}">
                                                 </div>
                                                 <span id="likes_{{ $team_comp->c_id }}">{{ $team_comp->c_likes }}</span>
                                             </a>
@@ -349,7 +353,7 @@
                                                 <div class="like-unlike-wrap">
                                                     <img src="{{ asset('assets/image/Pouce_bas.png') }}" alt="">
                                                     <img src="{{ asset('assets/image/unlike-active.png') }}" alt=""
-                                                        class="active-like-inlike">
+                                                        class="active-like-inlike dislikes_active_{{ $team_comp->c_id }}">
                                                 </div>
                                                 <span id="dislikes_{{ $team_comp->c_id }}">{{ $team_comp->c_dislikes }}</span>
                                             </a>
@@ -857,15 +861,33 @@ function getCookie(c_name) {
 
 $(document).ready(function() {
     
-    var arr = getCookie('comps_cookie');
+    var likes = getCookie('comps_likes_cookie');
+    var dislikes = getCookie('comps_dislikes_cookie');
+
+    if(likes.length) {
+        var arr_likes = JSON.parse(likes);
+        for (let index = 0; index < arr_likes.length; index++) {
+            const element = arr_likes[index];
+            $('.likes_active_' + element).addClass('active');
+        }
+    }
+
+    if(dislikes.length) {
+        var arr_dislikes = JSON.parse(dislikes);
+        for (let index = 0; index < arr_dislikes.length; index++) {
+            const element = arr_dislikes[index];
+            $('.dislikes_active_' + element).addClass('active');
+        }
+    }
+
     $(document).on('click', ".likes", function() {
         var c_id = $(this).data('value');
-        
-        if(typeof arr == 'string') arr = JSON.parse(arr);
-        if(arr.indexOf(c_id) == -1) {
-            arr.push(c_id);
-            var json_str = JSON.stringify(arr);
-            createCookie('comps_cookie', json_str);
+
+        if(typeof likes == 'string') likes = JSON.parse(likes);
+        if(likes.indexOf(c_id) == -1 && dislikes.indexOf(c_id) == -1) {
+            likes.push(c_id);
+            var json_str = JSON.stringify(likes);
+            createCookie('comps_likes_cookie', json_str);
 
             $.ajaxSetup({
                 headers: {
@@ -878,21 +900,21 @@ $(document).ready(function() {
                 data: { c_id: c_id },
                 success: function(data) {
                     $('#likes_' + c_id).html(data['c_likes']);
-                    $(this).find('img').addClass('active-like-inlike');
+                    $('.likes_active_' + c_id).addClass('active');
                     toastr.success('Successfully added!');
                 }
             })
         }
     })
-
+    
     $(document).on('click', ".dislikes", function() {
         var c_id = $(this).data('value');
 
-        if(typeof arr == 'string') arr = JSON.parse(arr);
-        if(arr.indexOf(c_id) == -1) {
-            arr.push(c_id);
-            var json_str = JSON.stringify(arr);
-            createCookie('comps_cookie', json_str);
+        if(typeof dislikes == 'string') dislikes = JSON.parse(dislikes);
+        if(likes.indexOf(c_id) == -1 && dislikes.indexOf(c_id) == -1) {
+            dislikes.push(c_id);
+            var json_str = JSON.stringify(dislikes);
+            createCookie('comps_dislikes_cookie', json_str);
 
             $.ajaxSetup({
                 headers: {
@@ -905,21 +927,40 @@ $(document).ready(function() {
                 data: { c_id: c_id },
                 success: function(data) {
                     $('#dislikes_' + c_id).html(data['c_dislikes']);
+                    $('.dislikes_active_' + c_id).addClass('active');
                     toastr.success('Successfully added!');
                 }
             })
         }
     })
 
-    var arr1 = getCookie('runes_cookie');
+    var rs_likes = getCookie('runes_likes_cookie');
+    var rs_dislikes = getCookie('runes_dislikes_cookie');
+
+    if(rs_likes.length) {
+        var arr_likes = JSON.parse(rs_likes);
+        for (let index = 0; index < arr_likes.length; index++) {
+            const element = arr_likes[index];
+            $('.rs_likes_active_' + element).addClass('active');
+        }
+    }
+
+    if(rs_dislikes.length) {
+        var arr_dislikes = JSON.parse(rs_dislikes);
+        for (let index = 0; index < arr_dislikes.length; index++) {
+            const element = arr_dislikes[index];
+            $('.rs_dislikes_active_' + element).addClass('active');
+        }
+    }
+
     $(document).on('click', ".rs_likes", function() {
         var r_id = $(this).data('value');
         
-        if(typeof arr1 == 'string') arr1 = JSON.parse(arr1);
-        if(arr1.indexOf(r_id) == -1) {
-            arr1.push(r_id);
-            var json_str = JSON.stringify(arr1);
-            createCookie('runes_cookie', json_str);
+        if(typeof rs_likes == 'string') rs_likes = JSON.parse(rs_likes);
+        if(rs_likes.indexOf(r_id) == -1 && rs_dislikes.indexOf(r_id) == -1) {
+            rs_likes.push(r_id);
+            var json_str = JSON.stringify(rs_likes);
+            createCookie('runes_likes_cookie', json_str);
 
             $.ajaxSetup({
                 headers: {
@@ -932,7 +973,7 @@ $(document).ready(function() {
                 data: { r_id: r_id },
                 success: function(data) {
                     $('#rs_likes_' + r_id).html(data['r_likes']);
-                    $(this).find('img').addClass('active-like-inlike');
+                    $('.rs_likes_active_' + r_id).addClass('active');
                     toastr.success('Successfully added!');
                 }
             })
@@ -942,11 +983,11 @@ $(document).ready(function() {
     $(document).on('click', ".rs_dislikes", function() {
         var r_id = $(this).data('value');
 
-        if(typeof arr1 == 'string') arr1 = JSON.parse(arr1);
-        if(arr1.indexOf(r_id) == -1) {
-            arr1.push(r_id);
-            var json_str = JSON.stringify(arr1);
-            createCookie('runes_cookie', json_str);
+        if(typeof rs_dislikes == 'string') rs_dislikes = JSON.parse(rs_dislikes);
+        if(rs_likes.indexOf(r_id) == -1 && rs_dislikes.indexOf(r_id) == -1) {
+            rs_dislikes.push(r_id);
+            var json_str = JSON.stringify(rs_dislikes);
+            createCookie('runes_dislikes_cookie', json_str);
 
             $.ajaxSetup({
                 headers: {
@@ -959,6 +1000,7 @@ $(document).ready(function() {
                 data: { r_id: r_id },
                 success: function(data) {
                     $('#rs_dislikes_' + r_id).html(data['r_dislikes']);
+                    $('.rs_dislikes_active_' + r_id).addClass('active');
                     toastr.success('Successfully added!');
                 }
             })
